@@ -11,6 +11,8 @@ import Setting from './pages/Setting'
 import Topnews from './pages/Topnews'
 import Mynews from './pages/Mynews'
 import Dashborad from './pages/dashborad'
+import AboutUs from './pages/AboutUs'
+import Live from './pages/Live'
 
 export default function AppRoutes () {
     return (
@@ -24,6 +26,8 @@ export default function AppRoutes () {
             <Route path='/Account' element = {<Account />}/>
             <Route path='/Top-news' element = {<Topnews />}/>
             <Route path='/dashboard' element ={<Dashborad />} ></Route>
+            <Route path='/aboutus' element ={<AboutUs />} ></Route>
+            <Route path='/Live-news' element ={<Live />} ></Route>
         </Routes>
     )
 }

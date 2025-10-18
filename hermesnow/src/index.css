@@ -1,0 +1,39 @@
+:root {
+  --color-primary: #282929;        /* متن اصلی و هدر */
+  --color-secondary: #D4D4D4;      /* پس‌زمینه کارت و بخش فرعی */
+  --color-accent: #C07B74;         /* دکمه، alert */
+  --color-info: #6C92A0;           /* لینک، hover */
+  --color-neutral: #A8A9A9;        /* متن کم‌اهمیت، placeholder */
+}
+
+body.dark {
+  --color-primary: #D4D4D4;
+  --color-secondary: #1E1E1E;
+  --color-accent: #A65650;
+  --color-info: #4A708B;
+  --color-neutral: #6C6C6C;
+}
+
+*{
+  box-sizing : border-box;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+body {
+    background-color:  var(--color-secondary);
+    font-family: vazir;
+}
+
+a{
+        font-size: 16px;
+        font-weight: 600;
+        color : var(--color-info);
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        &:hover {
+            color: var(--color-accent);
+            transform: scale(1.2);
+        }
+}
