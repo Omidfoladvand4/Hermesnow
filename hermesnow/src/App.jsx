@@ -2,8 +2,8 @@ import './App.css'
 import styled from 'styled-components'
 import Menu from './layout/Menu'
 import AppRoutes from './routes'
-import FooterMenu from './ui/menu/FooterMenu'
-function App() {
+import ButtonMenu from './ui/menu/ButtonMenu'
+import FooterSection from './ui/footer/Footer'
   const AppContainer = styled.div`
     display: flex;
     height: 100%;
@@ -12,15 +12,15 @@ function App() {
     flex-direction: column;
     position: relative;
   `
+function App() {
 
   return (
-  <>
     <AppContainer>
     <Menu />
-    <FooterMenu />
-    </AppContainer>
+    <ButtonMenu />
     <AppRoutes />
-  </>
+    <FooterSection />
+    </AppContainer>
   )
 }
 

@@ -6,8 +6,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
 import LoginIcon from '@mui/icons-material/Login';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
-function FooterMenu() {
-    const FooterMenuContainer = styled.main`
+    const ButtonMenuContainer = styled.main`
       width: 100%;
       display: flex;
       align-items: center;
@@ -19,8 +18,9 @@ function FooterMenu() {
       top: 0;
       z-index: -1;
     `
+function ButtonMenu() {
   return (
-    <FooterMenuContainer>
+    <ButtonMenuContainer>
         <MenuItem ><Link to = '/category'>اقتصاد</Link></MenuItem>
         <MenuItem ><Link to = '/category'>تجارت</Link></MenuItem>
         <MenuItem ><Link to = '/category'>فرهنگی</Link></MenuItem>
@@ -32,8 +32,8 @@ function FooterMenu() {
         <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>
         <MenuItem ><Link to = '/settings'><SettingsInputCompositeIcon /></Link></MenuItem>
         <MenuItem ><Link to = '/login'><LoginIcon /></Link></MenuItem>
-    </FooterMenuContainer>
+    </ButtonMenuContainer>
   )
 }
 
-export default FooterMenu
+export default ButtonMenu

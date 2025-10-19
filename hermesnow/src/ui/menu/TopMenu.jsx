@@ -8,7 +8,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
-function TopMenu() {
+import Logo from '../../components/Logo';
     const TopMenuContainer = styled.main`
          width: 100%;
          display: flex;
@@ -37,40 +37,10 @@ function TopMenu() {
             transform: scale(1.2);
         }
     `
-    const Logo = styled.div`
-         width: 20%;
-         align-items: end;
-         text-align: center;
-        color: var(--color-secondary);
-        overflow: hidden;
-    
-    `
-    const LogoText = styled.div`
-       font-size: 32px;
-          font-weight: 900;
-          transition: color 0.3s ease-in;
-        animation:  animate 1s infinite;
-        @keyframes animate {
-          form {
-             transform: scale(1);
-             color: var(--color-secondary);
-             opacity: 1;
-          }
-          to{
-             transform: scale(1.5);
-              color: var(--color-info);
-              opacity: 0.8;
 
-          }
-        }
-    `
-    function scrollHendle() {
-      const scroll =    document.body.scrollHeight
-      console.log(scroll);
-      
-    }
+function TopMenu() {
   return (
-     <TopMenuContainer on={scrollHendle}>
+     <TopMenuContainer>
         <TopMenuItemsContainer>
             <UserName>
              <Link  to="/Account"  style={{ color: 'var(--color-accent)', textDecoration: 'none' , fontSize : '24px ' ,}}  >نام کاربری</Link>
@@ -83,9 +53,9 @@ function TopMenu() {
             <MenuItem ><ConnectWithoutContactIcon /><Link to = '/َaboutus'>ارتباط با ما</Link></MenuItem>
             <MenuItem ><LiveTvIcon /><Link to = '/live-news'>زنده</Link></MenuItem>
         </TopMenuItemsContainer>
-        <Logo><LogoText>HERMESNOW</LogoText></Logo>
+        <Logo />
      </TopMenuContainer>
   )
-}
+      }
 
 export default TopMenu

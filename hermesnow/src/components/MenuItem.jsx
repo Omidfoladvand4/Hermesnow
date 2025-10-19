@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-function MenuItem({children}) {
-     const MenuItem = styled.li`
+     const MenuItemContainer = styled.li`
         width: 12%;
         font-size: 16px;
         font-weight: 600;
@@ -21,8 +20,9 @@ function MenuItem({children}) {
     justify-content: center;
     width: 100%;
   `
+function MenuItem({children}) {
   return (
-     <MenuItem><MenuItemContent>{children}</MenuItemContent></MenuItem>
+     <MenuItemContainer><MenuItemContent>{children}</MenuItemContent></MenuItemContainer>
   )
 }
 
