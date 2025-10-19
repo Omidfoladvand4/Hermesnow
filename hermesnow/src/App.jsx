@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Menu from './layout/Menu'
 import AppRoutes from './routes'
 import ButtonMenu from './ui/menu/ButtonMenu'
-import FooterSection from './ui/footer/Footer'
+import FooterSection from './layout/Footer'
+import Header from './layout/Header'
   const AppContainer = styled.div`
     display: flex;
     height: 100%;
