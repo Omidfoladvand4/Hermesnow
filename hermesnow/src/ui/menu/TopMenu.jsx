@@ -15,14 +15,17 @@ import Logo from '../../components/Logo';
          align-items:  center;
          justify-content: space-between;
          padding:5px 15px;
-         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-          
-    `
+         z-index: 101;
+         position: relative;
+         
+         `
     const TopMenuItemsContainer = styled.ul`
          flex:  1;
          display: flex;
          align-items:  center;
          list-style-type: none;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08), 
+            0 2px 4px rgba(255, 255, 255, 0.12);
          gap: 15px;
     `
     const UserName = styled.div`

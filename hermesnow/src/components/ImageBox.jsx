@@ -8,7 +8,7 @@ const Image = styled.img`
 `
 function ImageBox({ $src , $w , $h  , $borderRadius }) {
   return (
-        <Image  src={$src} width={$w} height={$h} borderRadius = {$borderRadius}/>
+        <Image  src={$src} $w={$w} $h={$h} $borderRadius = {$borderRadius}/>
   )
 }
 

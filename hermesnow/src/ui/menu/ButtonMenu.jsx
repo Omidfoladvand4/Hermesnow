@@ -14,9 +14,9 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
       list-style-type: none;
       padding: 10px 20px;
       background-color:var(--color-primary);
-      position: fixed;
+      position: sticky;
       top: 0;
-      z-index: -1;
+      z-index: 90;
     `
 function ButtonMenu() {
   return (

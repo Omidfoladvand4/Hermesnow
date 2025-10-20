@@ -2,7 +2,7 @@ import React from 'react'
 
 function Topnews() {
   return (
-    <div>Topnews</div>
+    <div></div>
   )
 }
 

@@ -26,7 +26,7 @@ export default function AppRoutes () {
             <Route path='/Account' element = {<Account />}/>
             <Route path='/Top-news' element = {<Topnews />}/>
             <Route path='/dashboard' element ={<Dashborad />} ></Route>
-            <Route path='/aboutus' element ={<AboutUs />} ></Route>
+            <Route path='/about-us' element ={<AboutUs />} ></Route>
             <Route path='/Live-news' element ={<Live />} ></Route>
         </Routes>
     )
