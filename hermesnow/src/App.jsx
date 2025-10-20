@@ -5,7 +5,7 @@ import AppRoutes from './routes'
 import ButtonMenu from './ui/menu/ButtonMenu'
 import FooterSection from './layout/Footer'
 import Header from './layout/Header'
-  const AppContainer = styled.div`
+  const AppContainer = styled.div` 
     display: flex;
     height: 100%;
     align-items: center;

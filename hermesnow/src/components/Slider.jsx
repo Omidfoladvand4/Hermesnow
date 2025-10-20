@@ -43,11 +43,11 @@ function Slider({images , spaceBetween = 10 , slidesPerView = 3 }) {
           borderRadius: '10px',
         }}
       >
-       {images.map((item, index) => {
+       {images.map((image , index) => {
     return (
-        <SlideWrapper key={index}>
-            <SwiperSlide>
-                <ImageBox $src={item} $w='100%' $h='300px' />
+        <SlideWrapper key={`${image} dtcsev ${index}`}>
+            <SwiperSlide  key={`${image} dtcsev ${index}`}>
+                <ImageBox $src={image} $w='100%' $h='300px' />
             </SwiperSlide>
         </SlideWrapper>
     )

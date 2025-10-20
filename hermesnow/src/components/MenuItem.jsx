@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-     const MenuItemContainer = styled.li`
+     const MenuItemContainer = styled.li` 
         width: 12%;
         font-size: 16px;
         font-weight: 600;
