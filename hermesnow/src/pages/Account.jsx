@@ -81,16 +81,31 @@ const UserImformationWrapper = styled.div`
 const UserActionsContainer = styled(BaseContainer)`
     font-size: 25px;
     padding: 5px ;
+    overflow: hidden;
 `
 const UserActionsBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: var(--color-primary);
+  background: linear-gradient( #d4d4d4 , transparent);
+  box-shadow: 0 2px 3px 1px rgba(0,0,0,0.6);
+    animation: buncing 1.5s ease-in;
+    @keyframes buncing {
+      0% {
+           transform: translateY(-250px) scale(1.5);
+      }
+      50%{
+          transform: translateY(250px) scale(1.5);
+
+      }
+      100%{
+        transform: translate(0) scale(1);
+      }
+  }
 `
 const SavedNewsContainer = styled(BaseContainer)`
     grid-column: 1/-1;
@@ -117,9 +132,6 @@ function Account() {
     </Navbar>
     <Container>
          <ProfileContainer >
-          <TitleBox>
-             <Title color={`var(--color-accent)`} titleName='اطلاعات کاربری' font='14px'/>
-         </TitleBox>
            <Avatar  AvatarSrc={fakeUser.avatar}/> 
            <UserName >{fakeUser.fullName}</UserName>
            <UserId>{fakeUser.userId}</UserId>
