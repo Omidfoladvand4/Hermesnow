@@ -1,11 +1,10 @@
 import React from 'react'
 import fakeUser from '../utils/fakeUser'
 import styled from 'styled-components'
-import { useNavigate }from 'react-router-dom'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import formatNumber from '../utils/formartNumber'
 import Title from '../components/Title'
 import Avatar from '../components/Avatar';
+import BackButton from '../components/BackButton'
 const Navbar = styled.div`
   width: 100%;
   display: flex;
@@ -13,18 +12,6 @@ const Navbar = styled.div`
   justify-content: space-between;
   padding: 10px 18px;
   background: var(--color-info);
-`
-const BackIcon = styled.div`
-  width: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 15px;
-  border-radius: 5px;
-  cursor: pointer;  
-  background: var(--color-primary);
-  color: var(--color-secondary);
-
 `
 
 const Container = styled.main`
@@ -120,17 +107,12 @@ const TitleBox = styled.div`
 `
 
 function Account() {
-  const navigate = useNavigate()
-  const backHandle = () => [
-     navigate(-1)
-  ]
+ 
   return (
    <>
    <Navbar>
       <Title font='16px' titleName='اکانت کاربری' color={`var(--color-primary)`} />
-    <BackIcon  onClick={backHandle}>
-         <ArrowBackIcon /> بازگشت  
- </BackIcon>
+       <BackButton />
     </Navbar>
     <Container>
          <ProfileContainer >

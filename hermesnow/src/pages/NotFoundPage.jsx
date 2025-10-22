@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import BackButton from '../components/BackButton'
 const Overlay = styled.div`
     width: 100%;
     min-height: 100vh;
@@ -37,10 +38,16 @@ const TitlePage = styled.div`
     }
 
 `
+const Nav = styled.div`
+    position: fixed;
+    z-index: 100;
+    bottom: 100px;
+`
 function NotFoundPage() {
   return (
    <>
    <Overlay ><TitlePage>Page Not Found :(</TitlePage></Overlay>
+   <Nav > <BackButton /></Nav>
    </>
   )
 }
