@@ -8,16 +8,17 @@ const TitleContainer = styled.div`
   margin-right: 25px;
 `
 const TitleContent = styled.h1`
-  font-size: 35px;
+  font-size: ${({$font}) => $font || '35px' };
   font-weight: 900;
-  color: var(--color-accent);
+  color: ${({$color}) => $color || `var(--color-accent)`};
   border-bottom: 4px solid var(--color-accent);
 `
-function Title({titleName}) {
+function Title({titleName , color , font}) {
   return (
     <TitleContainer>
-      <TitleContent>{titleName}</TitleContent>
+      <TitleContent $color = {color} $font ={font}>{titleName}</TitleContent>
     </TitleContainer>
+    
   )
 }
 

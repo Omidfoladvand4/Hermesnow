@@ -9,6 +9,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../../components/Logo';
+import fakeUser from '../../utils/fakeUser';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
     const TopMenuContainer = styled.main`
          width: 100%;
          display: flex;
@@ -29,12 +31,16 @@ import Logo from '../../components/Logo';
          gap: 15px;
     `
     const UserName = styled.div`
-        font-size: 24px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
         font-weight: 900;
         cursor: pointer;
         margin-left: 15px;
+        padding-right: 12px;
         text-decoration: none;
         transition:  all 0.3s ease;
+        color: var(--color-info);
            &:hover {
             color: var(--color-accent);
             transform: scale(1.2);
@@ -46,7 +52,8 @@ function TopMenu() {
      <TopMenuContainer>
         <TopMenuItemsContainer>
             <UserName>
-             <Link  to="/Account"  style={{ color: 'var(--color-accent)', textDecoration: 'none' , fontSize : '24px ' ,}}  >نام کاربری</Link>
+               <Link  to="/Account" ><AccountCircleIcon sx={{color : '#D4D4D4'}}/></Link>  
+             <div>{fakeUser.fullName}</div>
             </UserName>
 
             <MenuItem> <AccessTimeIcon /> <Link to = '/top-news' >تازه ها</Link></MenuItem>
