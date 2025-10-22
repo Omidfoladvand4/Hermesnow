@@ -13,6 +13,7 @@ import Mynews from './pages/Mynews'
 import Dashborad from './pages/dashborad'
 import AboutUs from './pages/AboutUs'
 import Live from './pages/Live'
+import NotFoundPage from './pages/NotFoundPage'
 
 export default function AppRoutes () {
     return (
@@ -28,6 +29,7 @@ export default function AppRoutes () {
             <Route path='/dashboard' element ={<Dashborad />} ></Route>
             <Route path='/about-us' element ={<AboutUs />} ></Route>
             <Route path='/Live-news' element ={<Live />} ></Route>
+            <Route path='*' element ={< NotFoundPage/>} ></Route>
         </Routes>
     )
 }
