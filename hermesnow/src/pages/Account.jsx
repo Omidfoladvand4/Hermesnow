@@ -96,14 +96,16 @@ const UserActionsBox = styled.div`
     animation: buncing 1.5s ease-in;
     @keyframes buncing {
       0% {
-           transform: translateY(-250px) scale(1.5);
+           transform: translateY(-250px) scale(1.5) rotate(360deg);
       }
       50%{
-          transform: translateY(250px) scale(1.5);
+          transform: translateY(250px) scale(1.5) ;
+          opacity: 0;
 
       }
       100%{
-        transform: translate(0) scale(1);
+        transform: translate(0) scale(1) rotate(360deg);
+        opacity: 1;
       }
   }
 `
