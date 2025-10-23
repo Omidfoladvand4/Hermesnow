@@ -42,6 +42,7 @@ const ErrorFelid = styled.div`
 `
 
 const LoginButton = styled.button`
+    width: 120px;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
