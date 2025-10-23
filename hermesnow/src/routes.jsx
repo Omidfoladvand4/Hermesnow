@@ -1,8 +1,8 @@
-import { Routes , Route }  from 'react-router-dom'
+import { Routes , Route ,  }  from 'react-router-dom'
 
 import Account from './pages/Account'
 import Category from './pages/Category' 
-
+import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import News from './pages/News'
@@ -25,7 +25,9 @@ export default function AppRoutes () {
             <Route path='/news-editor' element = {<NewsEditor />}/>
             <Route path='/settings' element = {<Setting />}/>
             <Route path='/category' element = {<Category />}/>
-            <Route path='/Account' element = {<Account />}/>
+            <Route path='/Account' element = {<ProtectedRoute>
+                                                  <Account />
+                                           </ProtectedRoute>}/>
             <Route path='/Top-news' element = {<Topnews />}/>
             <Route path='/dashboard' element ={<Dashborad />} ></Route>
             <Route path='/about-us' element ={<AboutUs />} ></Route>
