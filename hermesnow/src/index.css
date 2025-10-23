@@ -39,3 +39,7 @@ a{
             transform: scale(1.2);
         }
 }
+
+input{
+  font-family: vazir;
+}

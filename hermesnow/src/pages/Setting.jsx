@@ -14,16 +14,16 @@ const SettingContainer = styled.div`
 `
 
 const Form = styled.div`
-  background: white;
+  background: var(--color-info);
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 `
 
 const Input = styled.input`
   width: 100%;
-  padding: 12px 15px;
-  border: 2px solid #e1e1e1;
+  padding: 8px 15px;
+  border: 2px solid var(--color-secondary);
   border-radius: 8px;
   font-size: 1rem;
   margin-bottom: 15px;
@@ -39,7 +39,7 @@ const Input = styled.input`
 `
 
 const Label = styled.label`
-  font-weight: bold;
+  font-weight: bolder;
   color: var(--color-secondary);
   display: block;
   margin-bottom: 8px;
@@ -60,11 +60,11 @@ const ButtonContainer = styled.div`
 
 const NextButton = styled.button`
   background: var(--color-primary);
-  color: white;
+  color:   var(--color-secondary);
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   
   &:disabled {
@@ -74,22 +74,22 @@ const NextButton = styled.button`
 `
 
 const PrevButton = styled.button`
-  background: #6c757d;
-  color: white;
+  background: var(--color-secondary);
+  color: var(--color-primary);
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
 `
 
 const SaveButton = styled.button`
-  background: #28a745;
-  color: white;
+  background: var(--color-accent);
+  color: var(--color-secondary);
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
 `
 
@@ -107,8 +107,8 @@ const StepCircle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.active ? 'var(--color-primary)' : '#e1e1e1'};
-  color: ${props => props.active ? 'white' : '#666'};
+  background: ${props => props.active ? 'var(--color-primary)' : 'var(--color-accent)'};
+  color: ${props => props.active ? 'var(--color-secondary)' : '#666'};
   font-weight: bold;
 `
 
@@ -369,7 +369,8 @@ function Setting() {
 
   return (
     <SettingContainer>
-      <StepIndicator>
+     <Title  titleName='تنظیمات'/>
+       <StepIndicator>
         <StepCircle active={currentStep >= 1}>1</StepCircle>
         <StepCircle active={currentStep >= 2}>2</StepCircle>
         <StepCircle active={currentStep >= 3}>3</StepCircle>
