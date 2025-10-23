@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import  styled  from 'styled-components'
 import { Link } from 'react-router-dom'
 import MenuItem from '../../components/MenuItem'
@@ -9,7 +9,6 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../../components/Logo';
-import fakeUser from '../../utils/fakeUser';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
     const TopMenuContainer = styled.main`
          width: 100%;
@@ -48,12 +47,27 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
     `
 
 function TopMenu() {
+ const [userName, setUserName] = useState('')
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user')
+    if (userData) {
+      try {
+        const user = JSON.parse(userData)
+        setUserName(user.UserName || user.username || 'کاربر')
+      } catch (error) {
+        console.error('خطا در خواندن اطلاعات کاربر:', error)
+      }
+    }else{
+        setUserName('')
+    }
+  }, [userName])
   return (
      <TopMenuContainer>
         <TopMenuItemsContainer>
             <UserName>
                <Link  to="/Account" ><AccountCircleIcon sx={{color : '#D4D4D4'}}/></Link>  
-             <div>{fakeUser.fullName}</div>
+             <div>{userName}</div>
             </UserName>
 
             <MenuItem> <AccessTimeIcon /> <Link to = '/top-news' >تازه ها</Link></MenuItem>
