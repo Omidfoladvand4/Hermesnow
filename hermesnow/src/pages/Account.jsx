@@ -164,7 +164,7 @@ function Account() {
             <div>کشور: "{user?.UserCountry || 'ثبت نشده'}"</div>
             <div>ایمیل: "{user?.UserEmail || 'ثبت نشده'}"</div>
             <div>رمز عبور: "{user?.UserPassword || 'ثبت نشده'}"</div>
-            <div>موضوع مورد علاقه: "{user?.FavoritesToopics || 'مشخص نشده'}"</div>
+            <div>موضوع مورد علاقه: "{user?.FavoritesTopic || 'مشخص نشده'}"</div>
           </UserImformationWrapper>
         </UserInformationContainer>
 
