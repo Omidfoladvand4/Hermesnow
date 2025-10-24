@@ -1,23 +1,43 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { useAuth } from '../contexts/AuthContext'
-import Title from '../components/Title'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { supabase } from '../lib/supabaseClient'
 import { useNavigate } from 'react-router-dom'
+import Navigations from '../components/Navigations'
 
 const SettingContainer = styled.div`
+  width: 100%;
+  min-height: 100vh;
   padding: 20px;
-  max-width: 600px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: url('./public/images/HermesNowBannar.jpg');
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 `
 
 const Form = styled.div`
-  background: var(--color-info);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      width: 25%;
+      display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 15px 10px;
+    flex-direction: column;
+    border-radius: 12px;
+    backdrop-filter: blur(25px);
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    margin-top: 10px;
 `
 
 const Input = styled.input`
@@ -369,7 +389,7 @@ function Setting() {
 
   return (
     <SettingContainer>
-     <Title  titleName='تنظیمات'/>
+        <Navigations color={`var(--color-primary)`} font= '28px' titleName='تنظیمات' ></Navigations>
        <StepIndicator>
         <StepCircle active={currentStep >= 1}>1</StepCircle>
         <StepCircle active={currentStep >= 2}>2</StepCircle>

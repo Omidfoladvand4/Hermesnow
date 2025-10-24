@@ -4,8 +4,7 @@ import * as Yup from 'yup'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useSignup } from '../hooks/useSignup'
-import Title from './Title'
-import BackButton from './BackButton'
+import Navigations from './Navigations'
 
 const SingupContainer = styled.div`
     width: 100%;
@@ -21,15 +20,6 @@ const SingupContainer = styled.div`
     position: fixed;
     top: 0;
     z-index: 120;
-`
-
-const Navigations = styled.div`
-    width: 100%;
-    background-color: var(--color-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 5px 10px;
 `
 
 const SignupWrapper = styled.form`
@@ -138,7 +128,7 @@ const Signup = () => {
             .required('رمز عبور الزامی است'),
         confirmPassword: Yup.string()
             .oneOf([Yup.ref('password'), null], 'رمز عبور و تکرار آن باید یکسان باشد')
-            .required('تکرار رمز عبور الزامی است')
+            .required('تکرار رمز عبور  باید یکسان باشد')
     })
 
     const formik = useFormik({
@@ -156,10 +146,7 @@ const Signup = () => {
 
     return (
         <SingupContainer>
-            <Navigations> 
-                <Title titleName='ثبت نام' font='28px' color='var(--color-primary)'/> 
-                <BackButton />  
-            </Navigations>
+            <Navigations titleName='ثبت نام' font='28px' color='var(--color-primary)'> </Navigations>
             
             <SignupWrapper onSubmit={formik.handleSubmit}>
                 {/* نمایش خطا از هوک */}
