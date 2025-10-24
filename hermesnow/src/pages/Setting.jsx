@@ -127,8 +127,8 @@ const StepCircle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.active ? 'var(--color-primary)' : 'var(--color-accent)'};
-  color: ${props => props.active ? 'var(--color-secondary)' : '#666'};
+  background: ${props => props.$active ? 'var(--color-info)' : 'var(--color-primary)'};
+  color: ${props => props.$active ? 'var(--color-neutral)' : '#666'};
   font-weight: bold;
 `
 
@@ -144,6 +144,7 @@ function Setting() {
     UserCountry: '',
     UserEmail: '',
     UserPhone: '',
+    UserPassword: '',
     FavoritesTopic: '',
     Gender: ''
   })
@@ -161,6 +162,9 @@ function Setting() {
   })
 
   const step2Schema = Yup.object({
+    UserPassword : Yup.string()
+    .min(6 , "باید بیشتر از 6 کاراکتر باشد")
+    .max(20 , 'نباید بیشتر از 20 کاراکتر باشد') ,
     UserEmail: Yup.string()
       .email('ایمیل معتبر نیست')
       .required('ایمیل الزامی است'),
@@ -188,6 +192,7 @@ function Setting() {
 
   const formik2 = useFormik({
     initialValues: {
+      UserPassword : formData.UserPassword || '',
       UserEmail: formData.UserEmail || '',
       UserPhone: formData.UserPhone || ''
     },
@@ -323,6 +328,20 @@ function Setting() {
       case 2:
         return (
           <div>
+            <Label>رمز عبور</Label>
+            <Input 
+              name="UserPassword"
+              type="text" 
+              placeholder="رمز عبور"
+              value={formik2.values.UserPassword}
+              onChange={formik2.handleChange}
+              onBlur={formik2.handleBlur}
+              className={formik2.touched.UserPassword && formik2.errors.UserPassword ? 'error' : ''}
+            />
+            {formik2.touched.UserPassword && formik2.errors.UserPassword && (
+              <ErrorMessage>{formik2.errors.UserPassword}</ErrorMessage>
+            )}
+
             <Label>ایمیل</Label>
             <Input 
               name="UserEmail"
@@ -391,9 +410,9 @@ function Setting() {
     <SettingContainer>
         <Navigations color={`var(--color-primary)`} font= '28px' titleName='تنظیمات' ></Navigations>
        <StepIndicator>
-        <StepCircle active={currentStep >= 1}>1</StepCircle>
-        <StepCircle active={currentStep >= 2}>2</StepCircle>
-        <StepCircle active={currentStep >= 3}>3</StepCircle>
+        <StepCircle $active={currentStep >= 1}>1</StepCircle>
+        <StepCircle $active={currentStep >= 2}>2</StepCircle>
+        <StepCircle $active={currentStep >= 3}>3</StepCircle>
       </StepIndicator>
 
       <Form>
