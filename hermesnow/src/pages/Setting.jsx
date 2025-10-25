@@ -139,14 +139,14 @@ function Setting() {
   const [loading, setLoading] = useState(false)
   
   const [formData, setFormData] = useState({
-    UserName: '',
-    UserAge: '',
-    UserCountry: '',
-    UserEmail: '',
-    UserPhone: '',
-    UserPassword: '',
-    FavoritesTopic: '',
-    Gender: ''
+    UserName: user?.UserName  || '',
+    UserAge: user?.UserAge  || '',
+    UserCountry:  user?.UserCountry  || '',
+    UserEmail: user?.UserEmail  || '',
+    UserPhone: user?.UserPhone  || '',
+    UserPassword: user?.UserPassword  || '',
+    FavoritesTopic: user?.UserFavoritesTopic  || '',
+    Gender: user?.Gender  || ''
   })
 
   const step1Schema = Yup.object({
