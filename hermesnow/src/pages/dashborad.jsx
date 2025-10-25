@@ -4,6 +4,7 @@ import Navigations from '../components/Navigations'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useUsers } from '../hooks/useGetUsers';
+import Loader from '../components/Loader';
 const DashboradContainer = styled.div`
   width: 100%;
   min-height: 100%;
@@ -112,19 +113,24 @@ const UserBox = styled.div`
   }
 `
 const UserBoxName = styled.div`
+    width: 20%;
     font-size: 18px;
     font-weight: bolder;
     color: var(--color-secondary);
 `
 const UserBoxRoll = styled.div`
+   flex: 1;
    color:var(--color-primary) ;
 `
 const UserBoxActions = styled.div`
+  width: 50%;
   display: flex;
-  flex: 1;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-radius: 8px;
   cursor: pointer;
+  background-color: var(--color-info);
 `
 const AdminBtn = styled.button`
   background: ${({$backgroundColor}) =>  $backgroundColor || 'black'};
@@ -136,6 +142,7 @@ const AdminBtn = styled.button`
   
 `
 const UserBoxId = styled.div`
+width: 10%;
    font-family: cursive;
 `
 const CharsContainer = styled.div`
@@ -150,10 +157,10 @@ const NewsEditorContainer = styled.div`
   grid-row: 2/6;
 `
 function dashborad() {
-  const { users , getUserLoading , getUserError , refetch } = useUsers()
+  const { users , getUserLoading  } = useUsers()
   return (
     <DashboradContainer>
-      <Navigations  titleName='داشبورد' font='24px'/>
+      <Navigations  titleName='داشبورد' font='22px'/>
       <DashboradWrapper >
         <UsersContainer >
         <SreachUserBox >
@@ -162,13 +169,13 @@ function dashborad() {
         <UserBoxs> 
    <UserBoxs> 
   {getUserLoading ? (
-    <div>loading</div>
+   <Loader />
   ) : (
     users.map(user => (
       <UserBox key={user.UserId}>
         <UserBoxId>{user.UserId}</UserBoxId>
         <UserBoxName>{user.UserName}</UserBoxName> 
-        <UserBoxRoll>{user.Roll}</UserBoxRoll>
+        <UserBoxRoll>{user.Roll || 'معمولی'}</UserBoxRoll>
         <UserBoxActions>
           <AdminBtn>ارتقا</AdminBtn> 
           <DeleteIcon /> 

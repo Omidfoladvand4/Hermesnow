@@ -6,7 +6,7 @@ const NavigationsContainer = styled.div`
   background-color: var(--color-secondary);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 5px 10px;
   position: absolute;
   top: 0;
