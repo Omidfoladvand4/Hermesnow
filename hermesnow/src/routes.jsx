@@ -11,9 +11,9 @@ import Setting from './pages/Setting'
 import Topnews from './pages/Topnews'
 import Mynews from './pages/Mynews'
 import Dashborad from './pages/dashborad'
-import AboutUs from './pages/AboutUs'
 import Live from './pages/Live'
 import Signup from './components/Signup'
+import ProductInfo from './pages/ProductInfo'
 import NotFoundPage from './pages/NotFoundPage'
 
 export default function AppRoutes () {
@@ -29,11 +29,11 @@ export default function AppRoutes () {
                                                   <Account />
                                            </ProtectedRoute>}/>
             <Route path='/Top-news' element = {<Topnews />}/>
-            <Route path='/dashboard' element ={<Dashborad />} ></Route>
-            <Route path='/about-us' element ={<AboutUs />} ></Route>
-            <Route path='/Live-news' element ={<Live />} ></Route>
-            <Route path='/signup' element= {<Signup />}></Route>
-            <Route path='*' element ={< NotFoundPage/>} ></Route>
+            <Route path='/dashboard' element ={<Dashborad />}  />
+            <Route path='/Live-news' element ={<Live />}  />
+            <Route path='/signup' element= {<Signup />} />
+            <Route path='/product-info' element={<ProductInfo /> } />
+            <Route path='*' element ={< NotFoundPage/>} />
         </Routes>
     )
 }

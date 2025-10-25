@@ -114,6 +114,7 @@ const UserBox = styled.div`
   margin: 12px 0;
   gap: 15px;
   background-color: var(--color-neutral);
+   background: ${({$backgroundColor}) =>  $backgroundColor || 'black'};
   box-shadow: 0 2px 3px 0px rgba(255,200,100,0.5);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -233,6 +234,7 @@ function Dashboard() {
               </div>
             ) : (
               displayUsers.map(user => (
+             
                 <UserBox key={user.id}>
                   <UserBoxId>{user.id}</UserBoxId>
                   <UserBoxName>{user.UserName}</UserBoxName> 

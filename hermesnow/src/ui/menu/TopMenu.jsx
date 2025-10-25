@@ -5,7 +5,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../../components/Logo';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -47,7 +46,7 @@ const UserName = styled.div`
   
   &:hover {
     color: var(--color-accent);
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 `
 
@@ -67,30 +66,26 @@ function TopMenu() {
           <div>{user?.UserName || 'کاربر'}</div>
         </UserName>
 
-        <MenuItem>
+        {/* <MenuItem>
           <AccessTimeIcon />
           <Link to='/top-news'>تازه ها</Link>
-        </MenuItem>
+        </MenuItem> */}
         
         <MenuItem>
           <NewspaperIcon />
           <Link to='/your-news'>خبر های من</Link>
         </MenuItem>
         
-        {/* <MenuItem>
+        { user?.IsAdmin || user?.IsMainAdmin ? <MenuItem>
           <AddBoxIcon />
           <Link to='/news-editor'>درج خبر</Link>
-        </MenuItem> */}
+        </MenuItem>  : null}
         
-        {/* <MenuItem>
+        {user?.IsMainAdmin  ? <MenuItem>
           <DashboardIcon />
           <Link to='/dashboard'>داشبورد</Link>
-        </MenuItem> */}
+        </MenuItem> : null}
         
-        <MenuItem>
-          <ConnectWithoutContactIcon />
-          <Link to='/aboutus'>ارتباط با ما</Link>
-        </MenuItem>
         
         <MenuItem>
           <LiveTvIcon />

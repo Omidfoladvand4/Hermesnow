@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import MenuItem from '../../components/MenuItem'
 import { Link } from 'react-router-dom'
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
     const ButtonMenuContainer = styled.main`
@@ -29,6 +30,10 @@ function ButtonMenu() {
          <MenuItem >فیلتر</MenuItem>
         <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>
         <MenuItem ><Link to = '/settings'><SettingsInputCompositeIcon /></Link></MenuItem>
+         <MenuItem>
+          <ProductionQuantityLimitsIcon />
+          <Link to='/product-info'>درباره محصول</Link>
+        </MenuItem>
     </ButtonMenuContainer>
   )
 }
