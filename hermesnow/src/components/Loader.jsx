@@ -14,7 +14,7 @@ function Loader({ size = 100 , color = `var(--color-info)` }) {
  <LoaderContainer >
      <div>
          <CircleLoader color={color} size={size} />
-      
+      <div> ...درحال بارگذاری</div>
      </div>
     </LoaderContainer>
   )
