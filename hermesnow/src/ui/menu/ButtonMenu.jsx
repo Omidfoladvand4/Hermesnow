@@ -4,7 +4,6 @@ import MenuItem from '../../components/MenuItem'
 import { Link } from 'react-router-dom'
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
-import LoginIcon from '@mui/icons-material/Login';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
     const ButtonMenuContainer = styled.main`
       width: 100%;
@@ -28,10 +27,8 @@ function ButtonMenu() {
         <MenuItem ><Link to = '/category'>سلامتی</Link></MenuItem>
         <MenuItem> <Link to='/' >جستجو</Link>  </MenuItem>
          <MenuItem >فیلتر</MenuItem>
-        <MenuItem ><AddBoxIcon /><Link to = '/news-editor'>درج خبر</Link></MenuItem>
         <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>
         <MenuItem ><Link to = '/settings'><SettingsInputCompositeIcon /></Link></MenuItem>
-        <MenuItem ><Link to = '/login'><LoginIcon /></Link></MenuItem>
     </ButtonMenuContainer>
   )
 }

@@ -9,7 +9,9 @@ import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../../components/Logo';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
 import { useAuth } from '../../contexts/AuthContext';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const TopMenuContainer = styled.main`
   width: 100%;
@@ -50,7 +52,10 @@ const UserName = styled.div`
 `
 
 function TopMenu() {
-  const { user } = useAuth()
+  const { user , logout } = useAuth()
+  const hanleLogout = () =>{
+    logout()
+    }
 
   return (
     <TopMenuContainer>
@@ -72,15 +77,15 @@ function TopMenu() {
           <Link to='/your-news'>خبر های من</Link>
         </MenuItem>
         
-        <MenuItem>
+        {/* <MenuItem>
           <AddBoxIcon />
           <Link to='/news-editor'>درج خبر</Link>
-        </MenuItem>
+        </MenuItem> */}
         
-        <MenuItem>
+        {/* <MenuItem>
           <DashboardIcon />
           <Link to='/dashboard'>داشبورد</Link>
-        </MenuItem>
+        </MenuItem> */}
         
         <MenuItem>
           <ConnectWithoutContactIcon />
@@ -91,6 +96,9 @@ function TopMenu() {
           <LiveTvIcon />
           <Link to='/live-news'>زنده</Link>
         </MenuItem>
+            <MenuItem ><div>ورود</div><Link to = '/login'><LoginIcon /></Link> </MenuItem>
+      <MenuItem ><LogoutIcon /> <div onClick={hanleLogout}>خروج</div></MenuItem>
+   
       </TopMenuItemsContainer>
       <Logo />
     </TopMenuContainer>
