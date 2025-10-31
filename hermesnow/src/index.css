@@ -43,3 +43,6 @@ a{
 input , button{
   font-family: vazir;
 }
+ul{
+  list-style-type: none;
+}
