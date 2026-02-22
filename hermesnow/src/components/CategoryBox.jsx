@@ -99,8 +99,8 @@ const persianDate = date.toLocaleDateString('fa-IR', {
   
   return (
     <NewsBox>
-       <ImageBox $src={news.mainImage || './images/HermesNowBannar.jpg'} $w='45%' $h='150px'/>
-      <NewsContentWrapper>
+       <ImageBox $src={news.MainImage || './images/HermesNowBannar.jpg'} $w='45%' $h='150px'/>
+      <NewsContentWrapper>   
         <NewsTitle>{news.NewsTitle}</NewsTitle>
          <NewsContent>
           <NewsSubject>{news.NewsSubject}</NewsSubject>

@@ -3,9 +3,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
 import { supabase } from '../lib/supabaseClient';
-
-// ==================== STYLED COMPONENTS ====================
-const NewEditorContainer = styled.main`
+import ImageUploader from '../components/ImageUploder';
+const NewsEditorContainer = styled.main`
   width: 100%;
   display: flex;
   align-items: center;
@@ -288,6 +287,44 @@ const ActionButtons = styled.div`
   }
 `;
 
+const ActionButton = styled.button`
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--color-neutral);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-family: vazir;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  &:hover:not(:disabled) {
+    background: var(--color-info);
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+`;
+
+const DangerButton = styled(ActionButton)`
+  background: var(--color-accent);
+  color: var(--color-secondary);
+
+  &:hover {
+    background: #b36962;
+    transform: translateY(-2px);
+  }
+`;
+
 const ElementTextArea = styled.textarea`
   width: 100%;
   padding: 15px;
@@ -338,44 +375,6 @@ const ElementInput = styled.input`
   }
 `;
 
-const ActionButton = styled.button`
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: var(--color-neutral);
-  color: var(--color-primary);
-  font-weight: 600;
-  font-family: vazir;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  &:hover:not(:disabled) {
-    background: var(--color-info);
-    color: var(--color-secondary);
-    transform: translateY(-2px);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-`;
-
-const DangerButton = styled(ActionButton)`
-  background: var(--color-accent);
-  color: var(--color-secondary);
-
-  &:hover {
-    background: #b36962;
-    transform: translateY(-2px);
-  }
-`;
-
 const ElementLabel = styled.label`
   display: block;
   margin-bottom: 10px;
@@ -420,10 +419,6 @@ const FormRow = styled.div`
     grid-template-columns: 1fr;
   }
 `;
-
-// ==================== COMPONENT LOGIC ====================
-
-// کامپوننت مدیریت المنت‌ها
 const ElementManager = ({ formik }) => {
   const [availableElements, setAvailableElements] = useState([
     { type: 'h1', label: 'عنوان اصلی', icon: '📌', added: false },
@@ -563,12 +558,11 @@ const ElementManager = ({ formik }) => {
                 <div style={{ marginBottom: '15px' }}>
                   {element.element === 'img' ? (
                     <>
-                      <ElementLabel>آدرس تصویر</ElementLabel>
-                      <ElementInput
-                        type="text"
+                      <ElementLabel>تصویر</ElementLabel>
+                      <ImageUploader
                         value={element.content}
-                        onChange={(e) => updateElementContent(index, 'content', e.target.value)}
-                        placeholder="https://example.com/image.jpg"
+                        onChange={(url) => updateElementContent(index, 'content', url)}
+                        bucketName="News_Images"
                       />
                     </>
                   ) : element.element === 'list' ? (
@@ -837,7 +831,7 @@ function NewsEditor() {
   });
 
   return (
-    <NewEditorContainer>
+    <NewsEditorContainer>
       <ToggleSwitch>
         <ToggleButton
           type="button"
@@ -901,10 +895,10 @@ function NewsEditor() {
           <FormRow>
             <div>
               <Label>تصویر اصلی</Label>
-              <Input 
-                type="text" 
-                placeholder="آدرس تصویر اصلی خبر"
-                {...formik.getFieldProps('MainImage')}
+              <ImageUploader
+                value={formik.values.MainImage}
+                onChange={(url) => formik.setFieldValue('MainImage', url)}
+                bucketName="News_Images"
               />
             </div>
             <div>
@@ -973,7 +967,7 @@ function NewsEditor() {
           <PreviewContent formik={formik} />
         </PreviewContainer>
       )}
-    </NewEditorContainer>
+    </NewsEditorContainer>
   );
 }
 
