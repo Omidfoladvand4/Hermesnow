@@ -2,11 +2,48 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ImageBox from '../components/ImageBox';
 import PersianDate from '../services/PersionDate';
+import Title from '../components/Title';
+const NewsHeader = styled.div`
+width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
+  margin-top: 3%;
+`
+const NewsSummary = styled.div`
+width: 40%;
+padding:  3% 5%;
+font-size: 25px;
+color: var(--color-info);
+`
+const NewsImage = styled.img`
+width: 50%;
+object-fit: cover;
+`
+const Journalist = styled.div`
+ font-size: 25px;
+ font-weight: 900;
+ color: var(--color-info);
+ padding: 25px;
+  
+`
+const MainContent = styled.div`
+  width: 100%;
+  background-color: var(--color-info);
+  padding: 3% 8%;
 
+`
+const Information = styled.div`
+ width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:  1%;
+  color: #ffffff;
+  background-color: var(--color-primary);
+`
 function News() {
-  // برای Primary Key بهتره از null استفاده کنیم نه آرایه
   const [news, setNews] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -53,22 +90,19 @@ function News() {
   if (error) return <div>خطا: {error}</div>;
   if (!news) return <div>خبری با شناسه {id} یافت نشد</div>;
 
-  // حالا news یک آبجکت هست، نه آرایه
   return (
     <div>
-      <h1>{news.NewsTitle}</h1>
-      <p>{news.content}</p>
-      <p>{news.Journalist}</p>
-      <ImageBox $src={news.MainImage} $h={350}/>
-      <p>{PersianDate(news)}</p>
+        <Title  titleName={news.NewsTitle}/>
+     <NewsHeader >
+       <NewsImage src={news.MainImage} alt= {news.NewsSubject}/>
+     <NewsSummary>{news.NewsMainText}</NewsSummary>
+     </NewsHeader>
       <br />
-      <p>{news.Country}</p>
-     <p>{news.NewsMainText}</p>
-     <p>{news.NewsSubject}</p>
      <br />
-     {news.Content && news.Content.map((item, index) => (
-  item.element === 'h1' ? (
-    <h1 key={index} style={{ color: item.color }}>
+    <MainContent >
+       {news.Content && news.Content.map((item, index) => (
+       item.element === 'h1' ? (
+         <h1  key={index} style={{ color: item.color }}>
       {item.content}
     </h1>
   ) : (
@@ -77,8 +111,16 @@ function News() {
     </p>
   )
 ))}
+    </MainContent>
      
-      {/* بقیه اطلاعات */}
+<Information>
+  <Journalist> نوشته شده توسط: {news.Journalist}</Journalist>
+  در
+  <div>{PersianDate(news)}</div>
+    <p>{news.Country}</p>
+    <br />
+     <p>{news.NewsSubject}</p>
+</Information>
     </div>
   );
 }
