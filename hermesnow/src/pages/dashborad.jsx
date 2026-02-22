@@ -48,26 +48,6 @@ const UsersContainer = styled.div`
   flex-direction: column;
   overflow: auto;
   border: 1px solid var(--color-info);
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    margin: 5px;
-  }
-   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(20px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
-  }
 `
 
 const SearchUserBox = styled.div`
@@ -135,7 +115,7 @@ const UserBoxRoll = styled.div`
 `
 
 const UserBoxActions = styled.div`
-  width: 50%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -170,19 +150,21 @@ const NewsEditorContainer = styled.div`
 `
 const NewsEditorWrapper = styled.div`
   width: 100%;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   padding: 2%;
   background-color: var(--color-secondary);
+  overflow-y: scroll;
 `
 const NewsEditorTable = styled.table`
   width: 100%;
+  height: 100%;
   border-collapse : collapse;
   border: 2px solid  var(--color-info);
   font-size: 0.8rem;
-  overflow: scroll;
 `
 const NewsEditorTableCaption = styled.caption`
   caption-side: top;
@@ -195,6 +177,7 @@ const TableHeader = styled.thead`
 `
 const Th = styled.th`
   border: 1px solid rgb(160 160 160);
+  background-color: var(--color-info);
   padding: 8px 10px;
 `
 const Td = styled.td`
@@ -301,7 +284,6 @@ function Dashboard() {
                       {user.IsAdmin ? 'کاهش سطح' : 'ارتقا به ادمین'}
                     </AdminBtn> 
                     <DeleteIcon onClick={() => handleDeleteUser(user)} style={{ cursor: 'pointer' }} /> 
-                    <EditIcon style={{ cursor: 'pointer' }} />
                   </UserBoxActions>
                 </UserBox>
               ))
