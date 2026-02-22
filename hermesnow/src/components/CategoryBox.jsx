@@ -41,6 +41,7 @@ const DateAndTime = styled.div`
    align-items: end;
    justify-content: center;
    color: var(--color-info);
+   font-size: 10px;
 `
 const NewsSubject = styled.div`
 font-size: 14px;
@@ -87,20 +88,28 @@ const I = styled.i`
   cursor: pointer;
 `
 function CategoryBox({news}) {
+  const date = new Date(news.NewsDate)
+const persianDate = date.toLocaleDateString('fa-IR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit'
+})
   
   return (
     <NewsBox>
-       <ImageBox $src={news.mainImage} $w='45%' $h='150px'/>
+       <ImageBox $src={news.mainImage || './images/HermesNowBannar.jpg'} $w='45%' $h='150px'/>
       <NewsContentWrapper>
-        <NewsTitle>{news.title}</NewsTitle>
+        <NewsTitle>{news.NewsTitle}</NewsTitle>
          <NewsContent>
-          <NewsSubject>{news.subject}</NewsSubject>
-          <DateAndTime >{news.date} / {news.time} </DateAndTime>
+          <NewsSubject>{news.NewsSubject}</NewsSubject>
        </NewsContent>
         <FooterCategoryBox>
-          <Div><div style={{display : 'flex' , alignItems : "center"}}><RemoveRedEyeIcon  fontSize='smaller'/> </div>{formatNumber(news.view)}</Div> <Div>{news.country}</Div>
-          <I >{news.author}</I>
+          <Div><div style={{display : 'flex' , alignItems : "center"}}><RemoveRedEyeIcon  fontSize='smaller'/> </div>{formatNumber(news.view || '0  ')}</Div> <Div>{news.Country}</Div>
+          <I >{news.Journalist}</I>
         </FooterCategoryBox>
+          <DateAndTime >{persianDate} </DateAndTime>
       </NewsContentWrapper>
     </NewsBox>
   )
