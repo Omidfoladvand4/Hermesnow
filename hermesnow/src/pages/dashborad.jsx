@@ -4,6 +4,7 @@ import Navigations from '../components/Navigations'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useUsers } from '../hooks/useGetUsers';
+import { useNews} from '../hooks/useGetNews'
 import Loader from '../components/Loader';
 import { useUserManagement } from '../hooks/useUserManagement';
 
@@ -50,7 +51,6 @@ const UsersContainer = styled.div`
   &::-webkit-scrollbar {
     width: 10px;
   }
-
   &::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -64,7 +64,6 @@ const UsersContainer = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-
   &::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(20px);
@@ -161,21 +160,77 @@ width: 10%;
 `
 
 const CharsContainer = styled.div`
-    background-color: yellow;
   grid-column: 2/5;
   grid-row: 1/3;
 `
 
 const NewsEditorContainer = styled.div`
-  background-color: blue;
   grid-column: 2/5;
   grid-row: 2/6;
 `
+const NewsEditorWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 2%;
+  background-color: var(--color-secondary);
+`
+const NewsEditorTable = styled.table`
+  width: 100%;
+  border-collapse : collapse;
+  border: 2px solid  var(--color-info);
+  font-size: 0.8rem;
+  overflow: scroll;
+`
+const NewsEditorTableCaption = styled.caption`
+  caption-side: top;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 900;
+`
+const TableHeader = styled.thead`
+  background-color: var(--color-info);
+`
+const Th = styled.th`
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+`
+const Td = styled.td`
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+`
+
+const TableRow = styled.tr`
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`;
+
+const TableImage = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+`;
+
+const ActionButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+`;
 
 function Dashboard() {
   const [SearchBoxValue, setSearchBoxValue] = useState('')
   const [filteredUsers, setFilteredUsers] = useState([])
   const { users, getUserLoading, refetch } = useUsers()
+  const { news, getNewsLoading, Newsrefetch } = useNews()
   const { error, deleteUser, promoteToAdmin, demoteFromAdmin } = useUserManagement()
 
   const handleSearch = () => {
@@ -234,7 +289,6 @@ function Dashboard() {
               </div>
             ) : (
               displayUsers.map(user => (
-             
                 <UserBox key={user.id}>
                   <UserBoxId>{user.id}</UserBoxId>
                   <UserBoxName>{user.UserName}</UserBoxName> 
@@ -256,7 +310,67 @@ function Dashboard() {
           </UserBoxs>
         </UsersContainer>
         <CharsContainer></CharsContainer>
-        <NewsEditorContainer></NewsEditorContainer>
+        <NewsEditorContainer>
+          <NewsEditorWrapper>
+            <NewsEditorTable>
+              <NewsEditorTableCaption>لیست خبر های موجود در سایت </NewsEditorTableCaption>
+              <TableHeader>
+                <tr>
+                  <Th scope='col'>عنوان</Th>
+                  <Th scope='col'>موضوع</Th>
+                  <Th scope='col'>عکس</Th>
+                  <Th scope='col'>خبرنگار</Th>
+                  <Th scope='col'>تاریخ</Th>
+                  <Th scope='col'>مشاهده</Th>
+                  <Th scope='col'>ویرایش</Th>
+                </tr>
+              </TableHeader>
+              <tbody>
+                {getNewsLoading ? (
+                  <tr>
+                    <Td colSpan="7" style={{ textAlign: 'center' }}>
+                      <Loader />
+                    </Td>
+                  </tr>
+                ) : news.length === 0 ? (
+                  <tr>
+                    <Td colSpan="7" style={{ textAlign: 'center' }}>
+                      هیچ خبری یافت نشد
+                    </Td>
+                  </tr>
+                ) : (
+                  news.map((item) => (
+                    <TableRow key={item.id}>
+                      <Td>{item.NewsTitle}</Td>
+                      <Td>
+                        <span >
+                          {item.NewsSubject}
+                        </span>
+                      </Td>
+                      <Td>
+                        {item.MainImage ? (
+                          <TableImage src={item.MainImage} alt={item.NewsTitle} />
+                        ) : '—'}
+                      </Td>
+                      <Td>{item.Journalist || '—'}</Td>
+                      <Td>{new Date(item.NewsDate).toLocaleDateString('fa-IR')}</Td>
+                      <Td>
+                        <ActionButton onClick={() => window.open(`/news/${item.id}`)}>
+                          👁️
+                        </ActionButton>
+                      </Td>
+                      <Td>
+                        <ActionButton>
+                          <EditIcon fontSize="small" />
+                        </ActionButton>
+                      </Td>
+                    </TableRow>
+                  ))
+                )}
+              </tbody>
+            </NewsEditorTable>
+          </NewsEditorWrapper>
+        </NewsEditorContainer>
       </DashboradWrapper>
     </DashboradContainer>
   )
