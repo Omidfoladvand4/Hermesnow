@@ -22,6 +22,7 @@ export default function AppRoutes () {
             <Route path='/' element = {<Home />}/>
             <Route path='/login' element = {<Login />}/>
             <Route path='/your-news' element = {<Mynews />}/>
+            <Route path='/news/:id' element = {<News />}/>
             <Route path='/news-editor' element = {<NewsEditor />}/>
             <Route path='/settings' element = {<Setting />}/>
             <Route path='/category' element = {<Category />}/>

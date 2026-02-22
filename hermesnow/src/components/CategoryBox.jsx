@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ImageBox from './ImageBox'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import formatNumber from '../utils/formartNumber';
+import PersianDate from '../services/PersionDate';
 const NewsBox = styled.div`
   width: 400px;
   display: flex;
@@ -88,14 +89,6 @@ const I = styled.i`
   cursor: pointer;
 `
 function CategoryBox({news}) {
-  const date = new Date(news.NewsDate)
-const persianDate = date.toLocaleDateString('fa-IR', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit'
-})
   
   return (
     <NewsBox>
@@ -109,7 +102,7 @@ const persianDate = date.toLocaleDateString('fa-IR', {
           <Div><div style={{display : 'flex' , alignItems : "center"}}><RemoveRedEyeIcon  fontSize='smaller'/> </div>{formatNumber(news.view || '0  ')}</Div> <Div>{news.Country}</Div>
           <I >{news.Journalist}</I>
         </FooterCategoryBox>
-          <DateAndTime >{persianDate} </DateAndTime>
+          <DateAndTime >{PersianDate(news)} </DateAndTime>
       </NewsContentWrapper>
     </NewsBox>
   )

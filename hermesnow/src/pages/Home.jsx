@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../layout/Header'
 import { supabase } from '../lib/supabaseClient'
 import CategoryBoxs from '../components/CategoryBoxs'
+import Loader from '../components/Loader';
 
 function Home() {
   const [newsData, setNewsData] = useState([])
@@ -50,7 +51,7 @@ function Home() {
           fontSize: '18px',
           color: '#666'
         }}>
-          ⏳ در حال دریافت اخبار...
+         <Loader />
         </div>
       </div>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components' 
 import Title from './Title'
 import CategoryBox from './CategoryBox'
+import { Link } from 'react-router-dom'
 
 const CategoryContainer = styled.main`
   width: 100%;
@@ -34,7 +35,7 @@ function CategoryBoxs({datas, subject}) {
       <Title titleName={subject}/>
       <BoxsContainer>
         {newsData.map((item, index) => {
-          return <CategoryBox key={item.id || index} news={item} />
+          return  <Link key={item.Id || index} to={`/news/${item.id}`}><CategoryBox  news={item} /></Link>
         })}
       </BoxsContainer>
     </CategoryContainer>
