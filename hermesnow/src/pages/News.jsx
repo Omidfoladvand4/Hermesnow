@@ -149,6 +149,7 @@ function News() {
         ))}
       </MainContent>
       
+
       <Information>
         <Journalist> نوشته شده توسط: {news.Journalist}</Journalist>
         در
@@ -157,7 +158,6 @@ function News() {
         <br />
         <p>{news.NewsSubject}</p>
       </Information>
-
     {getRecomendedNewsLoading ?  <Loader /> :  (
       <RecomededNews> 
     <Title titleName={'خبر های بیشتر در این مورد '} />

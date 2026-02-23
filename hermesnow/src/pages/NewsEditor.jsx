@@ -868,7 +868,7 @@ function NewsEditor() {
             <option value="ورزشی">ورزشی</option>
             <option value="اقتصاد">اقتصاد</option>
             <option value="هنر">هنر</option>
-            <option value="باستان‌شناسی">باستان‌شناسی</option>
+            <option value="باستان‌شناسی-تاریخی">باستان‌شناسی- تاریخی</option>
             <option value="کشاورزی">کشاورزی</option>
             <option value="صنعت">صنعت</option>
             <option value="آموزش">آموزش</option>
