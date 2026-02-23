@@ -21,7 +21,7 @@ const BoxsContainer = styled.div`
   margin-top: 20px;
 `
 
-function CategoryBoxs({datas, subject}) {
+function CategoryBoxs({datas, subject }) {
   console.log('دیتای دریافتی در CategoryBoxs:', datas)
   console.log('موضوع:', subject)
   
