@@ -4,8 +4,8 @@ import ImageBox from './ImageBox'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import formatNumber from '../utils/formartNumber';
 import PersianDate from '../services/PersionDate';
-import { supabase } from '../lib/supabaseClient'; // اضافه کن
-import { useNavigate } from 'react-router-dom'; // برای رفتن به صفحه خبر
+import { supabase } from '../lib/supabaseClient';
+import { useNavigate } from 'react-router-dom'; 
 
 const NewsBox = styled.div`
   width: 400px;
@@ -118,14 +118,12 @@ function CategoryBox({ news }) {
   const [views, setViews] = useState(news?.NewsLikes || news?.News_view || 0);
   const [loading, setLoading] = useState(false);
 
-  // اگه news وجود نداشت
   if (!news) return null;
 
   const handleClick = async () => {
     try {
       setLoading(true);
       
-      // افزایش بازدید در دیتابیس
       const { error } = await supabase
         .from('News')
         .update({ 

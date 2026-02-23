@@ -12,7 +12,6 @@ export const useSignup = () => {
         setError(null)
 
         try {
-            // چک کردن وجود کاربر با همین نام کاربری یا ایمیل
             const { data: existingUser, error: checkError } = await supabase
                 .from('Users')
                 .select('*')
@@ -32,7 +31,6 @@ export const useSignup = () => {
                 }
             }
 
-            // ثبت‌نام کاربر جدید
             const { data: newUser, error: signUpError } = await supabase
                 .from('Users')
                 .insert([
@@ -52,10 +50,8 @@ export const useSignup = () => {
                 throw signUpError
             }
 
-            // ذخیره کاربر و انتقال به صفحه اصلی
             localStorage.setItem('user', JSON.stringify(newUser))
             
-            // رفرش صفحه برای آپدیت وضعیت
             setTimeout(() => {
                 navigate('/')
                 window.location.reload()
