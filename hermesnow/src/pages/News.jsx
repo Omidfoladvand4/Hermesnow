@@ -6,6 +6,7 @@ import PersianDate from '../services/PersionDate';
 import Title from '../components/Title';
 import { usegetRecomendedNews } from '../hooks/useGetRecomendedNews';
 import CategoryBox from '../components/CategoryBox';
+import Loader from '../components/Loader';
 
 const NewsHeader = styled.div`
   width: 100%;
@@ -72,7 +73,7 @@ function News() {
   const [error, setError] = useState(null);
   const navigation = useNavigate();
   const { id } = useParams();
-    const { getRecomendedNews, Newsrefetch, getRecomendedNewsLoading, getRecomendedNewsError } = 
+    const { getRecomendedNews, getRecomendedNewsLoading } = 
     usegetRecomendedNews(news?.NewsSubject);
 
   useEffect(() => {
@@ -157,7 +158,7 @@ function News() {
         <p>{news.NewsSubject}</p>
       </Information>
 
-    {!getRecomendedNewsLoading && getRecomendedNews.length > 0 && (
+    {getRecomendedNewsLoading ?  <Loader /> :  (
       <RecomededNews> 
     <Title titleName={'خبر های بیشتر در این مورد '} />
     <RecomendedNewsContanier>
