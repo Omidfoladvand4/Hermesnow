@@ -14,12 +14,13 @@ const Bannar = styled.nav`
     position: relative;
 `
 const Navbar = styled.div`
+width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
 `
 const BannarContent = styled.div`
-    width: 65%;
+    width: 100%;
     font-size: 18px;
     font-weight: 500;
     display: flex;

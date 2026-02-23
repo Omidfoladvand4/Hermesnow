@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'
 
 const CategoryContainer = styled.main`
   width: 100%;
-  background: transparent;
+  background: var(--color-primary);
   gap: 20px;
   padding: 35px 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
-`
+  `
 
 const BoxsContainer = styled.div`
   display: flex;
@@ -19,13 +19,15 @@ const BoxsContainer = styled.div`
   flex-wrap: wrap;
   gap: 10px 15px;
   margin-top: 20px;
+  border-bottom: 2px #ffffff;
 `
 
-function CategoryBoxs({datas, subject }) {
+function CategoryBoxs({datas, subject = 'خبر های دیگر در این مورد '}) {
   console.log('دیتای دریافتی در CategoryBoxs:', datas)
   console.log('موضوع:', subject)
   
   const newsData = datas.filter(data => data.NewsSubject === subject)
+  newsData.length = 3
   console.log('دیتای فیلتر شده برای این موضوع:', newsData)
   
   if(newsData.length === 0) return null

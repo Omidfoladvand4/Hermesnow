@@ -2,12 +2,10 @@ import React from 'react'
 import HeaderBannar from '../ui/header/HeaderBannar'
 import Slider from '../components/Slider'
 const sliderimage = [
-  'images/slideImage-1.jpg' ,
-  'images/slideImage-2.jpg' ,
-  'images/slideImage-3.jpg' ,
-  'images/slideImage-4.jpg' ,
-  'images/slideImage-5.jpg' ,
-  'images/slideImage-6.jpg' ,
+  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771770790110-g2kch8.jpg' ,
+  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771783599016-hdx9mp.jpg' ,
+  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771847177415-8zhmos.webp' ,
+  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771847339251-pn5wpo.webp',
 ]
 function Header() {
   return (

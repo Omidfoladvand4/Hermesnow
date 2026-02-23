@@ -8,10 +8,13 @@ import { supabase } from '../lib/supabaseClient';
 import { useNavigate } from 'react-router-dom'; 
 
 const NewsBox = styled.div`
-  width: 400px;
+  width: 100%;
+  min-width: 300px;
+  max-width: 450px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 1 1 350px;
   gap: 5px;
   border-radius: 10px;
   background: var(--color-secondary);

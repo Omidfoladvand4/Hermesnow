@@ -6,7 +6,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css'
 import ImageBox from './ImageBox'
 const SliderContainer = styled.div`
-    width: 1024px;
+    width: 100vw;
     margin: 0 auto;
     overflow: hidden;
     padding: 20px 30px;
@@ -39,8 +39,8 @@ function Slider({images , spaceBetween = 10 , slidesPerView = 3 }) {
         onSwiper={(swiper) => console.log(swiper)}
         style={{
           width: '100%',
-          height: '300px',
-          borderRadius: '10px',
+          height: '250px',
+          borderRadius: '3px',
         }}
       >
        {images.map((image , index) => {
