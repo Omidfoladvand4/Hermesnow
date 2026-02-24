@@ -1,4 +1,3 @@
-// components/Signup.jsx
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'

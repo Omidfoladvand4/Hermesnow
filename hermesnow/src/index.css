@@ -61,7 +61,7 @@ a{
         }
 }
 
-input , button{
+input , button , textarea{
   font-family: vazir;
 }
 ul{

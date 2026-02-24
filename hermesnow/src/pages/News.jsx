@@ -7,6 +7,7 @@ import Title from '../components/Title';
 import { usegetRecomendedNews } from '../hooks/useGetRecomendedNews';
 import CategoryBox from '../components/CategoryBox';
 import Loader from '../components/Loader';
+import Comments from '../components/Comments';
 
 const NewsHeader = styled.div`
   width: 100vw;
@@ -72,6 +73,8 @@ function News() {
   const [news, setNews] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [comments, setComments] = useState([])
+
   const navigation = useNavigate();
   const { id } = useParams();
     const { getRecomendedNews, getRecomendedNewsLoading } = 
@@ -89,7 +92,7 @@ function News() {
       console.log('اخبار مرتبط:', getRecomendedNews);
     }
   }, [news, getRecomendedNews]);
-
+  
   const fetchNewsById = async () => {
     try {
       setLoading(true);
@@ -119,11 +122,13 @@ function News() {
       setLoading(false);
     }
   };
-
+ 
   if (loading) return <div>در حال بارگذاری...</div>;
   if (error) return <div>خطا: {error}</div>;
   if (!news) return <div>خبری با شناسه {id} یافت نشد</div>;
-
+  const handleCommentAdded = (newComment) => {
+        setComments(prev => [newComment, ...prev])
+    }
   return (
     <div>
       <Title titleName={news.NewsTitle} />
@@ -172,6 +177,7 @@ function News() {
     </RecomendedNewsContanier>
    </RecomededNews>
 )}
+  <Comments  commentsData={comments} newsId={id} onCommentAdded={handleCommentAdded}/>
     </div>
   );
 }
