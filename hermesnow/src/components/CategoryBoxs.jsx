@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom'
 
 const CategoryContainer = styled.main`
   width: 100%;
-  background: var(--color-primary);
   gap: 20px;
-  padding: 35px 30px;
+  background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
   `
 
 const BoxsContainer = styled.div`
+background: var(--color-primary);
+padding: 35px 30px;
   display: flex;
   align-items: start;
   justify-content: space-around;

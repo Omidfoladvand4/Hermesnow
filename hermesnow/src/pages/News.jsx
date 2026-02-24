@@ -9,7 +9,7 @@ import CategoryBox from '../components/CategoryBox';
 import Loader from '../components/Loader';
 
 const NewsHeader = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: start;
   justify-content: space-around;
@@ -20,6 +20,7 @@ const NewsSummary = styled.div`
   width: 40%;
   padding: 3% 5%;
   font-size: 25px;
+  overflow-wrap: break-word;
   color: var(--color-info);
 `;
 
