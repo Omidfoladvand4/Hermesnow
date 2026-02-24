@@ -15,20 +15,24 @@ const CommentsContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     gap: 20px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     padding: 3%;
 `
 
 const SubmitCommentBtn = styled.button`
     border: none;
-    padding: 10px 15px;
+    padding: 20px 35px;
     cursor: pointer;
     border-radius: 2px;
     font-weight: 900;
     transition: all .3s ease;
-    box-shadow: 2px 10px 0px rgba(0, 0, 0, 0.3);
+    font-size: 25px;
+    box-shadow: 20px 20px 6px #ffffff2b;
+    border-radius: 15px;
     &:hover {
         transform: scale(.95);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+
     }
     &:disabled {
         opacity: 0.5;
@@ -53,18 +57,18 @@ const ErrorMessage = styled.div`
 `
 
 const CommentList = styled.div`
-    width: 60vw;
+    width: 80vw;
     max-height: 500px;
     overflow-y: auto;
     margin-top: 30px;
 `
 
 const CommentItem = styled.div`
-    background: rgba(255,255,255,0.1);
+background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 15px;
-    border-right: 5px solid var(--color-primary);
+    border-right: 8px solid var(--color-info);
 `
 
 const CommentHeader = styled.div`
@@ -72,18 +76,16 @@ const CommentHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-    color: var(--color-primary);
-    font-weight: bold;
+    color: var(-);
 `
 
 const CommentContent = styled.p`
     font-size: 16px;
     line-height: 1.6;
-    color: var(--color-text);
 `
 
 const CommentDate = styled.small`
-    color: var(--color-info);
+    color: green;
     font-size: 12px;
 `
 
@@ -216,7 +218,7 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
                     {comments.map((comment) => (
                         <CommentItem key={comment.id}>
                             <CommentHeader>
-                                <span>{comment.user_name || 'کاربر'}</span>
+                                <span>{comment.user_name || 'ناشناس'}@</span>
                             </CommentHeader>
                             <CommentContent>{comment.content}</CommentContent>
                             <CommentDate>
