@@ -3,6 +3,7 @@ import Header from '../layout/Header'
 import { supabase } from '../lib/supabaseClient'
 import CategoryBoxs from '../components/CategoryBoxs'
 import Loader from '../components/Loader';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [newsData, setNewsData] = useState([])
