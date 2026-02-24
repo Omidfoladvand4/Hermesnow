@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNews } from '../hooks/useGetNews';
 import styled from 'styled-components';
 import CategoryBox from '../components/CategoryBox';
@@ -77,7 +77,7 @@ function Category() {
         </NewsGrid>
       ) : (
         <EmptyMessage>
-          هیچ خبری در دسته‌بندی {headerTitle} یافت نشد
+          هیچ خبری در دسته‌بندی {headerTitle} یافت نشد  :    <Link to= '/'>رفتن به صفحه اصلی</Link>
         </EmptyMessage>
       )}
     </Container>

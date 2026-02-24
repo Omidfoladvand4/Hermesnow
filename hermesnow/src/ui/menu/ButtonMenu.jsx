@@ -21,11 +21,11 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
 function ButtonMenu() {
   return (
     <ButtonMenuContainer>
-        <MenuItem ><Link to = '/category'>اقتصاد</Link></MenuItem>
-        <MenuItem ><Link to = '/category'>تجارت</Link></MenuItem>
-        <MenuItem ><Link to = '/category'>فرهنگی</Link></MenuItem>
-        <MenuItem ><Link to = '/category'>سیاست</Link></MenuItem>
-        <MenuItem ><Link to = '/category'>سلامتی</Link></MenuItem>
+        <MenuItem ><Link to = '/category/اقتصاد'>اقتصاد</Link></MenuItem>
+        <MenuItem ><Link to = '/category/تجارت'>تجارت</Link></MenuItem>
+        <MenuItem ><Link to = '/category/فرهنگی'>فرهنگی</Link></MenuItem>
+        <MenuItem ><Link to = '/category/سیاست'>سیاست</Link></MenuItem>
+        <MenuItem ><Link to = '/category/سلامتی'>سلامتی</Link></MenuItem>
         <MenuItem> <Link to='/' >جستجو</Link>  </MenuItem>
          <MenuItem >فیلتر</MenuItem>
         <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>
