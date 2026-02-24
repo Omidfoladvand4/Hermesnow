@@ -129,6 +129,9 @@ function News() {
   const handleCommentAdded = (newComment) => {
         setComments(prev => [newComment, ...prev])
     }
+    const recomendedNewsFiltered = getRecomendedNews
+    .filter(item => item.id !== news.id)
+    .slice(0, 3);
   return (
     <div>
       <Title titleName={news.NewsTitle} />
@@ -168,8 +171,7 @@ function News() {
       <RecomededNews> 
     <Title titleName={'خبر های بیشتر در این مورد '} />
     <RecomendedNewsContanier>
-       {getRecomendedNews
-      .filter(item => item.id !== news.id)
+       {recomendedNewsFiltered
       .map(item => (
         <CategoryBox key={item.id} news={item} />
       ))

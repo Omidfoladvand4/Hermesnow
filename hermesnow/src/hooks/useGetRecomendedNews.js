@@ -24,7 +24,7 @@ export function usegetRecomendedNews(subject) {
       if (supabaseError) {
         throw supabaseError;
       }
-      
+
       const filteredData = data?.filter((item) => {
         return item.NewsSubject === subject;
       }) || [];
