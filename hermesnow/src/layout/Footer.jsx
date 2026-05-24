@@ -7,24 +7,23 @@ import Logo from '../components/Logo'
 import CopyRight from '../ui/footer/CopyRight'
     const FooterContainer =  styled.footer`
          width: 100%;
-        display: grid;
-        grid-template-rows: auto auto auto;
-        row-gap: 20px;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         background:var(--color-info);
         color: var(--color-primary);
         padding: 30px 15px;
+       
     `
 
     const RowLinkSearch = styled.div`
       max-width: 1240px;
       width: 100%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit , minmax(250px , 1fr));
+      display: flex;
       justify-items: center;
       align-items: center;
       gap: 20px;
-    `
+      `
 function FooterSection() {
   return (
     <FooterContainer>

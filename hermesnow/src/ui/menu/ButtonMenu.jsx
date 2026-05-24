@@ -11,8 +11,9 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: nowrap;
       list-style-type: none;
-      padding: 10px 20px;
+      padding: .5rem .25rem;
       background-color:var(--color-primary);
       position: sticky;
       top: 0;
@@ -32,7 +33,7 @@ function ButtonMenu() {
         <MenuItem ><Link to = '/settings'><SettingsInputCompositeIcon /></Link></MenuItem>
          <MenuItem>
           <ProductionQuantityLimitsIcon />
-          <Link to='/product-info'>درباره محصول</Link>
+          <Link to='/product-info'></Link>
         </MenuItem>
     </ButtonMenuContainer>
   )

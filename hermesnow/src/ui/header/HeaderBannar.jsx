@@ -12,6 +12,9 @@ const Bannar = styled.nav`
     flex-direction: column;
     background: var(--color-accent);
     position: relative;
+    @media (max-width : 768px){
+      display: none;
+    }
 `
 const Navbar = styled.div`
 width: 100%;
@@ -21,12 +24,12 @@ width: 100%;
 `
 const BannarContent = styled.div`
     width: 100%;
-    font-size: 18px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     display: flex;
     padding: 0 25px;
     color: var(--color-secondary);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 `
 const MainHeader = styled.div`
   width: 100%;

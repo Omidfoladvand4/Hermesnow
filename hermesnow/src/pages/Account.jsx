@@ -6,7 +6,7 @@ import Title from '../components/Title'
 import Avatar from '../components/Avatar';
 import BackButton from '../components/BackButton'
 import { useAuth } from '../contexts/AuthContext'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 const Navbar = styled.div`
   width: 100%;
@@ -70,6 +70,13 @@ const UserImformationWrapper = styled.div`
   display: flex;
   align-items: start;
   flex-direction: column;
+`
+const Botton = styled.button`
+  background-color: var(--color-info);
+  padding: 15px 45px;
+  color: #000000;
+  font-weight: 900;
+  margin: 15px;
 `
 
 const UserActionsContainer = styled(BaseContainer)`
@@ -165,6 +172,9 @@ function Account() {
             <div>ایمیل: "{user?.UserEmail || 'ثبت نشده'}"</div>
             <div>رمز عبور: "{user?.UserPassword || 'ثبت نشده'}"</div>
             <div>موضوع مورد علاقه: "{user?.FavoritesTopic || 'مشخص نشده'}"</div>
+            <Link to='/settings' >
+          <Botton >رفتن به تنظیمات </Botton>
+            </Link>
           </UserImformationWrapper>
         </UserInformationContainer>
 

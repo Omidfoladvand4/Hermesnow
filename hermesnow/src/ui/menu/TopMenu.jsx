@@ -35,7 +35,7 @@ const TopMenuItemsContainer = styled.ul`
 const UserName = styled.div`
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: var(--font-size-md);
   font-weight: 900;
   cursor: pointer;
   margin-left: 15px;

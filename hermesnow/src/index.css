@@ -5,6 +5,39 @@
   --color-accent: #C07B74;         /* دکمه، alert */
   --color-info: #6C92A0;           /* لینک، hover */
   --color-neutral: #A8A9A9;        /* متن کم‌اهمیت، placeholder */
+
+  --font-size-xs: 10px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
+
+}
+
+@media (max-width : 786px) {
+  :root {
+  --font-size-xs: 7px;
+  --font-size-sm: 11px;
+  --font-size-base: 13px;
+  --font-size-md: 15px;
+  --font-size-lg: 17px;
+  --font-size-xl: 21px;
+  --font-size-xxl: 28px;
+  }
+}
+
+@media (max-width : 400px) {
+  :root {
+  --font-size-xs: 4px;
+  --font-size-sm: 8px;
+  --font-size-base: 10px;
+  --font-size-md: 12px;
+  --font-size-lg: 15px;
+  --font-size-xl: 18px;
+  --font-size-xxl: 24px;
+  }
 }
 
 body.dark {
@@ -49,7 +82,7 @@ body {
 }
 
 a{
-        font-size: 16px;
+        font-size: var(--font-size-sm);
         font-weight: 600;
         color : var(--color-info);
         cursor: pointer;
@@ -67,4 +100,7 @@ input , button , textarea{
 ul{
   list-style-type: none;
 }
- 
+
+p{
+  font-size: var(--font-size-md);
+}

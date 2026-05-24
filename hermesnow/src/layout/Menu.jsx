@@ -6,6 +6,7 @@ import TopMenu from '../ui/menu/TopMenu'
          display: flex;
          flex-direction: column;
          background: var(--color-primary);
+
   `
 function Menu() {
   return (

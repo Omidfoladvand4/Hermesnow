@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
      const MenuItemContainer = styled.li` 
         width: 12%;
-        font-size: 16px;
+        font-size: var(--font-size-sm);
         font-weight: 600;
         color : var(--color-info);
         cursor: pointer;
