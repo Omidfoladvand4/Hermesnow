@@ -6,7 +6,7 @@ import WhatshotIcon from '@mui/icons-material/Whatshot';
         display: flex;
         align-items: center;
         justify-content: start;
-        font-size: 24px;
+        font-size: var(--font-size-md);
         color: var(--color-primary);
         font-weight: 600;
         padding: 5px;

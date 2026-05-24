@@ -4,6 +4,7 @@ const CopyRightBox = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     background: var(--color-primary);
     position: absolute;
@@ -11,13 +12,12 @@ const CopyRightBox = styled.div`
     left: 0;
 `
 const Designer = styled.div`
-    font-size: 25px;
     font-weight: 900;
     color: var(--color-info);
 
 `
 const CopyRightText = styled.div`
-     font-size: 15px;
+    font-size: var(--font-size-sm);
     font-weight: 800;
     text-decoration: underline;
     color: var(--color-neutral);
@@ -31,7 +31,7 @@ const ContactList = styled.div`
 `
 const ContactLink =  styled.a`
     text-align: center;
-    font-size: 20px;
+    font-size: var(--font-size-sm);
     color: var(--color-neutral);
 `
 function CopyRight() {
@@ -42,7 +42,7 @@ function CopyRight() {
         <ContactList>
           <ContactLink href='https://github.com/Omidfoladvand4'>اکانت گیت هاب</ContactLink>
           <div>شماره تماس </div>
-          <ContactLink as='h2'>09395687472</ContactLink>
+          <ContactLink as='h2'>09395687472 : phone</ContactLink>
         </ContactList>
     </CopyRightBox>
   )

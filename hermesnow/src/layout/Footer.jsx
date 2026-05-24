@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import FooterTitle from '../ui/footer/FooterTitle'
 import FooterLinks from '../ui/footer/FooterLinks'
 import FooterSearch from '../ui/footer/FooterSearch'
-import Logo from '../components/Logo'
 import CopyRight from '../ui/footer/CopyRight'
     const FooterContainer =  styled.footer`
          width: 100%;
@@ -17,7 +16,6 @@ import CopyRight from '../ui/footer/CopyRight'
     `
 
     const RowLinkSearch = styled.div`
-      max-width: 1240px;
       width: 100%;
       display: flex;
       justify-items: center;
@@ -30,7 +28,6 @@ function FooterSection() {
             <FooterTitle />
            <RowLinkSearch>
              <FooterLinks />
-            <Logo $w='100' $font='54px'/>
            </RowLinkSearch>
             <FooterSearch />
             < CopyRight />

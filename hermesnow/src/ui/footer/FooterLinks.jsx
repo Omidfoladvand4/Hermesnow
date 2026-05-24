@@ -4,14 +4,16 @@ const List = styled.ul`
   list-style-type: none;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-around;
+  margin: 1rem 0;
   gap: 15px;
 `
 const ListItem = styled.li`
   color: var(--color-primary);
   background: var(--color-neutral);
   font-weight: 500;
-  padding: 10px 15px;
+  padding: .5rem 15px;
   border-radius: 15px;
   cursor: pointer;  
    backdrop-filter: blur(12px);
