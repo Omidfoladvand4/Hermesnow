@@ -10,7 +10,7 @@ import  styled  from 'styled-components'
          `
     const LogoText = styled.div`
           font-weight: 900;
-          font-size: ${({ $font }) => $font || '28px'};;
+          font-size: ${({ $font }) => $font || '18px'};
           transition: color 0.3s ease-in;
           animation:  animate 1s infinite;
         @keyframes animate {
@@ -25,6 +25,9 @@ import  styled  from 'styled-components'
               opacity: 0.8;
 
           }
+        }
+        @media (max-width: 400px){
+          font-size: ${({ $font }) => $font || '10px'};
         }
     `
 function LogoTextContainer({$font}) {

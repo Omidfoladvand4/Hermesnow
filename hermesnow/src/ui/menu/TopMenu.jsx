@@ -73,7 +73,7 @@ function TopMenu() {
         
         <MenuItem>
           <NewspaperIcon />
-          <Link to='/your-news'>خبر های من</Link>
+          <Link to='/your-news'></Link>
         </MenuItem>
         
         { user?.IsAdmin || user?.IsMainAdmin ? <MenuItem>
@@ -89,10 +89,10 @@ function TopMenu() {
         
         <MenuItem>
           <LiveTvIcon />
-          <Link to='/live-news'>زنده</Link>
+          <Link to='/live-news'></Link>
         </MenuItem>
-            <MenuItem ><div>ورود</div><Link to = '/login'><LoginIcon /></Link> </MenuItem>
-      <MenuItem ><LogoutIcon /> <div onClick={hanleLogout}>خروج</div></MenuItem>
+            <MenuItem ><div></div><Link to = '/login'><LoginIcon /></Link> </MenuItem>
+      <MenuItem ><LogoutIcon /> <div onClick={hanleLogout}></div></MenuItem>
    
       </TopMenuItemsContainer>
       <Logo />

@@ -11,7 +11,7 @@ function Header() {
   return (
     <div>
       <HeaderBannar />
-      <Slider images={sliderimage} slidesPerView={2}/>
+      <Slider images={sliderimage} slidesPerView={1}/>
     </div>
   )
 }

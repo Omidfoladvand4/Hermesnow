@@ -28,7 +28,7 @@
   }
 }
 
-@media (max-width : 400px) {
+@media (max-width : 340px) {
   :root {
   --font-size-xs: 4px;
   --font-size-sm: 8px;
