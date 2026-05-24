@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useLogin } from '../hooks/useLogin'
 
 const  LoginWrapper = styled.form`
-    width: 25%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -15,7 +15,15 @@ const  LoginWrapper = styled.form`
     backdrop-filter: blur(20px);
     box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
     margin-top: 10px;
+    @media (max-width : 400px){
+        width: 90%;
+    };
+        @media (max-width : 768px){
+        width: 80%;
+    }
+
 `
+
 
 const FormContainer = styled.div`
   width: 100%;
@@ -47,7 +55,7 @@ const LoginButton = styled.button`
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: 900;
-    font-size: large;
+    font-size: var(--font-size-md);
     cursor: pointer;
     color: var(--color-info);
     box-shadow: 2px 2px 3px 1px #333333;

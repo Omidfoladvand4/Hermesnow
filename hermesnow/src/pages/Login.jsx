@@ -35,7 +35,7 @@ const LoginLink = styled.div`
 function Login() {
   return (
     <LoginPageContainer>
-        <Navigations color={`var(--color-primary)`} font='28px' titleName= 'ورود'></Navigations>
+        <Navigations color={`var(--color-primary)`} font={'var(--font-size-xl)'} titleName= 'ورود'></Navigations>
          <LoginFeild />
          <LoginLink>
           <p>حساب کاربری ندارید؟ <Link to="/signup">ثبت‌نام کنید</Link></p>

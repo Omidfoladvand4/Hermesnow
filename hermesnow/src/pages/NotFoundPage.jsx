@@ -14,7 +14,7 @@ const Overlay = styled.div`
     z-index: 98;
 `
 const TitlePage = styled.div`
-    font-size: 400%;
+    font-size: var(--font-size-xxl);
     background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
     background-clip: text;
     color: transparent;

@@ -10,7 +10,7 @@ const SingupContainer = styled.div`
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     flex-direction: column;
     background: url('./public/images/HermesNowBannar.jpg');
     background-position: center;
@@ -22,39 +22,46 @@ const SingupContainer = styled.div`
 `
 
 const SignupWrapper = styled.form`
-    width: 100%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px;
     padding: 15px 10px;
     border-radius: 12px;
     backdrop-filter: blur(20px);
     box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
     margin-top: 10px;
+    @media (max-width : 768px) {
+        width: 50%;
+    }
+     @media (max-width : 400px) {
+        width: 90%;
+    }
 `
 
 const FormContainer = styled.div`
-    width: 40%;
+    width: 100%;
     display: flex;
     align-items: start;
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 `
 
 const LabelFelid = styled.label`
     font-weight: bolder;
     color: var(--color-secondary);
     display: block;
+    font-size: var(--font-size-xs);
 `
 
 const InputFeild = styled.input`
     width: 90%;
-    padding: 10px 5px;
-    border-radius: 15px;
+    padding: 2px 3px;
+    border-radius: 5px;
     background: var(--color-info);
     color: var(--color-primary);
     border: 2px solid ${props => props.hasError ? 'red' : 'transparent'};
@@ -62,16 +69,19 @@ const InputFeild = styled.input`
 
 const ErrorFelid = styled.div`
     color: red;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
 `
 
 const SignupButton = styled.button`  
-    width: 150px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: 900;
-    font-size: 24px;
+    font-size: var(--font-size-sm);
     cursor: pointer;
     color: var(--color-info);
     box-shadow: 2px 2px 3px 1px #333333;
@@ -108,7 +118,10 @@ const LoginLink = styled.div`
         }
     }
 `
-
+const LoginRoute = styled.p`
+    font-size: var(--font-size-md);
+    color: red;
+`
 const Signup = () => {
     const { signup, loading, error } = useSignup()
 
@@ -145,7 +158,7 @@ const Signup = () => {
 
     return (
         <SingupContainer>
-            <Navigations titleName='ثبت نام' font='28px' color='var(--color-primary)'> </Navigations>
+            <Navigations titleName='ثبت نام' font='var(--font-size-lg)' color='var(--color-primary)'> </Navigations>
             
             <SignupWrapper onSubmit={formik.handleSubmit}>
                 {/* نمایش خطا از هوک */}
@@ -229,7 +242,7 @@ const Signup = () => {
                     </SignupButton>
 
                     <LoginLink>
-                        <p>حساب کاربری دارید؟ <Link to="/login">وارد شوید</Link></p>
+                        <LoginRoute>حساب کاربری دارید؟ <Link to="/login">وارد شوید</Link></LoginRoute>
                     </LoginLink>
                 </FormContainer>
             </SignupWrapper>
