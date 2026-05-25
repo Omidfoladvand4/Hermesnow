@@ -32,8 +32,7 @@ function ButtonMenu() {
         <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>
         <MenuItem ><Link to = '/settings'><SettingsInputCompositeIcon /></Link></MenuItem>
          <MenuItem>
-          <ProductionQuantityLimitsIcon />
-          <Link to='/product-info'></Link>
+          <Link to='/product-info'> <ProductionQuantityLimitsIcon /></Link>
         </MenuItem>
     </ButtonMenuContainer>
   )

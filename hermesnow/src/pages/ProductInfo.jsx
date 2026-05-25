@@ -12,6 +12,10 @@ const ProductInfoContainer = styled.div`
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    @media (max-width : 768px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
 `
 const SummarySection = styled.div`
    grid-column: 1/3;
@@ -37,7 +41,7 @@ const SummaryWrapper = styled.div`
 `
 const ProductDecription = styled.p`
   color: var(--color-secondary);
-  font-size: small;
+  font-size: var(--font-size-sm);
   font-style: italic;
 `
 const ToolsWrapper = styled.div`
@@ -88,7 +92,7 @@ const LoginGuideWrapper = styled.div`
    justify-content: space-evenly;
    gap: 10px;
    margin-top: 15px;
-   font-size: 25px;
+   font-size: var(--font-size-md);
 `
 const FeatureSection = styled.div`
    grid-column: 1/3;
@@ -165,7 +169,7 @@ function ProductInfo() {
   return (
     <ProductInfoContainer>
           <SummarySection >
-             <Title titleName='خلاصه' font='28px'/>
+             <Title titleName='خلاصه' font='var(--font-size-xl)'/>
              
              <SummaryWrapper >
                 <div>
@@ -202,7 +206,7 @@ function ProductInfo() {
              </SummaryWrapper>
           </SummarySection>
           <ProducUserExperainseSectiontData >
-               <Title titleName='برای تجربه کاربری بهتر بهتره' />
+               <Title titleName='برای تجربه کاربری بهتر بهتره' font='var(--font-size-xl)' />
 
                <UserExperainseSectionWrapper >
                 <h3>در صفحه ورود</h3>
@@ -217,7 +221,7 @@ function ProductInfo() {
                </UserExperainseSectionWrapper>
           </ProducUserExperainseSectiontData>
           <FeatureSection >
-            <Title titleName='قابلیت ها ' /> 
+            <Title titleName='قابلیت ها '  font='var(--font-size-xl)'/>  <br />
             {ProductData.features.map(feature => {
               return <FeatureBox>{feature}</FeatureBox>
             })}
