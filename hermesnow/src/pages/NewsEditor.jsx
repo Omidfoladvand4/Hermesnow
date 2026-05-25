@@ -41,7 +41,7 @@ const ToggleButton = styled.button`
   justify-content: center;
   gap: 8px;
   font-family: vazir;
-  font-size: 14px;
+  font-size: var(--font-size-sx);
 
   &:hover {
     background: ${props => props.active ? 'var(--color-accent)' : 'var(--color-info)'};
@@ -51,24 +51,27 @@ const ToggleButton = styled.button`
 `;
 
 const NewsEditorForm = styled.form`
-  width: 90%;
-  max-width: 800px;
+  width: 80%;
   display: flex;
   align-items: start;
   justify-content: space-around;
   flex-direction: column;
   gap: 20px;
-  padding: 30px;
+  padding: 20px;
   margin: 15px 0;
   background-color: var(--color-primary);
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(40, 41, 41, 0.1);
   border: 2px solid var(--color-info);
+  @media (max-width : 768px) {
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+  }
 `;
 
 const PreviewContainer = styled.div`
-  width: 90%;
-  max-width: 800px;
+  width: 80%;
   padding: 30px;
   margin: 15px 0;
   background: var(--color-secondary);
@@ -76,14 +79,19 @@ const PreviewContainer = styled.div`
   border: 2px solid var(--color-info);
   min-height: 500px;
   box-shadow: 0 8px 30px rgba(40, 41, 41, 0.1);
-`;
+    @media (max-width : 768px) {
+    width: 100%;
+    padding: 10px;
+
+  }
+`
 
 const Label = styled.label`
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--font-size-md);
+  font-weight: 400;
   display: block;
-  color: var(--color-secondary);
-  margin-bottom: 8px;
+  color: var(--color-accent);
+  margin-bottom: 6px;
 `;
 
 const PreviewLabel = styled(Label)`
@@ -97,7 +105,7 @@ const PreviewLabel = styled(Label)`
 `;
 
 const MainTextInput = styled.textarea`
-  width: 100%;
+  width: 60%;
   height: 120px;
   resize: none;
   overflow-y: scroll;
@@ -121,10 +129,13 @@ const MainTextInput = styled.textarea`
     box-shadow: 0 0 0 3px rgba(192, 123, 116, 0.1);
     transform: translateY(-2px);
   }
+  @media (max-width : 768px) {
+    width: 100%;
+  }
 `;
 
 const Select = styled.select`
-  width: 100%;
+  width: 60%;
   padding: 15px;
   background: var(--color-secondary);
   color: var(--color-primary);
@@ -141,17 +152,20 @@ const Select = styled.select`
     box-shadow: 0 0 0 3px rgba(192, 123, 116, 0.1);
     transform: translateY(-2px);
   }
+    @media (max-width : 768px) {
+    width: 100%;
+  }
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 60%;
   padding: 15px;
   background: var(--color-secondary);
   color: var(--color-primary);
   border: 2px solid var(--color-neutral);
   border-radius: 10px;
   font-family: vazir;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   transition: all 0.3s ease;
 
   &::placeholder {
@@ -173,7 +187,7 @@ const SubmitButton = styled.button`
   color: var(--color-secondary);
   border: none;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -197,9 +211,14 @@ const SubmitButton = styled.button`
 
 const ElementGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: 15px;
   margin: 20px 0;
+  @media (max-width : 786px){
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const ElementCard = styled.button`
@@ -227,6 +246,10 @@ const ElementCard = styled.button`
 
   &:disabled {
     opacity: 0.7;
+  }
+  @media (max-width : 768px){
+     width: 35%;
+     padding: 0;
   }
 `;
 
