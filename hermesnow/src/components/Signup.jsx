@@ -62,7 +62,6 @@ const InputFeild = styled.input`
     width: 90%;
     padding: 2px 3px;
     border-radius: 5px;
-    background: var(--color-info);
     color: var(--color-primary);
     border: 2px solid ${props => props.hasError ? 'red' : 'transparent'};
 `

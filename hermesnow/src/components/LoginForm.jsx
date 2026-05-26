@@ -41,7 +41,6 @@ const InputFeild = styled.input`
     width: 90%;
     padding: 10px 5px;
     border-radius: 15px;
-    background: var(--color-info);
     color: var(--color-primary);
 
 `
