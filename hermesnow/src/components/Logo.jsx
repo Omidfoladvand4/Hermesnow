@@ -7,6 +7,9 @@ import  styled  from 'styled-components'
          color: var(--color-secondary);
          overflow: hidden;
          
+         @media (max-width : 400px){
+          display: none;
+         }
          `
     const LogoText = styled.div`
           font-weight: 900;

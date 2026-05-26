@@ -11,7 +11,7 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       list-style-type: none;
       padding: .5rem .25rem;
       background-color:var(--color-primary);
