@@ -8,6 +8,7 @@ import { useNews} from '../hooks/useGetNews'
 import Loader from '../components/Loader';
 import { useUserManagement } from '../hooks/useUserManagement';
 import  { useDeleteNews }  from '../hooks/useDeleteNews'
+import SearchNewsBox from '../components/SearchNewsBox';
 
 const DashboradContainer = styled.div`
   width: 100%;
@@ -217,6 +218,7 @@ function Dashboard() {
   const { news, getNewsLoading, Newsrefetch } = useNews()
   const { error, deleteUser, promoteToAdmin, demoteFromAdmin } = useUserManagement()
   const { deleteNews  , loading , success} = useDeleteNews()
+  const [searchedNews , setSearchedNews] = useState(news)
 
 
   const handleSearch = () => {
@@ -256,9 +258,18 @@ function Dashboard() {
         
   }
 
+  const filteredNews = (value) => {
+       const currentNews =    news.filter(item => 
+            item.NewsTitle?.includes(value)
+           )
+
+          setSearchedNews(currentNews)
+           
+  }
+
   return (
     <DashboradContainer>
-      <Navigations titleName='داشبورد' font='22px'/>
+      <Navigations titleName='داشبورد' font='var(--font-size-md)'/>
       <DashboradWrapper>
         <UsersContainer>
           <SearchUserBox>
@@ -269,7 +280,6 @@ function Dashboard() {
             /> 
             <SearchBoxBtn onClick={handleSearch}>جستجو</SearchBoxBtn>
           </SearchUserBox>
-
           <UserBoxs> 
             {getUserLoading ? (
               <Loader />
@@ -306,6 +316,7 @@ function Dashboard() {
         <CharsContainer></CharsContainer>
         <NewsEditorContainer>
           <NewsEditorWrapper>
+              <SearchNewsBox  filterNewsHandler={filteredNews}/>
             <NewsEditorTable>
               <NewsEditorTableCaption>لیست خبر های موجود در سایت </NewsEditorTableCaption>
               <TableHeader>
@@ -326,14 +337,14 @@ function Dashboard() {
                       <Loader />
                     </Td>
                   </tr>
-                ) : news.length === 0 ? (
+                ) : searchedNews.length === 0 ? (
                   <tr>
                     <Td colSpan="7" style={{ textAlign: 'center' }}>
                       هیچ خبری یافت نشد
                     </Td>
                   </tr>
                 ) : (
-                  news.map((item) => (
+                  searchedNews.map((item) => (
                     <TableRow key={item.id}>
                       <Td>{item.NewsTitle}</Td>
                       <Td>
