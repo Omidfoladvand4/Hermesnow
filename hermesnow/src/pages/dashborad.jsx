@@ -251,6 +251,7 @@ function Dashboard() {
     const confirm = window.confirm('آیا از حذف خبر مطمئنی')
     if(!confirm) return
       const result = await  deleteNews({newsId : id})
+      Newsrefetch()
 
         
   }
