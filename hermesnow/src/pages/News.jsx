@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import PersianDate from '../services/PersionDate';
 import Title from '../components/Title';
 import { usegetRecomendedNews } from '../hooks/useGetRecomendedNews';
+import { useShare } from '../hooks/useShareNews';
 import CategoryBox from '../components/CategoryBox';
 import Loader from '../components/Loader';
 import Comments from '../components/Comments';
@@ -52,6 +53,20 @@ const Information = styled.div`
   color: #ffffff;
   background-color: var(--color-primary);
 `;
+const ShareBotton = styled.button`
+  padding: 10px 5px;
+  cursor: pointer;
+   box-shadow: 10px 10px 6px #c600009b;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: var(--font-size-md);
+    transition: all 0.3s ease;
+    &:hover {
+        transform: scale(.98);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+
+    }
+`
 const RecomededNews = styled.div`
 display: flex;
 align-items: center;
@@ -74,6 +89,7 @@ function News() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([])
+  const { shareNews, copyToClipboard, isShareble , shareLoading } = useShare();
 
   const navigation = useNavigate();
   const { id } = useParams();
@@ -126,6 +142,19 @@ function News() {
   if (loading) return <div>در حال بارگذاری...</div>;
   if (error) return <div>خطا: {error}</div>;
   if (!news) return <div>خبری با شناسه {id} یافت نشد</div>;
+
+  const handleShare = () => {
+    if(!isShareble) {
+      copyToClipboard(window.location.href)
+    }
+     shareNews(news , window.location.href)
+    
+     
+
+    
+    
+    
+  }
   const handleCommentAdded = (newComment) => {
         setComments(prev => [newComment, ...prev])
     }
@@ -166,6 +195,7 @@ function News() {
         <p>{news.Country}</p>
         <br />
         <p>{news.NewsSubject}</p>
+        <ShareBotton onClick={handleShare}> 📢 انتشار</ShareBotton>
       </Information>
     {getRecomendedNewsLoading ?  <Loader /> :  (
       <RecomededNews> 
