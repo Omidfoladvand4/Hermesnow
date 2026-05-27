@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import ImageBox from './ImageBox'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import formatNumber from '../utils/formartNumber';
 import PersianDate from '../services/PersionDate';
@@ -29,6 +28,16 @@ const NewsBox = styled.div`
     transform: translateY(15px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.03);
     opacity: 1;
+  }
+  @media (max-width : 400px){
+    flex-direction: column;
+  }
+`
+const NewsImage = styled.img`
+  width: 50%;
+  object-fit: cover;
+  @media (max-width : 400px) {
+    width: 100%;
   }
 `
 
@@ -150,10 +159,8 @@ function CategoryBox({ news }) {
 
   return (
     <NewsBox onClick={handleClick} style={{ opacity: loading ? 0.7 : 0.8 }}>
-      <ImageBox 
-        $src={news.MainImage || './images/HermesNowBannar.jpg'} 
-        $w='45%' 
-        $h='150px'
+      <NewsImage 
+        src={news.MainImage || './images/HermesNowBannar.jpg'} 
       />
       
       <NewsContentWrapper>   
