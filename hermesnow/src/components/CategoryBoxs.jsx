@@ -35,7 +35,7 @@ function CategoryBoxs({datas, subject = 'خبر های دیگر در این مو
   
   return (
     <CategoryContainer>
-     <Link to={`/category/${subject}`}> <Title titleName={subject}/></Link>
+     <Link to={`/category/${subject}`}> <Title font={`var(--font-size-xl)`} titleName={subject}/></Link>
       <BoxsContainer>
         {newsData.map((item, index) => {
           return  <Link key={item.Id || index} to={`/news/${item.id}`}><CategoryBox  news={item} /></Link>

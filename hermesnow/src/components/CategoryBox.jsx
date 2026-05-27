@@ -20,7 +20,6 @@ const NewsBox = styled.div`
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease-in;
-  border-bottom: 10px solid #000000;
   opacity: 0.8;
   cursor: pointer;
   
@@ -62,26 +61,26 @@ const DateAndTime = styled.div`
   align-items: end;
   justify-content: center;
   color: var(--color-info);
-  font-size: 10px;
+  font-size: var(--font-size-sx);
   margin-top: 5px;
 `
 
 const NewsSubject = styled.div`
-  font-size: 14px;
+  font-size: var(--font-size-xl);
   font-weight: 900;
-  color: var(--color-accent);
   background: rgba(255,255,255,0.1);
+  color: var(--color-primary);
   padding: 2px 10px;
   border-radius: 15px;
-`
+  `
 
 const NewsTitle = styled.div`
   width: 100%;
   height: 60px;
-  font-size: larger;
+  font-size: var(--font-size-md);
   font-weight: bolder;
   text-align: center;
-  color: var(--color-primary);
+  color: var(--color-accent);
   border-bottom: 1px solid rgba(255,255,255,0.2);
   overflow: hidden;
   display: -webkit-box;
@@ -103,7 +102,7 @@ const Div = styled.div`
   width: 50px;
   height: 15px;
   display: flex;
-  font-size: 12px;
+  font-size: var(--font-size-sx);
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -115,7 +114,7 @@ const I = styled.i`
   width: 70px;
   height: 15px;
   display: flex;
-  font-size: 12px;
+  font-size: var(--font-size-sx);
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
