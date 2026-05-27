@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
      const MenuItemContainer = styled.li` 
-        flex: 1;
         font-size: var(--font-size-sm);
         font-weight: 600;
         color : var(--color-info);
@@ -25,8 +24,6 @@ import styled from 'styled-components'
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    gap: 20px;
   `
 function MenuItem({children}) {
   return (

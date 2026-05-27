@@ -26,12 +26,11 @@ const TopMenuItemsContainer = styled.ul`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   list-style-type: none;
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08), 
               0 2px 4px rgba(255, 255, 255, 0.12);
-  gap: 15px;
-  overflow-y: scroll;
 `
 
 const UserName = styled.div`
@@ -40,8 +39,6 @@ const UserName = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
   cursor: pointer;
-  margin-left: 15px;
-  padding-right: 12px;
   text-decoration: none;
   transition: all 0.3s ease;
   color: var(--color-info);
@@ -50,6 +47,14 @@ const UserName = styled.div`
     color: var(--color-accent);
     transform: scale(1.1);
   }
+`
+const  TopMenuItem = styled.div`
+   display: block;
+   font-size: var(--font-size-sx);
+
+   @media (max-width : 800px) {
+      display: none;
+   }
 `
 
 function TopMenu() {
@@ -65,36 +70,49 @@ function TopMenu() {
           <Link to="/Account">
             <AccountCircleIcon sx={{ color: '#D4D4D4' }} />
           </Link>  
-          <div>{user?.UserName || 'کاربر'}</div>
+          <TopMenuItem>{user?.UserName || 'کاربر'}</TopMenuItem>
         </UserName>
 
-        {/* <MenuItem>
-          <AccessTimeIcon />
-          <Link to='/top-news'>تازه ها</Link>
-        </MenuItem> */}
-        
-        <MenuItem>
-          <NewspaperIcon />
-          <Link to='/your-news'></Link>
-        </MenuItem>
-        
-        { user?.IsAdmin || user?.IsMainAdmin ? <MenuItem>
-          <AddBoxIcon />
-          <Link to='/news-editor'>درج خبر</Link>
-        </MenuItem>  : null}
-        
-        {user?.IsMainAdmin  ? <MenuItem>
-          <DashboardIcon />
-          <Link to='/dashboard'><div>داشبورد</div></Link>
-        </MenuItem> : null}
-        
-        
-        <MenuItem>
-          <LiveTvIcon />
-          <Link to='/live-news'></Link>
-        </MenuItem>
-            <MenuItem ><div></div><Link to = '/login'><LoginIcon /></Link> </MenuItem>
-      <MenuItem ><LogoutIcon /> <div onClick={hanleLogout}></div></MenuItem>
+         <MenuItem>
+  <Link to='/top-news'>
+    <AccessTimeIcon />
+  </Link>
+  <TopMenuItem>تازه ها</TopMenuItem>
+</MenuItem>
+
+<MenuItem>
+  <Link to='/your-news'>
+    <NewspaperIcon />
+  </Link>
+  <TopMenuItem>خبرهای شما</TopMenuItem>
+</MenuItem>
+
+{user?.IsAdmin || user?.IsMainAdmin ? (
+  <MenuItem>
+    <Link to='/news-editor'>
+      <AddBoxIcon />
+    </Link>
+    <TopMenuItem>درج خبر</TopMenuItem>
+  </MenuItem>
+) : null}
+
+{user?.IsMainAdmin ? (
+  <MenuItem>
+    <Link to='/dashboard'>
+      <DashboardIcon />
+    </Link>
+    <TopMenuItem>داشبورد</TopMenuItem>
+  </MenuItem>
+) : null}
+
+<MenuItem>
+  <Link to='/live-news'>
+    <LiveTvIcon />
+  </Link>
+  <TopMenuItem>اخبار زنده</TopMenuItem>
+</MenuItem>
+            <MenuItem ><TopMenuItem>ورود</TopMenuItem><Link to = '/login'><LoginIcon /></Link> </MenuItem>
+      <MenuItem ><LogoutIcon /><TopMenuItem>خروج</TopMenuItem> <div onClick={hanleLogout}></div></MenuItem>
    
       </TopMenuItemsContainer>
       {/* <Logo /> */}
