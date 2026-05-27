@@ -10,6 +10,7 @@ import { useUserManagement } from '../hooks/useUserManagement';
 import  { useDeleteNews }  from '../hooks/useDeleteNews'
 import SearchNewsBox from '../components/SearchNewsBox';
 
+
 const DashboradContainer = styled.div`
   width: 100%;
   min-height: 100%;
