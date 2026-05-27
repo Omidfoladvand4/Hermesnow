@@ -7,6 +7,7 @@ import { useUsers } from '../hooks/useGetUsers';
 import { useNews} from '../hooks/useGetNews'
 import Loader from '../components/Loader';
 import { useUserManagement } from '../hooks/useUserManagement';
+import  { useDeleteNews }  from '../hooks/useDeleteNews'
 
 const DashboradContainer = styled.div`
   width: 100%;
@@ -215,6 +216,8 @@ function Dashboard() {
   const { users, getUserLoading, refetch } = useUsers()
   const { news, getNewsLoading, Newsrefetch } = useNews()
   const { error, deleteUser, promoteToAdmin, demoteFromAdmin } = useUserManagement()
+  const { deleteNews  , loading , success} = useDeleteNews()
+
 
   const handleSearch = () => {
     if (SearchBoxValue.trim() === '') {
@@ -243,6 +246,14 @@ function Dashboard() {
 
   const displayUsers = filteredUsers.length > 0 ? filteredUsers : users
   const noUsersFound = filteredUsers.length === 0 && SearchBoxValue.trim() !== ''
+
+  const deleteNewsHandler = async (id) => {
+    const confirm = window.confirm('آیا از حذف خبر مطمئنی')
+    if(!confirm) return
+      const result = await  deleteNews({newsId : id})
+
+        
+  }
 
   return (
     <DashboradContainer>
@@ -304,7 +315,7 @@ function Dashboard() {
                   <Th scope='col'>خبرنگار</Th>
                   <Th scope='col'>تاریخ</Th>
                   <Th scope='col'>مشاهده</Th>
-                  <Th scope='col'>ویرایش</Th>
+                  <Th scope='col'>اکشن ها </Th>
                 </tr>
               </TableHeader>
               <tbody>
@@ -342,7 +353,7 @@ function Dashboard() {
                         </ActionButton>
                       </Td>
                       <Td>
-                        <ActionButton>
+                        <ActionButton  onClick={() => deleteNewsHandler(item.id)}>
                           <EditIcon fontSize="small" />
                         </ActionButton>
                       </Td>
