@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PageviewIcon from '@mui/icons-material/Pageview';
+import SearchNewsBox from '../../components/SearchNewsBox';
 const SearchBox = styled.div`
     width: 100%;
     border-radius: 15px;
@@ -28,7 +29,7 @@ const Icon = styled.div`
 function FooterSearch() {
   return (
       <SearchBox >
-        <SearchInput placeholder='... برای جستجو اخبار' /> <Icon><PageviewIcon fontSize='large'/></Icon>
+        <SearchNewsBox  $backgroundColor = 'var(--color-secondary)'/>
       </SearchBox>
   )
 }
