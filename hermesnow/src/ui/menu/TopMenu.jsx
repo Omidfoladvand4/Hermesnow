@@ -23,13 +23,15 @@ const TopMenuContainer = styled.main`
 `
 
 const TopMenuItemsContainer = styled.ul`
-  flex: 1;
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   list-style-type: none;
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08), 
               0 2px 4px rgba(255, 255, 255, 0.12);
   gap: 15px;
+  overflow-y: scroll;
 `
 
 const UserName = styled.div`
@@ -83,7 +85,7 @@ function TopMenu() {
         
         {user?.IsMainAdmin  ? <MenuItem>
           <DashboardIcon />
-          <Link to='/dashboard'>داشبورد</Link>
+          <Link to='/dashboard'><div>داشبورد</div></Link>
         </MenuItem> : null}
         
         
@@ -95,7 +97,7 @@ function TopMenu() {
       <MenuItem ><LogoutIcon /> <div onClick={hanleLogout}></div></MenuItem>
    
       </TopMenuItemsContainer>
-      <Logo />
+      {/* <Logo /> */}
     </TopMenuContainer>
   )
 }

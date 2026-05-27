@@ -26,7 +26,7 @@ const SubmitCommentBtn = styled.button`
     border-radius: 2px;
     font-weight: 900;
     transition: all .3s ease;
-    font-size: 25px;
+    font-size: var(--font-size-md);
     box-shadow: 20px 20px 6px #ffffff2b;
     border-radius: 15px;
     &:hover {
@@ -52,7 +52,7 @@ const Input = styled.textarea`
 
 const ErrorMessage = styled.div`
     color: red;
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     margin-top: -15px;
 `
 
@@ -76,22 +76,21 @@ const CommentHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-    color: var(-);
 `
 
 const CommentContent = styled.p`
-    font-size: 16px;
+    font-size: var(--font-size-md);
     line-height: 1.6;
 `
 
 const CommentDate = styled.small`
     color: green;
-    font-size: 12px;
+    font-size: var(--font-size-sm);
 `
 
 const LoginMessage = styled.div`
     color: var(--color-primary);
-    font-size: 16px;
+    font-size: var(--font-size-sm);
     margin: 10px 0;
 `
 
@@ -183,7 +182,7 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
 
     return (
         <CommentsContainer>
-            <Title titleName='نظرات کاربران' />
+            <Title titleName='نظرات کاربران' font={`var(--font-size-md)`}/>
             
             {!isAuthenticated ? (
                 <LoginMessage>

@@ -16,12 +16,16 @@ const NewsHeader = styled.div`
   align-items: start;
   justify-content: space-around;
   margin-top: 3%;
+  @media (max-width : 400px){
+    align-items: center;
+    flex-direction: column;
+  }
 `;
 
 const NewsSummary = styled.div`
   width: 40%;
   padding: 3% 5%;
-  font-size: 25px;
+  font-size: var(--font-size-xl);
   overflow-wrap: break-word;
   color: var(--color-info);
 `;
@@ -29,10 +33,13 @@ const NewsSummary = styled.div`
 const NewsImage = styled.img`
   width: 50%;
   object-fit: cover;
+    @media (max-width : 400px){
+    width: 100%;
+  }
 `;
 
 const Journalist = styled.div`
-  font-size: 25px;
+  font-size:  var(--font-size-md);
   font-weight: 900;
   color: var(--color-info);
   padding: 25px;
@@ -163,7 +170,7 @@ function News() {
     .slice(0, 3);
   return (
     <div>
-      <Title titleName={news.NewsTitle} />
+      <Title titleName={news.NewsTitle} font={`var(--font-size-xl)`} />
       
       <NewsHeader>
         <NewsImage src={news.MainImage} alt={news.NewsSubject} />
@@ -199,7 +206,7 @@ function News() {
       </Information>
     {getRecomendedNewsLoading ?  <Loader /> :  (
       <RecomededNews> 
-    <Title titleName={'خبر های بیشتر در این مورد '} />
+    <Title titleName={'خبر های بیشتر در این مورد '} font={`var(--font-size-md)`}/>
     <RecomendedNewsContanier>
        {recomendedNewsFiltered
       .map(item => (
