@@ -1,11 +1,13 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import {textGlow} from '../styles/animations'
 const TitleContainer = styled.div`
   display: flex;
   align-items: start;
   justify-content: center;
   margin-right: 25px;
+  animation:  ${textGlow} 0.3s linear;
 `
 const TitleContent = styled.h1`
   font-size: ${({$font}) => $font || '35px' };

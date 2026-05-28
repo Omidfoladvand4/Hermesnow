@@ -9,6 +9,8 @@ import { useShare } from '../hooks/useShareNews';
 import CategoryBox from '../components/CategoryBox';
 import Loader from '../components/Loader';
 import Comments from '../components/Comments';
+import {slideInStagger ,zoomIn} from '../styles/animations'
+
 
 const NewsHeader = styled.div`
   width: 100vw;
@@ -19,6 +21,7 @@ const NewsHeader = styled.div`
   @media (max-width : 400px){
     align-items: center;
     flex-direction: column;
+
   }
 `;
 
@@ -28,11 +31,13 @@ const NewsSummary = styled.div`
   font-size: var(--font-size-xl);
   overflow-wrap: break-word;
   color: var(--color-info);
+  animation:  ${slideInStagger} .5s linear;
 `;
 
 const NewsImage = styled.img`
   width: 50%;
   object-fit: cover;
+  animation:  ${zoomIn} 0.5s linear;
     @media (max-width : 400px){
     width: 100%;
   }

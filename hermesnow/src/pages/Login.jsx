@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import LoginFeild from '../components/LoginForm'
 import Navigations from '../components/Navigations'
 import  { Link } from 'react-router-dom'
+import {slideInStagger} from '../styles/animations'
 const LoginPageContainer = styled.main`
 width: 100%;
 min-height: 100vh;
@@ -17,10 +18,13 @@ position: fixed;
 top: 0;
 left: 0;
 z-index: 120;
+animation:  ${slideInStagger} .5s linear;
+
 `
 const LoginLink = styled.div`
     text-align: center;
     margin-top: 15px;
+
     
     a {
         color: var(--color-secondary);

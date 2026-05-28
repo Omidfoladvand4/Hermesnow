@@ -82,8 +82,8 @@ a{
         text-decoration: none;
         transition: all 0.3s ease;
         &:hover {
-            color: var(--color-accent);
-            transform: scale(1.2);
+            color: var(--color-secondary);
+            transform: scale(1.02);
         }
 }
 

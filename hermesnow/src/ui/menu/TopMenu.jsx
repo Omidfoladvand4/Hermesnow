@@ -11,6 +11,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
 import { useAuth } from '../../contexts/AuthContext';
 import LogoutIcon from '@mui/icons-material/Logout';
+import {fadeInLeft } from '../../styles/animations'
 
 const TopMenuContainer = styled.main`
   width: 100%;
@@ -20,6 +21,7 @@ const TopMenuContainer = styled.main`
   padding: 5px 15px;
   z-index: 101;
   position: relative;
+animation: ${fadeInLeft} 0.3s linear;
 `
 
 const TopMenuItemsContainer = styled.ul`
@@ -45,7 +47,7 @@ const UserName = styled.div`
   
   &:hover {
     color: var(--color-accent);
-    transform: scale(1.1);
+    transform: scale(1.01);
   }
 `
 const  TopMenuItem = styled.div`

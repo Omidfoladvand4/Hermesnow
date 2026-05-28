@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import styled from 'styled-components';
 import { supabase } from '../lib/supabaseClient';
 import ImageUploader from '../components/ImageUploder';
+import {rotateIn}  from '../styles/animations'
 const NewsEditorContainer = styled.main`
   width: 100%;
   display: flex;
@@ -13,6 +14,7 @@ const NewsEditorContainer = styled.main`
   padding: 20px;
   background: var(--color-secondary);
   min-height: 100vh;
+  animation: ${rotateIn} 0.3s linear;
 `;
 
 const ToggleSwitch = styled.div`

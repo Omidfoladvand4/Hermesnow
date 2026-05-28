@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Title from '../components/Title'
 import ImageBox from '../components/ImageBox'
+import {fadeIn ,slideInStagger ,fadeInUp ,scaleIn ,rotateIn }  from '../styles/animations'
+
 const ProductInfoContainer = styled.div`
     width: 100%;
     height: max-content;
@@ -12,6 +14,8 @@ const ProductInfoContainer = styled.div`
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    animation: ${fadeIn} 0.3s linear;
+    
     @media (max-width : 768px) {
       display: flex;
       flex-wrap: wrap;
@@ -31,6 +35,9 @@ const SummarySection = styled.div`
     padding: 10px 15px;
     background: linear-gradient(135deg , rgba(255, 255 , 255 , 0.1) , blue , gray);
     color: var(--color-secondary);
+    animation: ${fadeInUp} 0.3s linear;
+    animation-delay: .6s;
+
 
 `
 const SummaryWrapper = styled.div`
@@ -51,6 +58,9 @@ align-items: start;
 justify-content: space-around;
 margin-top: 15px;
 padding: 10px 15px;
+    animation: ${scaleIn} 0.3s linear;
+    animation-delay: .9s;
+
 `
 const Wrapper = styled.div`
 width: 30%;
@@ -83,6 +93,8 @@ const UserExperainseSectionWrapper = styled.div`
   margin-top: 15px;
   border-radius: 18px;
  box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    animation: ${slideInStagger} 0.3s linear;
+
 
 
 `
@@ -123,6 +135,8 @@ const FeatureBox = styled.div`
   box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
   font-weight: bold;
+    animation: ${rotateIn} 0.3s linear alternate;
+    animation-delay : 0.3s ;
   cursor: pointer;
   &:hover{
     background-color: transparent;

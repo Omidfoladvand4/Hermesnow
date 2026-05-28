@@ -129,3 +129,23 @@ export const flipIn = keyframes`
   from { opacity: 0; transform: rotateY(90deg); }
   to { opacity: 1; transform: rotateY(0); }
 `
+
+export const slideInFromLeft = keyframes`
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+`
+
+export const slideInFromRight = keyframes`
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+`
+
+export const slideInFromTop = keyframes`
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+`
+
+export const slideInFromBottom = keyframes`
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+`

@@ -5,6 +5,7 @@ import formatNumber from '../utils/formartNumber';
 import PersianDate from '../services/PersionDate';
 import { supabase } from '../lib/supabaseClient';
 import { useNavigate } from 'react-router-dom'; 
+import { shake } from '../styles/animations'
 
 const NewsBox = styled.div`
   width: 100%;
@@ -19,14 +20,11 @@ const NewsBox = styled.div`
   background: var(--color-secondary);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease-in;
   opacity: 0.8;
   cursor: pointer;
   
   &:hover {
-    transform: translateY(15px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.03);
-    opacity: 1;
+  animation: ${shake} 0.3s linear;
   }
   @media (max-width : 400px){
     flex-direction: column;

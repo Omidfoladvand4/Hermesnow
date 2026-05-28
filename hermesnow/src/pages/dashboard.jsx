@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import Navigations from '../components/Navigations'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -9,50 +9,7 @@ import Loader from '../components/Loader';
 import { useUserManagement } from '../hooks/useUserManagement';
 import { useDeleteNews } from '../hooks/useDeleteNews'
 import SearchNewsBox from '../components/SearchNewsBox';
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(30px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-`
-
-const slideInFromLeft = keyframes`
-  from { opacity: 0; transform: translateX(-50px); }
-  to { opacity: 1; transform: translateX(0); }
-`
-
-const slideInFromRight = keyframes`
-  from { opacity: 0; transform: translateX(50px); }
-  to { opacity: 1; transform: translateX(0); }
-`
-
-const glowPulse = keyframes`
-  0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(229, 9, 20, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
-`
-
-const floatAnimation = keyframes`
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0px); }
-`
-
-const shimmer = keyframes`
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-`
-
-const borderGlow = keyframes`
-  0% { border-color: var(--color-info); box-shadow: 0 0 5px rgba(0, 229, 255, 0.3); }
-  50% { border-color: var(--color-accent); box-shadow: 0 0 20px rgba(229, 9, 20, 0.5); }
-  100% { border-color: var(--color-info); box-shadow: 0 0 5px rgba(0, 229, 255, 0.3); }
-`
-
-const spinGlow = keyframes`
-  0% { transform: rotate(0deg); opacity: 0; }
-  50% { transform: rotate(180deg); opacity: 0.5; }
-  100% { transform: rotate(360deg); opacity: 0; }
-`
+import { fadeIn ,slideInFromLeft ,slideInFromRight  ,floatAnimation ,shimmer ,borderGlow ,spinGlow } from '../styles/animations'
 
 const DashboardContainer = styled.div`
   width: 100%;

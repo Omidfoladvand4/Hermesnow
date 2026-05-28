@@ -7,6 +7,7 @@ import Avatar from '../components/Avatar';
 import BackButton from '../components/BackButton'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, Navigate } from 'react-router-dom'
+import { shimmer  ,neonPulse} from '../styles/animations'
 
 const Navbar = styled.div`
   width: 100%;
@@ -27,6 +28,7 @@ const Container = styled.main`
   background: url('./public/images/HermesNowBannar.jpg');
   background-size: cover;
   background-attachment: fixed;
+ animation: ${neonPulse} .5s ease ;
 `
 
 const BaseContainer = styled.div`
@@ -47,7 +49,7 @@ const BaseContainer = styled.div`
     transform: scale(1.01);
     border-radius: 1px;
   }
-`;
+  `;
 
 const ProfileContainer = styled(BaseContainer)`
     grid-row: 1/3;     
@@ -56,6 +58,7 @@ const ProfileContainer = styled(BaseContainer)`
 const UserName = styled.div`
   font-size: 18px;
   font-weight: 600;
+
 `
 
 const UserId = styled.i`
@@ -95,21 +98,9 @@ const UserActionsBox = styled.div`
   border-radius: 50%;
   background: linear-gradient( #d4d4d4 , transparent);
   box-shadow: 0 2px 3px 1px rgba(0,0,0,0.6);
-  animation: buncing 1.5s ease-in;
+ animation:  ${shimmer} 0.3s ease-in;
   
-  @keyframes buncing {
-    0% {
-        transform: translateY(-250px) scale(1.5) rotate(360deg);
-    }
-    50%{
-        transform: translateY(250px) scale(1.5) ;
-        opacity: 0;
-    }
-    100%{
-      transform: translate(0) scale(1) rotate(360deg);
-      opacity: 1;
-    }
-  }
+
 `
 
 const SavedNewsContainer = styled(BaseContainer)`

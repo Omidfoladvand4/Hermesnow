@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useSignup } from '../hooks/useSignup'
 import Navigations from './Navigations'
+import {slideInStagger} from '../styles/animations'
+
 
 const SingupContainer = styled.div`
     width: 100%;
@@ -19,6 +21,8 @@ const SingupContainer = styled.div`
     position: fixed;
     top: 0;
     z-index: 120;
+    animation:  ${slideInStagger} .5s linear;
+
 `
 
 const SignupWrapper = styled.form`

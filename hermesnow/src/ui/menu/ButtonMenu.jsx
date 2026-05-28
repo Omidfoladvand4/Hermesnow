@@ -6,6 +6,8 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
+import {fadeInRight} from '../../styles/animations'
+
     const ButtonMenuContainer = styled.main`
       width: 100%;
       display: flex;
@@ -18,6 +20,7 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
       position: sticky;
       top: 0;
       z-index: 90;
+      animation: ${fadeInRight} 0.3s linear;
     `
 function ButtonMenu() {
   return (
