@@ -10,7 +10,7 @@ import NewsEditor from './pages/NewsEditor'
 import Setting from './pages/Setting'
 import Topnews from './pages/Topnews'
 import Mynews from './pages/Mynews'
-import Dashborad from './pages/dashborad'
+import Dashboard from './pages/Dashboard'
 import Live from './pages/Live'
 import Signup from './components/Signup'
 import ProductInfo from './pages/ProductInfo'
@@ -30,7 +30,7 @@ export default function AppRoutes () {
                                                   <Account />
                                            </ProtectedRoute>}/>
             <Route path='/Top-news' element = {<Topnews />}/>
-            <Route path='/dashboard' element ={<Dashborad />}  />
+            <Route path='/dashboard' element ={<Dashboard />}  />
             <Route path='/Live-news' element ={<Live />}  />
             <Route path='/signup' element= {<Signup />} />
             <Route path='/product-info' element={<ProductInfo /> } />

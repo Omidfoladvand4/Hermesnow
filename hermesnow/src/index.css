@@ -1,10 +1,10 @@
 :root {
-  
-  --color-primary: #282929;        /* متن اصلی و هدر */
-  --color-secondary: #D4D4D4;      /* پس‌زمینه کارت و بخش فرعی */
-  --color-accent: #C07B74;         /* دکمه، alert */
-  --color-info: #6C92A0;           /* لینک، hover */
-  --color-neutral: #A8A9A9;        /* متن کم‌اهمیت، placeholder */
+
+  --color-primary: #1C1C1E;        /* مشکی آبی */
+  --color-secondary: #F5F5F7;      /* سفید نقره‌ای */
+  --color-accent: #FF3B30;         /* قرمز اپلی */
+  --color-info: #007AFF;           /* آبی اپلی */
+  --color-neutral: #8E8E93;      
 
   --font-size-xs: 10px;
   --font-size-sm: 14px;
@@ -40,13 +40,6 @@
   }
 }
 
-body.dark {
-  --color-primary: #D4D4D4;
-  --color-secondary: #1E1E1E;
-  --color-accent: #A65650;
-  --color-info: #4A708B;
-  --color-neutral: #6C6C6C;
-}
 
 *{
   box-sizing : border-box;
