@@ -114,7 +114,7 @@ function TopMenu() {
   <TopMenuItem>اخبار زنده</TopMenuItem>
 </MenuItem>
             <MenuItem ><TopMenuItem>ورود</TopMenuItem><Link to = '/login'><LoginIcon /></Link> </MenuItem>
-      <MenuItem ><LogoutIcon /><TopMenuItem>خروج</TopMenuItem> <div onClick={hanleLogout}></div></MenuItem>
+      <MenuItem><LogoutIcon onClick={hanleLogout}/><TopMenuItem>خروج</TopMenuItem> </MenuItem>
    
       </TopMenuItemsContainer>
       {/* <Logo /> */}

@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const logout = () => {
+        if(!window.confirm('آیا میخواهید خارج شوید')) return
         setUser(null)
         localStorage.removeItem('user')
     }
