@@ -55,7 +55,7 @@ const FilterdNewsBox = styled.div`
 `
 
 function Topnews() {
-  const { news , Newsrefetch  , getNewsError , getNewsLoading } = useNews()
+  const { news , Newsrefetch  , getNewsLoading } = useNews()
   const { user } = useAuth()
   const [currentNews , setCurrentNews] = useState(news)
 
@@ -103,9 +103,9 @@ function Topnews() {
             <FilterTab onClick={() => FilterHandle('most-view')}>بازدید</FilterTab>
           </FilterTabs>
             <FilterdNewsBox>
-              {currentNews.map((item) => {
+              {!getNewsLoading ?   currentNews.map((item) => {
               return  <CategoryBox key={item.id}  news={item}/>
-            })}
+            }) : <Loader />}
             </FilterdNewsBox>
         </FilterBox>
     </TopNewsWrapper>

@@ -14,7 +14,6 @@ const NewsBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 1 1 350px;
   gap: 5px;
   border-radius: 10px;
   background: var(--color-secondary);
@@ -28,6 +27,7 @@ const NewsBox = styled.div`
   }
   @media (max-width : 400px){
     flex-direction: column;
+    gap: 1px;
   }
 `
 const NewsImage = styled.img`
@@ -35,6 +35,7 @@ const NewsImage = styled.img`
   object-fit: cover;
   @media (max-width : 400px) {
     width: 100%;
+    height: 100px;
   }
 `
 
@@ -45,6 +46,9 @@ const NewsContentWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 10px;
+   @media (max-width : 400px) {
+    padding: 2px;
+  }
 `
 
 const NewsContent = styled.div`
@@ -59,13 +63,15 @@ const DateAndTime = styled.div`
   align-items: end;
   justify-content: center;
   color: var(--color-info);
-  font-size: var(--font-size-xs);
-  margin-top: 5px;
+  font-size: var(--font-size-sx);
+  margin-top: 0.3rem;
+
 `
 
 const NewsSubject = styled.div`
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-xl);
   font-weight: 900;
+  background: rgba(255,255,255,0.1);
   color: var(--color-primary);
   padding: 2px 10px;
   border-radius: 15px;
@@ -73,7 +79,7 @@ const NewsSubject = styled.div`
 
 const NewsTitle = styled.div`
   width: 100%;
-  height: 60px;
+  height: 30px;
   font-size: var(--font-size-md);
   font-weight: bolder;
   text-align: center;
@@ -99,7 +105,7 @@ const Div = styled.div`
   width: 50px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sx);
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -111,12 +117,13 @@ const I = styled.i`
   width: 70px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sx);
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
   cursor: pointer;
   font-style: normal;
+  background: rgba(255,255,255,0.1);
   border-radius: 5px;
 `
 
