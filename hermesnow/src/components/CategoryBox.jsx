@@ -59,14 +59,13 @@ const DateAndTime = styled.div`
   align-items: end;
   justify-content: center;
   color: var(--color-info);
-  font-size: var(--font-size-sx);
+  font-size: var(--font-size-xs);
   margin-top: 5px;
 `
 
 const NewsSubject = styled.div`
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-md);
   font-weight: 900;
-  background: rgba(255,255,255,0.1);
   color: var(--color-primary);
   padding: 2px 10px;
   border-radius: 15px;
@@ -100,7 +99,7 @@ const Div = styled.div`
   width: 50px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-sx);
+  font-size: var(--font-size-xs);
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -112,13 +111,12 @@ const I = styled.i`
   width: 70px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-sx);
+  font-size: var(--font-size-xs);
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
   cursor: pointer;
   font-style: normal;
-  background: rgba(255,255,255,0.1);
   border-radius: 5px;
 `
 

@@ -78,7 +78,7 @@ function Mynews() {
       })) : <Loader />}
        </MyNewsBoxs>
         <YourNewsNavigationBox>
-          شما میتوانید برای تغییر علاقه مندی خود به تنظیمات رفته         <Link to={'/setting'}><SettingsInputCompositeIcon /> </Link> 
+          شما میتوانید برای تغییر علاقه مندی خود به تنظیمات رفته         <Link to={'/settings'}><SettingsInputCompositeIcon /> </Link> 
 
         </YourNewsNavigationBox>
        </>

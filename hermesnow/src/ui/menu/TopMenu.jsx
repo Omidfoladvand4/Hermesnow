@@ -52,7 +52,7 @@ const UserName = styled.div`
 `
 const  TopMenuItem = styled.div`
    display: block;
-   font-size: var(--font-size-sx);
+   font-size: var(--font-size-xs);
 
    @media (max-width : 800px) {
       display: none;
@@ -70,7 +70,7 @@ function TopMenu() {
       <TopMenuItemsContainer>
         <UserName>
           <Link to="/Account">
-            <AccountCircleIcon sx={{ color: '#D4D4D4' }} />
+            <AccountCircleIcon xs={{ color: '#D4D4D4' }} />
           </Link>  
           <TopMenuItem>{user?.UserName || 'کاربر'}</TopMenuItem>
         </UserName>
