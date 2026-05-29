@@ -9,7 +9,7 @@ import Loader from '../components/Loader'
 import BackButton from '../components/BackButton'
 import { gradientMove } from '../styles/animations'
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
-const MyNewsWrraper = styled.div`
+const MyNewsWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ function Mynews() {
 
 
   return (
-    <MyNewsWrraper>
+    <MyNewsWrapper>
      {user ? 
         <> <Title font={'var(--font-size-md)'} titleName={`خبر های شما بر اساس علاقه مندی شما به موضوع :  ${user?.FavoritesTopic}`}/>
 
@@ -92,7 +92,7 @@ function Mynews() {
       }
       
 
-    </MyNewsWrraper>
+    </MyNewsWrapper>
   )
 }
 
