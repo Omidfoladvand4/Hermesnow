@@ -2,14 +2,14 @@
   "name": "hermesnow",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://[Omidfoladvand4].github.io/Hermesnow",
+  "homepage": "https://Omidfoladvand4.github.io/Hermesnow",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-     "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

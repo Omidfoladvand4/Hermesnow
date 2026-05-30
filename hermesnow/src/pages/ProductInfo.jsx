@@ -37,7 +37,10 @@ const SummarySection = styled.div`
     color: var(--color-secondary);
     animation: ${fadeInUp} 0.3s linear;
     animation-delay: .6s;
-
+ @media (max-width: 400px) {
+     width: 100%;
+     flex-wrap: wrap;
+ }
 
 `
 const SummaryWrapper = styled.div`
@@ -60,7 +63,11 @@ margin-top: 15px;
 padding: 10px 15px;
     animation: ${scaleIn} 0.3s linear;
     animation-delay: .9s;
-
+  
+  @media (max-width : 400px) {
+     flex-direction: column;
+     align-items: center;
+  }
 `
 const Wrapper = styled.div`
 width: 30%;
@@ -73,6 +80,9 @@ height: 100%;
   text-align: start;
   border-radius: 18px;
  box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+ @media (max-width : 400px) {
+  width: 80%;
+ }
 `
 const ProducUserExperainseSectiontData = styled.div` 
    
