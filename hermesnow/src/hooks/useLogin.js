@@ -34,24 +34,9 @@ export const useLogin = () => {
                 } else {
                     throw new Error('رمز عبور اشتباه است')
                 }
-            } else {
-            
-                const { data: newUser, error: signUpError } = await supabase
-                    .from('Users')
-                    .insert([{
-                        UserName: userData.userName,
-                        UserEmail: userData.email,
-                        UserPassword: userData.password
-                    }])
-                    .select()
-                    .single()
-
-                if (signUpError) throw signUpError
-                user = newUser
             }
 
             login(user)
-            navigate('/')
 
             return { success: true, user }
 

@@ -35,6 +35,10 @@ const LoginLink = styled.div`
     }
   }
 `;
+const SignupRoute = styled.p`
+  font-size: var(--font-size-md);
+  color: red;
+`;
 function Login() {
   return (
     <LoginPageContainer>
@@ -44,9 +48,9 @@ function Login() {
         titleName="ورود"></Navigations>
       <LoginFeild />
       <LoginLink>
-        <p>
+        <SignupRoute>
           حساب کاربری ندارید؟ <Link to="/signup">ثبت‌نام کنید</Link>
-        </p>
+        </SignupRoute>
       </LoginLink>
     </LoginPageContainer>
   );
