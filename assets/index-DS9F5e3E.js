@@ -2220,7 +2220,10 @@ background-repeat: no-repeat;
     color: var(--color-secondary);
     animation: ${nk} 0.3s linear;
     animation-delay: .6s;
-
+ @media (max-width: 400px) {
+     width: 100%;
+     flex-wrap: wrap;
+ }
 
 `,H9=D.div`
     display: flex;
@@ -2240,7 +2243,11 @@ margin-top: 15px;
 padding: 10px 15px;
     animation: ${ak} 0.3s linear;
     animation-delay: .9s;
-
+  
+  @media (max-width : 400px) {
+     flex-direction: column;
+     align-items: center;
+  }
 `,wm=D.div`
 width: 30%;
 height: 100%;
@@ -2252,6 +2259,9 @@ height: 100%;
   text-align: start;
   border-radius: 18px;
  box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+ @media (max-width : 400px) {
+  width: 80%;
+ }
 `,G9=D.div` 
    
    grid-column: 3/5; 
