@@ -43,6 +43,19 @@ const SummarySection = styled.div`
  }
 
 `
+const TecItems = styled.ul`
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+   @media (max-width : 400px) {
+        height: 150px;
+   }
+`
+
+const TecItem = styled.li`
+  
+`
 const SummaryWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -114,7 +127,7 @@ const LoginGuideWrapper = styled.div`
    justify-content: space-evenly;
    gap: 10px;
    margin-top: 15px;
-   font-size: var(--font-size-md);
+   font-size: var(--font-size-xs);
 `
 const FeatureSection = styled.div`
    grid-column: 1/3;
@@ -139,20 +152,24 @@ const FeatureBox = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 15px;
+  text-align: center;
   gap: 10px;
   padding: 15px;
   background-color: var(--color-primary);
   box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
   transition: all 0.3s ease;
-  font-weight: bold;
     animation: ${rotateIn} 0.3s linear alternate;
     animation-delay : 0.3s ;
+    font-size: var(--font-size-xs);
   cursor: pointer;
   &:hover{
     background-color: transparent;
     transform: scale(1.1);
     font-weight: bolder;
     color: var(--color-primary);
+  }
+  @media (max-width : 400px) {
+       height: 60px;
   }
 
 `
@@ -197,34 +214,34 @@ function ProductInfo() {
              
              <SummaryWrapper >
                 <div>
-                  <h1>{ProductData.project.name}</h1>
+                  <h4>{ProductData.project.name}</h4>
                 <ProductDecription>{ProductData.project.description} نسخه : {ProductData.project.version}</ProductDecription>
                 </div>
 
                  <ToolsWrapper>
                    <Wrapper>
-                  <h3>Front end</h3>
-                   <ul>
+                  <h4>Front end</h4>
+                   <TecItems>
             {ProductData.technologies.frontend.map(item => (
-                 <li key={item}>{item}</li>
+                 <TecItem key={item}>{item}</TecItem>
   ))}
-</ul>
+</TecItems>
                 </Wrapper>
                               <Wrapper>
-                  <h3>Back end</h3>
-                   <ul>
+                  <h4>Back end</h4>
+                   <TecItems>
             {ProductData.technologies.backend.map(item => (
-                 <li key={item}>{item}</li>
+                 <TecItem key={item}>{item}</TecItem>
   ))}
-</ul>
+</TecItems>
                 </Wrapper>
                               <Wrapper>
-                  <h3>Authentication</h3>
-                   <ul>
+                  <h4>Authentication</h4>
+                   <TecItems>
             {ProductData.technologies.authentication.map(item => (
-                 <li key={item}>{item}</li>
+                 <TecItem key={item}>{item}</TecItem>
   ))}
-</ul>
+</TecItems>
                 </Wrapper>
                  </ToolsWrapper>
              </SummaryWrapper>
@@ -233,7 +250,7 @@ function ProductInfo() {
                <Title titleName='برای تجربه کاربری بهتر بهتره' font='var(--font-size-xl)' />
 
                <UserExperainseSectionWrapper >
-                <h3>در صفحه ورود</h3>
+                <h4>در صفحه ورود</h4>
                 <LoginGuideWrapper >
                   <ul style={{background : 'var(--color-primary) ' , padding : '20px 30px' , width : '50%'}}>
                     <li><h5>نام کاربری :</h5> <p>Omid Foladvand</p></li>
