@@ -27,7 +27,7 @@ background-repeat: no-repeat;
 `
 
 const Form = styled.div`
-      width: 25%;
+      width: 30%;
       display: flex;
     align-items: center;
     justify-content: space-around;
@@ -38,14 +38,19 @@ const Form = styled.div`
     backdrop-filter: blur(25px);
     box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
     margin-top: 10px;
+    @media (max-width : 820px)  {
+      width: 100%;
+      padding: 2px 3px;
+    }
 `
 
 const Input = styled.input`
   width: 100%;
+  min-width: 300px;
   padding: 8px 15px;
   border: 2px solid var(--color-secondary);
   border-radius: 8px;
-  font-size: 1rem;
+   font-size: var(--font-size-sm);
   margin-bottom: 15px;
   
   &:focus {
@@ -63,6 +68,7 @@ const Label = styled.label`
   color: var(--color-secondary);
   display: block;
   margin-bottom: 8px;
+   font-size: var(--font-size-md);
 `
 
 const ErrorMessage = styled.div`
@@ -99,7 +105,7 @@ const PrevButton = styled.button`
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: 1.2rem;
+  font-size: var(--font-size-md);
   cursor: pointer;
 `
 
@@ -109,7 +115,7 @@ const SaveButton = styled.button`
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: 1.5rem;
+ font-size: var(--font-size-md);
   cursor: pointer;
 `
 

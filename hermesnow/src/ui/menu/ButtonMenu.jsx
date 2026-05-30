@@ -30,7 +30,6 @@ function ButtonMenu() {
         <MenuItem ><Link to = '/category/فرهنگی'>فرهنگی</Link></MenuItem>
         <MenuItem ><Link to = '/category/سیاست'>سیاست</Link></MenuItem>
         <MenuItem ><Link to = '/category/سلامتی'>سلامتی</Link></MenuItem>
-         <MenuItem >فیلتر</MenuItem>
         <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>
         <MenuItem ><Link to = '/settings'><SettingsInputCompositeIcon /></Link></MenuItem>
          <MenuItem>
