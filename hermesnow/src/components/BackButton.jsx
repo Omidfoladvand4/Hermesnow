@@ -12,6 +12,7 @@ const BackIcon = styled.div`
   cursor: pointer;  
   background: var(--color-primary);
   color: var(--color-secondary);
+  font-size: var(--font-size-md);
 
 `
 function BackButton() {

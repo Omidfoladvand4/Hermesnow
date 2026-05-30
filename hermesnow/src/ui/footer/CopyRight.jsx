@@ -38,12 +38,12 @@ function CopyRight() {
   return (
     <CopyRightBox>
         <Designer>طراح : امید فولادوند </Designer>
-        <CopyRightText>کلیه حقوق معنوی این سایت متعلق به امید فولادوند می باشد</CopyRightText>
         <ContactList>
           <ContactLink href='https://github.com/Omidfoladvand4'>اکانت گیت هاب</ContactLink>
           <div>شماره تماس </div>
-          <ContactLink as='h2'>09395687472 : phone</ContactLink>
+          <ContactLink as='h2'><a href="tel:09395687472">09395687472</a> : phone</ContactLink>
         </ContactList>
+        <CopyRightText>کلیه حقوق معنوی این سایت متعلق به امید فولادوند می باشد</CopyRightText>
     </CopyRightBox>
   )
 }

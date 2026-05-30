@@ -1,19 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 const List = styled.ul`
+width: 50%;
   list-style-type: none;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: var(--font-size-md);
   margin: 1rem 0;
-  gap: 15px;
+  gap: 1rem;
+  @media (max-width : 430px) {
+    width: 100%;
+    flex-direction : column;
+  }
 `
 const ListItem = styled.li`
   color: var(--color-primary);
   background: var(--color-neutral);
   font-weight: 500;
-  padding: .5rem 15px;
+  padding: .5rem 0.8rem;
   border-radius: 15px;
   cursor: pointer;  
    backdrop-filter: blur(12px);
@@ -32,6 +38,10 @@ const ListItem = styled.li`
       0 8px 16px rgba(0, 0, 0, 0.45),
       0 16px 32px rgba(0, 0, 0, 0.35),
       0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+    @media (max-width : 430px) {
+    width: 60%;
+    text-align: center;
   }
 `
 function FooterLinks() {

@@ -10,6 +10,9 @@ const SearchNewsBoxWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
+@media (max-width : 400px) {
+  display: none;
+}
 `;
 
 const SearchBoxInput = styled.input`

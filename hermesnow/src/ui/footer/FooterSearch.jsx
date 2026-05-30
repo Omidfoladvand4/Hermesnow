@@ -10,9 +10,7 @@ const SearchBox = styled.div`
      justify-content: center;
    background-color: var(--color-secondary);
     overflow: hidden;
-    margin-bottom: 15px;
-    position: relative;
-    margin: 2rem 0;
+    margin: 2rem 0px;
 `
 const SearchInput = styled.input`
       width: 90%;

@@ -29,6 +29,12 @@ const Container = styled.main`
   background-size: cover;
   background-attachment: fixed;
  animation: ${neonPulse} .5s ease ;
+  @media (max-width : 768px) {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+  }
 `
 
 const BaseContainer = styled.div`
@@ -49,6 +55,10 @@ const BaseContainer = styled.div`
     transform: scale(1.01);
     border-radius: 1px;
   }
+  @media (max-width : 786px) {
+    width: 90vw;
+    padding: 5px 0;
+  }
   `;
 
 const ProfileContainer = styled(BaseContainer)`
@@ -56,17 +66,17 @@ const ProfileContainer = styled(BaseContainer)`
 `
 
 const UserName = styled.div`
-  font-size: 18px;
+  font-size: var(--font-size-md);
   font-weight: 600;
 
 `
 
 const UserId = styled.i`
-  font-size: 14px;
+  font-size: var(--font-size-md);
 `
 
 const UserInformationContainer = styled(BaseContainer)`
-  font-size: 20px;
+  font-size: var(--font-size-md);
 `
 
 const UserImformationWrapper = styled.div`
@@ -83,7 +93,7 @@ const Botton = styled.button`
 `
 
 const UserActionsContainer = styled(BaseContainer)`
-    font-size: 25px;
+    font-size: var(--font-size-xl);
     padding: 5px ;
     overflow: hidden;
 `
@@ -117,11 +127,11 @@ const TitleBox = styled.div`
 const LoadingMessage = styled.div`
   text-align: center;
   padding: 50px;
-  font-size: 18px;
+  font-size: var(--font-size-md);
 `
 
 function Account() {
-  const { user, isAuthenticated, loading, logout } = useAuth()
+  const { user, isAuthenticated, loading } = useAuth()
 
   if (loading) {
     return (
