@@ -889,7 +889,7 @@ function NewsEditor() {
           <Label>موضوع خبر *</Label>
           <Select {...formik.getFieldProps('NewsSubject')}>
             <option value="">انتخاب کنید</option>
-            <option value="سیاسی">سیاسی</option>
+            <option value="سیاست">سیاست</option>
             <option value="ورزشی">ورزشی</option>
             <option value="اقتصاد">اقتصاد</option>
             <option value="هنر">هنر</option>

@@ -84,7 +84,7 @@ const NewsTitle = styled.div`
   font-weight: bolder;
   text-align: center;
   color: var(--color-accent);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);                                                                                                              
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
