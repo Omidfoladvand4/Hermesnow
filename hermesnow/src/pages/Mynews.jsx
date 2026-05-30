@@ -69,7 +69,7 @@ function Mynews() {
 
   return (
     <MyNewsWrapper>
-     {user ? 
+     {user?.FavoritesTopic ? 
         <> <Title font={'var(--font-size-md)'} titleName={`خبر های شما بر اساس علاقه مندی شما به موضوع :  ${user?.FavoritesTopic}`}/>
 
        <MyNewsBoxs>
@@ -85,7 +85,7 @@ function Mynews() {
 
       : 
       <GuestBox >
-        <Link to={'/login'}>برای استفاده از بخش  ابتدا باید وارد شوید </Link> 
+        <Link to={'/login'}>برای استفاده از بخش  ابتدا باید وارد شوید  یا علاقه مندی خود را درتنظیمات  درج کنید</Link> 
         <BackButton />
 
       </GuestBox>

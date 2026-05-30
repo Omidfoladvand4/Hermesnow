@@ -32,6 +32,9 @@ const NewsSummary = styled.div`
   overflow-wrap: break-word;
   color: var(--color-info);
   animation:  ${slideInStagger} .5s linear;
+  @media (max-width : 400px) {
+    width: 100%;
+  }
 `;
 
 const NewsImage = styled.img`
@@ -60,15 +63,21 @@ const Information = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 1%;
+  gap: 2%;
   color: #ffffff;
   background-color: var(--color-primary);
+  @media (max-width : 400px) {
+    padding: 20px;
+      justify-content: space-evenly;
+
+  }
 `;
 const ShareBotton = styled.button`
   padding: 10px 5px;
   cursor: pointer;
-   box-shadow: 10px 10px 6px #c600009b;
+   box-shadow: 10px 10px 6px var(--color-info);
     border-radius: 5px;
     font-weight: 900;
     font-size: var(--font-size-md);
@@ -78,6 +87,8 @@ const ShareBotton = styled.button`
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
 
     }
+
+
 `
 const RecomededNews = styled.div`
 display: flex;
@@ -101,7 +112,7 @@ function News() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([])
-  const { shareNews, copyToClipboard, isShareble , shareLoading } = useShare();
+  const { shareNews, copyToClipboard, isShareble  } = useShare();
 
   const navigation = useNavigate();
   const { id } = useParams();
@@ -175,11 +186,11 @@ function News() {
     .slice(0, 3);
   return (
     <div>
-      <Title titleName={news.NewsTitle} font={`var(--font-size-xl)`} />
+      <Title titleName={news.NewsTitle} font={`var(--font-size-md)`} />
       
       <NewsHeader>
-        <NewsImage src={news.MainImage} alt={news.NewsSubject} />
         <NewsSummary>{news.NewsMainText}</NewsSummary>
+        <NewsImage src={news.MainImage} alt={news.NewsSubject} />
       </NewsHeader>
       
       <br />
@@ -207,7 +218,7 @@ function News() {
         <p>{news.Country}</p>
         <br />
         <p>{news.NewsSubject}</p>
-        <ShareBotton onClick={handleShare}> 📢 انتشار</ShareBotton>
+        <ShareBotton onClick={handleShare}> 📢 </ShareBotton>
       </Information>
     {getRecomendedNewsLoading ?  <Loader /> :  (
       <RecomededNews> 

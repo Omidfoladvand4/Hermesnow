@@ -30,10 +30,15 @@ const FilterTabs = styled.nav`
     font-size: var(--font-size-sm);
     @media (max-width : 400px){
       width: 100%;
-    font-size: var(--font-size-xs);
+      font-size: var(--font-size-sm);
 
     }
     `
+const Span = styled.span`
+  @media (max-width : 400px) {
+      display: none;
+  }
+`
 const FilterTab = styled.div`
      cursor: pointer;
      text-align: center;
@@ -95,7 +100,7 @@ function Topnews() {
         <Title titleName={'خبر های داغ '} />
         <FilterBox>
           <FilterTabs> 
-            <span> فیلتر کردن به اساس :</span>
+            <Span> فیلتر کردن به اساس :</Span>
             <FilterTab onClick={() => FilterHandle('all')}>همه</FilterTab>
             <FilterTab onClick={() => FilterHandle('user-fav')}> علاقه مندی</FilterTab>
             <FilterTab onClick={() => FilterHandle('old-to-new')}>قدیم به جدید</FilterTab>
