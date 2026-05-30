@@ -4,6 +4,7 @@ import  ImageBox from '../../components/ImageBox'
 import BoxesGrid from './HeaderBoxList'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import bannerImage from '../../assets/HermesNowBannar1.jpg'
 const Bannar = styled.nav`
     width: 100%;
     display: flex;
@@ -30,6 +31,13 @@ const BannarContent = styled.div`
     padding: 0 25px;
     color: var(--color-secondary);
     flex-wrap: nowrap;
+`
+const BannerImage = styled.div`
+  width: 500px;
+  height: 150px;
+  background: url(${bannerImage});
+  background-size: cover;
+  background-position: center;
 `
 const MainHeader = styled.div`
   width: 100%;
@@ -105,7 +113,7 @@ function HeaderBannar() {
       <BannarIcon onClick={() => setIsOpenBannar(prev => !prev)}>{!isOpenBannar ? <ArrowDownwardIcon  htmlColor='#ffffff'/> : 
       <ArrowUpwardIcon   htmlColor='#ffffff'/>}</BannarIcon>
      <Navbar>
-     <ImageBox $src= '/images/HermesNowBannar.jpg'  $w= '500px' $h='150px' />
+     <BannerImage />
     <BannarContent>  – هر لحظه، هر خبر، سریع و 
 خبرهایی که مهم‌اند، بدون تأخیر به دستت می‌رسند.
 از تحولات جهانی تا تازه‌ترین اخبار محلی، همه را در یک نگاه ببین.</BannarContent>
