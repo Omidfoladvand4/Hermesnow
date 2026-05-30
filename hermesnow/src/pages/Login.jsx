@@ -3,6 +3,7 @@ import LoginFeild from '../components/LoginForm'
 import Navigations from '../components/Navigations'
 import  { Link } from 'react-router-dom'
 import {slideInStagger} from '../styles/animations'
+import bgImage from '../assets/HermesNowBannar1.jpg'
 const LoginPageContainer = styled.main`
 width: 100%;
 min-height: 100vh;
@@ -10,7 +11,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-background: url('./public/images/HermesNowBannar.jpg');
+background: url(${bgImage});
 background-position: center;
 background-size: cover;
 background-repeat: no-repeat;
