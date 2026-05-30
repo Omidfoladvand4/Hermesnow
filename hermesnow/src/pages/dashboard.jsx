@@ -9,7 +9,7 @@ import Loader from '../components/Loader';
 import { useUserManagement } from '../hooks/useUserManagement';
 import { useDeleteNews } from '../hooks/useDeleteNews'
 import SearchNewsBox from '../components/SearchNewsBox';
-import { fadeIn ,slideInFromLeft ,slideInFromRight  ,floatAnimation ,shimmer ,borderGlow ,spinGlow } from '../styles/animations'
+import { fadeIn ,slideInFromLeft ,slideInFromRight  ,floatAnimation ,shimmer ,borderGlow ,spinGlow  ,gradientMove} from '../styles/animations'
 
 const DashboardContainer = styled.div`
   width: 100%;
@@ -53,6 +53,9 @@ const DashboardWrapper = styled.div`
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     width: 98%;
+  }
+    @media (max-width: 400px) {
+    display: none;
   }
   
   &::after {
@@ -574,6 +577,27 @@ const LoadingOverlay = styled.div`
   z-index: 9999;
   animation: ${fadeIn} 0.3s ease-out;
 `
+const DashboardWarning = styled.div`
+   display: none;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(135deg , var(--color-accent) , var(--color-primary)) ;
+   color: var(--color-secondary);
+   font-weight: 900;
+   background-size: 200%;
+   font-size: var(--font-size-md);
+   animation: ${gradientMove} 0.8s alternate infinite;
+   @media (max-width : 400px) {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 1001;
+     
+   }
+`
 
 function Dashboard() {
   const [searchUserValue, setSearchUserValue] = useState('')
@@ -773,6 +797,7 @@ function Dashboard() {
           </NewsEditorContainer>
         </RightSection>
       </DashboardWrapper>
+      <DashboardWarning>برای مشاهده داشبورد باید با  کامپیوتر وارد شوید </DashboardWarning>
     </DashboardContainer>
   )
 }

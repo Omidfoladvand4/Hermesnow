@@ -33,7 +33,10 @@ const NewsGrid = styled.div`
   justify-items: center;
   
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 
