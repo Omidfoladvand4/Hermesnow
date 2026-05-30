@@ -8,6 +8,7 @@ import BackButton from '../components/BackButton'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, Navigate } from 'react-router-dom'
 import { shimmer  ,neonPulse} from '../styles/animations'
+import bgImage from '../assets/HermesNowBannar1.jpg'
 
 const Navbar = styled.div`
   width: 100%;
@@ -25,7 +26,7 @@ const Container = styled.main`
   grid-template-rows : 2fr 1fr;
   gap: 25px;
   padding: 5% 15%;
-  background: url('./public/images/HermesNowBannar.jpg');
+ background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgImage});
   background-size: cover;
   background-attachment: fixed;
  animation: ${neonPulse} .5s ease ;
