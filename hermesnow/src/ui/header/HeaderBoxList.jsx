@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import GridBox from './HeaderBox'
+import { Link } from 'react-router-dom';
  const boxData = [
   { title: 'اقتصاد'},
   { title: 'سیاست'},
@@ -30,10 +31,10 @@ function BoxesGrid() {
   return (
     <GridContainer>
       {boxData.map((item, index) => (
-        <GridBox 
-          key={index} 
-          title={item.title}  
-        />
+        <GridBox  key={index}  >
+          <Link to={`/category/${item.title}`}>{item.title}</Link>
+        </GridBox>
+         
       ))}
     </GridContainer>
   )

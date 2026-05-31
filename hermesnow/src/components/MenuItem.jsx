@@ -14,13 +14,14 @@ import styled from 'styled-components'
             transform: scale(1.2);
         }
         @media (max-width : 400px ){
-          width: 18%;
+          width: 100%;
         }
          @media (max-width : 768px ){
-          width: 8%;
+          width: 100%;
         }
     `
   const MenuItemContent = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

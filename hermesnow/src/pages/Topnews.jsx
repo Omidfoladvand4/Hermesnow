@@ -15,10 +15,10 @@ const TopNewsWrapper = styled.div`
 `
 const FilterBox = styled.div`
    width: 100%;
-   padding: 1rem 2rem;
+   padding: 1rem 0;
 `
 const FilterTabs = styled.nav`
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,10 +27,10 @@ const FilterTabs = styled.nav`
     color: var(--color-primary);
     background: var(--color-info);
     font-weight: 900;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     @media (max-width : 400px){
       width: 100%;
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-md);
 
     }
     `
@@ -83,12 +83,7 @@ function Topnews() {
        case  'new-to-old' :
          setCurrentNews([...news].sort((a, b) => 
           new Date(b.NewsDate) - new Date(a.NewsDate)))
-       break
-       case 'most-view' :
-       setCurrentNews([...news].sort((a ,b ) => 
-        (b.News_view) - (a.News_view)))
-       break
-       
+       break  
        default : setCurrentNews(news)
      }
     console.log(currentNews);
@@ -97,7 +92,7 @@ function Topnews() {
   }
   return (
     <TopNewsWrapper>
-        <Title titleName={'خبر های داغ '} />
+        <Title titleName={'خبر های داغ '}  font={`var(--font-size-md)`}/>
         <FilterBox>
           <FilterTabs> 
             <Span> فیلتر کردن به اساس :</Span>
@@ -105,7 +100,6 @@ function Topnews() {
             <FilterTab onClick={() => FilterHandle('user-fav')}> علاقه مندی</FilterTab>
             <FilterTab onClick={() => FilterHandle('old-to-new')}>قدیم به جدید</FilterTab>
             <FilterTab onClick={() => FilterHandle('new-to-old')}>جدید به قدیم</FilterTab>
-            <FilterTab onClick={() => FilterHandle('most-view')}>بازدید</FilterTab>
           </FilterTabs>
             <FilterdNewsBox>
               {!getNewsLoading ?   currentNews.map((item) => {

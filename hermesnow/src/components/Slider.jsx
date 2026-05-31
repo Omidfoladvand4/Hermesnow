@@ -9,7 +9,8 @@ const SliderContainer = styled.div`
     width: 100vw;
     margin: 0 auto;
     overflow: hidden;
-    padding: 20px 30px;
+
+
 
 `
 const SlideWrapper = styled.div`
@@ -21,6 +22,9 @@ const SlideWrapper = styled.div`
     transition: all 0.3s ease-in;
     &:hover {
        transform: scale(1.3);
+    }
+    @media (max-width : 400px) {
+       height: 50%;
     }
 `
 function Slider({images , spaceBetween = 10 , slidesPerView = 3 }) {

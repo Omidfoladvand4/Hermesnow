@@ -46,7 +46,11 @@ function CategoryBoxs({ datas, subject = "خبر های دیگر در این م�
   return (
     <CategoryContainer>
       <CategoryNavbar>
-        <Title font={`var(--font-size-md)`} color={`var(--color-secondary)`} titleName={`${subject} `} />
+        <Title
+          font={`var(--font-size-md)`}
+          color={`var(--color-secondary)`}
+          titleName={`${subject} `}
+        />
         <CagegoryNavbarBtn>
           <Link to={`/category/${subject}`}>همه </Link>
         </CagegoryNavbarBtn>

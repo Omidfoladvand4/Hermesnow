@@ -15,12 +15,13 @@ const NewsBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5px;
+  gap: 1px;
   margin: 3px;
   border-radius: 10px;
   background: var(--color-secondary);
+  border: 2px solid var(--color-info);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.5);
   opacity: 0.8;
   cursor: pointer;
   
@@ -47,6 +48,7 @@ const NewsContentWrapper = styled.div`
   padding: 10px;
    @media (max-width : 400px) {
     padding: 2px;
+    width: 100%;
   }
 `
 
@@ -62,7 +64,7 @@ const DateAndTime = styled.div`
   align-items: end;
   justify-content: center;
   color: var(--color-info);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   margin-top: 0.3rem;
 
 `
@@ -104,7 +106,7 @@ const Div = styled.div`
   width: 50px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -116,7 +118,7 @@ const I = styled.i`
   width: 70px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   align-items: center;
   justify-content: center;
   color: var(--color-primary);

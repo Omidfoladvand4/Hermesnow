@@ -5,13 +5,11 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import LiveTvIcon from '@mui/icons-material/LiveTv';
-import Logo from '../../components/Logo';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
 import { useAuth } from '../../contexts/AuthContext';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {fadeInLeft } from '../../styles/animations'
+import { fadeInLeft } from '../../styles/animations'
 import { useNavigate } from 'react-router-dom';
 
 const TopMenuContainer = styled.main`
@@ -22,7 +20,7 @@ const TopMenuContainer = styled.main`
   padding: 5px 15px;
   z-index: 101;
   position: relative;
-animation: ${fadeInLeft} 0.3s linear;
+  animation: ${fadeInLeft} 0.3s linear;
 `
 
 const TopMenuItemsContainer = styled.ul`
@@ -33,87 +31,106 @@ const TopMenuItemsContainer = styled.ul`
   flex-wrap: wrap;
   list-style-type: none;
   border-bottom: 2px solid var(--color-info);
-`
-
-const UserName = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: var(--font-size-md);
-  font-weight: 900;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  color: var(--color-info);
   
-  &:hover {
-    color: var(--color-accent);
-    transform: scale(1.01);
+  @media (max-width: 400px) {
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around;
+    padding: 10px;
   }
 `
-const  TopMenuItem = styled.div`
-   display: block;
-   font-size: var(--font-size-xs);
 
-   @media (max-width : 800px) {
-      display: none;
-   }
+const TopMenuItem = styled.div`
+  font-size: var(--font-size-sm);
+`
+
+const MenuItemWrapper = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: var(--color-info);
+  
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  &:hover {
+    color: var(--color-secondary);
+  }
 `
 
 function TopMenu() {
-  const { user , logout } = useAuth()
+  const { user, logout } = useAuth()
   const navigate = useNavigate()
-  const hanleLogout = () =>{
+
+  const handleLogout = () => {
     logout()
     navigate('/')
-    }
+  }
 
   return (
     <TopMenuContainer>
       <TopMenuItemsContainer>
-        <UserName>
+        <MenuItemWrapper>
           <Link to="/Account">
-            <AccountCircleIcon xs={{ color: '#D4D4D4' }} />
-          </Link>  
-          <TopMenuItem>{user?.UserName || 'مهمان'}</TopMenuItem>
-        </UserName>
+            <AccountCircleIcon />
+            <TopMenuItem>{user?.UserName || 'مهمان'}</TopMenuItem>
+          </Link>
+        </MenuItemWrapper>
 
-         <MenuItem>
-  <Link to='/top-news'>
-    <AccessTimeIcon />
-  </Link>
-  <TopMenuItem>تازه ها</TopMenuItem>
-</MenuItem>
+        <MenuItemWrapper>
+          <Link to="/top-news">
+            <AccessTimeIcon />
+            <TopMenuItem>تازه ها</TopMenuItem>
+          </Link>
+        </MenuItemWrapper>
 
-<MenuItem>
-  <Link to='/your-news'>
-    <NewspaperIcon />
-  </Link>
-  <TopMenuItem>خبرهای شما</TopMenuItem>
-</MenuItem>
+        <MenuItemWrapper>
+          <Link to="/your-news">
+            <NewspaperIcon />
+            <TopMenuItem>خبرهای شما</TopMenuItem>
+          </Link>
+        </MenuItemWrapper>
 
-{user?.IsAdmin || user?.IsMainAdmin ? (
-  <MenuItem>
-    <Link to='/news-editor'>
-      <AddBoxIcon />
-    </Link>
-    <TopMenuItem>درج خبر</TopMenuItem>
-  </MenuItem>
-) : null}
+        {(user?.IsAdmin || user?.IsMainAdmin) && (
+          <MenuItemWrapper>
+            <Link to="/news-editor">
+              <AddBoxIcon />
+              <TopMenuItem>درج خبر</TopMenuItem>
+            </Link>
+          </MenuItemWrapper>
+        )}
 
-{user?.IsMainAdmin ? (
-  <MenuItem>
-    <Link to='/dashboard'>
-      <DashboardIcon />
-    </Link>
-    <TopMenuItem>داشبورد</TopMenuItem>
-  </MenuItem>
-) : null}
+        {user?.IsMainAdmin && (
+          <MenuItemWrapper>
+            <Link to="/dashboard">
+              <DashboardIcon />
+              <TopMenuItem>داشبورد</TopMenuItem>
+            </Link>
+          </MenuItemWrapper>
+        )}
 
-            <MenuItem ><TopMenuItem>ورود</TopMenuItem><Link to = '/login'><LoginIcon /></Link> </MenuItem>
-      <MenuItem><LogoutIcon onClick={hanleLogout}/><TopMenuItem>خروج</TopMenuItem> </MenuItem>
-   
+        {!user && (
+          <MenuItemWrapper>
+            <Link to="/login">
+              <LoginIcon />
+              <TopMenuItem>ورود</TopMenuItem>
+            </Link>
+          </MenuItemWrapper>
+        )}
+
+        {user && (
+          <MenuItemWrapper onClick={handleLogout}>
+            <LogoutIcon />
+            <TopMenuItem>خروج</TopMenuItem>
+          </MenuItemWrapper>
+        )}
       </TopMenuItemsContainer>
-      {/* <Logo /> */}
     </TopMenuContainer>
   )
 }

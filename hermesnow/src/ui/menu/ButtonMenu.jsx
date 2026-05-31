@@ -13,7 +13,6 @@ import {fadeInRight} from '../../styles/animations'
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
       list-style-type: none;
       padding: .5rem .25rem;
       background-color:var(--color-primary);

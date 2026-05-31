@@ -23,11 +23,11 @@ const Box = styled.div`
   `
 ;
 
-function GridBox({ title }) {
+function GridBox({ children }) {
 
   return (
     <Box >
-      {title}
+      {children }
     </Box>
   )
 }

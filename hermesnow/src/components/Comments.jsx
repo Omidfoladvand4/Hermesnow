@@ -48,6 +48,9 @@ const Input = styled.textarea`
     border: ${props => props.error ? '2px solid red' : '1px solid #ccc'};
     border-radius: 5px;
     font-family: inherit;
+    @media (max-width: 400px) {
+         width: 90vw;
+    }
 `
 
 const ErrorMessage = styled.div`
@@ -237,7 +240,7 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
                     ))}
                 </CommentList>
             ) : (
-                <div style={{ color: 'var(--color-info)', marginTop: '20px' }}>
+                <div style={{ color: 'var(--color-accent)', marginTop: '20px' }}>
                     هنوز نظری ثبت نشده است. اولین نفری باشید که نظر می‌دهید!
                 </div>
             )}

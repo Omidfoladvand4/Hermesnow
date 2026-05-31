@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import styled from 'styled-components';
-import { supabase } from '../lib/supabaseClient';
-import ImageUploader from '../components/ImageUploder';
-import {rotateIn}  from '../styles/animations'
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import styled from "styled-components";
+import { supabase } from "../lib/supabaseClient";
+import ImageUploader from "../components/ImageUploder";
+import { rotateIn } from "../styles/animations";
 const NewsEditorContainer = styled.main`
   width: 100%;
   display: flex;
@@ -33,8 +33,10 @@ const ToggleButton = styled.button`
   padding: 12px 20px;
   border: none;
   border-radius: 20px;
-  background: ${props => props.active ? 'var(--color-accent)' : 'transparent'};
-  color: ${props => props.active ? 'var(--color-secondary)' : 'var(--color-primary)'};
+  background: ${(props) =>
+    props.active ? "var(--color-accent)" : "transparent"};
+  color: ${(props) =>
+    props.active ? "var(--color-secondary)" : "var(--color-primary)"};
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
@@ -46,9 +48,10 @@ const ToggleButton = styled.button`
   font-size: var(--font-size-sm);
 
   &:hover {
-    background: ${props => props.active ? 'var(--color-accent)' : 'var(--color-info)'};
+    background: ${(props) =>
+      props.active ? "var(--color-accent)" : "var(--color-info)"};
     color: var(--color-secondary);
-    transform: ${props => !props.active ? 'translateY(-2px)' : 'none'};
+    transform: ${(props) => (!props.active ? "translateY(-2px)" : "none")};
   }
 `;
 
@@ -65,7 +68,7 @@ const NewsEditorForm = styled.form`
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(40, 41, 41, 0.1);
   border: 2px solid var(--color-info);
-  @media (max-width : 768px) {
+  @media (max-width: 768px) {
     width: 100%;
     gap: 10px;
     padding: 10px;
@@ -81,12 +84,11 @@ const PreviewContainer = styled.div`
   border: 2px solid var(--color-info);
   min-height: 500px;
   box-shadow: 0 8px 30px rgba(40, 41, 41, 0.1);
-    @media (max-width : 768px) {
+  @media (max-width: 768px) {
     width: 100%;
     padding: 10px;
-
   }
-`
+`;
 
 const Label = styled.label`
   font-size: var(--font-size-md);
@@ -101,7 +103,7 @@ const PreviewLabel = styled(Label)`
   text-align: center;
   width: 100%;
   margin-bottom: 25px;
-  font-size: 20px;
+  font-size: var(--font-size-md);
   border-bottom: 3px solid var(--color-accent);
   padding-bottom: 10px;
 `;
@@ -117,7 +119,7 @@ const MainTextInput = styled.textarea`
   color: var(--color-primary);
   border: 2px solid var(--color-neutral);
   border-radius: 10px;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   transition: all 0.3s ease;
 
   &::placeholder {
@@ -131,7 +133,7 @@ const MainTextInput = styled.textarea`
     box-shadow: 0 0 0 3px rgba(192, 123, 116, 0.1);
     transform: translateY(-2px);
   }
-  @media (max-width : 768px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
 `;
@@ -154,7 +156,7 @@ const Select = styled.select`
     box-shadow: 0 0 0 3px rgba(192, 123, 116, 0.1);
     transform: translateY(-2px);
   }
-    @media (max-width : 768px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
 `;
@@ -216,7 +218,7 @@ const ElementGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: 15px;
   margin: 20px 0;
-  @media (max-width : 786px){
+  @media (max-width: 786px) {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -225,11 +227,14 @@ const ElementGrid = styled.div`
 
 const ElementCard = styled.button`
   padding: 20px 15px;
-  border: 2px dashed ${props => props.added ? 'var(--color-info)' : 'var(--color-accent)'};
-  background: ${props => props.added ? 'var(--color-info)' : 'var(--color-secondary)'};
-  color: ${props => props.added ? 'var(--color-secondary)' : 'var(--color-primary)'};
+  border: 2px dashed
+    ${(props) => (props.added ? "var(--color-info)" : "var(--color-accent)")};
+  background: ${(props) =>
+    props.added ? "var(--color-info)" : "var(--color-secondary)"};
+  color: ${(props) =>
+    props.added ? "var(--color-secondary)" : "var(--color-primary)"};
   border-radius: 12px;
-  cursor: ${props => props.added ? 'not-allowed' : 'pointer'};
+  cursor: ${(props) => (props.added ? "not-allowed" : "pointer")};
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -242,16 +247,16 @@ const ElementCard = styled.button`
   &:hover:not(:disabled) {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(192, 123, 116, 0.3);
-    background: ${props => !props.added && 'var(--color-accent)'};
-    color: ${props => !props.added && 'var(--color-secondary)'};
+    background: ${(props) => !props.added && "var(--color-accent)"};
+    color: ${(props) => !props.added && "var(--color-secondary)"};
   }
 
   &:disabled {
     opacity: 0.7;
   }
-  @media (max-width : 768px){
-     width: 35%;
-     padding: 0;
+  @media (max-width: 768px) {
+    width: 35%;
+    padding: 0;
   }
 `;
 
@@ -278,7 +283,7 @@ const ElementHeader = styled.div`
   margin-bottom: 20px;
   padding-bottom: 15px;
   border-bottom: 2px solid var(--color-neutral);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 15px;
@@ -305,7 +310,7 @@ const ColorPicker = styled.input`
 const ActionButtons = styled.div`
   display: flex;
   gap: 10px;
-  
+
   @media (max-width: 768px) {
     width: 100%;
     justify-content: space-between;
@@ -316,7 +321,7 @@ const ActionButton = styled.button`
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: var(--font-size-sm);
   cursor: pointer;
   transition: all 0.3s ease;
   background: var(--color-neutral);
@@ -355,7 +360,7 @@ const ElementTextArea = styled.textarea`
   padding: 15px;
   border: 2px solid var(--color-neutral);
   border-radius: 10px;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   transition: all 0.3s ease;
   resize: vertical;
   min-height: 100px;
@@ -381,7 +386,7 @@ const ElementInput = styled.input`
   padding: 15px;
   border: 2px solid var(--color-neutral);
   border-radius: 10px;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   transition: all 0.3s ease;
   background: var(--color-secondary);
   color: var(--color-primary);
@@ -405,13 +410,13 @@ const ElementLabel = styled.label`
   margin-bottom: 10px;
   font-weight: 600;
   color: var(--color-primary);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-family: vazir;
 `;
 
 const ErrorMessage = styled.div`
   color: var(--color-accent);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   margin-top: 5px;
   font-weight: 600;
   font-family: vazir;
@@ -423,7 +428,7 @@ const ErrorMessage = styled.div`
 
 const SuccessMessage = styled.div`
   color: var(--color-info);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   margin-top: 10px;
   text-align: center;
   font-weight: 600;
@@ -439,68 +444,74 @@ const FormRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 `;
 const ElementManager = ({ formik }) => {
   const [availableElements, setAvailableElements] = useState([
-    { type: 'h1', label: 'عنوان اصلی', icon: '📌', added: false },
-    { type: 'h2', label: 'زیرعنوان', icon: '📍', added: false },
-    { type: 'p', label: 'پاراگراف', icon: '📝', added: false },
-    { type: 'img', label: 'تصویر', icon: '🖼️', added: false },
-    { type: 'quote', label: 'نقل قول', icon: '💬', added: false },
-    { type: 'list', label: 'لیست', icon: '📋', added: false }
+    { type: "h1", label: "عنوان اصلی", icon: "📌", added: false },
+    { type: "h2", label: "زیرعنوان", icon: "📍", added: false },
+    { type: "p", label: "پاراگراف", icon: "📝", added: false },
+    { type: "img", label: "تصویر", icon: "🖼️", added: false },
+    { type: "quote", label: "نقل قول", icon: "💬", added: false },
+    { type: "list", label: "لیست", icon: "📋", added: false },
   ]);
 
   const addElement = (elementType) => {
     const newElement = {
       element: elementType,
-      content: '',
-      color: '#282929',
-      id: Date.now()
+      content: "",
+      color: "#282929",
+      id: Date.now(),
     };
 
-    formik.setFieldValue('content', [...formik.values.content, newElement]);
-    
-    setAvailableElements(prev => 
-      prev.map(item => 
-        item.type === elementType ? { ...item, added: true } : item
-      )
+    formik.setFieldValue("content", [...formik.values.content, newElement]);
+
+    setAvailableElements((prev) =>
+      prev.map((item) =>
+        item.type === elementType ? { ...item, added: true } : item,
+      ),
     );
   };
 
   const removeElement = (index, elementType) => {
     const newContent = formik.values.content.filter((_, i) => i !== index);
-    formik.setFieldValue('content', newContent);
-    
-    setAvailableElements(prev => 
-      prev.map(item => 
-        item.type === elementType ? { ...item, added: false } : item
-      )
+    formik.setFieldValue("content", newContent);
+
+    setAvailableElements((prev) =>
+      prev.map((item) =>
+        item.type === elementType ? { ...item, added: false } : item,
+      ),
     );
   };
 
   const updateElementContent = (index, field, value) => {
     const newContent = [...formik.values.content];
     newContent[index][field] = value;
-    formik.setFieldValue('content', newContent);
+    formik.setFieldValue("content", newContent);
   };
 
   const moveElement = (index, direction) => {
     const newContent = [...formik.values.content];
-    if (direction === 'up' && index > 0) {
-      [newContent[index], newContent[index - 1]] = [newContent[index - 1], newContent[index]];
-    } else if (direction === 'down' && index < newContent.length - 1) {
-      [newContent[index], newContent[index + 1]] = [newContent[index + 1], newContent[index]];
+    if (direction === "up" && index > 0) {
+      [newContent[index], newContent[index - 1]] = [
+        newContent[index - 1],
+        newContent[index],
+      ];
+    } else if (direction === "down" && index < newContent.length - 1) {
+      [newContent[index], newContent[index + 1]] = [
+        newContent[index + 1],
+        newContent[index],
+      ];
     }
-    formik.setFieldValue('content', newContent);
+    formik.setFieldValue("content", newContent);
   };
 
   return (
-    <div style={{ width: '100%' }}>
-      <div style={{ marginBottom: '30px' }}>
+    <div style={{ width: "100%" }}>
+      <div style={{ marginBottom: "30px" }}>
         <Label>🎛️ انتخاب نوع محتوا</Label>
         <ElementGrid>
           {availableElements.map((element) => (
@@ -509,12 +520,12 @@ const ElementManager = ({ formik }) => {
               type="button"
               added={element.added}
               onClick={() => !element.added && addElement(element.type)}
-              disabled={element.added}
-            >
-              <span style={{ fontSize: '24px' }}>{element.icon}</span>
-              <span style={{ fontWeight: '600' }}>{element.label}</span>
+              disabled={element.added}>
+              <span style={{ fontSize: "24px" }}>{element.icon}</span>
+              <span style={{ fontWeight: "600" }}>{element.label}</span>
               {element.added && (
-                <small style={{ fontSize: '11px', color: 'inherit', opacity: 0.8 }}>
+                <small
+                  style={{ fontSize: "11px", color: "inherit", opacity: 0.8 }}>
                   ✓ اضافه شده
                 </small>
               )}
@@ -526,76 +537,87 @@ const ElementManager = ({ formik }) => {
       {formik.values.content.length > 0 && (
         <div>
           <Label>📋 المان‌های اضافه شده ({formik.values.content.length})</Label>
-          
+
           {formik.values.content.map((element, index) => {
-            const elementInfo = availableElements.find(el => el.type === element.element);
+            const elementInfo = availableElements.find(
+              (el) => el.type === element.element,
+            );
             return (
               <ElementItem key={element.id}>
                 <ElementHeader>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <span style={{ 
-                      fontWeight: 'bold', 
-                      fontSize: '16px', 
-                      color: 'var(--color-primary)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "15px",
                     }}>
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "16px",
+                        color: "var(--color-primary)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                      }}>
                       <span>{elementInfo?.icon}</span>
                       {elementInfo?.label}
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <ElementLabel style={{ margin: 0, marginLeft: '10px' }}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <ElementLabel style={{ margin: 0, marginLeft: "10px" }}>
                         رنگ:
                       </ElementLabel>
                       <ColorPicker
                         type="color"
                         value={element.color}
-                        onChange={(e) => updateElementContent(index, 'color', e.target.value)}
+                        onChange={(e) =>
+                          updateElementContent(index, "color", e.target.value)
+                        }
                       />
                     </div>
                   </div>
-                  
+
                   <ActionButtons>
                     <ActionButton
                       type="button"
-                      onClick={() => moveElement(index, 'up')}
-                      disabled={index === 0}
-                    >
+                      onClick={() => moveElement(index, "up")}
+                      disabled={index === 0}>
                       ⬆️ بالا
                     </ActionButton>
                     <ActionButton
                       type="button"
-                      onClick={() => moveElement(index, 'down')}
-                      disabled={index === formik.values.content.length - 1}
-                    >
+                      onClick={() => moveElement(index, "down")}
+                      disabled={index === formik.values.content.length - 1}>
                       ⬇️ پایین
                     </ActionButton>
                     <DangerButton
                       type="button"
-                      onClick={() => removeElement(index, element.element)}
-                    >
+                      onClick={() => removeElement(index, element.element)}>
                       🗑️ حذف
                     </DangerButton>
                   </ActionButtons>
                 </ElementHeader>
 
-                <div style={{ marginBottom: '15px' }}>
-                  {element.element === 'img' ? (
+                <div style={{ marginBottom: "15px" }}>
+                  {element.element === "img" ? (
                     <>
                       <ElementLabel>تصویر</ElementLabel>
                       <ImageUploader
                         value={element.content}
-                        onChange={(url) => updateElementContent(index, 'content', url)}
+                        onChange={(url) =>
+                          updateElementContent(index, "content", url)
+                        }
                         bucketName="News_Images"
                       />
                     </>
-                  ) : element.element === 'list' ? (
+                  ) : element.element === "list" ? (
                     <>
                       <ElementLabel>موارد لیست (هر خط یک مورد)</ElementLabel>
                       <ElementTextArea
                         value={element.content}
-                        onChange={(e) => updateElementContent(index, 'content', e.target.value)}
+                        onChange={(e) =>
+                          updateElementContent(index, "content", e.target.value)
+                        }
                         placeholder="مورد اول&#10;مورد دوم&#10;مورد سوم"
                       />
                     </>
@@ -604,7 +626,9 @@ const ElementManager = ({ formik }) => {
                       <ElementLabel>محتوا</ElementLabel>
                       <ElementTextArea
                         value={element.content}
-                        onChange={(e) => updateElementContent(index, 'content', e.target.value)}
+                        onChange={(e) =>
+                          updateElementContent(index, "content", e.target.value)
+                        }
                         placeholder={`متن ${element.element} را وارد کنید...`}
                       />
                     </>
@@ -624,62 +648,83 @@ const PreviewContent = ({ formik }) => {
   const renderContent = () => {
     if (!formik.values.content || formik.values.content.length === 0) {
       return (
-        <div style={{ 
-          textAlign: 'center', 
-          color: 'var(--color-neutral)', 
-          padding: '40px',
-          fontStyle: 'italic'
-        }}>
-          📝 محتوایی برای نمایش وجود ندارد. لطفا در تب ویرایشگر محتوا اضافه کنید.
+        <div
+          style={{
+            textAlign: "center",
+            color: "var(--color-neutral)",
+            padding: "40px",
+            fontStyle: "italic",
+          }}>
+          📝 محتوایی برای نمایش وجود ندارد. لطفا در تب ویرایشگر محتوا اضافه
+          کنید.
         </div>
       );
     }
 
     return formik.values.content.map((element, index) => {
-      const style = { color: element.color, marginBottom: '20px' };
-      
-      switch(element.element) {
-        case 'h1':
-          return <h1 key={index} style={style}>{element.content}</h1>;
-        case 'h2':
-          return <h2 key={index} style={style}>{element.content}</h2>;
-        case 'p':
-          return <p key={index} style={{...style, lineHeight: '1.8'}}>{element.content}</p>;
-        case 'img':
+      const style = { color: element.color, marginBottom: "20px" };
+
+      switch (element.element) {
+        case "h1":
+          return (
+            <h1 key={index} style={style}>
+              {element.content}
+            </h1>
+          );
+        case "h2":
+          return (
+            <h2 key={index} style={style}>
+              {element.content}
+            </h2>
+          );
+        case "p":
+          return (
+            <p key={index} style={{ ...style, lineHeight: "1.8" }}>
+              {element.content}
+            </p>
+          );
+        case "img":
           return element.content ? (
             <div key={index} style={style}>
-              <img 
-                src={element.content} 
-                alt="" 
-                style={{ 
-                  maxWidth: '100%', 
+              <img
+                src={element.content}
+                alt=""
+                style={{
+                  maxWidth: "100%",
                   border: `3px solid ${element.color}`,
-                  borderRadius: '8px'
-                }} 
+                  borderRadius: "8px",
+                }}
                 onError={(e) => {
-                  e.target.style.display = 'none';
+                  e.target.style.display = "none";
                 }}
               />
             </div>
           ) : null;
-        case 'quote':
+        case "quote":
           return element.content ? (
-            <blockquote key={index} style={{
-              ...style,
-              borderRight: `4px solid ${element.color}`,
-              paddingRight: '20px',
-              margin: '20px 0',
-              fontStyle: 'italic'
-            }}>
+            <blockquote
+              key={index}
+              style={{
+                ...style,
+                borderRight: `4px solid ${element.color}`,
+                paddingRight: "20px",
+                margin: "20px 0",
+                fontStyle: "italic",
+              }}>
               {element.content}
             </blockquote>
           ) : null;
-        case 'list':
+        case "list":
           return element.content ? (
             <ul key={index} style={style}>
-              {element.content.split('\n').filter(item => item.trim()).map((item, i) => (
-                <li key={i} style={{ marginBottom: '8px' }}>{item}</li>
-              ))}
+              {element.content
+                .split("\n")
+                .filter((item) => item.trim())
+                .map((item, i) => (
+                  <li key={i} style={{ marginBottom: "8px" }}>
+                    {item}
+                  </li>
+                ))}
             </ul>
           ) : null;
         default:
@@ -691,86 +736,95 @@ const PreviewContent = ({ formik }) => {
   return (
     <div>
       {formik.values.NewsTitle && (
-        <h1 style={{ 
-          color: 'var(--color-primary)', 
-          textAlign: 'center', 
-          marginBottom: '30px',
-          borderBottom: '3px solid var(--color-accent)',
-          paddingBottom: '10px'
-        }}>
+        <h1
+          style={{
+            color: "var(--color-primary)",
+            textAlign: "center",
+            marginBottom: "30px",
+            borderBottom: "3px solid var(--color-accent)",
+            paddingBottom: "10px",
+          }}>
           {formik.values.NewsTitle}
         </h1>
       )}
-      
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '10px',
-        marginBottom: '20px',
-        padding: '15px',
-        background: 'var(--color-primary)',
-        color: 'var(--color-secondary)',
-        borderRadius: '8px'
-      }}>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "10px",
+          marginBottom: "20px",
+          padding: "15px",
+          background: "var(--color-primary)",
+          color: "var(--color-secondary)",
+          borderRadius: "8px",
+        }}>
         {formik.values.NewsSubject && (
-          <div><strong>موضوع:</strong> {formik.values.NewsSubject}</div>
+          <div>
+            <strong>موضوع:</strong> {formik.values.NewsSubject}
+          </div>
         )}
         {formik.values.Country && (
-          <div><strong>کشور:</strong> {formik.values.Country}</div>
+          <div>
+            <strong>کشور:</strong> {formik.values.Country}
+          </div>
         )}
         {formik.values.Journalist && (
-          <div><strong>خبرنگار:</strong> {formik.values.Journalist}</div>
+          <div>
+            <strong>خبرنگار:</strong> {formik.values.Journalist}
+          </div>
         )}
       </div>
-      
+
       {formik.values.MainImage && (
-        <div style={{ marginBottom: '30px', textAlign: 'center' }}>
-          <img 
-            src={formik.values.MainImage} 
+        <div style={{ marginBottom: "30px", textAlign: "center" }}>
+          <img
+            src={formik.values.MainImage}
             alt="تصویر اصلی خبر"
-            style={{ 
-              maxWidth: '100%', 
-              maxHeight: '400px',
-              borderRadius: '8px',
-              border: '2px solid var(--color-info)'
+            style={{
+              maxWidth: "100%",
+              maxHeight: "400px",
+              borderRadius: "8px",
+              border: "2px solid var(--color-info)",
             }}
             onError={(e) => {
-              e.target.style.display = 'none';
+              e.target.style.display = "none";
             }}
           />
         </div>
       )}
-      
+
       {formik.values.NewsMainText && (
-        <div style={{
-          background: 'var(--color-primary)',
-          color: 'var(--color-secondary)',
-          padding: '20px',
-          borderRadius: '8px',
-          marginBottom: '30px',
-          border: '2px solid var(--color-info)'
-        }}>
-          <strong>خلاصه خبر: </strong>{formik.values.NewsMainText}
+        <div
+          style={{
+            background: "var(--color-primary)",
+            color: "var(--color-secondary)",
+            padding: "20px",
+            borderRadius: "8px",
+            marginBottom: "30px",
+            border: "2px solid var(--color-info)",
+          }}>
+          <strong>خلاصه خبر: </strong>
+          {formik.values.NewsMainText}
         </div>
       )}
-      
+
       {formik.values.Video && (
-        <div style={{ marginBottom: '30px', textAlign: 'center' }}>
-          <video 
-            controls 
-            style={{ 
-              maxWidth: '100%', 
-              borderRadius: '8px',
-              border: '2px solid var(--color-accent)'
-            }}
-          >
+        <div style={{ marginBottom: "30px", textAlign: "center" }}>
+          <video
+            controls
+            style={{
+              maxWidth: "100%",
+              borderRadius: "8px",
+              border: "2px solid var(--color-accent)",
+            }}>
             <source src={formik.values.Video} />
             مرورگر شما از ویدیو پشتیبانی نمی‌کند.
           </video>
         </div>
       )}
-      
+
       {renderContent()}
     </div>
   );
@@ -778,45 +832,41 @@ const PreviewContent = ({ formik }) => {
 
 // کامپوننت اصلی
 function NewsEditor() {
-  const [activeTab, setActiveTab] = useState('editor');
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [activeTab, setActiveTab] = useState("editor");
+  const [submitStatus, setSubmitStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validationSchema = Yup.object({
     NewsTitle: Yup.string()
-      .required('عنوان خبر الزامی است')
-      .min(5, 'عنوان خبر باید حداقل ۵ کاراکتر باشد'),
-    NewsSubject: Yup.string()
-      .required('موضوع خبر الزامی است'),
+      .required("عنوان خبر الزامی است")
+      .min(5, "عنوان خبر باید حداقل ۵ کاراکتر باشد"),
+    NewsSubject: Yup.string().required("موضوع خبر الزامی است"),
     NewsMainText: Yup.string()
-      .required('خلاصه خبر الزامی است')
-      .min(10, 'خلاصه خبر باید حداقل ۱۰ کاراکتر باشد'),
-    Journalist: Yup.string()
-      .required('نام خبرنگار الزامی است'),
-    Country: Yup.string()
-      .required('کشور الزامی است'),
-    content: Yup.array()
-      .min(1, 'حداقل یک المان محتوا اضافه کنید')
+      .required("خلاصه خبر الزامی است")
+      .min(10, "خلاصه خبر باید حداقل ۱۰ کاراکتر باشد"),
+    Journalist: Yup.string().required("نام خبرنگار الزامی است"),
+    Country: Yup.string().required("کشور الزامی است"),
+    content: Yup.array().min(1, "حداقل یک المان محتوا اضافه کنید"),
   });
 
   const formik = useFormik({
     initialValues: {
-      NewsTitle: '',
-      NewsSubject: '',
-      NewsMainText: '',
-      MainImage: '',
-      Country: '',
-      Journalist: '',
-      Video: '',
+      NewsTitle: "",
+      NewsSubject: "",
+      NewsMainText: "",
+      MainImage: "",
+      Country: "",
+      Journalist: "",
+      Video: "",
       IsTrend: false,
-      content: []
+      content: [],
     },
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
         setIsSubmitting(true);
-        setSubmitStatus('در حال ارسال...');
-        
+        setSubmitStatus("در حال ارسال...");
+
         const newsData = {
           NewsTitle: values.NewsTitle,
           NewsSubject: values.NewsSubject,
@@ -830,29 +880,28 @@ function NewsEditor() {
         };
 
         const { data, error } = await supabase
-          .from('News')
+          .from("News")
           .insert([newsData])
           .select();
 
         if (error) {
-          console.error('خطای Supabase:', error);
+          console.error("خطای Supabase:", error);
           throw new Error(error.message);
         }
-        
-        setSubmitStatus('success');
+
+        setSubmitStatus("success");
         resetForm();
-        
+
         setTimeout(() => {
-          setSubmitStatus('');
+          setSubmitStatus("");
           setIsSubmitting(false);
         }, 3000);
-        
       } catch (error) {
-        console.error('خطا در ارسال خبر:', error);
-        setSubmitStatus('error');
+        console.error("خطا در ارسال خبر:", error);
+        setSubmitStatus("error");
         setIsSubmitting(false);
       }
-    }
+    },
   });
 
   return (
@@ -860,34 +909,32 @@ function NewsEditor() {
       <ToggleSwitch>
         <ToggleButton
           type="button"
-          active={activeTab === 'editor'}
-          onClick={() => setActiveTab('editor')}
-        >
+          active={activeTab === "editor"}
+          onClick={() => setActiveTab("editor")}>
           ✏️ ویرایشگر
         </ToggleButton>
         <ToggleButton
           type="button"
-          active={activeTab === 'preview'}
-          onClick={() => setActiveTab('preview')}
-        >
+          active={activeTab === "preview"}
+          onClick={() => setActiveTab("preview")}>
           👁️ پیش‌نمایش
         </ToggleButton>
       </ToggleSwitch>
 
-      {activeTab === 'editor' && (
+      {activeTab === "editor" && (
         <NewsEditorForm onSubmit={formik.handleSubmit}>
           <Label>عنوان خبر *</Label>
-          <Input 
-            type="text" 
+          <Input
+            type="text"
             placeholder="مثل دیدار ترامپ با رِئیس جمهور روسیه"
-            {...formik.getFieldProps('NewsTitle')}
+            {...formik.getFieldProps("NewsTitle")}
           />
           {formik.touched.NewsTitle && formik.errors.NewsTitle && (
             <ErrorMessage>{formik.errors.NewsTitle}</ErrorMessage>
           )}
 
           <Label>موضوع خبر *</Label>
-          <Select {...formik.getFieldProps('NewsSubject')}>
+          <Select {...formik.getFieldProps("NewsSubject")}>
             <option value="">انتخاب کنید</option>
             <option value="سیاست">سیاست</option>
             <option value="ورزشی">ورزشی</option>
@@ -909,9 +956,9 @@ function NewsEditor() {
           )}
 
           <Label>خلاصه خبر *</Label>
-          <MainTextInput 
-            placeholder="خلاصه خبر را درج نمایید" 
-            {...formik.getFieldProps('NewsMainText')}
+          <MainTextInput
+            placeholder="خلاصه خبر را درج نمایید"
+            {...formik.getFieldProps("NewsMainText")}
           />
           {formik.touched.NewsMainText && formik.errors.NewsMainText && (
             <ErrorMessage>{formik.errors.NewsMainText}</ErrorMessage>
@@ -922,16 +969,16 @@ function NewsEditor() {
               <Label>تصویر اصلی</Label>
               <ImageUploader
                 value={formik.values.MainImage}
-                onChange={(url) => formik.setFieldValue('MainImage', url)}
+                onChange={(url) => formik.setFieldValue("MainImage", url)}
                 bucketName="News_Images"
               />
             </div>
             <div>
               <Label>کشور *</Label>
-              <Input 
-                type="text" 
+              <Input
+                type="text"
                 placeholder="مثل ایران، آمریکا، روسیه"
-                {...formik.getFieldProps('Country')}
+                {...formik.getFieldProps("Country")}
               />
               {formik.touched.Country && formik.errors.Country && (
                 <ErrorMessage>{formik.errors.Country}</ErrorMessage>
@@ -942,10 +989,10 @@ function NewsEditor() {
           <FormRow>
             <div>
               <Label>خبرنگار *</Label>
-              <Input 
-                type="text" 
+              <Input
+                type="text"
                 placeholder="نام خبرنگار"
-                {...formik.getFieldProps('Journalist')}
+                {...formik.getFieldProps("Journalist")}
               />
               {formik.touched.Journalist && formik.errors.Journalist && (
                 <ErrorMessage>{formik.errors.Journalist}</ErrorMessage>
@@ -953,10 +1000,10 @@ function NewsEditor() {
             </div>
             <div>
               <Label>لینک ویدیو (اختیاری)</Label>
-              <Input 
-                type="text" 
+              <Input
+                type="text"
                 placeholder="آدرس ویدیو"
-                {...formik.getFieldProps('Video')}
+                {...formik.getFieldProps("Video")}
               />
             </div>
           </FormRow>
@@ -966,27 +1013,28 @@ function NewsEditor() {
             <ErrorMessage>{formik.errors.content}</ErrorMessage>
           )}
 
-          {submitStatus === 'success' && (
+          {submitStatus === "success" && (
             <SuccessMessage>
               ✅ خبر با موفقیت در دیتابیس ذخیره شد!
             </SuccessMessage>
           )}
-          {submitStatus === 'error' && (
-            <ErrorMessage style={{ textAlign: 'center' }}>
+          {submitStatus === "error" && (
+            <ErrorMessage style={{ textAlign: "center" }}>
               ❌ خطا در ایجاد خبر. لطفا مجدد تلاش کنید.
             </ErrorMessage>
           )}
 
-          <SubmitButton 
-            type="submit" 
-            disabled={isSubmitting || !formik.isValid}
-          >
-            {isSubmitting ? '⏳ در حال ارسال به دیتابیس...' : '📰 ذخیره خبر در دیتابیس'}
+          <SubmitButton
+            type="submit"
+            disabled={isSubmitting || !formik.isValid}>
+            {isSubmitting
+              ? "⏳ در حال ارسال به دیتابیس..."
+              : "📰 ذخیره خبر در دیتابیس"}
           </SubmitButton>
         </NewsEditorForm>
       )}
 
-      {activeTab === 'preview' && (
+      {activeTab === "preview" && (
         <PreviewContainer>
           <PreviewLabel>پیش‌نمایش خبر</PreviewLabel>
           <PreviewContent formik={formik} />

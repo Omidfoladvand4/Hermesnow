@@ -1,107 +1,107 @@
-import React, { useState, useEffect } from 'react'
-import Header from '../layout/Header'
-import { supabase } from '../lib/supabaseClient'
-import CategoryBoxs from '../components/CategoryBoxs'
-import Loader from '../components/Loader';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Header from "../layout/Header";
+import { supabase } from "../lib/supabaseClient";
+import CategoryBoxs from "../components/CategoryBoxs";
+import Loader from "../components/Loader";
+import { Link } from "react-router-dom";
 
 function Home() {
-  const [newsData, setNewsData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [newsData, setNewsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchNews()
-  }, [])
+    fetchNews();
+  }, []);
 
   const fetchNews = async () => {
     try {
-      setLoading(true)
-      
-      const { data, error } = await supabase
-        .from('News')
-        .select('*')
-      
-      if (error) throw error
+      setLoading(true);
 
-      setNewsData(data || [])
-       
+      const { data, error } = await supabase.from("News").select("*");
+
+      if (error) throw error;
+
+      setNewsData(data || []);
     } catch (error) {
-      console.error('خطا در دریافت اخبار:', error)
-      setError('خطا در دریافت اخبار')
+      console.error("خطا در دریافت اخبار:", error);
+      setError("خطا در دریافت اخبار");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const getUniqueSubjects = () => {
-    const subjects = [...new Set(newsData.map(news => news.NewsSubject))]
-    console.log('موضوعات یکتا:', subjects)
-    return subjects
-  }
+    const subjects = [...new Set(newsData.map((news) => news.NewsSubject))];
+    console.log("موضوعات یکتا:", subjects);
+    return subjects;
+  };
 
   if (loading) {
     return (
       <div>
         <Header />
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '400px',
-          fontSize: 'var(--font-size-md)',
-          color: 'var(--color-neutral)'
-        }}>
-         <Loader />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "400px",
+            fontSize: "var(--font-size-md)",
+            color: "var(--color-neutral)",
+          }}>
+          <Loader />
         </div>
       </div>
-    )
+    );
   }
 
   if (error) {
     return (
       <div>
         <Header />
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '400px',
-          fontSize: 'var(font-size-md)',
-          color: 'red'
-        }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "400px",
+            fontSize: "var(font-size-md)",
+            color: "red",
+          }}>
           ❌ {error}
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div>
       <Header />
-      
+
       {newsData.length === 0 ? (
-        <div style={{
-          textAlign: 'center',
-          padding: '50px',
-          color: '#666',
-          fontSize: '16px'
-        }}>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "50px",
+            color: "#666",
+            fontSize: "16px",
+          }}>
           📭 هیچ خبری یافت نشد.
         </div>
       ) : (
         <>
           {getUniqueSubjects().map((subject, index) => (
-            <CategoryBoxs 
+            <CategoryBoxs
               key={`${index}-${subject}`}
-              datas={newsData} 
+              datas={newsData}
               subject={subject}
             />
           ))}
         </>
       )}
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
