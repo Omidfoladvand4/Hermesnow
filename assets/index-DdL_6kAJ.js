@@ -871,7 +871,7 @@ attempted value: ${u}
   object-fit: cover;
   animation:  ${pk} 0.5s linear;
     @media (max-width : 400px){
-    width: 150px;
+    width: 100%;
   }
 `,iB=M.div`
   font-size:  var(--font-size-md);
