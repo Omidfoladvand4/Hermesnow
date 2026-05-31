@@ -25,9 +25,9 @@ import {fadeInRight} from '../../styles/animations'
 function ButtonMenu() {
   return (
     <ButtonMenuContainer>
-        <MenuItem ><Link to = '/category/اقتصاد'>اقتصاد</Link></MenuItem>
-        <MenuItem ><Link to = '/category/تجارت'>تجارت</Link></MenuItem>
-        <MenuItem ><Link to = '/category/فرهنگی'>فرهنگی</Link></MenuItem>
+        <MenuItem ><Link to = '/'>خانه</Link></MenuItem>
+        <MenuItem ><Link to = '/category/ورزشی'>ورزشی</Link></MenuItem>
+        <MenuItem ><Link to = '/category/اقتصاد'>اقتصادی</Link></MenuItem>
         <MenuItem ><Link to = '/category/سیاست'>سیاست</Link></MenuItem>
         <MenuItem ><Link to = '/category/سلامتی'>سلامتی</Link></MenuItem>
         <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>

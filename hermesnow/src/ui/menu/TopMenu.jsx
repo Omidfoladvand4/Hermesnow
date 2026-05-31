@@ -12,6 +12,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useAuth } from '../../contexts/AuthContext';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {fadeInLeft } from '../../styles/animations'
+import { useNavigate } from 'react-router-dom';
 
 const TopMenuContainer = styled.main`
   width: 100%;
@@ -61,8 +62,10 @@ const  TopMenuItem = styled.div`
 
 function TopMenu() {
   const { user , logout } = useAuth()
+  const navigate = useNavigate()
   const hanleLogout = () =>{
     logout()
+    navigate('/')
     }
 
   return (
@@ -72,7 +75,7 @@ function TopMenu() {
           <Link to="/Account">
             <AccountCircleIcon xs={{ color: '#D4D4D4' }} />
           </Link>  
-          <TopMenuItem>{user?.UserName || 'کاربر'}</TopMenuItem>
+          <TopMenuItem>{user?.UserName || 'مهمان'}</TopMenuItem>
         </UserName>
 
          <MenuItem>

@@ -63,8 +63,8 @@ const LabelFelid = styled.label`
 
 const InputFeild = styled.input`
   width: 90%;
-  padding: 2px 3px;
-  border-radius: 5px;
+  padding: 10px 5px;
+   border-radius: 15px;
   color: var(--color-primary);
   border: 2px solid ${(props) => (props.hasError ? "red" : "transparent")};
 `;
@@ -75,7 +75,7 @@ const ErrorFelid = styled.div`
 `;
 
 const SignupButton = styled.button`
-  width: 20%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
