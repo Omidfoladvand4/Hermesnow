@@ -9,7 +9,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
 const CommentsContainer = styled.div`
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,17 +64,22 @@ const CommentList = styled.div`
 `
 
 const CommentItem = styled.div`
-background-color: #ffffff;
-    padding: 20px;
+    width: 45%;
+    margin: 0 auto;
+    background-color: var(--color-secondary);
+    padding: 10px 5px;
     border-radius: 10px;
     margin-bottom: 15px;
     border-right: 8px solid var(--color-info);
+    @media (max-width : 400px) {
+         width: 100%;
+    }
 `
 
 const CommentHeader = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 10px;
 `
 
@@ -82,10 +87,12 @@ const CommentContent = styled.p`
     font-size: var(--font-size-md);
     line-height: 1.6;
 `
-
+const UserName = styled.div`
+    font-size: var(--font-size-sm);
+`
 const CommentDate = styled.small`
     color: green;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
 `
 
 const LoginMessage = styled.div`
@@ -217,12 +224,12 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
                     {comments.map((comment) => (
                         <CommentItem key={comment.id}>
                             <CommentHeader>
-                                <span>{comment.user_name || 'ناشناس'}@</span>
-                            </CommentHeader>
-                            <CommentContent>{comment.content}</CommentContent>
+                                <UserName> کاربر :{comment.user_name || 'ناشناس'}@</UserName>
                             <CommentDate>
                                 {PersianDate({ NewsDate: comment.created_at })}
                             </CommentDate>
+                            </CommentHeader>
+                            <CommentContent>{comment.content}</CommentContent>
                         </CommentItem>
                     ))}
                 </CommentList>

@@ -44,7 +44,7 @@ const NewsImage = styled.img`
   object-fit: cover;
   animation:  ${zoomIn} 0.5s linear;
     @media (max-width : 400px){
-    width: 100%;
+    width: 150px;
   }
 `;
 

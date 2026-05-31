@@ -16,6 +16,7 @@ const NewsBox = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 5px;
+  margin: 3px;
   border-radius: 10px;
   background: var(--color-secondary);
   overflow: hidden;
@@ -29,6 +30,7 @@ const NewsBox = styled.div`
 `
 const NewsImage = styled.img`
   width: 50%;
+  height: 150px;
   object-fit: cover;
   @media (max-width : 400px) {
     width: 30%;
