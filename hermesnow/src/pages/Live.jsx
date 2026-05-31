@@ -1,5 +1,6 @@
-import React from 'react';
+import { useState ,  useEffect} from 'react';
 import styled from 'styled-components';
+import Loader from '../components/Loader';
 
 const LiveNewsBox = styled.iframe`
   width:100%;
@@ -10,12 +11,25 @@ const LiveNewsBox = styled.iframe`
 `;
 
 export default function Live() {
+  const [isLoading , setIsLoading] = useState(true)
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    setIsLoading(false);  
+  }, 8000);
+  
+  return () => clearTimeout(timer);
+}, []);
   return (
-     <LiveNewsBox
+      <>
+       {isLoading ? <Loader />  :
+           <LiveNewsBox
       src='https://sepehrtv.ir/live/irinn'
       title="IRINN Live"
       allowFullScreen
+      onLoad={() => setIsLoading(false)}
       
     /> 
+     }
+      </>
   );
 }

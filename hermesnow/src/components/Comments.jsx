@@ -58,9 +58,12 @@ const ErrorMessage = styled.div`
 
 const CommentList = styled.div`
     width: 80vw;
-    max-height: 500px;
+    max-height: 800px;
     overflow-y: auto;
     margin-top: 30px;
+    @media (max-width: 800px) {
+         width: 100%;
+    }
 `
 
 const CommentItem = styled.div`
@@ -71,7 +74,7 @@ const CommentItem = styled.div`
     border-radius: 10px;
     margin-bottom: 15px;
     border-right: 8px solid var(--color-info);
-    @media (max-width : 400px) {
+    @media (max-width : 800px) {
          width: 100%;
     }
 `
@@ -79,7 +82,7 @@ const CommentItem = styled.div`
 const CommentHeader = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom: 10px;
 `
 
@@ -91,7 +94,7 @@ const UserName = styled.div`
     font-size: var(--font-size-sm);
 `
 const CommentDate = styled.small`
-    color: green;
+    color: var(--color-info);
     font-size: var(--font-size-xs);
 `
 

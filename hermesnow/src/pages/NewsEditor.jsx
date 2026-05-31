@@ -43,7 +43,7 @@ const ToggleButton = styled.button`
   justify-content: center;
   gap: 8px;
   font-family: vazir;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
 
   &:hover {
     background: ${props => props.active ? 'var(--color-accent)' : 'var(--color-info)'};

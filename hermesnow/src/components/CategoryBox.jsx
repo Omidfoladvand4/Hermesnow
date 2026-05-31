@@ -62,7 +62,7 @@ const DateAndTime = styled.div`
   align-items: end;
   justify-content: center;
   color: var(--color-info);
-  font-size: var(--font-size-sx);
+  font-size: var(--font-size-xs);
   margin-top: 0.3rem;
 
 `
@@ -104,7 +104,7 @@ const Div = styled.div`
   width: 50px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-sx);
+  font-size: var(--font-size-xs);
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -116,7 +116,7 @@ const I = styled.i`
   width: 70px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-sx);
+  font-size: var(--font-size-xs);
   align-items: center;
   justify-content: center;
   color: var(--color-primary);

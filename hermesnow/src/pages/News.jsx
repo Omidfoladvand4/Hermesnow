@@ -20,6 +20,8 @@ const NewsHeader = styled.div`
   align-items: start;
   justify-content: space-around;
   margin-top: 3%;
+  background-color: var(--color-primry);
+  box-shadow: 10px 0px 10px  rgba(0,0,0,0.2);
   @media (max-width : 400px){
     align-items: center;
     flex-direction: column;
@@ -32,6 +34,7 @@ const NewsSummary = styled.div`
   padding: 3% 5%;
   font-size: var(--font-size-xl);
   overflow-wrap: break-word;
+  
   color: var(--color-info);
   animation:  ${slideInStagger} .5s linear;
   @media (max-width : 400px) {
@@ -57,7 +60,6 @@ const Journalist = styled.div`
 
 const MainContent = styled.div`
   width: 100%;
-  background-color: var(--color-info);
   padding: 3% 8%;
 `;
 
@@ -104,9 +106,8 @@ width: 100%;
 display: flex;
 align-items: center;
 justify-content: space-around;
-background-color: var(--color-accent);
 flex-wrap: wrap;
-padding: 5%;
+padding: 1%;
 `
 
 function News() {
