@@ -10,19 +10,20 @@ const CategoryContainer = styled.main`
   background: var(--color-primary);
 `;
 const CategoryNavbar = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 0px;
+  padding: 5px 5px;
   margin: 0 auto;
+  border-bottom: 1px solid var(--color-info);
 `;
 const CagegoryNavbarBtn = styled.div`
   cursor: pointer;
   font-size: var(--font-size-md);
 `;
 const BoxsContainer = styled.div`
-  background: var(--color-secondary);
+  background: var(--color-netural);
   padding: 35px 30px;
   display: flex;
   align-items: start;

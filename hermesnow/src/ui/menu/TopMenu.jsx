@@ -32,7 +32,7 @@ const TopMenuItemsContainer = styled.ul`
   list-style-type: none;
   border-bottom: 2px solid var(--color-info);
   
-  @media (max-width: 400px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: start;
     justify-content: space-around;
@@ -42,6 +42,9 @@ const TopMenuItemsContainer = styled.ul`
 
 const TopMenuItem = styled.div`
   font-size: var(--font-size-sm);
+  @media (max-width: 768px) {
+    font-size: var(--font-size-xxl);
+  }
 `
 
 const MenuItemWrapper = styled.li`

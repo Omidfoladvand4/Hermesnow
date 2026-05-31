@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import CategoryBox from '../components/CategoryBox';
 import Title from '../components/Title';
 import Loader from '../components/Loader';
+import bgImage from '../assets/HermesNowBannar1.jpg'
 
 const Container = styled.div`
   width: 100vw;
@@ -13,7 +14,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: var(--color-secondary);
+  background : url(${bgImage});
+  background-size: cover;
+  background-position: center;
 `;
 
 const Header = styled.div`

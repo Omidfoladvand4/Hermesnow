@@ -98,7 +98,7 @@ const UserName = styled.div`
 `
 const CommentDate = styled.small`
     color: var(--color-info);
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
 `
 
 const LoginMessage = styled.div`
