@@ -8,9 +8,6 @@ const CategoryContainer = styled.main`
   width: 100%;
   gap: 20px;
   background: var(--color-primary);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.05);
 `;
 const CategoryNavbar = styled.div`
   width: 80%;
@@ -49,7 +46,7 @@ function CategoryBoxs({ datas, subject = "خبر های دیگر در این م�
   return (
     <CategoryContainer>
       <CategoryNavbar>
-        <Title font={`var(--font-size-md)`} titleName={`${subject} `} />
+        <Title font={`var(--font-size-md)`} color={`var(--color-secondary)`} titleName={`${subject} `} />
         <CagegoryNavbarBtn>
           <Link to={`/category/${subject}`}>همه </Link>
         </CagegoryNavbarBtn>

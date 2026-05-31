@@ -6,7 +6,6 @@ const CopyRightBox = styled.div`
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    background: var(--color-primary);
     position: absolute;
     bottom : 0;
     left: 0;
@@ -20,7 +19,7 @@ const CopyRightText = styled.div`
     font-size: var(--font-size-sm);
     font-weight: 800;
     text-decoration: underline;
-    color: var(--color-neutral);
+    color: var(--color-accent);
 `
 const ContactList = styled.div`
    display: flex;

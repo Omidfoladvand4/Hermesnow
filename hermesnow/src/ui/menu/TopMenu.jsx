@@ -32,8 +32,7 @@ const TopMenuItemsContainer = styled.ul`
   justify-content: space-evenly;
   flex-wrap: wrap;
   list-style-type: none;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08), 
-              0 2px 4px rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid var(--color-info);
 `
 
 const UserName = styled.div`
@@ -110,12 +109,6 @@ function TopMenu() {
   </MenuItem>
 ) : null}
 
-<MenuItem>
-  <Link to='/live-news'>
-    <LiveTvIcon />
-  </Link>
-  <TopMenuItem>اخبار زنده</TopMenuItem>
-</MenuItem>
             <MenuItem ><TopMenuItem>ورود</TopMenuItem><Link to = '/login'><LoginIcon /></Link> </MenuItem>
       <MenuItem><LogoutIcon onClick={hanleLogout}/><TopMenuItem>خروج</TopMenuItem> </MenuItem>
    

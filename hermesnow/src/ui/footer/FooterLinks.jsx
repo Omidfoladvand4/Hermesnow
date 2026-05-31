@@ -17,7 +17,7 @@ width: 50%;
 `
 const ListItem = styled.li`
   color: var(--color-primary);
-  background: var(--color-neutral);
+  background: var(--color-info);
   font-weight: 500;
   padding: .5rem 0.8rem;
   border-radius: 15px;
@@ -40,7 +40,7 @@ const ListItem = styled.li`
       0 20px 60px rgba(0, 0, 0, 0.3);
   }
     @media (max-width : 430px) {
-    width: 60%;
+    width: 80%;
     text-align: center;
   }
 `

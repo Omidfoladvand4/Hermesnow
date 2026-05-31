@@ -7,10 +7,10 @@ import WhatshotIcon from '@mui/icons-material/Whatshot';
         align-items: center;
         justify-content: start;
         font-size: var(--font-size-md);
-        color: var(--color-primary);
+        color: var(--color-info);
         font-weight: 600;
         padding: 5px;
-        border-bottom: 1px solid var(--color-neutral);
+        border-bottom: 1px solid var(--color-info);
     `
 function FooterTitle() {
   return (

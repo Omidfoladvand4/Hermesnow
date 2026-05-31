@@ -49,8 +49,8 @@ function Home() {
           justifyContent: 'center',
           alignItems: 'center',
           minHeight: '400px',
-          fontSize: '18px',
-          color: '#666'
+          fontSize: 'var(--font-size-md)',
+          color: 'var(--color-neutral)'
         }}>
          <Loader />
         </div>
@@ -67,7 +67,7 @@ function Home() {
           justifyContent: 'center',
           alignItems: 'center',
           minHeight: '400px',
-          fontSize: '18px',
+          fontSize: 'var(font-size-md)',
           color: 'red'
         }}>
           ❌ {error}

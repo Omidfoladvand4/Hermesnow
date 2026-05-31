@@ -9,6 +9,7 @@ import Loader from '../components/Loader';
 import { useUserManagement } from '../hooks/useUserManagement';
 import { useDeleteNews } from '../hooks/useDeleteNews'
 import SearchNewsBox from '../components/SearchNewsBox';
+import { useNavigate } from 'react-router-dom';
 import { fadeIn ,slideInFromLeft ,slideInFromRight  ,floatAnimation ,shimmer ,borderGlow ,spinGlow  ,gradientMove} from '../styles/animations'
 
 const DashboardContainer = styled.div`
@@ -608,7 +609,7 @@ function Dashboard() {
   const { news, getNewsLoading, Newsrefetch } = useNews()
   const { error, deleteUser, promoteToAdmin, demoteFromAdmin } = useUserManagement()
   const { deleteNews } = useDeleteNews()
-
+  const navigage = useNavigate()
   useEffect(() => {
     setSearchedNews(news)
   }, [news])
@@ -784,7 +785,7 @@ function Dashboard() {
                           <Td>{item.Journalist || '—'}</Td>
                           <Td>{new Date(item.NewsDate).toLocaleDateString('fa-IR')}</Td>
                           <Td>
-                            <ActionButton onClick={() => window.open(`/news/${item.id}`)}>👁️</ActionButton>
+                            <ActionButton onClick={() => navigage(`/news/${item.id}`)}>👁️</ActionButton>
                             <ActionButton onClick={() => deleteNewsHandler(item.id)}>🗑️</ActionButton>
                           </Td>
                         </TableRow>
