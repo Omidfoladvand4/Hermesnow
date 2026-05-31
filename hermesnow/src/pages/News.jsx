@@ -10,6 +10,8 @@ import CategoryBox from '../components/CategoryBox';
 import Loader from '../components/Loader';
 import Comments from '../components/Comments';
 import {slideInStagger ,zoomIn} from '../styles/animations'
+import posterImage from '../assets/HermesNowBannar1.jpg'
+
 
 
 const NewsHeader = styled.div`
@@ -190,7 +192,7 @@ function News() {
       
       <NewsHeader>
         <NewsSummary>{news.NewsMainText}</NewsSummary>
-        <NewsImage src={news.MainImage} alt={news.NewsSubject} />
+        <NewsImage src={news.MainImage ||  `${posterImage}`} alt={news.NewsSubject} />
       </NewsHeader>
       
       <br />

@@ -6,6 +6,7 @@ import PersianDate from '../services/PersionDate';
 import { supabase } from '../lib/supabaseClient';
 import { useNavigate } from 'react-router-dom'; 
 import { shake } from '../styles/animations'
+import posterImage from '../assets/HermesNowBannar1.jpg'
 
 const NewsBox = styled.div`
   width: 100%;
@@ -25,16 +26,12 @@ const NewsBox = styled.div`
   &:hover {
   animation: ${shake} 0.3s linear;
   }
-  @media (max-width : 400px){
-    flex-direction: column;
-    gap: 1px;
-  }
 `
 const NewsImage = styled.img`
   width: 50%;
   object-fit: cover;
   @media (max-width : 400px) {
-    width: 100%;
+    width: 30%;
     height: 100px;
   }
 `
@@ -69,7 +66,7 @@ const DateAndTime = styled.div`
 `
 
 const NewsSubject = styled.div`
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-md);
   font-weight: 900;
   background: rgba(255,255,255,0.1);
   color: var(--color-primary);
@@ -162,7 +159,7 @@ function CategoryBox({ news }) {
   return (
     <NewsBox onClick={handleClick} style={{ opacity: loading ? 0.7 : 0.8 }}>
       <NewsImage 
-        src={news.MainImage || './images/HermesNowBannar.jpg'} 
+        src={news.MainImage || `${posterImage}`} 
       />
       
       <NewsContentWrapper>   

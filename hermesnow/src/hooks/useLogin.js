@@ -37,6 +37,7 @@ export const useLogin = () => {
             }
 
             login(user)
+            navigate('/')
 
             return { success: true, user }
 
