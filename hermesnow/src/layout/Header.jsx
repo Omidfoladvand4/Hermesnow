@@ -1,12 +1,13 @@
 import React from 'react'
 import HeaderBannar from '../ui/header/HeaderBannar'
 import Slider from '../components/Slider'
-const sliderimage = [
-  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771770790110-g2kch8.jpg' ,
-  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771783599016-hdx9mp.jpg' ,
-  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771847177415-8zhmos.webp' ,
-  'https://hflznaywvonjgrjpmkdw.supabase.co/storage/v1/object/public/News_Images/1771847339251-pn5wpo.webp',
-]
+import airForce from '../assets/air-force.jpg'
+import animal from '../assets/animal.jpg'
+import bee from '../assets/bee.jpg'
+import f18 from '../assets/f-18.jpg'
+import s400 from '../assets/s400.jpg'
+
+const sliderimage = [airForce, animal, bee, f18, s400]
 function Header() {
   return (
     <div>

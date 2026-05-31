@@ -17,6 +17,7 @@ const SlideWrapper = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    height: 100%;
     transition: all 0.3s ease-in;
     &:hover {
        transform: scale(1.3);
@@ -46,7 +47,7 @@ function Slider({images , spaceBetween = 10 , slidesPerView = 3 }) {
        {images.map((image , index) => {
     return (
         <SlideWrapper key={`${image} dtcsev ${index}`}>
-            <SwiperSlide  key={`${image} dtcsev ${index}`}>
+            <SwiperSlide   key={`${image} dtcsev ${index}`}>
                 <ImageBox $src={image} $w='100%' $h='300px' />
             </SwiperSlide>
         </SlideWrapper>

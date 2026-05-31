@@ -73,7 +73,7 @@ function Mynews() {
         <> <Title font={'var(--font-size-md)'} titleName={`خبر های شما بر اساس علاقه مندی شما به موضوع :  ${user?.FavoritesTopic}`}/>
 
        <MyNewsBoxs>
-             {!getNewsLoading ?   yourNews.map((item => {
+             {!getNewsLoading && yourNews.length >= 0 ?   yourNews.map((item => {
      return    <CategoryBox key={item.id} news={item}/>
       })) : <Loader />}
        </MyNewsBoxs>
