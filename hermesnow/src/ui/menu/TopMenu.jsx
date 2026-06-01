@@ -16,6 +16,7 @@ const TopMenuContainer = styled.main`
   width: 100%;
   display: flex;
   align-items: center;
+  align-items: center;
   flex-direction: column;
   animation: ${fadeInLeft} 0.3s linear;
 `
@@ -23,10 +24,10 @@ const TopMenuContainer = styled.main`
 const TopMenuItemsContainer = styled.ul`
   width: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 10px;
-  flex-wrap: wrap;
   list-style-type: none;
   
 `
@@ -36,7 +37,8 @@ const MenuItemWrapper = styled.li`
   align-items: center;
   gap: 5px;
   cursor: pointer;
-  color: var(--color-info);
+  color: var(--color-accent);
+  transition: all 0.3s ease;
   
   a {
     display: flex;
@@ -44,10 +46,11 @@ const MenuItemWrapper = styled.li`
     gap: 5px;
     text-decoration: none;
     color: inherit;
+    color: var(--color-primary);
   }
   
   &:hover {
-    color: var(--color-secondary);
+    transform: scale(1.2);
   }
 `
 
@@ -65,20 +68,20 @@ function TopMenu() {
       <TopMenuItemsContainer>
         <MenuItemWrapper>
           <Link to="/Account">
-            <AccountCircleIcon />
+            <AccountCircleIcon fontSize='large'/>
           </Link>
         </MenuItemWrapper>
 
         <MenuItemWrapper>
           <Link to="/top-news">
-            <AccessTimeIcon />
+            <AccessTimeIcon  fontSize='large'/>
          
           </Link>
         </MenuItemWrapper>
 
         <MenuItemWrapper>
           <Link to="/your-news">
-            <NewspaperIcon />
+            <NewspaperIcon  fontSize='large'/>
            
           </Link>
         </MenuItemWrapper>
@@ -86,7 +89,7 @@ function TopMenu() {
         {(user?.IsAdmin || user?.IsMainAdmin) && (
           <MenuItemWrapper>
             <Link to="/news-editor">
-              <AddBoxIcon />
+              <AddBoxIcon  fontSize='large'/>
             
             </Link>
           </MenuItemWrapper>
@@ -95,7 +98,7 @@ function TopMenu() {
         {user?.IsMainAdmin && (
           <MenuItemWrapper>
             <Link to="/dashboard">
-              <DashboardIcon />
+              <DashboardIcon  fontSize='large'/>
             </Link>
           </MenuItemWrapper>
         )}
@@ -103,14 +106,14 @@ function TopMenu() {
         {!user && (
           <MenuItemWrapper>
             <Link to="/login">
-              <LoginIcon />
+              <LoginIcon  fontSize='large'/>
             </Link>
           </MenuItemWrapper>
         )}
 
         {user && (
-          <MenuItemWrapper onClick={handleLogout}>
-            <LogoutIcon />
+          <MenuItemWrapper onClick={handleLogout} style={{color : 'var(--color-primary)'}}>
+            <LogoutIcon  fontSize='large'/>
           </MenuItemWrapper>
         )}
       </TopMenuItemsContainer>

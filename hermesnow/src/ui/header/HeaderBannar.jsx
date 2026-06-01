@@ -21,6 +21,7 @@ const BannarContent = styled.div`
     font-size: var(--font-size-xl);
     font-weight: 900;
     line-height: 1.9;
+    word-spacing: 1.8px;
     padding: 10px 30px;
     color: var(--color-secondary);
     flex-wrap: nowrap;

@@ -5,7 +5,7 @@ const SearchNewsBoxWrapper = styled.div`
     width: 100%;
     padding: 5px 10px;
     font-size: var(--font-size-sm);
-    background: ${({ $backgroundColor }) => $backgroundColor || 'var(--color-info)'};
+    background: ${({ $backgroundColor }) => $backgroundColor || 'inhert'};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,31 +18,36 @@ const SearchNewsBoxWrapper = styled.div`
 const SearchBoxInput = styled.input`
     width: 90%;
     height: 100%;
-    background-color: inherit;
-    border: 1px solid var(--color-primary);
+    background-color: var(--color-accent);
+    color: var(--color-secondary);
     border-radius: 10px;
-    padding: 8px 12px;
-    font-family: vazir;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: var(--font-size-md);
+    font-family: sans-serif;
+    transition: all 0.3s ease;
     
     &:focus {
         outline: none;
-        border-color: var(--color-accent);
     }
 `;
 
 const SearchBoxButton = styled.button`
     height: 100%;
-    font-size: var(--font-size-md);
-    padding: 8px 15px;
+    font-size: var(--font-size-xl);
+    padding: 6px 15px;
     border-radius: 10px;
     cursor: pointer;
-    background: var(--color-accent);
+    font-weight: 600;
+    background: var(--color-primary);
     color: white;
     border: none;
-    font-family: vazir;
+    transition: all 0.3s ease;
     
     &:hover {
-        background: #b36962;
+        background: white;
+        color: var(--color-primary);
+
     }
 `;
 

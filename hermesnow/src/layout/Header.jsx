@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeaderBannar from '../ui/header/HeaderBannar'
-import Slider from '../components/Slider'
+import Slider from '../layout/Slider'
 import styled from 'styled-components'
 import bannerImage from '../assets/HermesNowBannar1.jpg'
 import { useNews } from '../hooks/useGetNews'
+import Loader from '../components/Loader'
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ function Header() {
     return (
       <HeaderWrapper>
         <HeaderBannar />
-        <MainNews>در حال بارگذاری...</MainNews>
+        <MainNews> <Loader /> </MainNews>
       </HeaderWrapper>
     )
   }

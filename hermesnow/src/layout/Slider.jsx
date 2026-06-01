@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css/autoplay'
 import 'swiper/css'
-import ImageBox from './ImageBox'
+import ImageBox from '../components/ImageBox'
 const SliderContainer = styled.div`
     width: 100vw;
     margin: 0 auto;
