@@ -14,16 +14,15 @@ const AppContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   position: relative;
-  background:;
 `;
 function App() {
   return (
     <AuthProvider>
       <AppContainer>
-        <Menu />
-        <ButtonMenu />
+        {/* <Menu />
+        <ButtonMenu /> */}
         <AppRoutes />
-        <FooterSection />
+        {/* <FooterSection /> */}
       </AppContainer>
     </AuthProvider>
   );

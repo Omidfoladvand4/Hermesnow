@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Header from "../layout/Header";
+import Sidebar from '../components/Sidebar'
 import { supabase } from "../lib/supabaseClient";
 import CategoryBoxs from "../components/CategoryBoxs";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
-
+import styled from "styled-components";
+import ButtonMenu from "../ui/menu/ButtonMenu";
+const Main = styled.main`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 20px;
+`
 function Home() {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,72 +44,15 @@ function Home() {
     console.log("موضوعات یکتا:", subjects);
     return subjects;
   };
-
-  if (loading) {
-    return (
-      <div>
-        <Header />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "400px",
-            fontSize: "var(--font-size-md)",
-            color: "var(--color-neutral)",
-          }}>
-          <Loader />
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div>
-        <Header />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "400px",
-            fontSize: "var(font-size-md)",
-            color: "red",
-          }}>
-          ❌ {error}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <Header />
-
-      {newsData.length === 0 ? (
-        <div
-          style={{
-            textAlign: "center",
-            padding: "50px",
-            color: "#666",
-            fontSize: "16px",
-          }}>
-          📭 هیچ خبری یافت نشد.
-        </div>
-      ) : (
-        <>
-          {getUniqueSubjects().map((subject, index) => (
-            <CategoryBoxs
-              key={`${index}-${subject}`}
-              datas={newsData}
-              subject={subject}
-            />
-          ))}
-        </>
-      )}
-    </div>
-  );
+ return (
+  <div>
+    <Header />
+    <Main>
+      <ButtonMenu />
+      <Sidebar />
+    </Main>
+  </div>
+ )
 }
 
 export default Home;

@@ -16,35 +16,19 @@ const TopMenuContainer = styled.main`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px 15px;
-  z-index: 101;
-  position: relative;
+  flex-direction: column;
   animation: ${fadeInLeft} 0.3s linear;
 `
 
 const TopMenuItemsContainer = styled.ul`
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
   flex-wrap: wrap;
   list-style-type: none;
-  border-bottom: 2px solid var(--color-info);
   
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: start;
-    justify-content: space-around;
-    padding: 10px;
-  }
-`
-
-const TopMenuItem = styled.div`
-  font-size: var(--font-size-sm);
-  @media (max-width: 768px) {
-    font-size: var(--font-size-xxl);
-  }
 `
 
 const MenuItemWrapper = styled.li`
@@ -82,21 +66,20 @@ function TopMenu() {
         <MenuItemWrapper>
           <Link to="/Account">
             <AccountCircleIcon />
-            <TopMenuItem>{user?.UserName || 'مهمان'}</TopMenuItem>
           </Link>
         </MenuItemWrapper>
 
         <MenuItemWrapper>
           <Link to="/top-news">
             <AccessTimeIcon />
-            <TopMenuItem>تازه ها</TopMenuItem>
+         
           </Link>
         </MenuItemWrapper>
 
         <MenuItemWrapper>
           <Link to="/your-news">
             <NewspaperIcon />
-            <TopMenuItem>خبرهای شما</TopMenuItem>
+           
           </Link>
         </MenuItemWrapper>
 
@@ -104,7 +87,7 @@ function TopMenu() {
           <MenuItemWrapper>
             <Link to="/news-editor">
               <AddBoxIcon />
-              <TopMenuItem>درج خبر</TopMenuItem>
+            
             </Link>
           </MenuItemWrapper>
         )}
@@ -113,7 +96,6 @@ function TopMenu() {
           <MenuItemWrapper>
             <Link to="/dashboard">
               <DashboardIcon />
-              <TopMenuItem>داشبورد</TopMenuItem>
             </Link>
           </MenuItemWrapper>
         )}
@@ -122,7 +104,6 @@ function TopMenu() {
           <MenuItemWrapper>
             <Link to="/login">
               <LoginIcon />
-              <TopMenuItem>ورود</TopMenuItem>
             </Link>
           </MenuItemWrapper>
         )}
@@ -130,7 +111,6 @@ function TopMenu() {
         {user && (
           <MenuItemWrapper onClick={handleLogout}>
             <LogoutIcon />
-            <TopMenuItem>خروج</TopMenuItem>
           </MenuItemWrapper>
         )}
       </TopMenuItemsContainer>

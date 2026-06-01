@@ -7,32 +7,36 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import {fadeInRight} from '../../styles/animations'
+import TopMenu from './TopMenu';
 
     const ButtonMenuContainer = styled.main`
-      width: 100%;
+      width: 5%;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
+      flex-direction: column;
       list-style-type: none;
-      padding: .5rem .25rem;
-      background-color:var(--color-primary);
+      padding: 10px 30px;
+      gap: 10px;
+      background-color:var(--color-);
       position: sticky;
       top: 0;
       z-index: 90;
       animation: ${fadeInRight} 0.3s linear;
     `
+const LinkItme = styled(Link)`
+  color : var(--color-info);
+  text-decoration: none;
+`
 function ButtonMenu() {
   return (
     <ButtonMenuContainer>
-        <MenuItem ><Link to = '/'>خانه</Link></MenuItem>
-        <MenuItem ><Link to = '/category/ورزشی'>ورزشی</Link></MenuItem>
-        <MenuItem ><Link to = '/category/اقتصاد'>اقتصادی</Link></MenuItem>
-        <MenuItem ><Link to = '/category/سیاست'>سیاست</Link></MenuItem>
-        <MenuItem ><Link to = '/category/سلامتی'>سلامتی</Link></MenuItem>
-        <MenuItem ><Link to = '/live-news'><LiveTvIcon /></Link></MenuItem>
-        <MenuItem ><Link to = '/settings'><SettingsInputCompositeIcon /></Link></MenuItem>
+        <MenuItem ><LinkItme to = '/'>خانه</LinkItme></MenuItem>
+        <MenuItem ><LinkItme to = '/live-news'><LiveTvIcon /></LinkItme></MenuItem>
+        <MenuItem ><LinkItme to = '/settings'><SettingsInputCompositeIcon /></LinkItme></MenuItem>
+        <TopMenu />
          <MenuItem>
-          <Link to='/product-info'> <ProductionQuantityLimitsIcon /></Link>
+          <LinkItme to='/product-info'> <ProductionQuantityLimitsIcon /></LinkItme>
         </MenuItem>
     </ButtonMenuContainer>
   )
