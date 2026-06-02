@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ButtonMenu from "../ui/menu/ButtonMenu";
 import SearchNewsBox from "../components/SearchNewsBox";
+import MainNewsSction from "../components/MainNewsSction";
 const Main = styled.main`
   display: flex;
   align-items: flex-start;
@@ -15,23 +16,32 @@ const Main = styled.main`
   margin: 20px;
 `
 const MainContent = styled.div`
-  background-color: var(--color-info);
   flex-grow : 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   max-width: 70%;
-  padding: 0 20px;
+  padding: 13px 20px;
 `
 const MainNews = styled.div`
     width: 30% ;
     text-align: center;
     position: relative;
+    transition : all 0.3s ease ;
+    border-radius: 5px;
+    overflow: hidden;
+      &:hover {
+        transform:  scale(1.02);
+      }
     `
 const MainNewsWrapper = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-gap: 10px;
+gap: 5px;
 margin-top: 15px;
 padding: 20px 0;
+overflow: hidden;
 `
 const MainNewsImage = styled.img`
    width: 100%;
@@ -62,7 +72,6 @@ function Home() {
       const { data, error } = await supabase.from("News").select("*");
 
       if (error) throw error;
-
       setNewsData(data || []);
     } catch (error) {
       console.error("خطا در دریافت اخبار:", error);
@@ -90,8 +99,11 @@ function Home() {
                     {mainNews && mainNews.length !== 0 ?
                        mainNews.map((item) => {
                       return   <MainNews >
+                <Link to={`/category/${item.NewsSubject}`} >
+                        
                         <MainNewsImage src= {item.MainImage} />
                          <MainNewsTitle>{item.NewsSubject}</MainNewsTitle>
+                        </Link>
                     </MainNews>
                        })
                        :
@@ -101,6 +113,8 @@ function Home() {
                     
                   </div>
                 : <Loader />}
+
+                <MainNewsSction />
          </MainContent>
       <Sidebar />
     </Main>

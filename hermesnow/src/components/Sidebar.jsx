@@ -214,7 +214,7 @@ const PickedItemContent = styled.div`
   justify-content: flex-start;
 `
 
-const RedDot = styled.div`
+const Div = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -286,7 +286,7 @@ function Sidebar() {
             <PickedItemLink key={item.id} to={`/news/${item.id}`}>
               <PickedItemCard>
                 <PickedItemContent>
-                  <RedDot />
+                  <Div />
                   <PickedItemTitle>{item.NewsTitle}</PickedItemTitle>
                 </PickedItemContent>
               </PickedItemCard>
