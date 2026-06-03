@@ -54,7 +54,7 @@ const FiltredItemContent = styled.div`
   `
 function MainNewsSction() {
     const { news }  =  useNews()
-    const FilterdNews = news.slice(-8)
+    const FilterdNews = news.slice(-6)
   return (
          <FilterdList>
                   {news && news.length !== 0 ? 

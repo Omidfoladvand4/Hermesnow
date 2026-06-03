@@ -9,19 +9,13 @@ import { shake } from '../styles/animations'
 import posterImage from '../assets/HermesNowBannar1.jpg'
 
 const NewsBox = styled.div`
-  width: 100%;
-  min-width: 300px;
-  max-width: 450px;
+  width: 500px;
+  height: 18vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1px;
-  margin: 3px;
-  border-radius: 10px;
-  background: var(--color-secondary);
-  border: 2px solid var(--color-info);
+  justify-content: center;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: var(--color-accent);
   opacity: 0.8;
   cursor: pointer;
   
@@ -30,102 +24,71 @@ const NewsBox = styled.div`
   }
 `
 const NewsImage = styled.img`
-  width: 50%;
-  height: 150px;
-  object-fit: cover;
+  width: 30%;
+  height: 100%;
   @media (max-width : 400px) {
-    width: 30%;
-    height: 100px;
+    /* width: 30%;
+    height: 100px; */
   }
 `
 
 const NewsContentWrapper = styled.div`
   display: flex;
   flex: 1;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  padding: 10px;
    @media (max-width : 400px) {
     padding: 2px;
     width: 100%;
   }
 `
 
-const NewsContent = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const DateAndTime = styled.div`
-  display: flex;
-  align-items: end;
-  justify-content: center;
-  color: var(--color-info);
-  font-size: var(--font-size-sm);
-  margin-top: 0.3rem;
-
-`
-
-const NewsSubject = styled.div`
-  font-size: var(--font-size-md);
-  font-weight: 900;
-  background: rgba(255,255,255,0.1);
-  color: var(--color-primary);
-  padding: 2px 10px;
-  border-radius: 15px;
-  `
-
 const NewsTitle = styled.div`
   width: 100%;
-  height: 30px;
   font-size: var(--font-size-md);
-  font-weight: bolder;
-  text-align: center;
-  color: var(--color-accent);
-  border-bottom: 1px solid rgba(255,255,255,0.2);                                                                                                              
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-bottom: 8px;
+  font-weight: 900;
+  text-align: start;
+  color: white;                                                                                                            
+  margin: 6px 10px;
 `
 
 const FooterCategoryBox = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 5px 0;
-  gap: 5px;
+  align-items: flex-end;
+  padding: 10px 15px;
 `
 
 const Div = styled.div`
-  width: 50px;
   height: 15px;
   display: flex;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  background-color: var(--color-info);
-  color: #ffffff;
+  color: var(--color-info);
+
 `
 
-const I = styled.i`
-  width: 70px;
+const I = styled.div`
   height: 15px;
   display: flex;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
+  font-style: italic;
+  color: var(--color-info);
   cursor: pointer;
-  font-style: normal;
-  background: rgba(255,255,255,0.1);
-  border-radius: 5px;
+
+`
+const DateAndTime = styled.div`
+  width: 100%;
+  text-align: end;
+  padding: 5px 15px;
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+
 `
 
 function CategoryBox({ news }) {
@@ -161,7 +124,7 @@ function CategoryBox({ news }) {
   };
 
   return (
-    <NewsBox onClick={handleClick} style={{ opacity: loading ? 0.7 : 0.8 }}>
+    <NewsBox onClick={handleClick}>
       <NewsImage 
         src={news.MainImage || `${posterImage}`} 
       />
@@ -169,19 +132,15 @@ function CategoryBox({ news }) {
       <NewsContentWrapper>   
         <NewsTitle>{news.NewsTitle}</NewsTitle>
         
-        <NewsContent>
-          <NewsSubject>{news.NewsSubject}</NewsSubject>
-        </NewsContent>
         
         <FooterCategoryBox>
           <Div>
-            <div style={{ display: 'flex', alignItems: "center" }}>
+            <div style={{ display: 'flex', alignItems: "center"  , margin : '0 15px'}}>
+              <div style={{ marginRight: '5px' }}>{formatNumber(views)}</div>
               <RemoveRedEyeIcon fontSize='smaller' /> 
-              <span style={{ marginRight: '2px' }}>{formatNumber(views)}</span>
             </div>
           </Div>
           
-          <Div>{news.Country || 'ایران'}</Div>
           
           <I>{news.Journalist || 'خبرنگار'}</I>
         </FooterCategoryBox>

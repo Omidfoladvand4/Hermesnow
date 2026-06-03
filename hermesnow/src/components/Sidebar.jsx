@@ -11,8 +11,8 @@ import Loader from './Loader'
 
 const SidebarWrapper = styled.div`
   width: 30%;
-  height: 100vh;
   overflow-y: scroll;
+  height: 100vh;
   background-color:   var(--color-accent);
   padding: 20px 20px;
   display: flex;

@@ -17,17 +17,16 @@ const TopMenuContainer = styled.main`
   display: flex;
   align-items: center;
   align-items: center;
-  flex-direction: column;
   animation: ${fadeInLeft} 0.3s linear;
 `
 
 const TopMenuItemsContainer = styled.ul`
-  width: 100%;
+  width: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
+  margin: 0 auto;
   list-style-type: none;
   
 `

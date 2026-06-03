@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Menu from "./layout/Menu";
 import AppRoutes from "./routes";
 import ButtonMenu from "./ui/menu/ButtonMenu";
-import FooterSection from "./layout/Footer";
 import Header from "./layout/Header";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -19,10 +18,8 @@ function App() {
   return (
     <AuthProvider>
       <AppContainer>
-        {/* <Menu />
-        <ButtonMenu /> */}
+         <ButtonMenu />
         <AppRoutes />
-        {/* <FooterSection /> */}
       </AppContainer>
     </AuthProvider>
   );

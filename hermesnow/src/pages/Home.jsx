@@ -14,17 +14,17 @@ const Main = styled.main`
   align-items: flex-start;
   justify-content: space-between;
   margin: 20px;
-`
+  `
 const MainContent = styled.div`
+  max-width: 70%;
   flex-grow : 1;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  max-width: 70%;
   padding: 13px 20px;
 `
 const MainNews = styled.div`
-    width: 30% ;
+    width: 30%;
     text-align: center;
     position: relative;
     transition : all 0.3s ease ;
@@ -36,6 +36,7 @@ const MainNews = styled.div`
     `
 const MainNewsWrapper = styled.div`
 display: flex;
+flex: 1;
 align-items: center;
 justify-content: center;
 gap: 5px;
@@ -60,7 +61,13 @@ function Home() {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const newsDataSubjects =  newsData.reduce((acc , item)=> {
+    if(!acc.includes(item.NewsSubject)) {
+      acc.push(item.NewsSubject)
+    }
+    console.log(acc);
+    return acc
+  } , [])
   useEffect(() => {
     fetchNews();
   }, []);
@@ -90,9 +97,8 @@ function Home() {
   <div>
     <Header />
     <Main>
-      <ButtonMenu />
          <MainContent > 
-               {newsData && newsData.length !== 0 ?
+               {newsData.length !== 0  ?
                   <div>
                     <SearchNewsBox />
                    <MainNewsWrapper>
@@ -118,6 +124,12 @@ function Home() {
          </MainContent>
       <Sidebar />
     </Main>
+      
+      <>
+        { newsDataSubjects.map((subject) => {
+        return <CategoryBoxs datas={newsData}  subject={subject}/>
+      })}
+      </>
   </div>
  )
 }

@@ -11,18 +11,18 @@ import TopMenu from './TopMenu';
 import HomeIcon from '@mui/icons-material/Home';
 
     const ButtonMenuContainer = styled.main`
-      width: 5%;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       list-style-type: none;
       padding: 10px 30px;
       gap: 10px;
+      position: fixed;
+      top: 0;
+      z-index: 999;
       background-color:var(--color-accent);
       position: sticky;
-      top: 0;
-      z-index: 90;
       animation: ${fadeInRight} 0.3s linear;
     `
 const LinkItme = styled(Link)`
