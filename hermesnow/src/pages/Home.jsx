@@ -6,7 +6,7 @@ import CategoryBoxs from "../components/CategoryBoxs";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ButtonMenu from "../ui/menu/ButtonMenu";
+import ButtonMenu from "../ui/menu/UserMenu";
 import SearchNewsBox from "../components/SearchNewsBox";
 import MainNewsSction from "../components/MainNewsSction";
 const Main = styled.main`

@@ -47,6 +47,7 @@
     border: none;
     outline: none;
     text-decoration: none;
+    list-style-type: none;
     &::-webkit-scrollbar {
     width: 10px;
   }
