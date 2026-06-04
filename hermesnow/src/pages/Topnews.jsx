@@ -27,10 +27,10 @@ const FilterTabs = styled.nav`
     color: var(--color-primary);
     background: var(--color-info);
     font-weight: 900;
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-xl);
     @media (max-width : 400px){
       width: 100%;
-      font-size: var(--font-size-md);
+      font-size: var(--font-size-xl);
 
     }
     `
@@ -92,7 +92,6 @@ function Topnews() {
   }
   return (
     <TopNewsWrapper>
-        <Title titleName={'خبر های داغ '}  font={`var(--font-size-md)`}/>
         <FilterBox>
           <FilterTabs> 
             <Span> فیلتر کردن به اساس :</Span>

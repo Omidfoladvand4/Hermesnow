@@ -63,7 +63,7 @@ const Journalist = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
    color: var(--color-accent);
-  padding: 25px;
+
 `;
 
 const MainContent = styled.div`
@@ -118,8 +118,11 @@ const Information = styled.div`
   font-size: var(--font-size-md);
   background-color: var(--color-primary);
   @media (max-width: 400px) {
-    padding: 2px;
+    padding: 2px 10px;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
 
   }
 `;
@@ -262,7 +265,7 @@ function News() {
               </MainContentNewsText>
             ),
           )}
-              <Information>
+          <Information>
         <InformationLink to={`/category/${news.NewsSubject}`}>{news.NewsSubject}</InformationLink>
         <Journalist> {news.Journalist}</Journalist>
         <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
