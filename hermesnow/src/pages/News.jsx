@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import PersianDate from "../services/PersionDate";
@@ -11,15 +12,14 @@ import Loader from "../components/Loader";
 import Comments from "../components/Comments";
 import { slideInStagger, zoomIn } from "../styles/animations";
 import posterImage from "../assets/HermesNowBannar1.jpg";
+import Sidebar from "../components/Sidebar";
 
 const NewsHeader = styled.div`
   width: 100vw;
+  height: 50vh;
   display: flex;
-  align-items: start;
   justify-content: space-around;
-  margin-top: 3%;
-  background-color: var(--color-primry);
-  box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-accent);
   @media (max-width: 400px) {
     align-items: center;
     flex-direction: column;
@@ -27,20 +27,31 @@ const NewsHeader = styled.div`
 `;
 
 const NewsSummary = styled.div`
-  width: 40%;
-  padding: 3% 5%;
-  font-size: var(--font-size-md);
+  width: 60%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: column;
   overflow-wrap: break-word;
-
   color: var(--color-info);
+  padding: 0 16px;
+  font-weight: 900;
+  font-size: var(--font-size-xl);
   animation: ${slideInStagger} 0.5s linear;
   @media (max-width: 400px) {
     width: 100%;
+    padding: 0 8px;
   }
 `;
+const NewsMainText = styled.div`
+  width: 100%;
+  font-size: var(--font-size-xl);
+  margin-right: 3%;
 
+`
 const NewsImage = styled.img`
-  width: 50%;
+  flex-grow: 1;
+  height: 100%;
   object-fit: cover;
   animation: ${zoomIn} 0.5s linear;
   @media (max-width: 400px) {
@@ -51,23 +62,59 @@ const NewsImage = styled.img`
 const Journalist = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
-  color: var(--color-info);
+   color: var(--color-accent);
   padding: 25px;
 `;
 
 const MainContent = styled.div`
   width: 100%;
-  padding: 3% 8%;
-`;
+  padding: 12px 20px;
+  margin-top: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  @media (max-width:  768px) {
+      flex-direction: column;
+      padding: 0;
+  }
+  `
+const MainContentNews = styled.div`
+  width: 70%;
+  padding: 12px 20px;
+  background-color: var(--color-accent);
+  border-bottom: 6px solid var(--color-accent);
+    @media (max-width:  768px) {
+      width: 100%;
+  }
+`
+const MainContentNewsTitle = styled.h1`
+   margin-top: 10px;
+  line-height: 1.7;
+   color: white;
+   font-size: var(--font-size-xxl);
+`
+const MainContentNewsText = styled.div`
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 32px;
+  font-size: var(--font-size-xl);
+  line-height: 2;
+  font-weight: 900;
+  color:var(--color-secondary);
+  @media (max-width: 768px) {
+     text-align: start;
+  }
+
+`
 
 const Information = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2%;
-  color: var(--color-secondary);
+  padding: 4px 12px;
   font-size: var(--font-size-md);
   background-color: var(--color-primary);
   @media (max-width: 400px) {
@@ -76,6 +123,15 @@ const Information = styled.div`
 
   }
 `;
+const InfomationDate = styled.div`
+  font-weight: 900;
+  font-size: var(--font-size-md);
+`
+const InformationLink = styled(Link)`
+  font-size: var(--font-size-md);
+  color: var(--color-accent);
+  font-weight: 900;
+`
 const ShareBotton = styled.button`
   padding: 10px 5px;
   cursor: pointer;
@@ -177,42 +233,45 @@ function News() {
     .slice(0, 3);
   return (
     <div>
-      <Title titleName={news.NewsTitle} font={`var(--font-size-md)`} />
 
       <NewsHeader>
-        <NewsSummary>{news.NewsMainText}</NewsSummary>
+        <NewsSummary>
+      <Title titleName={news.NewsTitle} font={`var(--font-size-xxl)`} color={`white`}/>
+         <NewsMainText >
+           {news.NewsMainText}
+         </NewsMainText>
+          </NewsSummary>
         <NewsImage
           src={news.MainImage || `${posterImage}`}
           alt={news.NewsSubject}
         />
       </NewsHeader>
 
-      <br />
-      <br />
 
       <MainContent>
-        {news.Content &&
+        <MainContentNews>
+              {news.Content &&
           news.Content.map((item, index) =>
             item.element === "h1" ? (
-              <h1 key={index} style={{ color: item.color }}>
+              <MainContentNewsTitle key={index} >
                 {item.content}
-              </h1>
+              </MainContentNewsTitle>
             ) : (
-              <p key={index} style={{ color: item.color }}>
+              <MainContentNewsText key={index} >
                 {item.content}
-              </p>
+              </MainContentNewsText>
             ),
           )}
+              <Information>
+        <InformationLink to={`/category/${news.NewsSubject}`}>{news.NewsSubject}</InformationLink>
+        <Journalist> {news.Journalist}</Journalist>
+        <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
+        <InfomationDate>{PersianDate(news)}</InfomationDate>
+      </Information>
+        </MainContentNews>
+        <Sidebar />
       </MainContent>
 
-      <Information>
-        <Journalist> نوشته شده توسط: {news.Journalist}</Journalist>
-        <div>{PersianDate(news)}</div>
-        <p>{news.Country}</p>
-        <br />
-        <p>{news.NewsSubject}</p>
-        <ShareBotton onClick={handleShare}> 📢 به اشتراک گذاشتن </ShareBotton>
-      </Information>
       {getRecomendedNewsLoading ? (
         <Loader />
       ) : (

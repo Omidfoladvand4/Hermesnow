@@ -10,7 +10,11 @@ const AppContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 80px;
   position: relative;
+  @media (max-width : 400px) {
+     margin-top: 0;
+  }
 `;
 function App() {
   return (
