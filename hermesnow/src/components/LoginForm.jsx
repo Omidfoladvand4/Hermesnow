@@ -2,25 +2,25 @@ import { useFormik } from 'formik'
 import * as Yup from  'yup'
 import styled from 'styled-components'
 import { useLogin } from '../hooks/useLogin'
+import { Link } from "react-router-dom";
 
 const  LoginWrapper = styled.form`
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 20px;
-    padding: 15px 10px;
-    flex-direction: column;
-    border-radius: 12px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
-    margin-top: 10px;
-    @media (max-width : 400px){
-        width: 90%;
-    };
-        @media (max-width : 768px){
-        width: 80%;
-    }
+   width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px 10px;
+  background-color: var(--color-info);
+  margin-top: 10px;
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+  @media (max-width: 400px) {
+    width: 100%;
+    margin: 0;
+  }
 
 `
 
@@ -29,37 +29,66 @@ const FormContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: start;
+  justify-content: center;
+  flex-wrap: wrap;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 `
 const LabelFelid = styled.label`
-   font-weight :  bolder;
-   color:var(--color-secondary) ;
-   display: block;
+   font-weight: bolder;
+  color: var(--color-primary);
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: 900;
 `
 const InputFeild = styled.input`
     width: 90%;
-    padding: 10px 5px;
-    border-radius: 15px;
-    color: var(--color-primary);
+  padding: 10px 5px;
+  color:  white;
+  background-color: var(--color-accent);
 
 `
 const ErrorFelid = styled.div`
-    color: red;
+  color: var(--color-primary);
+  font-size: var(--font-size-base);
 `
 
 const LoginButton = styled.button`
-    width: 30%;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: 900;
-    font-size: var(--font-size-md);
-    cursor: pointer;
-    color: var(--color-info);
-    box-shadow: 2px 2px 3px 1px #333333;
-`
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 900;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  color: white;
+  background: var(--color-primary);
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`
+const LoginLink = styled.div`
+  text-align: center;
+  margin-top: 16px;
+
+    a {
+      color: var(--color-primary);
+    text-decoration: none;
+    font-weight: bolder;
+  }
+
+ 
+`;
+const SignupRoute = styled.p`
+  font-size: var(--font-size-md);
+  color: var(--color-accent);
+  font-weight: 700;
+`;
 const LoginFeild = () => {
     const { login , loading , error } = useLogin()
     const validationSchema  = Yup.object({
@@ -163,6 +192,12 @@ const formik = useFormik({
          <LoginButton  type='submit'  disabled= {loading} >
               {loading ? 'درحال ورود ...' : "ورود"  }
          </LoginButton>
+
+          <LoginLink>
+                 <SignupRoute>
+                   حساب کاربری ندارید؟ <Link to="/signup">ثبت‌نام کنید</Link>
+                 </SignupRoute>
+               </LoginLink>
     </LoginWrapper>
   )}
 

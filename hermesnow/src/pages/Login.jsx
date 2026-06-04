@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import LoginFeild from "../components/LoginForm";
 import Navigations from "../components/Navigations";
-import { Link } from "react-router-dom";
 import { slideInStagger } from "../styles/animations";
 import bgImage from "../assets/HermesNowBannar1.jpg";
 const LoginPageContainer = styled.main`
@@ -19,25 +18,8 @@ const LoginPageContainer = styled.main`
   top: 0;
   left: 0;
   z-index: 120;
+  margin-top: 0;
   animation: ${slideInStagger} 0.5s linear;
-`;
-const LoginLink = styled.div`
-  text-align: center;
-  margin-top: 15px;
-
-  a {
-    color: var(--color-secondary);
-    text-decoration: none;
-    font-weight: bold;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
-const SignupRoute = styled.p`
-  font-size: var(--font-size-md);
-  color: red;
 `;
 function Login() {
   return (
@@ -47,11 +29,7 @@ function Login() {
         font={"var(--font-size-xl)"}
         titleName="ورود"></Navigations>
       <LoginFeild />
-      <LoginLink>
-        <SignupRoute>
-          حساب کاربری ندارید؟ <Link to="/signup">ثبت‌نام کنید</Link>
-        </SignupRoute>
-      </LoginLink>
+     
     </LoginPageContainer>
   );
 }

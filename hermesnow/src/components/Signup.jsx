@@ -32,7 +32,7 @@ const SignupWrapper = styled.form`
   flex-wrap: wrap;
   gap: 10px;
   padding: 15px 10px;
-  background-color: white;
+  background-color: var(--color-info);
   margin-top: 10px;
   @media (max-width: 768px) {
     width: 50%;
