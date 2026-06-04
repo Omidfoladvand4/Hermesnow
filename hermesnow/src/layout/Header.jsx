@@ -8,6 +8,7 @@ import { useNews } from '../hooks/useGetNews'
 import Loader from '../components/Loader'
 
 const HeaderWrapper = styled.div`
+
   display: flex;
   height: 400px;
   gap: 5px;
@@ -15,6 +16,7 @@ const HeaderWrapper = styled.div`
   @media (max-width : 780px) {
      flex-direction: column;
      height: auto;
+     padding: 0;
   }
 
 `

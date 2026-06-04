@@ -55,6 +55,10 @@ const Button = styled.button`
   &:hover{
     transform:  scale(1.04);
   }
+    @media (max-width: 400px) {
+      padding: 0 10px;
+       font-size: var(--font-size-xl);
+  }
 `
 const HeaderNews = styled.div`
 width:  60%;
@@ -81,6 +85,9 @@ height: 100%;
    right: 0;
    padding: 5px 20px;
    font-size: var(--font-size-xl);
+   @media (max-width : 768px) {
+     background-color: inherit;
+   }
 `
 const BoxsContainer = styled.div`
   width: 60%;

@@ -19,6 +19,7 @@ const AdminMenuContainer = styled.main`
               @media (max-width : 786px) {
               width: 100%;
               padding: 0;
+              justify-content: center;
     
   }
 

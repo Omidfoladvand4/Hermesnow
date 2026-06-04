@@ -30,6 +30,7 @@ const MainContent = styled.div`
     @media (max-width : 400px) {
      max-width: 100%;
      margin: 0 auto;
+     padding: 0;
   }
 `
 const MainNews = styled.div`

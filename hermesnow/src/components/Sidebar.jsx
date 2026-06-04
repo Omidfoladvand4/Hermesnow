@@ -23,7 +23,7 @@ const SidebarWrapper = styled.div`
     width: 6px;
   }
   @media (max-width: 900px) {
-     width: 90vw;
+     width: 100vw;
      margin : 10px auto;
      padding: 10px 10px;
   }
