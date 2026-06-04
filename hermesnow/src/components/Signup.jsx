@@ -32,15 +32,14 @@ const SignupWrapper = styled.form`
   flex-wrap: wrap;
   gap: 10px;
   padding: 15px 10px;
-  border-radius: 12px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: white;
   margin-top: 10px;
   @media (max-width: 768px) {
     width: 50%;
   }
   @media (max-width: 400px) {
-    width: 90%;
+    width: 100%;
+    margin: 0;
   }
 `;
 
@@ -56,22 +55,22 @@ const FormContainer = styled.div`
 
 const LabelFelid = styled.label`
   font-weight: bolder;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   display: block;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-xl);
+  font-weight: 900;
 `;
 
 const InputFeild = styled.input`
   width: 90%;
   padding: 10px 5px;
-   border-radius: 15px;
-  color: var(--color-primary);
-  border: 2px solid ${(props) => (props.hasError ? "red" : "transparent")};
+  color:  white;
+  background-color: var(--color-accent);
 `;
 
 const ErrorFelid = styled.div`
-  color: red;
-  font-size: 0.6rem;
+  color: var(--color-primary);
+  font-size: var(--font-size-base);
 `;
 
 const SignupButton = styled.button`
@@ -83,11 +82,10 @@ const SignupButton = styled.button`
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: 900;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xl);
   cursor: pointer;
-  color: var(--color-info);
-  box-shadow: 2px 2px 3px 1px #333333;
-  background: var(--color-secondary);
+  color: white;
+  background: var(--color-primary);
 
   &:disabled {
     opacity: 0.6;
@@ -109,21 +107,18 @@ const Message = styled.div`
 
 const LoginLink = styled.div`
   text-align: center;
-  margin-top: 15px;
+  margin-top: 16px;
 
   a {
-    color: var(--color-secondary);
+      color: var(--color-primary);
     text-decoration: none;
-    font-weight: bold;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    font-weight: bolder;
   }
 `;
 const LoginRoute = styled.p`
   font-size: var(--font-size-md);
-  color: red;
+  color: var(--color-accent);
+  font-weight: 700;
 `;
 const Signup = () => {
   const { signup, loading, error } = useSignup();
@@ -170,7 +165,7 @@ const Signup = () => {
       </Navigations>
 
       <SignupWrapper onSubmit={formik.handleSubmit}>
-        {/* نمایش خطا از هوک */}
+
         {error && <Message type="error">❌ {error}</Message>}
 
         <FormContainer>
@@ -184,6 +179,7 @@ const Signup = () => {
             onBlur={formik.handleBlur}
             value={formik.values.userName}
             hasError={formik.touched.userName && formik.errors.userName}
+            
           />
           {formik.touched.userName && formik.errors.userName && (
             <ErrorFelid>{formik.errors.userName}</ErrorFelid>
@@ -245,7 +241,7 @@ const Signup = () => {
 
         <FormContainer style={{ alignItems: "center" }}>
           <SignupButton type="submit" disabled={loading}>
-            {loading ? "در حال ثبت‌نام..." : "ثبت‌نام"}
+            {loading ? "در حال ثبت‌ نام..." : "ثبت‌ نام"}
           </SignupButton>
 
           <LoginLink>
