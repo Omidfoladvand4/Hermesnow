@@ -50,6 +50,10 @@ const RegisterCard = styled.div`
   border-radius: 12px;
   padding: 10px 15px;
   line-height: 1.5;
+  @media (max-width : 768px) {
+     width: 100%;
+     line-height: 1.7;
+  }
   `
 
 const RegisterTitle = styled.h2`
@@ -107,12 +111,11 @@ const SectionHeader = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 10px 20px;
-  border-radius: 8px;
 `
 
 const SectionTitle = styled.div`
   font-size: var(--font-size-md);
-  font-weight: 700;
+  font-weight: 900;
   color: white;
 `
 
@@ -139,6 +142,9 @@ const NewsItemCard = styled.div`
   &:hover {
     opacity: 1;
   }
+  @media (max-width: 768px) {
+     padding: 0;
+  }
 `
 
 const NewsInfo = styled.div`
@@ -147,20 +153,24 @@ const NewsInfo = styled.div`
 
 const NewsTitle = styled.div`
   color: white;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md);
   margin-bottom: 8px;
   font-weight: 500;
+
 `
 
 const JournalistName = styled.div`
   color: #9ca3af;
-  font-size: var(--font-size-md);
+  font-size: calc(var(--font-size-md) - 3px);
 `
 
 const NewsImage = styled.img`
   width: 80px;
   height: 60px;
   object-fit: cover;
+  @media (max-width : 768px) {
+      width: 25%;
+  }
 `
 
 const PickedSection = styled.div`
@@ -177,7 +187,6 @@ const PickedHeader = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 10px 20px;
-    border-radius: 8px;
     margin-bottom: 15px;
 `
 
@@ -235,7 +244,7 @@ function Sidebar() {
   return (
     <SidebarWrapper>
       <UserSection>
-        {user ? (
+        {!user ? (
           <WelcomeMessage> سلام {user?.UserName} خوش آمدی </WelcomeMessage>
         ) : (
           <RegisterCard>
