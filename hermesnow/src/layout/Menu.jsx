@@ -1,34 +1,45 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TopMenu from "../ui/menu/TopMenu";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+import AdminMenu from "../ui/menu/AdminMenu";
+import UserMenu from "../ui/menu/UserMenu";
+import { useAuth } from "../contexts/AuthContext";
 const MenuContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  background: var(--color-primary);
-  @media (max-width: 400px) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+
+  @media (max-width : 1000px) {
+    flex-direction: column;
+    bottom: 0;
+    top: auto;
+    gap: 0;
   }
-`;
+
+`
+const MenuIcon = styled.div`
+  display:  none;
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+  @media (max-width : 1000px) {
+     display: block;
+  }
+`
 function Menu() {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
+   const { user } = useAuth()
+   const [isOpenMenu , setIsOpenMenu] = useState(true)
   return (
     <MenuContainer>
-      <div
-        style={{ padding: " 0px 15px" }}
-        onClick={() => setIsOpenMenu((item) => !item)}>
-        {!isOpenMenu ? (
-          <MenuIcon fontSize="large" sx={{ color: "var(--color-info)" }} />
-        ) : (
-          <CloseIcon fontSize="large" sx={{ color: "var(--color-info)" }} />
-        )}
-      </div>
-      {isOpenMenu && <TopMenu />}
+    <MenuIcon onClick={() => setIsOpenMenu(!isOpenMenu)}>...</MenuIcon>
+      <UserMenu />
+     {(user?.IsAdmin || user?.IsMainAdmin) && (isOpenMenu)  && (
+          <AdminMenu />
+      )}
     </MenuContainer>
   );
 }

@@ -1,10 +1,8 @@
 :root {
-
-  --color-primary: #1C1C1E;        /* مشکی آبی */
-  --color-secondary: #F5F5F7;      /* سفید نقره‌ای */
-  --color-accent: #FF3B30;         /* قرمز اپلی */
-  --color-info: #007AFF;           /* آبی اپلی */
-  --color-neutral: #8E8E93;      
+--color-primary: #3976A5;     
+--color-secondary: #d4d4d4;   
+--color-info: #a4a4a4;        
+--color-accent: #000000;   
 
   --font-size-xs: 10px;
   --font-size-sm: 14px;
@@ -48,6 +46,8 @@
     z-index: 1;
     border: none;
     outline: none;
+    text-decoration: none;
+    list-style-type: none;
     &::-webkit-scrollbar {
     width: 10px;
   }
@@ -71,25 +71,10 @@
 }
 body {
     background-color:  var(--color-secondary);
-    font-family: vazir;
+    font-family: sans-serif;
 }
 
-a{
-        font-size: var(--font-size-sm);
-        font-weight: 600;
-        color : var(--color-info);
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        &:hover {
-            color: var(--color-secondary);
-            transform: scale(1.02);
-        }
-}
 
-input , button , textarea{
-  font-family: vazir;
-}
 ul{
   list-style-type: none;
 }

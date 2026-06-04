@@ -1,77 +1,69 @@
+import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import MenuItem from '../../components/MenuItem'
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { fadeInRight } from '../../styles/animations'
+import { Link } from 'react-router-dom'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
+import HomeIcon from '@mui/icons-material/Home';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import {fadeInRight} from '../../styles/animations'
 import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+    const UserMenuContainer = styled.main`
+      width: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 30px;
+      animation: ${fadeInRight} 0.3s linear;
 
-const AdminMenuContainer = styled.main`
-            width: 40%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-             padding: 10px 30px;
-            animation: ${fadeInRight} 0.3s linear;
-              @media (max-width : 786px) {
-              width: 100%;
-              padding: 0;
+        @media (max-width : 786px) {
+        width: 100%;
+        justify-content: center;
+        padding: 0;
     
   }
-
-`
-
-
+    `
 const LinkItem = styled(Link)`
   color : var(--color-primary);
   text-decoration: none;
 `
+function UserMenu() {
+    const { user, logout } = useAuth()
+  const navigate = useNavigate()
 
-function AdminMenu() {
-  const { user } = useAuth()
-
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
   return (
-    <AdminMenuContainer>
-        <MenuItem>
-          <LinkItem to="/Account">
-            <AccountCircleIcon fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
-          </LinkItem>
-        </MenuItem>
+    <UserMenuContainer> 
+        <MenuItem ><LinkItem to = '/'><HomeIcon fontSize='large'   sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/> </LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/live-news'><LiveTvIcon  fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/live-news'><AccessTimeIcon  fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/settings'><SettingsInputCompositeIcon  fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/></LinkItem></MenuItem>
 
-     {(user?.IsAdmin || user?.IsMainAdmin) && (
-        <MenuItem>
-          <LinkItem to="/news-editor">
-            <AddBoxIcon fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
-          </LinkItem>
-        </MenuItem>
-      )}
+        
 
-      {user?.IsMainAdmin && (
-        <MenuItem>
-          <LinkItem to="/dashboard">
-            <DashboardIcon fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
-          </LinkItem>
-        </MenuItem>
-      )}
-
-
-
-
-        <MenuItem>
-          <LinkItem to="/your-news">
-           <NewspaperIcon 
-  fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
-           
-          </LinkItem>
-        </MenuItem>
-        <MenuItem>
-         <LinkItem to='/product-info'> <ProductionQuantityLimitsIcon  fontSize='large' sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/></LinkItem>
-        </MenuItem>
-    </AdminMenuContainer>
+          {!user && (
+                  <MenuItem>
+                    <LinkItem to="/login">
+                      <LoginIcon  fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
+                    </LinkItem>
+                  </MenuItem>
+                )}
+        
+                {user && (
+                  <MenuItem onClick={handleLogout}>
+                     <LinkItem to="/login">
+                    <LogoutIcon  fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
+                    </LinkItem>
+                  </MenuItem>
+                )}
+    </UserMenuContainer>
   )
 }
 
-export default AdminMenu   
+export default UserMenu
