@@ -9,8 +9,8 @@ const SearchNewsBoxWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 8px;
-@media (max-width : 400px) {
+@media (max-width : 768px) {
+    padding: 0;
 }
 `;
 
@@ -19,7 +19,6 @@ const SearchBoxInput = styled.input`
     height: 100%;
     background-color: var(--color-accent);
     color: var(--color-secondary);
-    border-radius: 10px;
     padding: 10px 12px;
     font-weight: 500;
     font-size: var(--font-size-md);
@@ -28,6 +27,10 @@ const SearchBoxInput = styled.input`
     
     &:focus {
         outline: none;
+    }
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 16px ;
     }
 `;
 
@@ -48,6 +51,9 @@ const SearchBoxButton = styled.button`
         color: var(--color-primary);
 
     }
+    @media (max-width: 768px) {
+         display: none;
+    }
 `;
 
 function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
@@ -66,6 +72,7 @@ function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleFilterNews();
+            
         }
     };
 

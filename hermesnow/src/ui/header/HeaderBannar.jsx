@@ -13,7 +13,7 @@ const Bannar = styled.div`
     position: relative;
     @media (max-width : 768px){
       width: 100%;
-      flex-direction: row;
+      flex-direction: column-reverse;
     }
     `
 
@@ -25,16 +25,17 @@ const BannarContent = styled.div`
     padding: 10px 30px;
     color: var(--color-secondary);
     flex-wrap: nowrap;
+    @media (max-width: 768px) {
+       padding: 2px 12px;
+    }
     
 `
-const BannerImage = styled.div`
+const BannerImage = styled.img`
   width: 100%;
   height: 50%;
-  background: url(${bannerImage});
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
      @media (max-width : 768px){
-      width: 50%;
+      height: 60px;
     }
 `
 
@@ -46,7 +47,7 @@ function HeaderBannar() {
 خبرهایی که مهم‌اند، بدون تأخیر به دستت می‌رسند.
 از تحولات جهانی تا تازه‌ترین اخبار محلی، همه را در یک نگاه ببین.</BannarContent>
      
-     <BannerImage />
+     <BannerImage src={bannerImage}/>
   </Bannar>
   )
 }

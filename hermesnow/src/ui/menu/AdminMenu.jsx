@@ -38,14 +38,14 @@ function AdminMenu() {
     <AdminMenuContainer>
         <MenuItem>
           <LinkItem to="/Account">
-            <AccountCircleIcon fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
+            <AccountCircleIcon fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/>
           </LinkItem>
         </MenuItem>
 
      {(user?.IsAdmin || user?.IsMainAdmin) && (
         <MenuItem>
           <LinkItem to="/news-editor">
-            <AddBoxIcon fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
+            <AddBoxIcon fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/>
           </LinkItem>
         </MenuItem>
       )}
@@ -53,7 +53,7 @@ function AdminMenu() {
       {user?.IsMainAdmin && (
         <MenuItem>
           <LinkItem to="/dashboard">
-            <DashboardIcon fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
+            <DashboardIcon fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/>
           </LinkItem>
         </MenuItem>
       )}
@@ -64,12 +64,12 @@ function AdminMenu() {
         <MenuItem>
           <LinkItem to="/your-news">
            <NewspaperIcon 
-  fontSize='large'  sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/>
+  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/>
            
           </LinkItem>
         </MenuItem>
         <MenuItem>
-         <LinkItem to='/product-info'> <ProductionQuantityLimitsIcon  fontSize='large' sx={{ fontSize: { xs: 24, sm: 28, md: 32, lg: 36 } }}/></LinkItem>
+         <LinkItem to='/product-info'> <ProductionQuantityLimitsIcon  fontSize='large' sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/></LinkItem>
         </MenuItem>
     </AdminMenuContainer>
   )
