@@ -23,8 +23,9 @@ const SidebarWrapper = styled.div`
     width: 6px;
   }
   @media (max-width: 900px) {
-     width: 100%;
-     margin : 20px 0;
+     width: 90vw;
+     margin : 10px auto;
+     padding: 10px 10px;
   }
   `
 
@@ -163,7 +164,7 @@ const NewsImage = styled.img`
 `
 
 const PickedSection = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

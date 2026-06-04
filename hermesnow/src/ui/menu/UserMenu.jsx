@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router-dom';
         @media (max-width : 786px) {
         width: 100%;
         justify-content: center;
+        padding: 0;
     
   }
     `

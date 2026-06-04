@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AdminMenu from "../ui/menu/AdminMenu";
 import UserMenu from "../ui/menu/UserMenu";
 import { useAuth } from "../contexts/AuthContext";
 const MenuContainer = styled.div`
   width: 100%;
-  min-width: 400px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -20,17 +19,26 @@ const MenuContainer = styled.div`
     bottom: 0;
     top: auto;
     gap: 0;
-    justify-content: center;
   }
 
 `
+const MenuIcon = styled.div`
+  display:  none;
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+  @media (max-width : 1000px) {
+     display: block;
+  }
+`
 function Menu() {
    const { user } = useAuth()
+   const [isOpenMenu , setIsOpenMenu] = useState(true)
   return (
     <MenuContainer>
+    <MenuIcon onClick={() => setIsOpenMenu(!isOpenMenu)}>...</MenuIcon>
       <UserMenu />
-     {(user?.IsAdmin || user?.IsMainAdmin) && (
-        <AdminMenu />
+     {(user?.IsAdmin || user?.IsMainAdmin) && (isOpenMenu)  && (
+          <AdminMenu />
       )}
     </MenuContainer>
   );

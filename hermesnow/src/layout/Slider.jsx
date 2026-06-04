@@ -10,7 +10,7 @@ const SliderContainer = styled.div`
     margin: 0 auto;
     overflow: hidden;
 
-
+   
 
 `
 const SlideWrapper = styled.div`

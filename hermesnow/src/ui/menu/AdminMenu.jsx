@@ -10,7 +10,7 @@ import { fadeInRight } from '../../styles/animations'
 import { useAuth } from '../../contexts/AuthContext';
 
 const AdminMenuContainer = styled.main`
-             width: 40%;
+            width: 40%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -18,7 +18,7 @@ const AdminMenuContainer = styled.main`
             animation: ${fadeInRight} 0.3s linear;
               @media (max-width : 786px) {
               width: 100%;
-              justify-content: center;
+              padding: 0;
     
   }
 

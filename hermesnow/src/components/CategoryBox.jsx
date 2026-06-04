@@ -22,14 +22,15 @@ const NewsBox = styled.div`
   &:hover {
   animation: ${shake} 0.3s linear;
   }
+    @media (max-width: 400px) {
+     width: 100vw;
+     height: 20vh;
+     padding: 10px 5px;
+  }
 `
 const NewsImage = styled.img`
   width: 30%;
   height: 100%;
-  @media (max-width : 400px) {
-    /* width: 30%;
-    height: 100px; */
-  }
 `
 
 const NewsContentWrapper = styled.div`

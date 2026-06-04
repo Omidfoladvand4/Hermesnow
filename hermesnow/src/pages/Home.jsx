@@ -14,6 +14,11 @@ const Main = styled.main`
   align-items: flex-start;
   justify-content: space-between;
   margin: 20px;
+  @media (max-width : 400px) {
+     flex-direction: column;
+     align-items: center;
+     margin: 20px 0;
+  }
   `
 const MainContent = styled.div`
   max-width: 70%;
@@ -22,9 +27,13 @@ const MainContent = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 13px 20px;
+    @media (max-width : 400px) {
+     max-width: 100%;
+     margin: 0 auto;
+  }
 `
 const MainNews = styled.div`
-    width: 30%;
+    width: 100%;
     text-align: center;
     position: relative;
     transition : all 0.3s ease ;

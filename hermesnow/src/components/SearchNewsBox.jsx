@@ -11,7 +11,6 @@ const SearchNewsBoxWrapper = styled.div`
     justify-content: space-between;
     border-radius: 8px;
 @media (max-width : 400px) {
-  display: none;
 }
 `;
 

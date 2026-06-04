@@ -10,6 +10,9 @@ const FilterdList = styled.div`
   width: 90%;
   margin: 15px auto;
   background-color: white;
+  @media (max-width : 400px) {
+    width: 100%;
+  }
 `
 
 const FilterItemLink = styled(Link)`
@@ -47,10 +50,15 @@ const FiltredItemContent = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 16px;
+  @media (max-width:  400px) {
+       justify-content: space-between;
+       gap: 5px;
+  }
   `
   const FiltredDate = styled.div`
       color: var(--color-accent);
       opacity: 0.7;
+      font-size: var(--font-size-base);
   `
 function MainNewsSction() {
     const { news }  =  useNews()

@@ -5,7 +5,11 @@ import CategoryBox from "./CategoryBox";
 import { Link } from "react-router-dom";
 
 const CategoryContainer = styled.main`
-  width: 100%;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background: var(--color-info);
 `
 const CategoryBoxWrapper = styled.div`
@@ -16,6 +20,13 @@ const CategoryBoxWrapper = styled.div`
   justify-content: start;
   margin:  0 auto;
   padding: 10px;
+  @media (max-width: 400px) {
+      width: 100%;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+  }
 `
 const CategoryNavbar = styled.div`
   width: 100%;
@@ -50,6 +61,9 @@ width:  60%;
 max-height: 60vh;
 overflow: hidden;
 position: relative;
+  @media (max-width: 400px) {
+      width: 100%;
+  }
   
 `
 const HeaderNewsImage = styled.img`
@@ -77,6 +91,11 @@ const BoxsContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px 15px;
+    @media (max-width: 400px) {
+     width: 100%;
+     padding: 1px 0;
+     gap: 1px;
+  }
 `;
 
 function CategoryBoxs({ datas, subject}) {
