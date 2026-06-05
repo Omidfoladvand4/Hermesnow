@@ -3,9 +3,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSignup } from "../hooks/useSignup";
-import Navigations from "./Navigations";
 import { slideInStagger } from "../styles/animations";
-import bgImage from "../assets/HermesNowBannar1.jpg";
 
 const SingupContainer = styled.div`
   width: 100%;
@@ -14,10 +12,6 @@ const SingupContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgImage});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   position: fixed;
   top: 0;
   z-index: 120;
@@ -32,7 +26,7 @@ const SignupWrapper = styled.form`
   flex-wrap: wrap;
   gap: 10px;
   padding: 15px 10px;
-  background-color: var(--color-info);
+  background-color: var(--color-accent);
   margin-top: 10px;
   @media (max-width: 768px) {
     width: 50%;
@@ -65,7 +59,7 @@ const InputFeild = styled.input`
   width: 90%;
   padding: 10px 5px;
   color:  white;
-  background-color: var(--color-accent);
+  background-color: var(--color-info);
 `;
 
 const ErrorFelid = styled.div`
@@ -117,7 +111,7 @@ const LoginLink = styled.div`
 `;
 const LoginRoute = styled.p`
   font-size: var(--font-size-md);
-  color: var(--color-accent);
+  color: var(--color-info);
   font-weight: 700;
 `;
 const Signup = () => {
@@ -157,12 +151,6 @@ const Signup = () => {
 
   return (
     <SingupContainer>
-      <Navigations
-        titleName="ثبت نام"
-        font="var(--font-size-lg)"
-        color="var(--color-primary)">
-        {" "}
-      </Navigations>
 
       <SignupWrapper onSubmit={formik.handleSubmit}>
 

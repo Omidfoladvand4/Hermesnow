@@ -35,7 +35,9 @@ function Menu() {
    const [isOpenMenu , setIsOpenMenu] = useState(true)
   return (
     <MenuContainer>
-    <MenuIcon onClick={() => setIsOpenMenu(!isOpenMenu)}>...</MenuIcon>
+    {(user?.IsAdmin || user?.IsMainAdmin) && 
+     <MenuIcon onClick={() => setIsOpenMenu(!isOpenMenu)}>...</MenuIcon>
+    }
       <UserMenu />
      {(user?.IsAdmin || user?.IsMainAdmin) && (isOpenMenu)  && (
           <AdminMenu />

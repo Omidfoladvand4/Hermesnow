@@ -2,7 +2,7 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'
-import { data, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { useAuth } from '../contexts/AuthContext'
 import { Link } from "react-router-dom"
@@ -16,7 +16,7 @@ const LoginWrapper = styled.form`
   flex-wrap: wrap;
   gap: 10px;
   padding: 15px 10px;
-  background-color: var(--color-info);
+  background-color: var(--color-accent);
   margin-top: 10px;
   @media (max-width: 768px) {
     width: 50%;
@@ -39,7 +39,7 @@ const FormContainer = styled.div`
 
 const LabelFelid = styled.label`
   font-weight: bolder;
-  color: var(--color-primary);
+  color: white;
   display: block;
   font-size: var(--font-size-xl);
   font-weight: 900;
@@ -49,7 +49,7 @@ const InputFeild = styled.input`
   width: 90%;
   padding: 10px 5px;
   color: white;
-  background-color: var(--color-accent);
+  background-color: var(--color-info);
   border: none;
   border-radius: 5px;
 `
@@ -91,7 +91,7 @@ const LoginLink = styled.div`
 
 const SignupRoute = styled.p`
   font-size: var(--font-size-md);
-  color: var(--color-accent);
+  color: var(--color-info);
   font-weight: 700;
 `
 
