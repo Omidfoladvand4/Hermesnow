@@ -244,7 +244,7 @@ function Sidebar() {
   return (
     <SidebarWrapper>
       <UserSection>
-        {!user ? (
+        {user ? (
           <WelcomeMessage> سلام {user?.UserName} خوش آمدی </WelcomeMessage>
         ) : (
           <RegisterCard>
