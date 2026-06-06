@@ -18,7 +18,7 @@ const Container = styled.main`
   gap: 25px;
   padding: 5% 15%;
  animation: ${neonPulse} .5s ease ;
-  @media (max-width : 768px) {
+  @media (max-width : 1000px) {
      display: flex;
      align-items: center;
      justify-content: center;
@@ -41,7 +41,7 @@ const BaseContainer = styled.div`
     transform: scale(1.01);
     border-radius: 1px;
   }
-  @media (max-width : 786px) {
+  @media (max-width : 1000px) {
     width: 90vw;
     padding: 5px 0;
   }

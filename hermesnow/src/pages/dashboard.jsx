@@ -42,6 +42,9 @@ const DashboardWrapper = styled.div`
   overflow: hidden;
   animation: ${fadeIn} 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
+    @media (max-width : 1250px) {
+    display: none;
+  }
   
 `
 
@@ -441,15 +444,22 @@ const LoadingOverlay = styled.div`
   animation: ${fadeIn} 0.3s ease-out;
 `
 const DashboardWarning = styled.div`
+   width: 100vw;
+   min-height: 100vh;
    display: none;
-   width: 100%;
-   height: 100%;
    background: linear-gradient(135deg , var(--color-accent) , var(--color-primary)) ;
    color: var(--color-secondary);
    font-weight: 900;
    background-size: 200%;
-   font-size: var(--font-size-md);
+   font-size: var(--font-size-xxl);
+   overflow: hidden;
    animation: ${gradientMove} 0.8s alternate infinite;
+   @media (max-width : 1200px) {
+       display: flex;
+   align-items: center;
+   justify-content: center;
+   }
+
 `
 
 function Dashboard() {
@@ -650,7 +660,7 @@ function Dashboard() {
           </NewsEditorContainer>
         </RightSection>
       </DashboardWrapper>
-      <DashboardWarning>برای مشاهده داشبورد باید با  کامپیوتر وارد شوید </DashboardWarning>
+      <DashboardWarning><div>برای مشاهده باید با کامپیوتر وارد شوید</div></DashboardWarning>
     </DashboardContainer>
   )
 }

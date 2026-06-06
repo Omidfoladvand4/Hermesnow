@@ -19,12 +19,9 @@ const LoginWrapper = styled.form`
   background-color: var(--color-accent);
   margin-top: 10px;
   @media (max-width: 768px) {
-    width: 50%;
-  }
-  @media (max-width: 400px) {
     width: 100%;
-    margin: 0;
   }
+ 
 `
 
 const FormContainer = styled.div`

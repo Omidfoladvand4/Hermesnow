@@ -10,7 +10,6 @@ import Navigations from "../components/Navigations";
 const SettingContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  padding: 20px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -34,7 +33,7 @@ const Form = styled.div`
   margin-top: 10px;
   @media (max-width: 820px) {
     width: 100%;
-    padding: 2px 3px;
+    padding: 12px 4px;
   }
 `;
 

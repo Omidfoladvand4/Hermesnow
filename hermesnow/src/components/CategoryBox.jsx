@@ -22,24 +22,28 @@ const NewsBox = styled.div`
   &:hover {
   animation: ${shake} 0.3s linear;
   }
-    @media (max-width: 400px) {
+    @media (max-width: 768px) {
      width: 100vw;
-     height: 20vh;
+     height: 13vh;
+     padding: 10px 5px;
+  }
+      @media (max-width: 400px) {
      padding: 10px 5px;
   }
 `
 const NewsImage = styled.img`
   width: 30%;
   height: 100%;
+  object-fit: cover;
 `
 
 const NewsContentWrapper = styled.div`
   display: flex;
-  flex: 1;
+  flex-grow: 1;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-   @media (max-width : 400px) {
+   @media (max-width : 768px) {
     padding: 2px;
     width: 100%;
   }

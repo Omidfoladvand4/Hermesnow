@@ -5,7 +5,7 @@ import CategoryBox from "./CategoryBox";
 import { Link } from "react-router-dom";
 
 const CategoryContainer = styled.main`
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@ const CategoryBoxWrapper = styled.div`
   justify-content: start;
   margin:  0 auto;
   padding: 10px;
-  @media (max-width: 400px) {
+  @media (max-width: 768px) {
       width: 100%;
       padding: 0;
       align-items: center;
@@ -68,6 +68,9 @@ position: relative;
   @media (max-width: 400px) {
       width: 100%;
   }
+   @media (max-width: 768px) {
+      width: 100%;
+  }
   
 `
 const HeaderNewsImage = styled.img`
@@ -98,7 +101,7 @@ const BoxsContainer = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px 15px;
-    @media (max-width: 400px) {
+    @media (max-width: 768px) {
      width: 100%;
      padding: 1px 0;
      gap: 1px;

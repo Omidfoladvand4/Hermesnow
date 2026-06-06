@@ -16,8 +16,13 @@ const Main = styled.main`
   margin: 20px;
   @media (max-width : 400px) {
      flex-direction: column;
+     margin: 6px 0;
+  }
+    @media (max-width : 768px) {
+      width: 100%;
+     flex-direction: column;
      align-items: center;
-     margin: 20px 0;
+     margin: 15px 0;
   }
   `
 const MainContent = styled.div`
@@ -27,9 +32,8 @@ const MainContent = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 13px 20px;
-    @media (max-width : 400px) {
+    @media (max-width : 768px) {
      max-width: 100%;
-     margin: 0 auto;
      padding: 0;
   }
 `
@@ -47,17 +51,23 @@ const MainNews = styled.div`
 const MainNewsWrapper = styled.div`
 display: flex;
 flex: 1;
+max-width: 100%;
 align-items: center;
 justify-content: center;
 gap: 5px;
 margin-top: 15px;
 padding: 20px 0;
 overflow: hidden;
+@media (max-width : 768px) {
+   margin: 0 auto;
+
+}
 `
 const MainNewsImage = styled.img`
    width: 100%;
    height: 150px;
    object-fit: cover;
+
 `
 const MainNewsTitle = styled.p`
   position: absolute;

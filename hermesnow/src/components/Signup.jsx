@@ -19,7 +19,7 @@ const SingupContainer = styled.div`
 `;
 
 const SignupWrapper = styled.form`
-  width: 30%;
+  width: 45%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -29,11 +29,7 @@ const SignupWrapper = styled.form`
   background-color: var(--color-accent);
   margin-top: 10px;
   @media (max-width: 768px) {
-    width: 50%;
-  }
-  @media (max-width: 400px) {
     width: 100%;
-    margin: 0;
   }
 `;
 

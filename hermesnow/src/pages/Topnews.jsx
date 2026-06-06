@@ -36,7 +36,7 @@ const FilterTabs = styled.nav`
 const Span = styled.span`
 font-size: var(--font-size-xxl);
 color: var(--color-primary);
-  @media (max-width : 400px) {
+  @media (max-width : 768px) {
       display: none;
   }
 `
