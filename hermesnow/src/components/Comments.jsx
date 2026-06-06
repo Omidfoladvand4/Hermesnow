@@ -15,7 +15,6 @@ const CommentsContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     gap: 20px;
-    background-color: var(--color-primary);
     padding: 3%;
 `
 
@@ -26,8 +25,9 @@ const SubmitCommentBtn = styled.button`
     border-radius: 2px;
     font-weight: 900;
     transition: all .3s ease;
-    font-size: var(--font-size-md);
-    box-shadow: 20px 20px 6px #ffffff2b;
+    font-size: var(--font-size-xl);
+    background-color: var(--color-primary);
+    color: white;
     border-radius: 15px;
     &:hover {
         transform: scale(.95);
@@ -42,14 +42,13 @@ const SubmitCommentBtn = styled.button`
 
 const Input = styled.textarea`
     width: 50vw;
-    height: 50px;
-    padding: 10px 15px;
+    padding: 12px 16px;
     resize: none;
     border: ${props => props.error ? '2px solid red' : '1px solid #ccc'};
     border-radius: 5px;
     font-family: inherit;
     @media (max-width: 400px) {
-         width: 90vw;
+         width: 100vw;
     }
 `
 
@@ -65,18 +64,17 @@ const CommentList = styled.div`
     overflow-y: auto;
     margin-top: 30px;
     @media (max-width: 800px) {
-         width: 100%;
+         width: 100vw;
     }
 `
 
 const CommentItem = styled.div`
     width: 45%;
     margin: 0 auto;
-    background-color: var(--color-secondary);
+    background-color: var(--color-accent);
     padding: 10px 5px;
-    border-radius: 10px;
     margin-bottom: 15px;
-    border-right: 8px solid var(--color-info);
+    border-right: 8px solid var(--color-accent);
     @media (max-width : 800px) {
          width: 100%;
     }
@@ -90,15 +88,22 @@ const CommentHeader = styled.div`
 `
 
 const CommentContent = styled.p`
+    width: 80%;
+    display: block;
+    margin: 0 auto;
     font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-info);
     line-height: 1.6;
 `
 const UserName = styled.div`
-    font-size: var(--font-size-sm);
+color: white;
+    font-size: var(--font-size-md);
 `
 const CommentDate = styled.small`
     color: var(--color-info);
     font-size: var(--font-size-sm);
+    color: white;
 `
 
 const LoginMessage = styled.div`

@@ -30,7 +30,7 @@ const NewsSummary = styled.div`
   width: 60%;
   display: flex;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
   overflow-wrap: break-word;
   color: var(--color-info);
@@ -40,7 +40,6 @@ const NewsSummary = styled.div`
   animation: ${slideInStagger} 0.5s linear;
   @media (max-width: 400px) {
     width: 100%;
-    padding: 0 8px;
   }
 `;
 const NewsMainText = styled.div`
@@ -116,16 +115,17 @@ const Information = styled.div`
   flex-wrap: wrap;
   padding: 4px 12px;
   font-size: var(--font-size-md);
-  background-color: var(--color-primary);
+  background-color: var(--color-info);
   @media (max-width: 400px) {
     padding: 2px;
-    flex-direction: column;
-
+    justify-content: center;
+    margin: 15px auto;
   }
 `;
 const InfomationDate = styled.div`
   font-weight: 900;
   font-size: var(--font-size-md);
+  color: var(--color-accent);
 `
 const InformationLink = styled(Link)`
   font-size: var(--font-size-md);
@@ -240,11 +240,18 @@ function News() {
          <NewsMainText >
            {news.NewsMainText}
          </NewsMainText>
+               <Information>
+        <InformationLink to={`/category/${news.NewsSubject}`}>{news.NewsSubject}</InformationLink>
+        <Journalist> {news.Journalist}</Journalist>
+        <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
+        <InfomationDate>{PersianDate(news)}</InfomationDate>
+      </Information>
           </NewsSummary>
         <NewsImage
           src={news.MainImage || `${posterImage}`}
           alt={news.NewsSubject}
         />
+
       </NewsHeader>
 
 
@@ -262,12 +269,6 @@ function News() {
               </MainContentNewsText>
             ),
           )}
-              <Information>
-        <InformationLink to={`/category/${news.NewsSubject}`}>{news.NewsSubject}</InformationLink>
-        <Journalist> {news.Journalist}</Journalist>
-        <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
-        <InfomationDate>{PersianDate(news)}</InfomationDate>
-      </Information>
         </MainContentNews>
         <Sidebar />
       </MainContent>

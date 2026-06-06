@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Title from "../components/Title";
 import ImageBox from "../components/ImageBox";
-import bgImage from "../assets/HermesNowBannar1.jpg";
 import loginImage from "../assets/LoginImage.png";
 import {
   fadeIn,
@@ -14,18 +12,15 @@ import {
 
 const ProductInfoContainer = styled.div`
   width: 100%;
-  height: max-content;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 2fr 1fr;
-  background: url(${bgImage});
-  background-size: cover;
+  grid-template-rows: 1fr 1fr 2fr ;
   background-attachment: fixed;
-  background-repeat: no-repeat;
   animation: ${fadeIn} 0.3s linear;
 
   @media (max-width: 768px) {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
   }
 `;
@@ -37,11 +32,9 @@ const SummarySection = styled.div`
   flex-direction: column;
   gap: 10px;
   border-radius: 12px;
-  backdrop-filter: blur(25px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   margin: 15px 10px;
   padding: 10px 15px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), blue, gray);
+  background-color: var(--color-accent);
   color: var(--color-secondary);
   animation: ${fadeInUp} 0.3s linear;
   animation-delay: 0.6s;
@@ -62,7 +55,10 @@ const TecItems = styled.ul`
 
 const TecItem = styled.li``;
 const SummaryWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
+  line-height: 1.8;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -70,15 +66,24 @@ const SummaryWrapper = styled.div`
 const ProductDecription = styled.p`
   color: var(--color-secondary);
   font-size: var(--font-size-sm);
+  font-weight: 700;
   font-style: italic;
 `;
+const Title = styled.h4`
+   font-size: var(--font-size-xxl);
+   color: var(--color-primary);
+   margin-bottom: 10px;
+`
 const ToolsWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-around;
   margin-top: 15px;
   padding: 10px 15px;
+  color: var(--color-info);
+  font-weight: 800;
   animation: ${scaleIn} 0.3s linear;
   animation-delay: 0.9s;
 
@@ -103,15 +108,13 @@ const Wrapper = styled.div`
   }
 `;
 const ProducUserExperainseSectiontData = styled.div`
-  grid-column: 3/5;
-  grid-row: 1 / -1;
+  grid-row: 1 /3;
+  grid-column: 5 /3;
   gap: 10px;
   border-radius: 12px;
-  backdrop-filter: blur(25px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-accent);
   margin: 15px 10px;
   padding: 10px 15px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), green, black);
   color: var(--color-secondary);
   @media (max-width: 400px) {
     width: 100%;
@@ -122,7 +125,6 @@ const UserExperainseSectionWrapper = styled.div`
   padding: 10px 15px;
   margin-top: 15px;
   border-radius: 18px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   animation: ${slideInStagger} 0.3s linear;
 
   @media (max-width: 400px) {
@@ -138,16 +140,18 @@ const LoginGuideWrapper = styled.div`
   justify-content: space-evenly;
   gap: 10px;
   margin-top: 15px;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-xxl);
   @media (max-width: 400px) {
     flex-direction: column;
   }
 `;
 const LoginGuideBox = styled.ul`
-  background: var(--color-info);
-  padding: 20px 30px;
-  text-align: center;
   width: 50%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
             
   @media (max-width : 400px ) {
     width: 100%;
@@ -164,37 +168,33 @@ const UserExperainseSectionImage = styled.div`
   }
 `;
 const FeatureSection = styled.div`
-  grid-column: 1/3;
-  grid-row: 3/5;
+  grid-column: -1/1;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 10px;
   border-radius: 12px;
-  backdrop-filter: blur(25px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-accent);
+ 
   margin: 15px 10px;
   padding: 10px 15px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), yellow, black);
   color: var(--color-secondary);
+  font-weight: 900;
 `;
 const FeatureBox = styled.div`
   width: 25%;
-  height: 120px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
   text-align: center;
-  gap: 10px;
-  padding: 15px;
   background-color: var(--color-primary);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
   animation: ${rotateIn} 0.3s linear alternate;
   animation-delay: 0.3s;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-xl);
   cursor: pointer;
   &:hover {
     background-color: transparent;
@@ -203,7 +203,10 @@ const FeatureBox = styled.div`
     color: var(--color-primary);
   }
   @media (max-width: 400px) {
-    height: 60px;
+    width: 100%;
+    font-size: var(--font-size-xl);
+    padding: 8px;
+    height: 10vh;
   }
 `;
 const developerData = {
@@ -237,20 +240,17 @@ const ProductData = {
     "حذف و اضافه کردن خبر",
     "نمایش خبر بر اساس سلیقه شما",
     "قابلیت ثبت نام",
-    "تبدیل متن به صوت در خبرهای انگلیسی",
     "قابلیت شیر کردن اخبار",
-    "تبدیل خبر به فایل پی دی اف",
   ],
 };
 function ProductInfo() {
   return (
     <ProductInfoContainer>
       <SummarySection>
-        <Title titleName="خلاصه" font="var(--font-size-xl)" />
 
         <SummaryWrapper>
           <div>
-            <h4>{ProductData.project.name}</h4>
+            <Title>{ProductData.project.name}</Title>
             <ProductDecription>
               {ProductData.project.description} نسخه :{" "}
               {ProductData.project.version}
@@ -259,7 +259,7 @@ function ProductInfo() {
 
           <ToolsWrapper>
             <Wrapper>
-              <h4>Front end</h4>
+              <Title>Front end</Title>
               <TecItems>
                 {ProductData.technologies.frontend.map((item) => (
                   <TecItem key={item}>{item}</TecItem>
@@ -267,7 +267,7 @@ function ProductInfo() {
               </TecItems>
             </Wrapper>
             <Wrapper>
-              <h4>Back end</h4>
+              <Title>Back end</Title>
               <TecItems>
                 {ProductData.technologies.backend.map((item) => (
                   <TecItem key={item}>{item}</TecItem>
@@ -275,7 +275,7 @@ function ProductInfo() {
               </TecItems>
             </Wrapper>
             <Wrapper>
-              <h4>Authentication</h4>
+              <Title>Authentication</Title>
               <TecItems>
                 {ProductData.technologies.authentication.map((item) => (
                   <TecItem key={item}>{item}</TecItem>
@@ -286,20 +286,16 @@ function ProductInfo() {
         </SummaryWrapper>
       </SummarySection>
       <ProducUserExperainseSectiontData>
-        <Title
-          titleName="برای تجربه کاربری بهتر بهتره"
-          font="var(--font-size-xl)"
-        />
 
         <UserExperainseSectionWrapper>
-          <h4>در صفحه ورود</h4>
+          <Title>در صفحه ورود</Title>
           <LoginGuideWrapper>
             <LoginGuideBox>
               <li>
-                <h5>نام کاربری :</h5> <p>Omid Foladvand</p>
+                <div>نام کاربری :</div> <div>Omid Foladvand</div>
               </li>
               <li>
-                <h5> رمز عبور :</h5> <p>1414Omid1414</p>
+                <div> رمز عبور :</div> <div>1414Omid1414</div>
               </li>
               <li>باید باشه</li>
             </LoginGuideBox>
@@ -308,7 +304,6 @@ function ProductInfo() {
         </UserExperainseSectionWrapper>
       </ProducUserExperainseSectiontData>
       <FeatureSection>
-        <Title titleName="قابلیت ها " font="var(--font-size-xl)" /> <br />
         {ProductData.features.map((feature) => {
           return <FeatureBox>{feature}</FeatureBox>;
         })}

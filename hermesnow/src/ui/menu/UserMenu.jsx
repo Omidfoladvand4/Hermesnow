@@ -42,17 +42,17 @@ function UserMenu() {
   }
   return (
     <UserMenuContainer> 
-        <MenuItem ><LinkItem to = '/'><HomeIcon fontSize='large'   sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/> </LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/live-news'><LiveTvIcon  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/></LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/live-news'><AccessTimeIcon  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/></LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/settings'><SettingsInputCompositeIcon  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/'><HomeIcon fontSize='large'   sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/> </LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/live-news'><LiveTvIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/top-news'><AccessTimeIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/settings'><SettingsInputCompositeIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
 
         
 
           {!user && (
                   <MenuItem>
                     <LinkItem to="/login">
-                      <LoginIcon  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/>
+                      <LoginIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/>
                     </LinkItem>
                   </MenuItem>
                 )}
@@ -60,7 +60,7 @@ function UserMenu() {
                 {user && (
                   <MenuItem >
                      <LinkItem>
-                    <LogoutIcon onClick={handleLogout}  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/>
+                    <LogoutIcon onClick={handleLogout}  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/>
                     </LinkItem>
                   </MenuItem>
                 )}

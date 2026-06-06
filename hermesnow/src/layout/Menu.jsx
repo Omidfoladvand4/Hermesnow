@@ -3,6 +3,8 @@ import styled from "styled-components";
 import AdminMenu from "../ui/menu/AdminMenu";
 import UserMenu from "../ui/menu/UserMenu";
 import { useAuth } from "../contexts/AuthContext";
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 const MenuContainer = styled.div`
   width: 100%;
   display: flex;
@@ -36,7 +38,9 @@ function Menu() {
   return (
     <MenuContainer>
     {(user?.IsAdmin || user?.IsMainAdmin) && 
-     <MenuIcon onClick={() => setIsOpenMenu(!isOpenMenu)}>...</MenuIcon>
+     <MenuIcon onClick={() => setIsOpenMenu(!isOpenMenu)}>
+      {isOpenMenu ? <KeyboardArrowDownIcon /> :  <KeyboardArrowUpIcon />}
+     </MenuIcon>
     }
       <UserMenu />
      {(user?.IsAdmin || user?.IsMainAdmin) && (isOpenMenu)  && (

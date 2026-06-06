@@ -10,12 +10,18 @@ import { useUserManagement } from '../hooks/useUserManagement';
 import { useDeleteNews } from '../hooks/useDeleteNews'
 import SearchNewsBox from '../components/SearchNewsBox';
 import { useNavigate } from 'react-router-dom';
-import { fadeIn ,slideInFromLeft ,slideInFromRight  ,floatAnimation ,shimmer ,borderGlow ,spinGlow  ,gradientMove} from '../styles/animations'
+import { fadeIn ,slideInFromLeft ,slideInFromRight ,borderGlow   ,gradientMove} from '../styles/animations'
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ListItemIcon from '@mui/material/ListItemIcon';
+
 
 const DashboardContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  background: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: start;
@@ -23,18 +29,6 @@ const DashboardContainer = styled.div`
   gap: 20px;
   position: relative;
   overflow-x: hidden;
-  
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(0, 229, 255, 0.03) 0%, transparent 50%);
-    pointer-events: none;
-    animation: ${spinGlow} 20s linear infinite;
-  }
 `
 
 const DashboardWrapper = styled.div`
@@ -44,95 +38,48 @@ const DashboardWrapper = styled.div`
   margin-top: 30px;
   display: grid;
   grid-template-columns: 420px 1fr;
-  background: var(--color-secondary);
   border-radius: 28px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   animation: ${fadeIn} 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
   
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    width: 98%;
-  }
-    @media (max-width: 400px) {
-    display: none;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 28px;
-    padding: 2px;
-    background: linear-gradient(135deg, var(--color-info), var(--color-accent));
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  &:hover::after {
-    opacity: 0.3;
-  }
 `
 
 const UsersContainer = styled.div`
-  background: var(--color-secondary);
   display: flex;
   flex-direction: column;
   height: 85vh;
   border-right: 2px solid var(--color-info);
   animation: ${slideInFromLeft} 0.5s ease-out;
   
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 2px solid var(--color-info);
-    height: auto;
-    min-height: 400px;
-  }
 `
 
 const UsersHeader = styled.div`
   padding: 28px 24px;
-  background: var(--color-primary);
+  background: var(--color-accent);
+  color: var(--color-info);
+  font-weight: 600;
   border-bottom: 2px solid var(--color-info);
   position: relative;
   overflow: hidden;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.1), transparent);
-    animation: ${shimmer} 3s infinite;
-  }
   
   h2 {
-    color: var(--color-secondary);
-    font-size: 22px;
-    font-weight: 800;
+    color: white;
+    font-size: var(--font-size-xl);
+    font-weight: 900;
     margin: 0 0 8px 0;
     display: flex;
     align-items: center;
+    margin-bottom: 16px;
     gap: 12px;
     
-    &::before {
-      content: '⚡';
-      animation: ${floatAnimation} 2s ease-in-out infinite;
-      display: inline-block;
-    }
+
   }
   
   p {
-    color: var(--color-neutral);
-    font-size: 13px;
-    margin: 0;
+    
+    font-size: var(--font-size-base);
   }
 `
 
@@ -143,9 +90,6 @@ const SearchUserBox = styled.div`
   gap: 12px;
   border-bottom: 1px solid var(--color-info);
   
-  @media (max-width: 480px) {
-    flex-direction: column;
-  }
 `
 
 const SearchUserInput = styled.input`
@@ -165,7 +109,6 @@ const SearchUserInput = styled.input`
   &:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
     transform: scale(1.02);
   }
 `
@@ -177,32 +120,17 @@ const SearchBoxBtn = styled.button`
   border-radius: 12px;
   color: var(--color-secondary);
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   
-  &::before {
-    content: '🔍';
-    position: absolute;
-    left: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: all 0.3s ease;
-    opacity: 0;
-  }
-  
   &:hover {
-    background: #a05f58;
+    background: white;
+    text-align: center;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(192, 123, 116, 0.4);
-    padding-right: 40px;
-    
-    &::before {
-      left: 12px;
-      opacity: 1;
-    }
+    color: var(--color-accent);
   }
   
   &:active {
@@ -215,17 +143,6 @@ const UserBoxs = styled.div`
   overflow-y: auto;
   padding: 20px;
   
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background: var(--color-neutral);
-    border-radius: 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-accent);
-    border-radius: 10px;
-  }
 `
 
 const UserBox = styled.div`
@@ -243,26 +160,20 @@ const UserBox = styled.div`
   
   &:hover {
     transform: translateX(8px) translateY(-2px);
-    border-color: var(--color-accent);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  }
-  
-  @media (max-width: 480px) {
-    flex-wrap: wrap;
   }
 `
 
 const UserAvatar = styled.div`
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-info));
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   font-weight: bold;
-  color: var(--color-secondary);
+  color: white;
   transition: all 0.3s ease;
   
   ${UserBox}:hover & {
@@ -275,26 +186,24 @@ const UserInfo = styled.div`
 `
 
 const UserBoxName = styled.div`
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-secondary);
-  font-size: 15px;
+  font-size: var(--font-size-sm);
   margin-bottom: 4px;
 `
 
 const UserBoxId = styled.div`
-  font-size: 11px;
-  color: var(--color-neutral);
-  font-family: monospace;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-accent);
 `
 
 const UserBoxRoll = styled.div`
-  font-size: 11px;
-  padding: 4px 12px;
-  background: rgba(192, 123, 116, 0.15);
+ font-size: var(--font-size-xs);
   border-radius: 20px;
-  color: var(--color-accent);
+  color: white;
   display: inline-block;
-  font-weight: 600;
+  font-weight: 900;
 `
 
 const UserBoxActions = styled.div`
@@ -304,8 +213,8 @@ const UserBoxActions = styled.div`
 `
 
 const AdminBtn = styled.button`
-  padding: 6px 14px;
-  background: ${({$bg}) => $bg || 'rgba(108, 146, 160, 0.2)'};
+  padding: 4px 12px;
+  background: var(--color-accent);
   border: none;
   border-radius: 10px;
   color: var(--color-secondary);
@@ -333,9 +242,6 @@ const RightSection = styled.div`
   background: var(--color-secondary);
   animation: ${slideInFromRight} 0.5s ease-out;
   
-  @media (max-width: 1024px) {
-    height: auto;
-  }
 `
 
 const StatsContainer = styled.div`
@@ -344,39 +250,19 @@ const StatsContainer = styled.div`
   border-bottom: 1px solid var(--color-info);
   position: relative;
   
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, 
-      transparent, 
-      var(--color-accent), 
-      var(--color-info), 
-      transparent
-    );
-  }
 `
 
 const StatsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
 `
 
 const StatCard = styled.div`
-  background: var(--color-primary);
+  background: var(--color-accent);
+  color: white;
+  font-size: var(--font-size-xl);
+  font-weight: 900;
   border-radius: 20px;
   padding: 20px;
   text-align: center;
@@ -386,27 +272,11 @@ const StatCard = styled.div`
   position: relative;
   overflow: hidden;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.1), transparent);
-    transition: all 0.5s ease;
-    transform: translate(-50%, -50%);
-  }
-  
   &:hover {
     transform: translateY(-6px) scale(1.02);
     border-color: var(--color-accent);
     animation: ${borderGlow} 1s ease-in-out infinite;
     
-    &::before {
-      width: 200px;
-      height: 200px;
-    }
   }
   
   &:active {
@@ -415,7 +285,6 @@ const StatCard = styled.div`
 `
 
 const StatIcon = styled.div`
-  font-size: 32px;
   margin-bottom: 8px;
   transition: all 0.3s ease;
   
@@ -425,9 +294,9 @@ const StatIcon = styled.div`
 `
 
 const StatValue = styled.div`
-  font-size: 28px;
+  font-size: var(--font-size-xxl);
   font-weight: 800;
-  color: var(--color-accent);
+  color: white;
   margin-bottom: 6px;
   transition: all 0.3s ease;
   
@@ -437,8 +306,8 @@ const StatValue = styled.div`
 `
 
 const StatLabel = styled.div`
-  font-size: 12px;
-  color: var(--color-neutral);
+  font-size: var(--font-size-xl);
+  color: var(--color-info);
   font-weight: 600;
 `
 
@@ -446,14 +315,10 @@ const NewsEditorContainer = styled.div`
   flex: 1;
   padding: 20px;
   overflow: hidden;
-  
-  @media (max-width: 1024px) {
-    overflow: visible;
-  }
 `
 
 const NewsEditorWrapper = styled.div`
-  background: var(--color-primary);
+  background: var(--color-accent);
   border-radius: 20px;
   height: 100%;
   display: flex;
@@ -482,7 +347,7 @@ const NewsEditorTable = styled.table`
 
 const NewsEditorTableCaption = styled.caption`
   padding: 14px;
-  font-size: 15px;
+  font-size: var(-font-size-xxl);
   font-weight: 700;
   color: var(--color-secondary);
   background: var(--color-primary);
@@ -495,15 +360,15 @@ const Th = styled.th`
   padding: 14px 12px;
   text-align: right;
   color: var(--color-secondary);
-  font-size: 12px;
+  font-size: var(--font-size-md);
   font-weight: 700;
   border-bottom: 1px solid var(--color-info);
 `
 
 const Td = styled.td`
   padding: 12px 12px;
-  color: var(--color-neutral);
-  font-size: 12px;
+  color: white;
+  font-size: var(--font-size-sm);
   border-bottom: 1px solid rgba(108, 146, 160, 0.15);
 `
 
@@ -540,7 +405,6 @@ const ActionButton = styled.button`
   &:hover {
     background: var(--color-accent);
     transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
   }
   
   &:active {
@@ -570,8 +434,6 @@ const LoadingOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -588,16 +450,6 @@ const DashboardWarning = styled.div`
    background-size: 200%;
    font-size: var(--font-size-md);
    animation: ${gradientMove} 0.8s alternate infinite;
-   @media (max-width : 400px) {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     position: absolute;
-     top: 0;
-     left: 0;
-     z-index: 1001;
-     
-   }
 `
 
 function Dashboard() {
@@ -683,7 +535,7 @@ function Dashboard() {
       <DashboardWrapper>
         <UsersContainer>
           <UsersHeader>
-            <h2>👥 مدیریت کاربران</h2>
+            <h2><AccountCircleIcon /> مدیریت کاربران</h2>
             <p>{stats.totalUsers} کاربر فعال در سیستم</p>
           </UsersHeader>
           
@@ -702,7 +554,7 @@ function Dashboard() {
               <Loader />
             ) : noUsersFound ? (
               <div style={{ textAlign: 'center', padding: 40, color: 'var(--color-neutral)' }}>
-                🔍 کاربری با این نام یافت نشد
+                 کاربری با این نام یافت نشد
               </div>
             ) : (
               displayUsers.map((user, index) => (
@@ -712,7 +564,7 @@ function Dashboard() {
                     <UserBoxName>{user.UserName}</UserBoxName>
                     <UserBoxId>شناسه: {user.id}</UserBoxId>
                   </UserInfo>
-                  <UserBoxRoll>{user.IsAdmin ? '👑 ادمین' : '👤 کاربر عادی'}</UserBoxRoll>
+                  <UserBoxRoll >{user.IsAdmin ? <AdminPanelSettingsIcon /> : <AccountCircleIcon />}</UserBoxRoll>
                   <UserBoxActions>
                     <AdminBtn 
                       onClick={() => handleChangeRoll(user)}
@@ -733,22 +585,22 @@ function Dashboard() {
           <StatsContainer>
             <StatsGrid>
               <StatCard>
-                <StatIcon>👥</StatIcon>
+                <StatIcon><AccountCircleIcon /></StatIcon>
                 <StatValue>{stats.totalUsers}</StatValue>
                 <StatLabel>کل کاربران</StatLabel>
               </StatCard>
               <StatCard>
-                <StatIcon>📰</StatIcon>
+                <StatIcon><NewspaperIcon /></StatIcon>
                 <StatValue>{stats.totalNews}</StatValue>
                 <StatLabel>کل اخبار</StatLabel>
               </StatCard>
               <StatCard>
-                <StatIcon>👑</StatIcon>
+                <StatIcon><AdminPanelSettingsIcon /></StatIcon>
                 <StatValue>{stats.admins}</StatValue>
                 <StatLabel>ادمین‌ها</StatLabel>
               </StatCard>
               <StatCard>
-                <StatIcon>🔥</StatIcon>
+                <StatIcon> <WhatshotIcon /></StatIcon>
                 <StatValue>{stats.trending}</StatValue>
                 <StatLabel>خبر ترند</StatLabel>
               </StatCard>
@@ -760,7 +612,7 @@ function Dashboard() {
               <SearchNewsBox filterNewsHandler={filteredNews}/>
               <div style={{ overflowY: 'auto', flex: 1 }}>
                 <NewsEditorTable>
-                  <NewsEditorTableCaption>📋 لیست آخرین اخبار سایت</NewsEditorTableCaption>
+                  <NewsEditorTableCaption>لیست آخرین اخبار سایت</NewsEditorTableCaption>
                   <TableHeader>
                     <tr>
                       <Th>عنوان خبر</Th>
@@ -775,18 +627,18 @@ function Dashboard() {
                     {getNewsLoading ? (
                       <tr><Td colSpan="6" style={{ textAlign: 'center' }}><Loader /></Td></tr>
                     ) : searchedNews.length === 0 ? (
-                      <tr><Td colSpan="6" style={{ textAlign: 'center' }}>📭 خبری برای نمایش وجود ندارد</Td></tr>
+                      <tr><Td colSpan="6" style={{ textAlign: 'center' }}> خبری برای نمایش وجود ندارد</Td></tr>
                     ) : (
                       searchedNews.map((item, index) => (
                         <TableRow key={item.id} style={{ animationDelay: `${index * 0.03}s` }}>
-                          <Td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.NewsTitle}</Td>
-                          <Td><span style={{ background: 'rgba(192, 123, 116, 0.15)', padding: '4px 12px', borderRadius: 20, fontSize: 11, color: 'var(--color-accent)' }}>{item.NewsSubject}</span></Td>
+                          <Td style={{ maxWidth: 250, fontWeight : '900', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.NewsTitle}</Td>
+                          <Td><span style={{ background: 'var(--color-primary)', fontWeight : '900' , padding: '4px 12px', fontSize: 18, color: 'var(--color-accent)' }}>{item.NewsSubject}</span></Td>
                           <Td>{item.MainImage ? <TableImage src={item.MainImage} /> : '—'}</Td>
                           <Td>{item.Journalist || '—'}</Td>
                           <Td>{new Date(item.NewsDate).toLocaleDateString('fa-IR')}</Td>
                           <Td>
-                            <ActionButton onClick={() => navigage(`/news/${item.id}`)}>👁️</ActionButton>
-                            <ActionButton onClick={() => deleteNewsHandler(item.id)}>🗑️</ActionButton>
+                            <ActionButton onClick={() => navigage(`/news/${item.id}`)}><EditIcon /></ActionButton>
+                            <ActionButton onClick={() => deleteNewsHandler(item.id)}><DeleteIcon /></ActionButton>
                           </Td>
                         </TableRow>
                       ))

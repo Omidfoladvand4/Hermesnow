@@ -5,6 +5,17 @@ import styled from "styled-components";
 import { supabase } from "../lib/supabaseClient";
 import ImageUploader from "../components/ImageUploder";
 import { rotateIn } from "../styles/animations";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import TitleIcon from '@mui/icons-material/Title';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import NotesIcon from '@mui/icons-material/Notes';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import QuoteIcon from '@mui/icons-material/FormatQuote';
+import ListIcon from '@mui/icons-material/List';
+import DeleteIcon from '@mui/icons-material/Delete';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 const NewsEditorContainer = styled.main`
   width: 100%;
   display: flex;
@@ -12,9 +23,11 @@ const NewsEditorContainer = styled.main`
   justify-content: space-around;
   flex-direction: column;
   padding: 20px;
-  background: var(--color-secondary);
   min-height: 100vh;
   animation: ${rotateIn} 0.3s linear;
+  @media (max-width : 400px ) {
+     padding: 0;
+  }
 `;
 
 const ToggleSwitch = styled.div`
@@ -34,7 +47,7 @@ const ToggleButton = styled.button`
   border: none;
   border-radius: 20px;
   background: ${(props) =>
-    props.active ? "var(--color-accent)" : "transparent"};
+    props.active ? "var(--color-primary)" : "transparent"};
   color: ${(props) =>
     props.active ? "var(--color-secondary)" : "var(--color-primary)"};
   cursor: pointer;
@@ -49,7 +62,7 @@ const ToggleButton = styled.button`
 
   &:hover {
     background: ${(props) =>
-      props.active ? "var(--color-accent)" : "var(--color-info)"};
+      props.active ? "var(--color-primary)" : "var(--color-info)"};
     color: var(--color-secondary);
     transform: ${(props) => (!props.active ? "translateY(-2px)" : "none")};
   }
@@ -64,12 +77,12 @@ const NewsEditorForm = styled.form`
   gap: 20px;
   padding: 20px;
   margin: 15px 0;
-  background-color: var(--color-primary);
+  background-color: var(--color-accent);
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(40, 41, 41, 0.1);
   border: 2px solid var(--color-info);
   @media (max-width: 768px) {
-    width: 100%;
+    width: 90%;
     gap: 10px;
     padding: 10px;
   }
@@ -92,9 +105,9 @@ const PreviewContainer = styled.div`
 
 const Label = styled.label`
   font-size: var(--font-size-md);
-  font-weight: 400;
+  font-weight: 700;
   display: block;
-  color: var(--color-accent);
+  color: var(--color-primary);
   margin-bottom: 6px;
 `;
 
@@ -265,7 +278,7 @@ const ElementItem = styled.div`
   padding: 25px;
   margin-bottom: 20px;
   border-radius: 12px;
-  background: var(--color-secondary);
+  background: white;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(108, 146, 160, 0.1);
 
@@ -288,22 +301,6 @@ const ElementHeader = styled.div`
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
-  }
-`;
-
-const ColorPicker = styled.input`
-  width: 50px;
-  height: 35px;
-  border: 2px solid var(--color-neutral);
-  border-radius: 6px;
-  cursor: pointer;
-  margin-right: 15px;
-  background: var(--color-secondary);
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: var(--color-accent);
-    transform: scale(1.05);
   }
 `;
 
@@ -358,7 +355,7 @@ const DangerButton = styled(ActionButton)`
 const ElementTextArea = styled.textarea`
   width: 100%;
   padding: 15px;
-  border: 2px solid var(--color-neutral);
+  border: 2px solid var(--color-secondary);
   border-radius: 10px;
   font-size: var(--font-size-sm);
   transition: all 0.3s ease;
@@ -384,7 +381,7 @@ const ElementTextArea = styled.textarea`
 const ElementInput = styled.input`
   width: 100%;
   padding: 15px;
-  border: 2px solid var(--color-neutral);
+  border: 2px solid var(--color-secondary);
   border-radius: 10px;
   font-size: var(--font-size-sm);
   transition: all 0.3s ease;
@@ -415,7 +412,7 @@ const ElementLabel = styled.label`
 `;
 
 const ErrorMessage = styled.div`
-  color: var(--color-accent);
+  color: red;
   font-size: var(--font-size-xs);
   margin-top: 5px;
   font-weight: 600;
@@ -451,12 +448,12 @@ const FormRow = styled.div`
 `;
 const ElementManager = ({ formik }) => {
   const [availableElements, setAvailableElements] = useState([
-    { type: "h1", label: "عنوان اصلی", icon: "📌", added: false },
-    { type: "h2", label: "زیرعنوان", icon: "📍", added: false },
-    { type: "p", label: "پاراگراف", icon: "📝", added: false },
-    { type: "img", label: "تصویر", icon: "🖼️", added: false },
-    { type: "quote", label: "نقل قول", icon: "💬", added: false },
-    { type: "list", label: "لیست", icon: "📋", added: false },
+    { type: "h1", label: "عنوان اصلی", icon: <TitleIcon /> , added: false },
+    { type: "h2", label: "زیرعنوان", icon: <LooksTwoIcon /> , added: false },
+    { type: "p", label: "پاراگراف", icon: <NotesIcon />, added: false },
+    { type: "img", label: "تصویر", icon: <AddPhotoAlternateIcon /> , added: false },
+    { type: "quote", label: "نقل قول", icon: <QuoteIcon /> , added: false },
+    { type: "list", label: "لیست", icon: <ListIcon />, added: false },
   ]);
 
   const addElement = (elementType) => {
@@ -512,7 +509,7 @@ const ElementManager = ({ formik }) => {
   return (
     <div style={{ width: "100%" }}>
       <div style={{ marginBottom: "30px" }}>
-        <Label>🎛️ انتخاب نوع محتوا</Label>
+        <Label> انتخاب نوع محتوا</Label>
         <ElementGrid>
           {availableElements.map((element) => (
             <ElementCard
@@ -536,7 +533,7 @@ const ElementManager = ({ formik }) => {
 
       {formik.values.content.length > 0 && (
         <div>
-          <Label>📋 المان‌های اضافه شده ({formik.values.content.length})</Label>
+          <Label> <ListIcon /> المان‌های اضافه شده ({formik.values.content.length})</Label>
 
           {formik.values.content.map((element, index) => {
             const elementInfo = availableElements.find(
@@ -563,18 +560,6 @@ const ElementManager = ({ formik }) => {
                       <span>{elementInfo?.icon}</span>
                       {elementInfo?.label}
                     </span>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <ElementLabel style={{ margin: 0, marginLeft: "10px" }}>
-                        رنگ:
-                      </ElementLabel>
-                      <ColorPicker
-                        type="color"
-                        value={element.color}
-                        onChange={(e) =>
-                          updateElementContent(index, "color", e.target.value)
-                        }
-                      />
-                    </div>
                   </div>
 
                   <ActionButtons>
@@ -582,18 +567,18 @@ const ElementManager = ({ formik }) => {
                       type="button"
                       onClick={() => moveElement(index, "up")}
                       disabled={index === 0}>
-                      ⬆️ بالا
+                      <KeyboardArrowUpIcon /> بالا
                     </ActionButton>
                     <ActionButton
                       type="button"
                       onClick={() => moveElement(index, "down")}
                       disabled={index === formik.values.content.length - 1}>
-                      ⬇️ پایین
+                      <KeyboardArrowDownIcon /> پایین
                     </ActionButton>
                     <DangerButton
                       type="button"
                       onClick={() => removeElement(index, element.element)}>
-                      🗑️ حذف
+                      <DeleteIcon />  حذف
                     </DangerButton>
                   </ActionButtons>
                 </ElementHeader>
@@ -654,8 +639,13 @@ const PreviewContent = ({ formik }) => {
             color: "var(--color-neutral)",
             padding: "40px",
             fontStyle: "italic",
+            display : 'flex',
+            alignItems : 'center',
+            justifyContent : 'center',
+            margin : ' 0 auto',
+            fontSize : 'var(--font-size-md)'
           }}>
-          📝 محتوایی برای نمایش وجود ندارد. لطفا در تب ویرایشگر محتوا اضافه
+          <NotesIcon /> محتوایی برای نمایش وجود ندارد. لطفا در تب ویرایشگر محتوا اضافه
           کنید.
         </div>
       );
@@ -911,13 +901,13 @@ function NewsEditor() {
           type="button"
           active={activeTab === "editor"}
           onClick={() => setActiveTab("editor")}>
-          ✏️ ویرایشگر
+          <EditNoteIcon /> ویرایشگر
         </ToggleButton>
         <ToggleButton
           type="button"
           active={activeTab === "preview"}
           onClick={() => setActiveTab("preview")}>
-          👁️ پیش‌نمایش
+          <VisibilityIcon /> پیش‌نمایش
         </ToggleButton>
       </ToggleSwitch>
 

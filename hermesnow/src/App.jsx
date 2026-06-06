@@ -10,10 +10,12 @@ const AppContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100vw;
   margin-top: 80px;
   position: relative;
   @media (max-width : 400px) {
-     margin-top: 0;
+    margin-top: 0;
+    margin-bottom: 50px;
   }
 `;
 function App() {

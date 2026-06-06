@@ -21,20 +21,21 @@ const FilterTabs = styled.nav`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 0 auto;
     padding: 10px 20px;
-    color: var(--color-primary);
     background: var(--color-info);
     font-weight: 900;
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-xl);
     @media (max-width : 400px){
       width: 100%;
       font-size: var(--font-size-md);
-
+      
     }
     `
 const Span = styled.span`
+font-size: var(--font-size-xxl);
+color: var(--color-primary);
   @media (max-width : 400px) {
       display: none;
   }
@@ -44,15 +45,14 @@ const FilterTab = styled.div`
      text-align: center;
 `
 const FilterdNewsBox = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: flex-start;
   flex-wrap: wrap;
   margin: 1rem auto;
   padding: 1rem;
   gap: 1rem;
-  background: var(--color-primary);
       @media (max-width : 400px){
       width: 100%;
 
@@ -92,7 +92,6 @@ function Topnews() {
   }
   return (
     <TopNewsWrapper>
-        <Title titleName={'خبر های داغ '}  font={`var(--font-size-md)`}/>
         <FilterBox>
           <FilterTabs> 
             <Span> فیلتر کردن به اساس :</Span>

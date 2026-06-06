@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import Navigations from "../components/Navigations";
-import bgImage from "../assets/HermesNowBannar1.jpg";
 
 const SettingContainer = styled.div`
   width: 100%;
@@ -17,10 +16,6 @@ const SettingContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgImage});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   position: fixed;
   top: 0;
   left: 0;
@@ -35,9 +30,7 @@ const Form = styled.div`
   gap: 20px;
   padding: 15px 10px;
   flex-direction: column;
-  border-radius: 12px;
-  backdrop-filter: blur(25px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-accent);
   margin-top: 10px;
   @media (max-width: 820px) {
     width: 100%;
@@ -66,10 +59,11 @@ const Input = styled.input`
 
 const Label = styled.label`
   font-weight: bolder;
-  color: var(--color-secondary);
+  color: var(--color-primary);
+  font-weight: 900;
   display: block;
   margin-bottom: 8px;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-xl);
 `;
 
 const ErrorMessage = styled.div`
@@ -91,7 +85,8 @@ const NextButton = styled.button`
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: 1.2rem;
+  font-size: var(--font-size-xl);
+  font-weight: 900;
   cursor: pointer;
 
   &:disabled {
@@ -106,17 +101,19 @@ const PrevButton = styled.button`
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-xl);
+  font-weight: 900;
   cursor: pointer;
 `;
 
 const SaveButton = styled.button`
-  background: var(--color-accent);
-  color: var(--color-secondary);
+  background: red;
+  color: white;
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-xl);
+  font-weight: 900;
   cursor: pointer;
 `;
 
@@ -135,8 +132,8 @@ const StepCircle = styled.div`
   align-items: center;
   justify-content: center;
   background: ${(props) =>
-    props.$active ? "var(--color-info)" : "var(--color-primary)"};
-  color: ${(props) => (props.$active ? "var(--color-neutral)" : "#666")};
+    props.$active ? "var(--color-primary)" : "var(--color-info)"};
+   color: white;
   font-weight: bold;
 `;
 
@@ -251,14 +248,11 @@ function Setting() {
       if (Object.keys(errors).length > 0) {
         return;
       }
-
-      // Combine all data
       const finalData = {
         ...formData,
         ...formik3.values,
       };
 
-      // Update in Supabase
       const { error } = await supabase
         .from("Users")
         .update(finalData)
@@ -429,10 +423,6 @@ function Setting() {
 
   return (
     <SettingContainer>
-      <Navigations
-        color={`var(--color-primary)`}
-        font="28px"
-        titleName="تنظیمات"></Navigations>
       <StepIndicator>
         <StepCircle $active={currentStep >= 1}>1</StepCircle>
         <StepCircle $active={currentStep >= 2}>2</StepCircle>

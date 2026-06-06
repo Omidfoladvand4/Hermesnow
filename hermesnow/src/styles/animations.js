@@ -70,7 +70,7 @@ export const glowPulse = keyframes`
 
 export const borderGlow = keyframes`
   0% { border-color: var(--color-info); box-shadow: 0 0 5px rgba(0, 229, 255, 0.3); }
-  50% { border-color: var(--color-accent); box-shadow: 0 0 20px rgba(229, 9, 20, 0.5); }
+  50% { border-color: var(--color-accent); box-shadow: 0 0 20px var(--color-accent); }
   100% { border-color: var(--color-info); box-shadow: 0 0 5px rgba(0, 229, 255, 0.3); }
 `
 

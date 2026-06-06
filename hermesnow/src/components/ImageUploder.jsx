@@ -10,7 +10,7 @@ const UploadContainer = styled.div`
 `;
 
 const UploadButton = styled.label`
-  background-color: var(--color-accent);
+  background-color: var(--color-primary);
   color: var(--color-secondary);
   padding: 12px 20px;
   border-radius: 8px;
@@ -24,9 +24,7 @@ const UploadButton = styled.label`
   font-family: vazir;
 
   &:hover {
-    background-color: #b36962;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(192, 123, 116, 0.3);
   }
 
   &:disabled {
@@ -94,8 +92,8 @@ function ImageUploader({ value, onChange, bucketName = 'News_Images' }) {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      setError('حجم فایل نباید بیشتر از ۵ مگابایت باشد');
+    if (file.size > 3 * 1024 * 1024) {
+      setError('حجم فایل نباید بیشتر از 3 مگابایت باشد');
       return;
     }
 
@@ -159,7 +157,7 @@ function ImageUploader({ value, onChange, bucketName = 'News_Images' }) {
           disabled={uploading}
         />
         <UploadButton htmlFor="image-upload" disabled={uploading}>
-          {uploading ? '⏳ در حال آپلود...' : '📸 انتخاب تصویر'}
+          {uploading ? ' در حال آپلود...' : ' انتخاب تصویر'}
         </UploadButton>
       </div>
 
