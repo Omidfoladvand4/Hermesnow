@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Title from "./Title";
 import CategoryBox from "./CategoryBox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CategoryContainer = styled.main`
   width: 100%;
@@ -124,6 +124,11 @@ function CategoryBoxs({ datas, subject}) {
   if (filtredNewsData.length === 0) return null;
  const headerNewsImage = filtredNewsData.slice(-1)[0].MainImage
  const headerNewsTitle = filtredNewsData.slice(-1)[0].NewsTitle
+ const navigate = useNavigate()
+
+ const handleClick = () => {
+     navigate(`/category/${subject}`)
+ }
   return (
     <CategoryContainer>
       <CategoryNavbar>
@@ -136,7 +141,7 @@ function CategoryBoxs({ datas, subject}) {
       </CategoryNavbar>
       <CategoryBoxWrapper>
         <HeaderNews>
-        <HeaderNewsImage  src={headerNewsImage} />
+        <HeaderNewsImage onClick={handleClick} src={headerNewsImage} />
         <HeadearNewsTitle>{headerNewsTitle}</HeadearNewsTitle>
       </HeaderNews>
       <BoxsContainer>

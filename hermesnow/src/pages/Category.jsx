@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import CategoryBox from '../components/CategoryBox';
 import Title from '../components/Title';
 import Loader from '../components/Loader';
-import bgImage from '../assets/HermesNowBannar1.jpg'
 
 const Container = styled.div`
   width: 100vw;
@@ -13,16 +12,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background : url(${bgImage});
-  background-size: cover;
-  background-position: center;
 `;
 
 const Header = styled.div`
   width: 100%;
-  padding: 20px;
-  margin-bottom: 20px;
   border-bottom: 2px solid var(--color-primary);
   text-align: center;
 `;
@@ -44,10 +37,11 @@ const NewsGrid = styled.div`
 `;
 
 const EmptyMessage = styled.div`
-  color: var(--color-info);
-  font-size: 18px;
+  color: var(--color-primary);
+  font-size: var(--font-size-xxl);
   text-align: center;
   padding: 50px;
+  font-weight: 900;
 `;
 
 function Category() {
@@ -61,8 +55,6 @@ function Category() {
       const filtered = news.filter(item => item.NewsSubject === subject);
       setFilteredNews(filtered);
       setHeaderTitle(subject)
-      console.log('موضوع:', subject);
-      console.log('اخبار فیلتر شده:', filtered);
     }
   }, [subject, news]);
 
@@ -83,7 +75,7 @@ function Category() {
         </NewsGrid>
       ) : (
         <EmptyMessage>
-          هیچ خبری در دسته‌بندی {headerTitle} یافت نشد  :    <Link to= '/'>رفتن به صفحه اصلی</Link>
+          هیچ خبری در دسته‌بندی ({headerTitle}) یافت نشد  :    <Link to= '/'>رفتن به صفحه اصلی</Link>
         </EmptyMessage>
       )}
     </Container>

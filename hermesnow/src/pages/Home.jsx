@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "../layout/Header";
 import Sidebar from '../components/Sidebar'
-import { supabase } from "../lib/supabaseClient";
 import CategoryBoxs from "../components/CategoryBoxs";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
@@ -9,6 +8,7 @@ import styled from "styled-components";
 import ButtonMenu from "../ui/menu/UserMenu";
 import SearchNewsBox from "../components/SearchNewsBox";
 import MainNewsSction from "../components/MainNewsSction";
+import { useNews } from "../hooks/useGetNews";
 const Main = styled.main`
   display: flex;
   align-items: flex-start;
@@ -77,59 +77,83 @@ const MainNewsTitle = styled.p`
   font-size: var(--font-size-xl);
   font-weight: 900;
 `
+const SearchNewsContent = styled.div`
+width: 100%;
+height: 200px;
+overflow-y: scroll;
+display: flex;
+align-items: center;
+justify-content: start;
+flex-wrap: wrap;
+background-color: var(--color-primary);
+gap: 10px;
+`
+ const  SearchNewsContentWrapper = styled.div`
+   width: 30%;
+   height: 150px;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   flex-direction : column;
+   background-color: var(--color-accent);
+   color: white;
+   transition: all 0.3s ease;
+   &:hover {
+    transform: scale(1.05);
+   }
+   img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+   }
+   p{
+    margin: 5px;
+   }
+`
 function Home() {
-  const [newsData, setNewsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const newsDataSubjects =  newsData.reduce((acc , item)=> {
-    if(!acc.includes(item.NewsSubject)) {
-      acc.push(item.NewsSubject)
-    }
-    console.log(acc);
-    return acc
-  } , [])
-  useEffect(() => {
-    fetchNews();
-  }, []);
+  const { news } = useNews()
+  const [searchedNews, setSearchedNews] = useState([])
+const newsSubjects = [...new Set(news.map(item => item.NewsSubject))]
+  const mainNews = [...new Map( news.map(news => [news.NewsSubject, news])).values()].slice(-3)
 
-  const fetchNews = async () => {
-    try {
-      setLoading(true);
-
-      const { data, error } = await supabase.from("News").select("*");
-
-      if (error) throw error;
-      setNewsData(data || []);
-    } catch (error) {
-      console.error("خطا در دریافت اخبار:", error);
-      setError("خطا در دریافت اخبار");
-    } finally {
-      setLoading(false);
-    }
-  };
-  const mainNews = newsData.slice(-3) 
-  const getUniqueSubjects = () => {
-    const subjects = [...new Set(newsData.map((news) => news.NewsSubject))];
-    console.log("موضوعات یکتا:", subjects);
-    return subjects;
-  };
+  const FiltredNews = (value) => {
+    if(!value) {
+      setSearchedNews('')
+      
+    }else{
+      const  filredNewsList =  news.filter((item) =>   item.NewsTitle.includes(value))
+      setSearchedNews(filredNewsList)
+      
+  }
+  }
  return (
   <div>
     <Header />
     <Main>
          <MainContent > 
-               {newsData.length !== 0  ?
+               {news.length !== 0  ?
                   <div>
-                    <SearchNewsBox />
+                    <SearchNewsBox  filterNewsHandler={FiltredNews}/>
+                   { searchedNews.length !== 0 && 
+                     <SearchNewsContent>
+                      {searchedNews && searchedNews.map((item) => (
+                        <SearchNewsContentWrapper>
+                            <img src={item.MainImage} alt=""  style={{width : '250px'}}/>
+                             <p>{item.NewsTitle}</p>
+                        </SearchNewsContentWrapper>
+                      ))}
+                    </SearchNewsContent>
+                    }
                    <MainNewsWrapper>
                     {mainNews && mainNews.length !== 0 ?
                        mainNews.map((item) => {
                       return   <MainNews >
-                <Link to={`/category/${item.NewsSubject}`} >
+                           <Link to={`/category/${item.NewsSubject}`} >
                         
                         <MainNewsImage src= {item.MainImage} />
                          <MainNewsTitle>{item.NewsSubject}</MainNewsTitle>
                         </Link>
+        
                     </MainNews>
                        })
                        :
@@ -146,8 +170,8 @@ function Home() {
     </Main>
       
       <>
-        { newsDataSubjects.map((subject) => {
-        return <CategoryBoxs datas={newsData}  subject={subject}/>
+        { newsSubjects.map((subject) => {
+        return <CategoryBoxs datas={news}  subject={subject}/>
       })}
       </>
   </div>

@@ -24,6 +24,7 @@ const SearchBoxInput = styled.input`
     font-size: var(--font-size-md);
     font-family: sans-serif;
     transition: all 0.3s ease;
+     position: relative;
     
     &:focus {
         outline: none;
@@ -58,20 +59,22 @@ const SearchBoxButton = styled.button`
 
 function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
     const [searchValue, setSearchValue] = useState('');
-
     const handleFilterNews = () => {
-        if (filterNewsHandler) {
+        if (filterNewsHandler && searchValue) {
             filterNewsHandler(searchValue);
         }
     };
 
     const handleEnterFilterNews = (e) => {
         setSearchValue(e.target.value);
+        console.log(searchValue);
+        
     };
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleFilterNews();
+
             
         }
     };
@@ -82,8 +85,11 @@ function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
                 value={searchValue} 
                 placeholder='خبر مورد نظر را سرچ کنید' 
                 onChange={handleEnterFilterNews}
-                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyDown}
             />
+            <div>
+
+            </div>
             <SearchBoxButton onClick={handleFilterNews}>
                 جستجو
             </SearchBoxButton>

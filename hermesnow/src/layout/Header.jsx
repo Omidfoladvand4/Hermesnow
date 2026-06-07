@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import HeaderBannar from '../ui/header/HeaderBannar'
 import Slider from '../layout/Slider'
 import styled from 'styled-components'
@@ -49,13 +49,23 @@ const TopNewsTitle =  styled.div`
   font-size: var(--font-size-xxl);
   color: var(--color-primary);
   font-weight: 900;
+  @media (max-width: 768px) {
+      background-color: var(--color-accent);
+      padding: 0 10px;
+  }
   
 `
 function Header() {
   const { news } = useNews()
   const lastNews = [...news].reverse()
   const mostRecentNews = lastNews[0] 
-
+  const navigate = useNavigate()
+  
+  const handleClick = () => {
+    navigate(`/news/${mostRecentNews.id}`)
+    console.log('omid');
+    
+  }
 
   if (!news || news.length === 0) {
     return (
@@ -69,8 +79,9 @@ function Header() {
   return (
     <HeaderWrapper>
       <HeaderBannar />
-      <MainNews>
+      <MainNews >
         <Image 
+          onClick={handleClick}
           src={mostRecentNews?.MainImage || bannerImage} 
           alt={mostRecentNews?.MainTitle || 'خبر اصلی'} 
         />
