@@ -8,6 +8,9 @@ const LiveNewsBox = styled.iframe`
   text-align: center;
   border: none;
   overflow: scroll;
+  @media (max-width: 1024px) {
+    min-height: calc(100vh - 80px);
+  }
 `;
 
 export default function Live() {
@@ -15,7 +18,7 @@ export default function Live() {
   useEffect(() => {
   const timer = setTimeout(() => {
     setIsLoading(false);  
-  }, 8000);
+  }, 4000);
   
   return () => clearTimeout(timer);
 }, []);
