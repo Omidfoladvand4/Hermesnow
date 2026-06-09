@@ -8,7 +8,7 @@ const LiveNewsBox = styled.iframe`
   text-align: center;
   border: none;
   overflow: scroll;
-  @media (max-width: 1024px) {
+ @media (max-width: 1024px) {
     min-height: calc(100vh - 80px);
   }
 `;

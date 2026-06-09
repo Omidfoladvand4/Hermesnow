@@ -7,6 +7,7 @@ import posterImage from "../assets/HermesNowBannar1.jpg";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
 import styled from 'styled-components'
 import Loader from './Loader'
+import { fadeIn } from '../styles/animations'
 
 
 const SidebarWrapper = styled.div`
@@ -19,6 +20,7 @@ const SidebarWrapper = styled.div`
   flex-direction: column;
   gap: 20px;
   border-bottom: 10px solid var(--color-primary);
+  animation: ${fadeIn} .5s ease;
   &::-webkit-scrollbar {
     width: 6px;
   }

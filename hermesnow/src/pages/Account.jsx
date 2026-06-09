@@ -6,7 +6,7 @@ import Avatar from '../components/Avatar';
 import BackButton from '../components/BackButton'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, Navigate } from 'react-router-dom'
-import { shimmer  ,neonPulse} from '../styles/animations'
+import { shimmer   ,slideInStagger} from '../styles/animations'
 
 
 const Container = styled.main`
@@ -16,7 +16,7 @@ const Container = styled.main`
   grid-template-rows : 2fr 1fr;
   gap: 25px;
   padding: 5% 15%;
- animation: ${neonPulse} .5s ease ;
+  animation: ${slideInStagger} 0.5s linear;
   @media (max-width : 1000px) {
      display: flex;
      align-items: center;
@@ -167,13 +167,13 @@ function Account() {
           </TitleBox>
           <div style={{display: 'flex', gap: '10px'}}>
             <UserActionsBox title='خبر های خوانده شده'>
-              {formatNumber(fakeUser.readNewsCount)}
+              {formatNumber(1555)}
             </UserActionsBox>
             <UserActionsBox title='تعداد کامنت ها'>
-              {formatNumber(fakeUser.comentsCount)}
+              {formatNumber(4258)}
             </UserActionsBox>
             <UserActionsBox title='خبر های ذخیره شده'>
-              {formatNumber(fakeUser.savedNewsCount)}
+              {formatNumber(152)}
             </UserActionsBox>
           </div>
         </UserActionsContainer>

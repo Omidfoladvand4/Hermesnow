@@ -10,11 +10,13 @@ import SearchNewsBox from "../components/SearchNewsBox";
 import MainNewsSction from "../components/MainNewsSction";
 import { useNews } from "../hooks/useGetNews";
 import CloseIcon from '@mui/icons-material/Close';
+import { fadeIn } from "../styles/animations";
 const Main = styled.main`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin: 20px;
+  animation: ${fadeIn} 0.3s ease;
   @media (max-width : 400px) {
      flex-direction: column;
      margin: 6px 0;

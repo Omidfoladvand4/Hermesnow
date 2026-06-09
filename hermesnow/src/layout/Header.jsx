@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import bannerImage from '../assets/HermesNowBannar1.jpg'
 import { useNews } from '../hooks/useGetNews'
 import Loader from '../components/Loader'
+import {scaleIn}  from '../styles/animations'
 
 const HeaderWrapper = styled.div`
 
@@ -12,6 +13,7 @@ const HeaderWrapper = styled.div`
   height: 400px;
   gap: 5px;
   padding: 10px 20px;
+  animation: ${scaleIn} .5s ease;
   @media (max-width : 780px) {
      flex-direction: column;
      height: auto;

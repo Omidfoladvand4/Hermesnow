@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Title from "./Title";
 import CategoryBox from "./CategoryBox";
 import { Link, useNavigate } from "react-router-dom";
+import { fadeIn } from '../styles/animations'
+
 
 const CategoryContainer = styled.main`
   width: 100%;
@@ -11,7 +13,8 @@ const CategoryContainer = styled.main`
   justify-content: center;
   flex-direction: column;
   background: var(--color-info);
-`
+  
+  `
 const CategoryBoxWrapper = styled.div`
   width: 90%;
   display: flex;
@@ -20,6 +23,7 @@ const CategoryBoxWrapper = styled.div`
   justify-content: start;
   margin:  0 auto;
   padding: 10px;
+  animation: ${fadeIn} .5s ease;
   @media (max-width: 768px) {
       width: 100%;
       padding: 0;
