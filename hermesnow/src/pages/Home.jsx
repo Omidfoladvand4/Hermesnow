@@ -9,6 +9,7 @@ import ButtonMenu from "../ui/menu/UserMenu";
 import SearchNewsBox from "../components/SearchNewsBox";
 import MainNewsSction from "../components/MainNewsSction";
 import { useNews } from "../hooks/useGetNews";
+import CloseIcon from '@mui/icons-material/Close';
 const Main = styled.main`
   display: flex;
   align-items: flex-start;
@@ -79,17 +80,21 @@ const MainNewsTitle = styled.p`
 `
 const SearchNewsContent = styled.div`
 width: 100%;
-height: 200px;
-overflow-y: scroll;
 display: flex;
 align-items: center;
-justify-content: start;
+justify-content: center;
 flex-wrap: wrap;
+position: relative;
 background-color: var(--color-primary);
 gap: 10px;
+@media (max-width: 480px) {
+   background-color: var(--color-accent);
+   height: 30vh;
+   margin-top: 10px;
+}
 `
  const  SearchNewsContentWrapper = styled.div`
-   width: 30%;
+   width: 250px;
    height: 150px;
    display: flex;
    align-items: center;
@@ -107,12 +112,43 @@ gap: 10px;
     object-fit: cover;
    }
    p{
-    margin: 5px;
+    margin-top: 5px;
    }
+   @media (max-width: 480px) {
+      width: 100%;
+      height: max-content;
+      border-bottom : 1px solid;
+      img {
+        display: none;
+      }
+      p{
+        margin: 0;
+        padding: 6px;
+        text-align: center;
+      }
+   }
+`
+const CloseSearchBoxListBtn = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   top: 0;
+   left: 0;
+  color: white;
+  cursor: pointer;
+   z-index: 99;
+   background-color: var(--color-accent);
+  @media (max-width: 480px) {
+     color: var(--color-primary);
+     background-color: white;
+
+  }
 `
 function Home() {
   const { news } = useNews()
   const [searchedNews, setSearchedNews] = useState([])
+  const [isopenSearchBoxList ,setIsopenSearchBoxList] = useState(true)
 const newsSubjects = [...new Set(news.map(item => item.NewsSubject))]
   const mainNews = [...new Map( news.map(news => [news.NewsSubject, news])).values()].slice(-3)
 
@@ -123,8 +159,13 @@ const newsSubjects = [...new Set(news.map(item => item.NewsSubject))]
     }else{
       const  filredNewsList =  news.filter((item) =>   item.NewsTitle.includes(value))
       setSearchedNews(filredNewsList)
+      setIsopenSearchBoxList(true)
       
   }
+  }
+  const CloseSearchBoxList = () => {
+      setIsopenSearchBoxList(prev => !prev)
+      
   }
  return (
   <div>
@@ -134,14 +175,15 @@ const newsSubjects = [...new Set(news.map(item => item.NewsSubject))]
                {news.length !== 0  ?
                   <div>
                     <SearchNewsBox  filterNewsHandler={FiltredNews}/>
-                   { searchedNews.length !== 0 && 
+                   { searchedNews.length !== 0 &&  isopenSearchBoxList &&
                      <SearchNewsContent>
-                      {searchedNews && searchedNews.map((item) => (
+                       <CloseSearchBoxListBtn onClick={() => CloseSearchBoxList()}><CloseIcon  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></ CloseSearchBoxListBtn >
+                         {searchedNews  && searchedNews.map((item) => (
                         <SearchNewsContentWrapper>
                             <img src={item.MainImage} alt=""  style={{width : '250px'}}/>
                              <p>{item.NewsTitle}</p>
                         </SearchNewsContentWrapper>
-                      ))}
+                      ))}                 
                     </SearchNewsContent>
                     }
                    <MainNewsWrapper>

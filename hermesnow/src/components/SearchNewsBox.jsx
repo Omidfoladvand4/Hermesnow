@@ -38,8 +38,7 @@ const SearchBoxInput = styled.input`
 const SearchBoxButton = styled.button`
     height: 100%;
     font-size: var(--font-size-xl);
-    padding: 6px 15px;
-    border-radius: 10px;
+    padding: 6.5px 16px;
     cursor: pointer;
     font-weight: 600;
     background: var(--color-primary);
@@ -60,14 +59,15 @@ const SearchBoxButton = styled.button`
 function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
     const [searchValue, setSearchValue] = useState('');
     const handleFilterNews = () => {
-        if (filterNewsHandler && searchValue) {
+        if (filterNewsHandler && searchValue !== '') {
             filterNewsHandler(searchValue);
         }
     };
 
     const handleEnterFilterNews = (e) => {
+        
         setSearchValue(e.target.value);
-        console.log(searchValue);
+      
         
     };
 
