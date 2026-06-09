@@ -5,7 +5,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
-import Navigations from "../components/Navigations";
 
 const SettingContainer = styled.div`
   width: 100%;

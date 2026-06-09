@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import LoginFeild from "../components/LoginForm";
-import Navigations from "../components/Navigations";
 import { slideInStagger } from "../styles/animations";
 const LoginPageContainer = styled.main`
   width: 100%;
