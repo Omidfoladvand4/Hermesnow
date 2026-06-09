@@ -6,7 +6,6 @@ const TitleContainer = styled.div`
   display: flex;
   align-items: ${({ $align }) => $align || 'start'};
   justify-content: center;
-  margin-right: 25px;
   margin-top: 5px;
   animation:  ${textGlow} 0.3s linear;
 `

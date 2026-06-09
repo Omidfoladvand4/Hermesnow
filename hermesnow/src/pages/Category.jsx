@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import CategoryBox from '../components/CategoryBox';
 import Title from '../components/Title';
 import Loader from '../components/Loader';
+import Sidebar from '../components/Sidebar';
 
 const Container = styled.div`
   width: 100vw;
@@ -12,14 +13,30 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  `;
 
 const Header = styled.div`
   width: 100%;
-  border-bottom: 2px solid var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
   text-align: center;
-`;
+  font-size: var(--font-size-xxl);
+  font-weight: 900;
+  `;
 
+const CategoryContentWrapper = styled.div`
+
+    width: 100%;
+    display: flex;
+    align-items: start;
+    padding: 10px 30px;
+    gap: 16px;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+      padding: 0;
+      gap: 0;
+    }
+`
 const NewsGrid = styled.div`
   width: 90%;
   display: grid;
@@ -29,6 +46,9 @@ const NewsGrid = styled.div`
   justify-items: center;
   
   @media (max-width: 768px) {
+    width: 100%;
+    gap: 0;
+    padding-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,7 +63,6 @@ const EmptyMessage = styled.div`
   padding: 50px;
   font-weight: 900;
 `;
-
 function Category() {
   const subject = useParams().subject;
   const [headerTitle , setHeaderTitle] = useState(subject)
@@ -64,15 +83,15 @@ function Category() {
   return (
     <Container>
       <Header>
-        <Title titleName={headerTitle} />
+       {headerTitle}
       </Header>
-      
-      {filteredNews.length > 0 ? (
+        {filteredNews.length > 0 ? (
+        <CategoryContentWrapper> <Sidebar />
         <NewsGrid>
           {filteredNews.map(item => (
             <CategoryBox key={item.id} news={item} />
           ))}
-        </NewsGrid>
+        </NewsGrid>  </CategoryContentWrapper>
       ) : (
         <EmptyMessage>
           هیچ خبری در دسته‌بندی ({headerTitle}) یافت نشد  :    <Link to= '/'>رفتن به صفحه اصلی</Link>
