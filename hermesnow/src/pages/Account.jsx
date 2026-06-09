@@ -1,5 +1,4 @@
 import React from 'react'
-import fakeUser from '../utils/fakeUser'
 import styled from 'styled-components'
 import formatNumber from '../utils/formartNumber'
 import Title from '../components/Title'

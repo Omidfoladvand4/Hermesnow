@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import HeaderBannar from '../ui/header/HeaderBannar'
-import Slider from '../layout/Slider'
 import styled from 'styled-components'
 import bannerImage from '../assets/HermesNowBannar1.jpg'
 import { useNews } from '../hooks/useGetNews'
@@ -23,6 +22,7 @@ const HeaderWrapper = styled.div`
 
 const MainNews = styled.div`
   width: 70%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
