@@ -61,7 +61,7 @@ const NewsImage = styled.img`
 const Journalist = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
-   color: var(--color-accent);
+   color: var(--color-info);
   padding: 25px;
 `;
 
@@ -115,21 +115,20 @@ const Information = styled.div`
   flex-wrap: wrap;
   padding: 4px 12px;
   font-size: var(--font-size-md);
-  background-color: var(--color-info);
   @media (max-width: 400px) {
     padding: 2px;
     justify-content: center;
     margin: 15px auto;
   }
 `;
-const InfomationDate = styled.div`
+const InformationDate = styled.div`
   font-weight: 900;
   font-size: var(--font-size-md);
-  color: var(--color-accent);
+  color: var(--color-info);
 `
 const InformationLink = styled(Link)`
   font-size: var(--font-size-md);
-  color: var(--color-accent);
+  color: var(--color-info);
   font-weight: 900;
 `
 const ShareBotton = styled.button`
@@ -244,7 +243,7 @@ function News() {
         <InformationLink to={`/category/${news.NewsSubject}`}>{news.NewsSubject}</InformationLink>
         <Journalist> {news.Journalist}</Journalist>
         <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
-        <InfomationDate>{PersianDate(news)}</InfomationDate>
+        <InformationDate>{PersianDate(news)}</InformationDate>
       </Information>
           </NewsSummary>
         <NewsImage
