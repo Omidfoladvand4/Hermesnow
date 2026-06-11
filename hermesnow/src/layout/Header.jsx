@@ -4,7 +4,6 @@ import HeaderBannar from '../ui/header/HeaderBannar'
 import styled from 'styled-components'
 import bannerImage from '../assets/HermesNowBannar1.jpg'
 import { useNews } from '../hooks/useGetNews'
-import Loader from '../components/Loader'
 import {scaleIn}  from '../styles/animations'
 
 const HeaderWrapper = styled.div`
@@ -73,7 +72,7 @@ function Header() {
     return (
       <HeaderWrapper>
         <HeaderBannar />
-        <MainNews> <Loader /> </MainNews>
+        <MainNews> </MainNews>
       </HeaderWrapper>
     )
   }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from "../layout/Header";
 import Sidebar from '../components/Sidebar'
 import CategoryBoxs from "../components/CategoryBoxs";
-import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ButtonMenu from "../ui/menu/UserMenu";
@@ -206,7 +205,7 @@ const newsSubjects = [...new Set(news.map(item => item.NewsSubject))]
                    </MainNewsWrapper>
                     
                   </div>
-                : <Loader />}
+                : ""}
 
                 <MainNewsSction />
          </MainContent>
