@@ -20,7 +20,7 @@ const NewsHeader = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: var(--color-accent);
-  @media (max-width: 400px) {
+  @media (max-width: 1024px) {
     align-items: center;
     flex-direction: column;
   }
@@ -38,7 +38,7 @@ const NewsSummary = styled.div`
   font-weight: 900;
   font-size: var(--font-size-xl);
   animation: ${slideInStagger} 0.5s linear;
-  @media (max-width: 400px) {
+  @media (max-width: 1024px) {
     width: 100%;
   }
 `;
@@ -53,7 +53,7 @@ const NewsImage = styled.img`
   height: 100%;
   object-fit: cover;
   animation: ${zoomIn} 0.5s linear;
-  @media (max-width: 400px) {
+  @media (max-width: 1024px) {
     width: 100%;
   }
 `;
@@ -72,7 +72,7 @@ const MainContent = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  @media (max-width:  768px) {
+  @media (max-width:  1024px) {
       flex-direction: column;
       padding: 0;
   }
@@ -82,7 +82,7 @@ const MainContentNews = styled.div`
   padding: 12px 20px;
   background-color: var(--color-accent);
   border-bottom: 6px solid var(--color-accent);
-    @media (max-width:  768px) {
+    @media (max-width:  1024px) {
       width: 100%;
   }
 `
@@ -115,7 +115,7 @@ const Information = styled.div`
   flex-wrap: wrap;
   padding: 4px 12px;
   font-size: var(--font-size-md);
-  @media (max-width: 400px) {
+  @media (max-width: 768px) {
     padding: 2px;
     justify-content: center;
     margin: 15px auto;

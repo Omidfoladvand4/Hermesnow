@@ -65,8 +65,8 @@ const CommentList = styled.div`
     margin-top: 30px;
     @media (max-width: 800px) {
          width: 100vw;
-    }
-`
+        }
+        `
 
 const CommentItem = styled.div`
     width: 45%;
@@ -76,16 +76,17 @@ const CommentItem = styled.div`
     margin-bottom: 15px;
     border-right: 8px solid var(--color-accent);
     @media (max-width : 800px) {
-         width: 100%;
+        width: 100%;
+        margin-bottom: 1px;
     }
-`
+    `
 
 const CommentHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-`
+    `
 
 const CommentContent = styled.p`
     width: 80%;
@@ -95,16 +96,16 @@ const CommentContent = styled.p`
     font-weight: 600;
     color: var(--color-info);
     line-height: 1.6;
-`
+    `
 const UserName = styled.div`
 color: white;
-    font-size: var(--font-size-md);
+font-size: var(--font-size-md);
 `
 const CommentDate = styled.small`
     color: var(--color-info);
     font-size: var(--font-size-sm);
     color: white;
-`
+    `
 
 const LoginMessage = styled.div`
     color: var(--color-primary);
