@@ -7,7 +7,6 @@ import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { slideInStagger } from "../styles/animations";
 
-
 const SettingContainer = styled.div`
   width: 100%;
   height: 80vh;
@@ -16,8 +15,7 @@ const SettingContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
- animation: ${slideInStagger} 0.5s linear;
-
+  animation: ${slideInStagger} 0.5s linear;
 `;
 
 const Form = styled.div`
@@ -44,7 +42,7 @@ const Input = styled.input`
   border-radius: 8px;
   font-size: var(--font-size-sm);
   margin-bottom: 15px;
-  
+
   &:focus {
     outline: none;
     border-color: var(--color-primary);
@@ -53,7 +51,7 @@ const Input = styled.input`
   &.error {
     border-color: #e74c3c;
   }
-  `;
+`;
 
 const Label = styled.label`
   font-weight: bolder;
@@ -62,20 +60,20 @@ const Label = styled.label`
   display: block;
   margin-bottom: 8px;
   font-size: var(--font-size-xl);
-  `;
+`;
 
 const ErrorMessage = styled.div`
   color: #e74c3c;
   font-size: 0.8rem;
   margin-bottom: 15px;
-  `;
+`;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
   gap: 15px;
-  `;
+`;
 
 const NextButton = styled.button`
   background: var(--color-primary);
@@ -86,12 +84,12 @@ const NextButton = styled.button`
   font-size: var(--font-size-xl);
   font-weight: 900;
   cursor: pointer;
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
-  `;
+`;
 
 const PrevButton = styled.button`
   background: var(--color-secondary);
@@ -102,7 +100,7 @@ const PrevButton = styled.button`
   font-size: var(--font-size-xl);
   font-weight: 900;
   cursor: pointer;
-  `;
+`;
 
 const SaveButton = styled.button`
   background: red;
@@ -113,14 +111,14 @@ const SaveButton = styled.button`
   font-size: var(--font-size-xl);
   font-weight: 900;
   cursor: pointer;
-  `;
+`;
 
 const StepIndicator = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
   gap: 10px;
-animation: ${slideInStagger} 0.5s linear;
+  animation: ${slideInStagger} 0.5s linear;
 `;
 
 const StepCircle = styled.div`
@@ -132,7 +130,7 @@ const StepCircle = styled.div`
   justify-content: center;
   background: ${(props) =>
     props.$active ? "var(--color-primary)" : "var(--color-info)"};
-   color: white;
+  color: white;
   font-weight: bold;
 `;
 

@@ -5,17 +5,17 @@ import styled from "styled-components";
 import { supabase } from "../lib/supabaseClient";
 import ImageUploader from "../components/ImageUploder";
 import { rotateIn } from "../styles/animations";
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import TitleIcon from '@mui/icons-material/Title';
-import LooksTwoIcon from '@mui/icons-material/LooksTwo';
-import NotesIcon from '@mui/icons-material/Notes';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import QuoteIcon from '@mui/icons-material/FormatQuote';
-import ListIcon from '@mui/icons-material/List';
-import DeleteIcon from '@mui/icons-material/Delete';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import TitleIcon from "@mui/icons-material/Title";
+import LooksTwoIcon from "@mui/icons-material/LooksTwo";
+import NotesIcon from "@mui/icons-material/Notes";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import QuoteIcon from "@mui/icons-material/FormatQuote";
+import ListIcon from "@mui/icons-material/List";
+import DeleteIcon from "@mui/icons-material/Delete";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const NewsEditorContainer = styled.main`
   width: 100%;
   display: flex;
@@ -25,8 +25,8 @@ const NewsEditorContainer = styled.main`
   padding: 20px;
   min-height: 100vh;
   animation: ${rotateIn} 0.3s linear;
-  @media (max-width : 400px ) {
-     padding: 0;
+  @media (max-width: 400px) {
+    padding: 0;
   }
 `;
 
@@ -448,11 +448,16 @@ const FormRow = styled.div`
 `;
 const ElementManager = ({ formik }) => {
   const [availableElements, setAvailableElements] = useState([
-    { type: "h1", label: "عنوان اصلی", icon: <TitleIcon /> , added: false },
-    { type: "h2", label: "زیرعنوان", icon: <LooksTwoIcon /> , added: false },
+    { type: "h1", label: "عنوان اصلی", icon: <TitleIcon />, added: false },
+    { type: "h2", label: "زیرعنوان", icon: <LooksTwoIcon />, added: false },
     { type: "p", label: "پاراگراف", icon: <NotesIcon />, added: false },
-    { type: "img", label: "تصویر", icon: <AddPhotoAlternateIcon /> , added: false },
-    { type: "quote", label: "نقل قول", icon: <QuoteIcon /> , added: false },
+    {
+      type: "img",
+      label: "تصویر",
+      icon: <AddPhotoAlternateIcon />,
+      added: false,
+    },
+    { type: "quote", label: "نقل قول", icon: <QuoteIcon />, added: false },
     { type: "list", label: "لیست", icon: <ListIcon />, added: false },
   ]);
 
@@ -533,7 +538,10 @@ const ElementManager = ({ formik }) => {
 
       {formik.values.content.length > 0 && (
         <div>
-          <Label> <ListIcon /> المان‌های اضافه شده ({formik.values.content.length})</Label>
+          <Label>
+            {" "}
+            <ListIcon /> المان‌های اضافه شده ({formik.values.content.length})
+          </Label>
 
           {formik.values.content.map((element, index) => {
             const elementInfo = availableElements.find(
@@ -578,7 +586,7 @@ const ElementManager = ({ formik }) => {
                     <DangerButton
                       type="button"
                       onClick={() => removeElement(index, element.element)}>
-                      <DeleteIcon />  حذف
+                      <DeleteIcon /> حذف
                     </DangerButton>
                   </ActionButtons>
                 </ElementHeader>
@@ -639,14 +647,14 @@ const PreviewContent = ({ formik }) => {
             color: "var(--color-neutral)",
             padding: "40px",
             fontStyle: "italic",
-            display : 'flex',
-            alignItems : 'center',
-            justifyContent : 'center',
-            margin : ' 0 auto',
-            fontSize : 'var(--font-size-md)'
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: " 0 auto",
+            fontSize: "var(--font-size-md)",
           }}>
-          <NotesIcon /> محتوایی برای نمایش وجود ندارد. لطفا در تب ویرایشگر محتوا اضافه
-          کنید.
+          <NotesIcon /> محتوایی برای نمایش وجود ندارد. لطفا در تب ویرایشگر محتوا
+          اضافه کنید.
         </div>
       );
     }

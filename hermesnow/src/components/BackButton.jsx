@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import React from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 const BackIcon = styled.div`
   width: 100px;
   display: flex;
@@ -9,20 +9,22 @@ const BackIcon = styled.div`
   justify-content: center;
   padding: 5px 15px;
   border-radius: 5px;
-  cursor: pointer;  
+  cursor: pointer;
   background: var(--color-primary);
   color: var(--color-secondary);
   font-size: var(--font-size-md);
-
-`
+`;
 function BackButton() {
-    const navigate = useNavigate()
-    const backHandle = () => {
-     navigate(-1)
-    }
+  const navigate = useNavigate();
+  const backHandle = () => {
+    navigate(-1);
+  };
   return (
-    <BackIcon onClick={backHandle}>بازگشت<ArrowBackIosIcon /></BackIcon>
-  )
+    <BackIcon onClick={backHandle}>
+      بازگشت
+      <ArrowBackIosIcon />
+    </BackIcon>
+  );
 }
 
-export default BackButton
+export default BackButton;

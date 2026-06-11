@@ -1,60 +1,61 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect } from "react";
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const userData = localStorage.getItem('user')
-        if (userData) {
-            try {
-                setUser(JSON.parse(userData))
-            } catch (error) {
-                console.error('خطا در خواندن اطلاعات کاربر:', error)
-                localStorage.removeItem('user')
-            }
-        }
-        setLoading(false)
-    }, [])
-
-    const login = (userData) => {
-        setUser(userData)
-        localStorage.setItem('user', JSON.stringify(userData))
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      try {
+        setUser(JSON.parse(userData));
+      } catch (error) {
+        console.error("خطا در خواندن اطلاعات کاربر:", error);
+        localStorage.removeItem("user");
+      }
     }
+    setLoading(false);
+  }, []);
 
-    const logout = () => {
-        const confirmedUser = window.confirm('ایا می خواهید خاج شوید')
-        if(!confirmedUser) return
-        setUser(null)
-        localStorage.removeItem('user')
-    }
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
 
-    const updateUser = (updatedData) => {
-        const updatedUser = { ...user, ...updatedData }
-        setUser(updatedUser)
-        localStorage.setItem('user', JSON.stringify(updatedUser))
-    }
+  const logout = () => {
+    const confirmedUser = window.confirm("ایا می خواهید خاج شوید");
+    if (!confirmedUser) return;
+    setUser(null);
+    localStorage.removeItem("user");
+  };
 
-    return (
-        <AuthContext.Provider value={{ 
-            user, 
-            loading, 
-            login, 
-            logout,
-            updateUser,
-            isAuthenticated: !!user 
-        }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  const updateUser = (updatedData) => {
+    const updatedUser = { ...user, ...updatedData };
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        logout,
+        updateUser,
+        isAuthenticated: !!user,
+      }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export const useAuth = () => {
-    const context = useContext(AuthContext)
-    if (!context) {
-        throw new Error('useAuth must be used within AuthProvider')
-    }
-    return context
-}
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within AuthProvider");
+  }
+  return context;
+};

@@ -6,7 +6,7 @@ const AvatarContainer = styled.img`
   object-fit: cover;
 `
 function Avatar({AvatarSrc}) {
-    if(!AvatarSrc) return <div><AccountCircleIcon fontSize="large" /></div>
+    if(!AvatarSrc) return <><AccountCircleIcon fontSize="large" /></>
     return (
         <AvatarContainer src={AvatarSrc}>
             

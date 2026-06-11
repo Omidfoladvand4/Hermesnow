@@ -1,48 +1,47 @@
-import React from 'react'
-import { useAuth } from '../contexts/AuthContext'
-import { Link } from 'react-router-dom'
-import NoteAddIcon from '@mui/icons-material/NoteAdd'
-import { useNews } from '../hooks/useGetNews'
+import React from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import { useNews } from "../hooks/useGetNews";
 import posterImage from "../assets/HermesNowBannar1.jpg";
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
-import styled from 'styled-components'
-import Loader from './Loader'
-import { fadeIn } from '../styles/animations'
-
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import styled from "styled-components";
+import Loader from "./Loader";
+import { fadeIn } from "../styles/animations";
 
 const SidebarWrapper = styled.div`
   width: 30%;
   overflow-y: scroll;
   height: 100vh;
-  background-color:   var(--color-accent);
+  background-color: var(--color-accent);
   padding: 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   border-bottom: 10px solid var(--color-primary);
-  animation: ${fadeIn} .5s ease;
+  animation: ${fadeIn} 0.5s ease;
   &::-webkit-scrollbar {
     width: 6px;
   }
   @media (max-width: 900px) {
-     width: 100vw;
-     margin : 10px auto;
-     padding: 10px 10px;
+    width: 100vw;
+    margin: 10px auto;
+    padding: 10px 10px;
   }
-  `
+`;
 
 const UserSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: var(--font-size-xl);
-  `
+`;
 
 const WelcomeMessage = styled.div`
   width: 100%;
   text-align: center;
   color: white;
-  `
+`;
 
 const RegisterCard = styled.div`
   background-color: var(--color-accent);
@@ -52,21 +51,21 @@ const RegisterCard = styled.div`
   border-radius: 12px;
   padding: 10px 15px;
   line-height: 1.5;
-  @media (max-width : 768px) {
-     width: 100%;
-     line-height: 1.7;
+  @media (max-width: 768px) {
+    width: 100%;
+    line-height: 1.7;
   }
-  `
+`;
 
 const RegisterTitle = styled.h2`
   color: var(--color-primary);
-  font-size : var(--font-size-xxl)
-`
+  font-size: var(--font-size-xxl);
+`;
 
 const RegisterSubtitle = styled.h4`
-color: var(--color-secondary);
-font-size: var(--font-size-xl);
-`
+  color: var(--color-secondary);
+  font-size: var(--font-size-xl);
+`;
 
 const RegisterLink = styled(Link)`
   width: 40%;
@@ -87,15 +86,15 @@ const RegisterLink = styled(Link)`
   &:hover {
     background-color: white;
     color: var(--color-primary);
-    }
-`
+  }
+`;
 
 const RegisterTerms = styled.h3`
-font-size: var(--font-size-base);
-color: var(--color-info);
-word-spacing: 1.8px;
-display: inline-block;
-`
+  font-size: var(--font-size-base);
+  color: var(--color-info);
+  word-spacing: 1.8px;
+  display: inline-block;
+`;
 
 const SectionContainer = styled.div`
   width: 100%;
@@ -103,8 +102,8 @@ const SectionContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  margin-top : 15px;
-`
+  margin-top: 15px;
+`;
 
 const SectionHeader = styled.div`
   background-color: var(--color-primary);
@@ -113,22 +112,22 @@ const SectionHeader = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 10px 20px;
-`
+`;
 
 const SectionTitle = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
   color: white;
-`
+`;
 
 const NewsList = styled.div`
   width: 100%;
-`
+`;
 
 const NewsItemLink = styled(Link)`
   text-decoration: none;
   display: block;
-`
+`;
 
 const NewsItemCard = styled.div`
   width: 100%;
@@ -145,67 +144,66 @@ const NewsItemCard = styled.div`
     opacity: 1;
   }
   @media (max-width: 768px) {
-     padding: 0;
+    padding: 0;
   }
-`
+`;
 
 const NewsInfo = styled.div`
   flex: 1;
-`
+`;
 
 const NewsTitle = styled.div`
   color: white;
   font-size: var(--font-size-md);
   margin-bottom: 8px;
   font-weight: 500;
-
-`
+`;
 
 const JournalistName = styled.div`
   color: #9ca3af;
   font-size: calc(var(--font-size-md) - 3px);
-`
+`;
 
 const NewsImage = styled.img`
   width: 80px;
   height: 60px;
   object-fit: cover;
-  @media (max-width : 768px) {
-      width: 25%;
+  @media (max-width: 768px) {
+    width: 25%;
   }
-`
+`;
 
 const PickedSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const PickedHeader = styled.div`
-    background-color: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px 20px;
-    margin-bottom: 15px;
-`
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+`;
 
 const PickedTitle = styled.div`
   font-size: var(--font-size-md);
   font-weight: 700;
   color: white;
-`
+`;
 
 const PickedList = styled.div`
   width: 100%;
-`
+`;
 
 const PickedItemLink = styled(Link)`
   text-decoration: none;
   display: block;
-`
+`;
 
 const PickedItemCard = styled.div`
   width: 100%;
@@ -217,31 +215,30 @@ const PickedItemCard = styled.div`
   &:hover {
     background-color: var(--color-primary);
   }
-`
+`;
 
 const PickedItemContent = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
   justify-content: flex-start;
-`
+`;
 
 const Div = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background-color: var(--color-primary);
-`
+`;
 
 const PickedItemTitle = styled.div`
   color: #9ca3af;
   font-size: 1.25rem;
-`
-
+`;
 
 function Sidebar() {
-  const { user } = useAuth()
-  const { news } = useNews()
+  const { user } = useAuth();
+  const { news } = useNews();
 
   return (
     <SidebarWrapper>
@@ -254,7 +251,7 @@ function Sidebar() {
             <RegisterSubtitle>
               اگر هنوز ثبت نام نکردید همین حالا ثبت نام کنید
             </RegisterSubtitle>
-            <RegisterLink to={'/signup'}>ورود</RegisterLink>
+            <RegisterLink to={"/signup"}>ورود</RegisterLink>
             <RegisterTerms>
               ورود یا ثبت نام شما به منزله‌ی موافقت با سیاست های حفظ حریم خصوصی
               و قوانین و مقررات ماست.
@@ -266,49 +263,56 @@ function Sidebar() {
       <SectionContainer>
         <SectionHeader>
           <SectionTitle>یاداشت</SectionTitle>
-          <NoteAddIcon style={{ color: 'white' }} />
+          <NoteAddIcon style={{ color: "white" }} />
         </SectionHeader>
 
         <NewsList>
-           {news && news.length !== 0 ? 
+          {news && news.length !== 0 ? (
             news?.map((item) => (
-            <NewsItemLink key={item.id} to={`/news/${item.id}`}>
-              <NewsItemCard>
-                <NewsInfo>
-                  <NewsTitle>{item.NewsTitle}</NewsTitle>
-                  <JournalistName>{item.Journalist}</JournalistName>
-                </NewsInfo>
-                <NewsImage src={item.MainImage || posterImage} alt={item.NewsTitle} />
-              </NewsItemCard>
-            </NewsItemLink>
-          ))
-            : <Loader />}
+              <NewsItemLink key={item.id} to={`/news/${item.id}`}>
+                <NewsItemCard>
+                  <NewsInfo>
+                    <NewsTitle>{item.NewsTitle}</NewsTitle>
+                    <JournalistName>{item.Journalist}</JournalistName>
+                  </NewsInfo>
+                  <NewsImage
+                    src={item.MainImage || posterImage}
+                    alt={item.NewsTitle}
+                  />
+                </NewsItemCard>
+              </NewsItemLink>
+            ))
+          ) : (
+            <Loader />
+          )}
         </NewsList>
       </SectionContainer>
 
       <PickedSection>
         <PickedHeader>
           <PickedTitle>برگزیده ها</PickedTitle>
-          <AppRegistrationIcon style={{ color: 'white' }} />
+          <AppRegistrationIcon style={{ color: "white" }} />
         </PickedHeader>
 
         <PickedList>
-          {news && news.length !== 0 ? 
-               news?.map((item) => (
-            <PickedItemLink key={item.id} to={`/news/${item.id}`}>
-              <PickedItemCard>
-                <PickedItemContent>
-                  <Div />
-                  <PickedItemTitle>{item.NewsTitle}</PickedItemTitle>
-                </PickedItemContent>
-              </PickedItemCard>
-            </PickedItemLink>
-          )) 
-              :  <Loader />}
+          {news && news.length !== 0 ? (
+            news?.map((item) => (
+              <PickedItemLink key={item.id} to={`/news/${item.id}`}>
+                <PickedItemCard>
+                  <PickedItemContent>
+                    <Div />
+                    <PickedItemTitle>{item.NewsTitle}</PickedItemTitle>
+                  </PickedItemContent>
+                </PickedItemCard>
+              </PickedItemLink>
+            ))
+          ) : (
+            <Loader />
+          )}
         </PickedList>
       </PickedSection>
     </SidebarWrapper>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

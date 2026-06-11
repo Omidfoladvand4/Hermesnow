@@ -1,36 +1,36 @@
 import { useState, useEffect } from "react";
 
 export const useShare = () => {
-    const [isShareble, setIsShareble] = useState(false);
-    const [shareLoading, setShareLoading] = useState(false);
+  const [isShareble, setIsShareble] = useState(false);
+  const [shareLoading, setShareLoading] = useState(false);
 
-    useEffect(() => {
-        if (navigator.share) {
-            setIsShareble(true);
-        }
-    }, []);
+  useEffect(() => {
+    if (navigator.share) {
+      setIsShareble(true);
+    }
+  }, []);
 
-    const shareNews = async (news , url) => {
-        setShareLoading(true);
-        
-        const shareData = {
-            title: news.NewsTitle,
-            text: news.NewsMainText,
-            url: url
-        };
-        
-        try {
-            await navigator.share(shareData);
-        } catch (error) {
-            console.log('خطا یا انصراف کاربر');
-        } finally {
-            setShareLoading(false);
-        }
+  const shareNews = async (news, url) => {
+    setShareLoading(true);
+
+    const shareData = {
+      title: news.NewsTitle,
+      text: news.NewsMainText,
+      url: url,
     };
 
-    const copyToClipboard = (text) => {
-        navigator.clipboard.writeText(text);
-    };
+    try {
+      await navigator.share(shareData);
+    } catch (error) {
+      console.log("خطا یا انصراف کاربر");
+    } finally {
+      setShareLoading(false);
+    }
+  };
 
-    return { shareNews, copyToClipboard, isShareble, shareLoading };
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
+  return { shareNews, copyToClipboard, isShareble, shareLoading };
 };

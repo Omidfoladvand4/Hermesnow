@@ -1,55 +1,59 @@
-import React from 'react'
-import styled from 'styled-components'
-import BackButton from '../components/BackButton'
+import React from "react";
+import styled from "styled-components";
+import BackButton from "../components/BackButton";
 const Overlay = styled.div`
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient( 165deg , #ffffff  , #4e4e4e , #000000);
-    backdrop-filter: blur(30px);
-    position: fixed;
-    top: 0;
-    z-index: 98;
-`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(165deg, #ffffff, #4e4e4e, #000000);
+  backdrop-filter: blur(30px);
+  position: fixed;
+  top: 0;
+  z-index: 98;
+`;
 const TitlePage = styled.div`
-    font-size: var(--font-size-xxl);
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
-    background-clip: text;
-    color: transparent;
-    font-weight: 900;
-    font-family: cursive;
-    animation:  textAnimate 2.5s  alternate infinite;
-    @keyframes textAnimate {
-        0% {
-             background: linear-gradient(45deg,  #45b7d1, #4ecdc4, #ff6b6b );
-             background-clip: text;
-        }
-     60%{
-        opacity: 0;
-   }
-   99%{
-    opacity: .7;
-   }
-        100%{
-              transform: scale(1.8);
-      }
+  font-size: var(--font-size-xxl);
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+  background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  font-family: cursive;
+  animation: textAnimate 2.5s alternate infinite;
+  @keyframes textAnimate {
+    0% {
+      background: linear-gradient(45deg, #45b7d1, #4ecdc4, #ff6b6b);
+      background-clip: text;
     }
-
-`
+    60% {
+      opacity: 0;
+    }
+    99% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.8);
+    }
+  }
+`;
 const Nav = styled.div`
-    position: fixed;
-    z-index: 100;
-    bottom: 100px;
-`
+  position: fixed;
+  z-index: 100;
+  bottom: 100px;
+`;
 function NotFoundPage() {
   return (
-   <>
-   <Overlay ><TitlePage>Page Not Found :(</TitlePage></Overlay>
-   <Nav > <BackButton /></Nav>
-   </>
-  )
+    <>
+      <Overlay>
+        <TitlePage>Page Not Found :(</TitlePage>
+      </Overlay>
+      <Nav>
+        {" "}
+        <BackButton />
+      </Nav>
+    </>
+  );
 }
 
-export default NotFoundPage
+export default NotFoundPage;

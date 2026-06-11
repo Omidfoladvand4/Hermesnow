@@ -54,7 +54,7 @@ const LabelFelid = styled.label`
 const InputFeild = styled.input`
   width: 90%;
   padding: 10px 5px;
-  color:  white;
+  color: white;
   background-color: var(--color-info);
 `;
 
@@ -100,7 +100,7 @@ const LoginLink = styled.div`
   margin-top: 16px;
 
   a {
-      color: var(--color-primary);
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: bolder;
   }
@@ -147,9 +147,7 @@ const Signup = () => {
 
   return (
     <SingupContainer>
-
       <SignupWrapper onSubmit={formik.handleSubmit}>
-
         {error && <Message type="error">❌ {error}</Message>}
 
         <FormContainer>
@@ -163,7 +161,6 @@ const Signup = () => {
             onBlur={formik.handleBlur}
             value={formik.values.userName}
             hasError={formik.touched.userName && formik.errors.userName}
-            
           />
           {formik.touched.userName && formik.errors.userName && (
             <ErrorFelid>{formik.errors.userName}</ErrorFelid>

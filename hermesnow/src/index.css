@@ -1,8 +1,8 @@
 :root {
---color-primary: #2171ae;     
---color-secondary: #d4d4d4;   
---color-info: #a4a4a4e9;        
---color-accent: #0e0c0c;   
+  --color-primary: #2171ae;
+  --color-secondary: #d4d4d4;
+  --color-info: #a4a4a4e9;
+  --color-accent: #0e0c0c;
 
   --font-size-xs: 10px;
   --font-size-sm: 14px;
@@ -11,44 +11,42 @@
   --font-size-lg: 20px;
   --font-size-xl: 24px;
   --font-size-xxl: 32px;
-
 }
 
-@media (max-width : 786px) {
+@media (max-width: 786px) {
   :root {
-  --font-size-xs: 7px;
-  --font-size-sm: 11px;
-  --font-size-base: 13px;
-  --font-size-md: 15px;
-  --font-size-lg: 17px;
-  --font-size-xl: 21px;
-  --font-size-xxl: 28px;
+    --font-size-xs: 7px;
+    --font-size-sm: 11px;
+    --font-size-base: 13px;
+    --font-size-md: 15px;
+    --font-size-lg: 17px;
+    --font-size-xl: 21px;
+    --font-size-xxl: 28px;
   }
 }
 
-@media (max-width : 340px) {
+@media (max-width: 340px) {
   :root {
-  --font-size-xs: 4px;
-  --font-size-sm: 8px;
-  --font-size-base: 10px;
-  --font-size-md: 12px;
-  --font-size-lg: 15px;
-  --font-size-xl: 18px;
-  --font-size-xxl: 24px;
+    --font-size-xs: 4px;
+    --font-size-sm: 8px;
+    --font-size-base: 10px;
+    --font-size-md: 12px;
+    --font-size-lg: 15px;
+    --font-size-xl: 18px;
+    --font-size-xxl: 24px;
   }
 }
 
-
-*{
-  box-sizing : border-box;
-    padding: 0;
-    margin: 0;
-    z-index: 1;
-    border: none;
-    outline: none;
-    text-decoration: none;
-    list-style-type: none;
-    &::-webkit-scrollbar {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  list-style-type: none;
+  &::-webkit-scrollbar {
     width: 10px;
   }
   &::-webkit-scrollbar-track {
@@ -57,7 +55,7 @@
     border-radius: 10px;
     margin: 5px;
   }
-   &::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(20px);
     border-radius: 10px;
@@ -70,15 +68,14 @@
   }
 }
 body {
-    background-color:  var(--color-secondary);
-    font-family: sans-serif;
+  background-color: var(--color-secondary);
+  font-family: sans-serif;
 }
 
-
-ul{
+ul {
   list-style-type: none;
 }
 
-p{
+p {
   font-size: var(--font-size-md);
 }

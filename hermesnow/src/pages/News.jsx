@@ -46,8 +46,7 @@ const NewsMainText = styled.div`
   width: 100%;
   font-size: var(--font-size-xl);
   margin-right: 3%;
-
-`
+`;
 const NewsImage = styled.img`
   flex-grow: 1;
   height: 100%;
@@ -61,7 +60,7 @@ const NewsImage = styled.img`
 const Journalist = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
-   color: var(--color-info);
+  color: var(--color-info);
   padding: 25px;
 `;
 
@@ -72,26 +71,26 @@ const MainContent = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  @media (max-width:  1024px) {
-      flex-direction: column;
-      padding: 0;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    padding: 0;
   }
-  `
+`;
 const MainContentNews = styled.div`
   width: 70%;
   padding: 12px 20px;
   background-color: var(--color-accent);
   border-bottom: 6px solid var(--color-accent);
-    @media (max-width:  1024px) {
-      width: 100%;
+  @media (max-width: 1024px) {
+    width: 100%;
   }
-`
+`;
 const MainContentNewsTitle = styled.h1`
-   margin-top: 10px;
+  margin-top: 10px;
   line-height: 1.7;
-   color: white;
-   font-size: var(--font-size-xxl);
-`
+  color: white;
+  font-size: var(--font-size-xxl);
+`;
 const MainContentNewsText = styled.div`
   width: 90%;
   text-align: center;
@@ -100,12 +99,11 @@ const MainContentNewsText = styled.div`
   font-size: var(--font-size-xl);
   line-height: 2;
   font-weight: 900;
-  color:var(--color-secondary);
+  color: var(--color-secondary);
   @media (max-width: 768px) {
-     text-align: start;
+    text-align: start;
   }
-
-`
+`;
 
 const Information = styled.div`
   width: 100%;
@@ -125,12 +123,12 @@ const InformationDate = styled.div`
   font-weight: 900;
   font-size: var(--font-size-md);
   color: var(--color-info);
-`
+`;
 const InformationLink = styled(Link)`
   font-size: var(--font-size-md);
   color: var(--color-info);
   font-weight: 900;
-`
+`;
 const ShareBotton = styled.button`
   padding: 10px 5px;
   cursor: pointer;
@@ -141,7 +139,6 @@ const ShareBotton = styled.button`
   &:hover {
     transform: scale(0.98);
   }
-
 `;
 const RecomededNews = styled.div`
   display: flex;
@@ -231,43 +228,44 @@ function News() {
     .filter((item) => item.id !== news.id)
     .slice(0, 3);
   return (
-    <div>
-
+    <>
       <NewsHeader>
         <NewsSummary>
-      <Title titleName={news.NewsTitle} font={`var(--font-size-xxl)`} color={`white`}/>
-         <NewsMainText >
-           {news.NewsMainText}
-         </NewsMainText>
-               <Information>
-        <InformationLink to={`/category/${news.NewsSubject}`}>{news.NewsSubject}</InformationLink>
-        <Journalist> {news.Journalist}</Journalist>
-        <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
-        <InformationDate>{PersianDate(news)}</InformationDate>
-      </Information>
-          </NewsSummary>
+          <Title
+            titleName={news.NewsTitle}
+            font={`var(--font-size-xxl)`}
+            color={`white`}
+          />
+          <NewsMainText>{news.NewsMainText}</NewsMainText>
+          <Information>
+            <InformationLink to={`/category/${news.NewsSubject}`}>
+              {news.NewsSubject}
+            </InformationLink>
+            <Journalist> {news.Journalist}</Journalist>
+            <ShareBotton onClick={handleShare}> به اشتراک گذاشتن </ShareBotton>
+            <InformationDate>{PersianDate(news)}</InformationDate>
+          </Information>
+        </NewsSummary>
         <NewsImage
           src={news.MainImage || `${posterImage}`}
           alt={news.NewsSubject}
         />
-
       </NewsHeader>
-
 
       <MainContent>
         <MainContentNews>
-              {news.Content &&
-          news.Content.map((item, index) =>
-            item.element === "h1" ? (
-              <MainContentNewsTitle key={index} >
-                {item.content}
-              </MainContentNewsTitle>
-            ) : (
-              <MainContentNewsText key={index} >
-                {item.content}
-              </MainContentNewsText>
-            ),
-          )}
+          {news.Content &&
+            news.Content.map((item, index) =>
+              item.element === "h1" ? (
+                <MainContentNewsTitle key={index}>
+                  {item.content}
+                </MainContentNewsTitle>
+              ) : (
+                <MainContentNewsText key={index}>
+                  {item.content}
+                </MainContentNewsText>
+              ),
+            )}
         </MainContentNews>
         <Sidebar />
       </MainContent>
@@ -292,7 +290,7 @@ function News() {
         newsId={id}
         onCommentAdded={handleCommentAdded}
       />
-    </div>
+    </>
   );
 }
 

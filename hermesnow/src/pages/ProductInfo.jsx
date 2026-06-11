@@ -14,7 +14,7 @@ const ProductInfoContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 2fr ;
+  grid-template-rows: 1fr 1fr 2fr;
   background-attachment: fixed;
   animation: ${fadeIn} 0.3s linear;
 
@@ -70,10 +70,10 @@ const ProductDecription = styled.p`
   font-style: italic;
 `;
 const Title = styled.h4`
-   font-size: var(--font-size-xxl);
-   color: var(--color-primary);
-   margin-bottom: 10px;
-`
+  font-size: var(--font-size-xxl);
+  color: var(--color-primary);
+  margin-bottom: 10px;
+`;
 const ToolsWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -152,8 +152,8 @@ const LoginGuideBox = styled.ul`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-            
-  @media (max-width : 400px ) {
+
+  @media (max-width: 400px) {
     width: 100%;
   }
 `;
@@ -176,7 +176,7 @@ const FeatureSection = styled.div`
   gap: 10px;
   border-radius: 12px;
   background-color: var(--color-accent);
- 
+
   margin: 15px 10px;
   padding: 10px 15px;
   color: var(--color-secondary);
@@ -247,7 +247,6 @@ function ProductInfo() {
   return (
     <ProductInfoContainer>
       <SummarySection>
-
         <SummaryWrapper>
           <div>
             <Title>{ProductData.project.name}</Title>
@@ -286,7 +285,6 @@ function ProductInfo() {
         </SummaryWrapper>
       </SummarySection>
       <ProducUserExperainseSectiontData>
-
         <UserExperainseSectionWrapper>
           <Title>در صفحه ورود</Title>
           <LoginGuideWrapper>

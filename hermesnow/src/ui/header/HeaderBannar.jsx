@@ -1,6 +1,4 @@
-
 import styled  from 'styled-components';
-import  ImageBox from '../../components/ImageBox'
 import bannerImage from '../../assets/HermesNowBannar1.jpg'
 const Bannar = styled.div`
     width: 40%;
