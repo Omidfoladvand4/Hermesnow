@@ -10,16 +10,12 @@ import { slideInStagger } from "../styles/animations";
 
 const SettingContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
-  margin: 15px auto;
+  height: 80vh;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
  animation: ${slideInStagger} 0.5s linear;
 
 `;

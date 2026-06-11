@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import MenuItem from '../../components/MenuItem'
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
@@ -27,24 +27,26 @@ const AdminMenuContainer = styled.main`
 
 
 const LinkItem = styled(Link)`
-  color : var(--color-primary);
+  color :  ${(props) =>
+    props.$active ? "var(--color-primary)" : "var(--color-accent)"};
   text-decoration: none;
 `
 
 function AdminMenu() {
   const { user } = useAuth()
+  const location = useLocation()
 
   return (
     <AdminMenuContainer>
         <MenuItem>
-          <LinkItem to="/Account">
+          <LinkItem to="/Account" $active = {location.pathname ==  '/Account'}>
             <AccountCircleIcon fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/>
           </LinkItem>
         </MenuItem>
 
      {(user?.IsAdmin || user?.IsMainAdmin) && (
         <MenuItem>
-          <LinkItem to="/news-editor">
+          <LinkItem to="/news-editor" $active = {location.pathname ==  '/news-editor'}>
             <AddBoxIcon fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/>
           </LinkItem>
         </MenuItem>
@@ -52,7 +54,7 @@ function AdminMenu() {
 
       {user?.IsAdmin && (
         <MenuItem>
-          <LinkItem to="/dashboard">
+          <LinkItem to="/dashboard"  $active = {location.pathname ==  '/dashboard'}>
             <DashboardIcon fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/>
           </LinkItem>
         </MenuItem>
@@ -62,14 +64,15 @@ function AdminMenu() {
 
 
         <MenuItem>
-          <LinkItem to="/your-news">
+          <LinkItem to="/your-news"  $active = {location.pathname ==  '/your-news'}>
            <NewspaperIcon 
   fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/>
            
           </LinkItem>
         </MenuItem>
         <MenuItem>
-         <LinkItem to='/product-info'> <ProductionQuantityLimitsIcon  fontSize='large' sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem>
+         <LinkItem to='/product-info'  $active = {location.pathname ==  '/product-info'}
+         > <ProductionQuantityLimitsIcon  fontSize='large' sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem>
         </MenuItem>
     </AdminMenuContainer>
   )

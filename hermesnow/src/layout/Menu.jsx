@@ -33,10 +33,10 @@ const MenuIcon = styled.div`
   }
 `
 function Menu() {
-   const { user } = useAuth()
-   const [isOpenMenu , setIsOpenMenu] = useState(true)
+  const { user } = useAuth()
+  const [isOpenMenu , setIsOpenMenu] = useState(true)
   return (
-    <MenuContainer>
+    <MenuContainer >
     {(user?.IsAdmin || user?.IsMainAdmin) && 
      <MenuIcon onClick={() => setIsOpenMenu(!isOpenMenu)}>
       {isOpenMenu ? <KeyboardArrowDownIcon /> :  <KeyboardArrowUpIcon />}

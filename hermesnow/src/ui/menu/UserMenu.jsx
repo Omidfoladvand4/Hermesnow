@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import MenuItem from '../../components/MenuItem'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
@@ -27,12 +27,14 @@ import { useNavigate } from 'react-router-dom';
   }
     `
 const LinkItem = styled(Link)`
-  color : var(--color-primary);
+  color :  ${(props) =>
+    props.$active ? "var(--color-primary)" : "var(--color-accent)"};
   text-decoration: none;
 `
 function UserMenu() {
     const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleLogout = () => {
     logout()
@@ -42,16 +44,16 @@ function UserMenu() {
   }
   return (
     <UserMenuContainer> 
-        <MenuItem ><LinkItem to = '/'><HomeIcon fontSize='large'   sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/> </LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/live-news'><LiveTvIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/top-news'><AccessTimeIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/settings'><SettingsInputCompositeIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/' $active ={location.pathname ==  '/'}><HomeIcon fontSize='large'   sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/> </LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/live-news' $active ={location.pathname ==  '/live-news'}><LiveTvIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/top-news' $active ={location.pathname ==  '/top-news'}><AccessTimeIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
+        <MenuItem ><LinkItem to = '/settings' $active ={location.pathname ==  '/settings'}><SettingsInputCompositeIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/></LinkItem></MenuItem>
 
         
 
           {!user && (
                   <MenuItem>
-                    <LinkItem to="/login">
+                    <LinkItem to="/login" $active ={location.pathname ==  '/login'}>
                       <LoginIcon  fontSize='large'  sx={{ fontSize: { xs: 44, sm: 40, md : 36, lg: 32 } }}/>
                     </LinkItem>
                   </MenuItem>
