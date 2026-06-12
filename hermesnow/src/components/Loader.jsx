@@ -8,13 +8,18 @@ const LoaderContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-`;
-function Loader({ size = 100, color = `var(--color-info)` }) {
+  color: var(--color-primary);
+  `;
+const LoaderText = styled.div`
+   font-weight: 900;
+   margin-top: 20px;
+`
+function Loader({ size = 100, color = `var(--color-primary)` }) {
   return (
     <LoaderContainer>
       <div>
         <CircleLoader color={color} size={size} />
-        <div> ...درحال بارگذاری</div>
+        <LoaderText > ...درحال بارگذاری</LoaderText>
       </div>
     </LoaderContainer>
   );

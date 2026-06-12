@@ -240,7 +240,7 @@ const ElementGrid = styled.div`
 
 const ElementCard = styled.button`
   padding: 20px 15px;
-  border: 2px dashed
+  border: 2px solid
     ${(props) => (props.added ? "var(--color-info)" : "var(--color-accent)")};
   background: ${(props) =>
     props.added ? "var(--color-info)" : "var(--color-secondary)"};
@@ -259,7 +259,7 @@ const ElementCard = styled.button`
 
   &:hover:not(:disabled) {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(192, 123, 116, 0.3);
+    box-shadow: 0 8px 25px var(--color-primary);
     background: ${(props) => !props.added && "var(--color-accent)"};
     color: ${(props) => !props.added && "var(--color-secondary)"};
   }

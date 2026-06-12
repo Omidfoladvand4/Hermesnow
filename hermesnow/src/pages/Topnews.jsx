@@ -60,9 +60,9 @@ const FilterdNewsBox = styled.div`
 function Topnews() {
   const { news, Newsrefetch, getNewsLoading } = useNews();
   const { user } = useAuth();
-  const [currentNews, setCurrentNews] = useState(news);
+  const [currentNews, setCurrentNews] = useState([]);
 
-  const FilterHandle = (params) => {
+  const FilterHandle = (params = 'all') => {
     console.log(params);
 
     switch (params) {
@@ -86,7 +86,7 @@ function Topnews() {
         );
         break;
       default:
-        setCurrentNews(news);
+          setCurrentNews(news);
     }
     console.log(currentNews);
   };
@@ -95,7 +95,7 @@ function Topnews() {
       <FilterBox>
         <FilterTabs>
           <Span> فیلتر کردن به اساس :</Span>
-          <FilterTab onClick={() => FilterHandle("all")}>همه</FilterTab>
+          <FilterTab onClick={() => FilterHandle()}>همه</FilterTab>
           <FilterTab onClick={() => FilterHandle("user-fav")}>
             {" "}
             علاقه مندی
