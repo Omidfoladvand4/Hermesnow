@@ -18,12 +18,17 @@ const MyNewsWrapper = styled.div`
 `;
 const MyNewsBoxs = styled.div`
   width: 100%;
-  min-height: 70vh;
   padding: 2% 0;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
+  margin-top: 15px;
+  @media (max-width: 768px) {
+      display: flex;
+      gap: 0;
+      margin-top: 70px;
+  }
 `;
 const GuestBox = styled.div`
   width: 100vw;
@@ -31,9 +36,7 @@ const GuestBox = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-info));
   background-size: 400%;
-  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,7 +56,15 @@ const YourNewsNavigationBox = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 0.5rem;
+  padding:  0.5rem;
+  margin-bottom: 100px;
+  position: absolute;
+  top: -20px;
+  left: 0;
+    @media (max-width: 768px) {
+      top: 0;
+  }
+  
 `;
 const LinkItem = styled(Link)`
   color: var(--color-primary);
@@ -76,10 +87,6 @@ function Mynews() {
       {user?.FavoritesTopic ? (
         <>
           {" "}
-          <Title
-            font={"var(--font-size-md)"}
-            titleName={`خبر های شما بر اساس علاقه مندی شما به موضوع :  ${user?.FavoritesTopic}`}
-          />
           <MyNewsBoxs>
             {!getNewsLoading && yourNews.length >= 0 ? (
               yourNews.map((item) => {
@@ -88,8 +95,7 @@ function Mynews() {
             ) : (
               <Loader />
             )}
-          </MyNewsBoxs>
-          <YourNewsNavigationBox>
+              <YourNewsNavigationBox>
             شما میتوانید برای تغییر علاقه مندی خود به تنظیمات رفته{" "}
             <LinkItem to={"/settings"}>
               <SettingsInputCompositeIcon
@@ -97,6 +103,7 @@ function Mynews() {
               />{" "}
             </LinkItem>
           </YourNewsNavigationBox>
+          </MyNewsBoxs>
         </>
       ) : (
         <GuestBox>

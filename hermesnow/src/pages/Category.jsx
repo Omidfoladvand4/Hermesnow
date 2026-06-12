@@ -37,9 +37,8 @@ const CategoryContentWrapper = styled.div`
   }
 `;
 const NewsGrid = styled.div`
-  width: 90%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  width: 70%;
+  display: flex;
   gap: 30px;
   padding: 40px 20px;
   justify-items: center;

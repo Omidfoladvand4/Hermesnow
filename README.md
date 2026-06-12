@@ -9,7 +9,7 @@
 
 A modern, full-featured news platform built with React and Supabase. This project provides a complete news management system with dynamic content editing, image upload capabilities, and real-time preview.
 
-![Dashboard Preview](screenshot-dashboard.png)
+![Dashboard Preview](/hermesnow/src/assets/HermesNowBannar1.jpg)
 ![Editor Preview](screenshot-editor.png)
 
 ---
