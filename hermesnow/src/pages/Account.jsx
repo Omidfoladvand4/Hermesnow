@@ -3,7 +3,6 @@ import styled from "styled-components";
 import formatNumber from "../utils/formartNumber";
 import Title from "../components/Title";
 import Avatar from "../components/Avatar";
-import BackButton from "../components/BackButton";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, Navigate } from "react-router-dom";
 import { shimmer, slideInStagger } from "../styles/animations";

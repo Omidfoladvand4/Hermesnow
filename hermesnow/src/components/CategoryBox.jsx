@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabaseClient";
+import { incrementNewsView } from "../services/newsService";
 import styled from "styled-components";
 import { shake } from "../styles/animations";
 import posterImage from "../assets/HermesNowBannar1.jpg";
@@ -49,7 +49,7 @@ const NewsContentWrapper = styled.div`
   }
 `;
 
-const NewsTitle = styled.div`
+const NewsTitle = styled.h3`
   width: 100%;
   font-size: var(--font-size-md);
   font-weight: 900;
@@ -64,8 +64,19 @@ const FooterCategoryBox = styled.div`
   align-items: flex-end;
   padding: 10px 15px;
 `;
+const ViewsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+  gap: 5px;
+  color: var(--color-secondary);
+`;
 
-const Div = styled.div`
+const ViewsCount = styled.div`
+  margin-right: 5px;
+`;
+
+const ViewsWrapper = styled.div`
   height: 15px;
   display: flex;
   font-size: var(--font-size-base);
@@ -74,7 +85,7 @@ const Div = styled.div`
   color: var(--color-info);
 `;
 
-const I = styled.div`
+const JournalistName = styled.div`
   height: 15px;
   display: flex;
   font-size: var(--font-size-base);
@@ -101,17 +112,10 @@ function CategoryBox({ news }) {
   if (!news) return null;
 
   const handleClick = async () => {
+    if (loading) return;
     try {
       setLoading(true);
-
-      const { error } = await supabase
-        .from("News")
-        .update({
-          News_view: (news.News_view || 0) + 1,
-        })
-        .eq("id", news.id);
-
-      if (error) throw error;
+      await incrementNewsView(news.id, news.News_view || 0);
 
       setViews((prev) => prev + 1);
 
@@ -126,25 +130,21 @@ function CategoryBox({ news }) {
 
   return (
     <NewsBox onClick={handleClick}>
-      <NewsImage src={news.MainImage || `${posterImage}`} />
+      <NewsImage src={news.MainImage || posterImage} alt={news.NewsTitle} />
 
       <NewsContentWrapper>
         <NewsTitle>{news.NewsTitle}</NewsTitle>
 
         <FooterCategoryBox>
-          <Div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                margin: "0 15px",
-              }}>
-              <div style={{ marginRight: "5px" }}>{formatNumber(views)}</div>
-              <RemoveRedEyeIcon fontSize="smaller" />
-            </div>
-          </Div>
+          <ViewsWrapper>
+            <ViewsContainer>
+              <ViewsCount>{formatNumber(views)}</ViewsCount>
 
-          <I>{news.Journalist || "خبرنگار"}</I>
+              <RemoveRedEyeIcon fontSize="small" />
+            </ViewsContainer>
+          </ViewsWrapper>
+
+          <JournalistName>{news.Journalist || "خبرنگار"}</JournalistName>
         </FooterCategoryBox>
 
         <DateAndTime>{PersianDate(news)}</DateAndTime>

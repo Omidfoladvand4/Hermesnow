@@ -6,7 +6,7 @@ import styled from "styled-components";
 import Title from "../components/Title";
 import CategoryBox from "../components/CategoryBox";
 import Loader from "../components/Loader";
-import BackButton from "../components/BackButton";
+import GoBackButton from "../components/GoBackButton";
 import { gradientMove } from "../styles/animations";
 import SettingsInputCompositeIcon from "@mui/icons-material/SettingsInputComposite";
 const MyNewsWrapper = styled.div`
@@ -111,7 +111,7 @@ function Mynews() {
             برای استفاده از بخش ابتدا باید وارد شوید یا علاقه مندی خود را
             درتنظیمات درج کنید
           </Link>
-          <BackButton />
+          <GoBackButton />
         </GuestBox>
       )}
     </MyNewsWrapper>

@@ -1,17 +1,25 @@
 import styled from "styled-components"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-const AvatarContainer = styled.img`
-  width: 150px;
-  height: 150px;
+
+const AvatarImage = styled.img`
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
   object-fit: cover;
-`
-function Avatar({AvatarSrc}) {
-    if(!AvatarSrc) return <><AccountCircleIcon fontSize="large" /></>
-    return (
-        <AvatarContainer src={AvatarSrc}>
-            
-        </AvatarContainer>
-    )
+  border-radius: 50%;
+`;
+
+function Avatar({ src, size = 150, alt = "User Avatar" }) {
+  if (!src) {
+    return <AccountCircleIcon sx={{ fontSize: size }} />;
+  }
+
+  return (
+    <AvatarImage
+      src={src}
+      alt={alt}
+      size={size}
+    />
+  );
 }
 
 export default Avatar
