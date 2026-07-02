@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-const MenuItemContainer = styled.li`
+const StyledMenuItem  = styled.li`
   display: flex;
   text-align: center;
   justify-content: center;
@@ -19,7 +19,7 @@ const MenuItemContainer = styled.li`
   }
 `;
 function MenuItem({ children }) {
-  return <MenuItemContainer>{children}</MenuItemContainer>;
+  return <StyledMenuItem >{children}</StyledMenuItem >;
 }
 
-export default MenuItem;
+export default React.memo(MenuItem);

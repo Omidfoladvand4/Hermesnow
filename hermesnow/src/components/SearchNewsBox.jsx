@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const SearchNewsBoxWrapper = styled.div`
@@ -45,7 +45,16 @@ const SearchBoxButton = styled.button`
   color: white;
   border: none;
   transition: all 0.3s ease;
+  
+  &:hover:not(:disabled) {
+    background: white;
+    color: var(--color-primary);
+  }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
   &:hover {
     background: white;
     color: var(--color-primary);
@@ -57,19 +66,21 @@ const SearchBoxButton = styled.button`
 
 function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
   const [searchValue, setSearchValue] = useState("");
-  const handleFilterNews = () => {
-    if (filterNewsHandler && searchValue !== "") {
-      filterNewsHandler(searchValue);
+  const handleSearch = () => {
+    const value = searchValue.trim();
+    if (filterNewsHandler && value !== "") {
+      filterNewsHandler(value);
     }
   };
 
-  const handleEnterFilterNews = (e) => {
+  const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleFilterNews();
+      handleSearch();
+      setSearchValue('')
     }
   };
 
@@ -78,11 +89,12 @@ function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
       <SearchBoxInput
         value={searchValue}
         placeholder="خبر مورد نظر را سرچ کنید"
-        onChange={handleEnterFilterNews}
-        onKeyUp={handleKeyDown}
+        onChange={handleSearchChange}
+        onKeyDown={handleKeyDown}
       />
       <div></div>
-      <SearchBoxButton onClick={handleFilterNews}>جستجو</SearchBoxButton>
+      <SearchBoxButton onClick={handleSearch}
+                       disabled={!searchValue.trim()}>جستجو</SearchBoxButton>
     </SearchNewsBoxWrapper>
   );
 }
