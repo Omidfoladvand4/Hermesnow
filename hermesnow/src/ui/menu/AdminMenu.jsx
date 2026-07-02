@@ -36,7 +36,7 @@ function AdminMenu() {
   return (
     <AdminMenuContainer>
       <MenuItem>
-        <LinkItem to="/Account" $active={location.pathname == "/Account"}>
+        <LinkItem to="/account" $active={location.pathname == "/Account"}>
           <AccountCircleIcon
             fontSize="large"
             sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
