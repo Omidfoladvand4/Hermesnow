@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Title from "./Title";
 import CategoryBox from "./CategoryBox";
@@ -77,7 +77,7 @@ const HeaderNewsImage = styled.img`
   height: 100%;
   object-fit: cover;
 `;
-const HeadearNewsTitle = styled.div`
+const HeaderNewsTitle = styled.div`
   width: 100%;
   color: var(--color-primary);
   background-color: var(--color-accent);
@@ -107,27 +107,20 @@ const BoxsContainer = styled.div`
   }
 `;
 
-function CategoryBoxs({ datas, subject }) {
-  console.log("دیتای دریافتی در CategoryBoxs:", datas);
-  console.log("موضوع:", subject);
-
+function BoxesContainer({ datas, subject }) {
+  
   let filtredNewsData = datas.filter((data) => {
     return data.NewsSubject === subject;
   });
-
-  if (datas.length >= 4) {
+  
+  if (filtredNewsData.length > 4) {
     filtredNewsData = filtredNewsData.slice(-4);
   }
-  console.log("دیتای فیلتر شده برای این موضوع:", filtredNewsData);
+  const latestNews = filtredNewsData.at(-1);
+
 
   if (filtredNewsData.length === 0) return null;
-  const headerNewsImage = filtredNewsData.slice(-1)[0].MainImage;
-  const headerNewsTitle = filtredNewsData.slice(-1)[0].NewsTitle;
-  const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`/category/${subject}`);
-  };
   return (
     <CategoryContainer>
       <CategoryNavbar>
@@ -140,8 +133,10 @@ function CategoryBoxs({ datas, subject }) {
       </CategoryNavbar>
       <CategoryBoxWrapper>
         <HeaderNews>
-          <HeaderNewsImage onClick={handleClick} src={headerNewsImage} />
-          <HeadearNewsTitle>{headerNewsTitle}</HeadearNewsTitle>
+         <Link to={`/news/${latestNews?.id}`}>
+          <HeaderNewsImage src={latestNews?.MainImage} alt={latestNews?.NewsTitle}/>
+         </Link>  
+          <HeaderNewsTitle>{latestNews?.NewsTitle}</HeaderNewsTitle>
         </HeaderNews>
         <BoxsContainer>
           {filtredNewsData.map((item, index) => {
@@ -157,4 +152,4 @@ function CategoryBoxs({ datas, subject }) {
   );
 }
 
-export default CategoryBoxs;
+export default BoxesContainer;
