@@ -15,11 +15,11 @@ const StyledBackButton = styled.button`
 `;
 function  GoBackButton() {
   const navigate = useNavigate();
-  const backHandle = () => {
+  const handleGoBack = () => {
     navigate(-1);
   };
   return (
-    <StyledBackButton onClick={backHandle}>
+    <StyledBackButton onClick={handleGoBack}>
       بازگشت
       <ArrowBackIosIcon />
     </StyledBackButton>

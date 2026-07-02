@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ImageBox from "../components/ImageBox";
 import loginImage from "../assets/LoginImage.png";
 import {
   fadeIn,
