@@ -1,5 +1,5 @@
 import React from "react";
-import { ClipLoader, CircleLoader, MoonLoader } from "react-spinners";
+import { CircleLoader } from "react-spinners";
 import styled from "styled-components";
 const LoaderContainer = styled.div`
   width: 100%;
@@ -10,17 +10,22 @@ const LoaderContainer = styled.div`
   text-align: center;
   color: var(--color-primary);
   `;
+const LoaderContent  = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
 const LoaderText = styled.div`
    font-weight: 900;
    margin-top: 20px;
 `
-function Loader({ size = 100, color = `var(--color-primary)` }) {
+function Loader({ size = 100, color = 'var(--color-primary) ' , text = 'درحال بارگذاری ...'}) {
   return (
     <LoaderContainer>
-      <div>
+      <LoaderContent>
         <CircleLoader color={color} size={size} />
-        <LoaderText > ...درحال بارگذاری</LoaderText>
-      </div>
+        <LoaderText > {text}  </LoaderText>
+      </LoaderContent>
     </LoaderContainer>
   );
 }
