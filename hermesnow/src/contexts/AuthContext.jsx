@@ -1,55 +1,57 @@
-import { createContext, useContext, useState, useEffect } from "react";
-
-const AuthContext = createContext();
+import { createContext, useContext, useState, useEffect, useMemo  , useCallback} from "react";
+import { getStoredUser, saveUser, removeUser } from "../services/authStorage";
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    const userData = localStorage.getItem("user");
+    const userData = getStoredUser();
+
     if (userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error("خطا در خواندن اطلاعات کاربر:", error);
-        localStorage.removeItem("user");
-      }
+      setUser(userData);
     }
+    
     setLoading(false);
   }, []);
 
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
+  const login = useCallback((userData) => {
+  setUser(userData);
+  saveUser(userData);
+}, []);
 
-  const logout = () => {
-    const confirmedUser = window.confirm("ایا می خواهید خاج شوید");
-    if (!confirmedUser) return;
-    setUser(null);
-    localStorage.removeItem("user");
-  };
+const logout = useCallback(() => {
+  setUser(null);
+  removeUser();
+}, []);
 
-  const updateUser = (updatedData) => {
-    const updatedUser = { ...user, ...updatedData };
+const updateUser = useCallback(
+  (updatedData) => {
+    if (!user) return;
+
+    const updatedUser = {
+      ...user,
+      ...updatedData,
+    };
+    
     setUser(updatedUser);
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-  };
+    saveUser(updatedUser);
+  },
+  [user]
+);;
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        logout,
-        updateUser,
-        isAuthenticated: !!user,
-      }}>
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      loading,
+      login,
+      logout,
+      updateUser,
+      isAuthenticated: !!user,
+    }),
+    [user, loading , login , logout , updateUser],
   );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

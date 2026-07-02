@@ -36,9 +36,11 @@ function UserMenu() {
   const location = useLocation();
 
   const handleLogout = () => {
-    logout();
+    const confirmed = window.confirm('آیا می خواهید خارج شوید')
+    if(!confirmed) return
     navigate("/");
-    console.log("shgl ");
+    logout();
+    
   };
   return (
     <UserMenuContainer>
