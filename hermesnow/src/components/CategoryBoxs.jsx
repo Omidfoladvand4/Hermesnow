@@ -152,4 +152,4 @@ function BoxesContainer({ datas, subject }) {
   );
 }
 
-export default BoxesContainer;
+export default React.memo(BoxesContainer);

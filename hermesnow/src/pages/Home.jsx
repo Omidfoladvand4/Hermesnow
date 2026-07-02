@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ButtonMenu from "../ui/menu/UserMenu";
 import SearchNewsBox from "../components/SearchNewsBox";
-import MainNewsSction from "../components/MainNewsSction";
+import MainNewsSection from "../components/MainNewsSection";
 import { useNews } from "../hooks/useGetNews";
 import CloseIcon from "@mui/icons-material/Close";
 import { fadeIn } from "../styles/animations";
@@ -213,7 +213,7 @@ function Home() {
             ""
           )}
 
-          <MainNewsSction />
+          <MainNewsSection />
         </MainContent>
         <Sidebar />
       </Main>

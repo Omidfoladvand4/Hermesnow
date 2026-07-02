@@ -2,10 +2,10 @@ import React from "react";
 import { useNews } from "../hooks/useGetNews";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Loader from "./Loader";
 import PersianDate from "../services/PersionDate";
+import Loader from "./Loader";
 
-const FilterdList = styled.div`
+const FilteredList = styled.div`
   width: 90%;
   margin: 15px auto;
   background-color: white;
@@ -14,11 +14,11 @@ const FilterdList = styled.div`
   }
 `;
 
-const FilterItemLink = styled(Link)`
+const FilteredItemLink = styled(Link)`
   text-decoration: none;
   display: block;
 `;
-const FiltredItemCard = styled.div`
+const FilteredItemCard = styled.div`
   width: 100%;
   display: flex;
   padding: 10px 20px;
@@ -38,12 +38,12 @@ const Div = styled.div`
   background-color: var(--color-primary);
 `;
 
-const FiltredItemTitle = styled.div`
+const FilteredItemTitle = styled.div`
   color: var(--color-accent);
   font-size: var(--font-size-xl);
   flex-grow: 1;
 `;
-const FiltredItemContent = styled.div`
+const FilteredItemContent = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -54,33 +54,32 @@ const FiltredItemContent = styled.div`
     gap: 5px;
   }
 `;
-const FiltredDate = styled.div`
+const FilteredDate = styled.div`
   color: var(--color-accent);
   opacity: 0.7;
   font-size: var(--font-size-base);
 `;
-function MainNewsSction() {
-  const { news } = useNews();
-  const FilterdNews = news.slice(-6);
+function MainNewsSection() {
+  const { news  , getNewsLoading} = useNews();
+  const filterdNews = news?.slice(-6) || [];
+  if(getNewsLoading) return <Loader />
   return (
-    <FilterdList>
-      {news && news.length !== 0 ? (
-        FilterdNews?.map((item) => (
-          <FilterItemLink key={item.id} to={`/news/${item.id}`}>
-            <FiltredItemCard>
-              <FiltredItemContent>
+    <FilteredList>
+      {filterdNews.length > 0 && (
+        filterdNews.map((item) => (
+          <FilteredItemLink key={item.id} to={`/news/${item.id}`}>
+            <FilteredItemCard>
+              <FilteredItemContent>
                 <Div />
-                <FiltredItemTitle>{item.NewsTitle}</FiltredItemTitle>
-                <FiltredDate>{PersianDate(item)}</FiltredDate>
-              </FiltredItemContent>
-            </FiltredItemCard>
-          </FilterItemLink>
+                <FilteredItemTitle>{item.NewsTitle}</FilteredItemTitle>
+                <FilteredDate>{PersianDate(item)}</FilteredDate>
+              </FilteredItemContent>
+            </FilteredItemCard>
+          </FilteredItemLink>
         ))
-      ) : (
-        <Loader />
       )}
-    </FilterdList>
+    </FilteredList>
   );
 }
 
-export default MainNewsSction;
+export default React.memo(MainNewsSection);

@@ -153,4 +153,4 @@ function CategoryBox({ news }) {
   );
 }
 
-export default CategoryBox;
+export default React.memo(CategoryBox);
