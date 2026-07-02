@@ -1,11 +1,11 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { loginSchema } from "../validation/loginSchema";
 
 const LoginWrapper = styled.form`
   width: 30%;
@@ -17,6 +17,7 @@ const LoginWrapper = styled.form`
   padding: 15px 10px;
   background-color: var(--color-accent);
   margin-top: 10px;
+
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -25,17 +26,12 @@ const LoginWrapper = styled.form`
 const FormContainer = styled.div`
   width: 100%;
   display: flex;
-  align-items: start;
-  justify-content: center;
-  flex-wrap: wrap;
   flex-direction: column;
   gap: 10px;
 `;
 
 const LabelFelid = styled.label`
-  font-weight: bolder;
   color: white;
-  display: block;
   font-size: var(--font-size-xl);
   font-weight: 900;
 `;
@@ -44,7 +40,7 @@ const InputFeild = styled.input`
   width: 90%;
   padding: 10px 5px;
   color: white;
-  background-color: var(--color-info);
+  background: var(--color-info);
   border: none;
   border-radius: 5px;
 `;
@@ -59,12 +55,12 @@ const LoginButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
   padding: 10px 20px;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
   font-weight: 900;
   font-size: var(--font-size-xl);
-  cursor: pointer;
   color: white;
   background: var(--color-primary);
 
@@ -77,10 +73,11 @@ const LoginButton = styled.button`
 const LoginLink = styled.div`
   text-align: center;
   margin-top: 16px;
+
   a {
     color: var(--color-primary);
     text-decoration: none;
-    font-weight: bolder;
+    font-weight: bold;
   }
 `;
 
@@ -90,49 +87,40 @@ const SignupRoute = styled.p`
   font-weight: 700;
 `;
 
-const LoginFeild = () => {
+function LoginFeild() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
   const { login } = useAuth();
-
-  const validationSchema = Yup.object({
-    userName: Yup.string()
-      .min(3, "نام کاربری باید بیشتر از 3 کاراکتر باشد")
-      .max(20, "نام کاربری نباید بیشتر از 20 کاراکتر باشد")
-      .required("نام کاربری الزامی است"),
-    password: Yup.string()
-      .min(6, "رمز عبور باید بیشتر از 6 کاراکتر باشد")
-      .max(20, "رمز عبور نباید بیشتر از 20 کاراکتر باشد")
-      .required("رمز عبور الزامی است"),
-  });
 
   const formik = useFormik({
     initialValues: {
       userName: "",
       password: "",
     },
-    validationSchema,
+    validationSchema: loginSchema,
+
     onSubmit: async (values) => {
       setLoading(true);
-      setError(null);
+      setError("");
 
       try {
-        const { data: users, error: findError } = await supabase
+        const { data: user, error } = await supabase
           .from("Users")
           .select("*")
           .eq("UserName", values.userName)
           .single();
 
-        if (findError) throw new Error("کاربری با این نام کاربری یافت نشد");
+        if (error || !user) {
+          throw new Error("کاربری با این نام کاربری یافت نشد");
+        }
 
-        if (!users) throw new Error("کاربری با این نام کاربری یافت نشد");
-
-        if (users.UserPassword !== values.password) {
+        if (user.UserPassword !== values.password) {
           throw new Error("رمز عبور اشتباه است");
         }
-        const { ...currentUser } = users;
-        login(currentUser);
+
+        login(user);
         navigate("/");
       } catch (err) {
         setError(err.message || "خطا در ورود");
@@ -145,53 +133,57 @@ const LoginFeild = () => {
   return (
     <LoginWrapper onSubmit={formik.handleSubmit}>
       {error && (
-        <div
+        <ErrorFelid
           style={{
+            width: "100%",
+            textAlign: "center",
             padding: "10px",
             background: "#f8d7da",
-            color: "#721c24",
             borderRadius: "5px",
-            textAlign: "center",
-            width: "100%",
-          }}>
+          }}
+        >
           {error}
-        </div>
+        </ErrorFelid>
       )}
 
       <FormContainer>
-        <LabelFelid>نام کاربری</LabelFelid>
+        <LabelFelid htmlFor="userName">نام کاربری</LabelFelid>
+
         <InputFeild
           id="userName"
           name="userName"
           type="text"
           placeholder="نام کاربری خود را وارد کنید"
+          value={formik.values.userName}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.userName}
         />
+
         {formik.touched.userName && formik.errors.userName && (
           <ErrorFelid>{formik.errors.userName}</ErrorFelid>
         )}
       </FormContainer>
 
       <FormContainer>
-        <LabelFelid>رمز عبور</LabelFelid>
+        <LabelFelid htmlFor="password">رمز عبور</LabelFelid>
+
         <InputFeild
           id="password"
           name="password"
           type="password"
-          placeholder="*********"
+          placeholder="********"
+          value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password}
         />
+
         {formik.touched.password && formik.errors.password && (
           <ErrorFelid>{formik.errors.password}</ErrorFelid>
         )}
       </FormContainer>
 
-      <LoginButton type="submit" disabled={loading}>
-        {loading ? "درحال ورود ..." : "ورود"}
+      <LoginButton type="submit" disabled={loading || !formik.isValid}>
+        {loading ? "درحال ورود..." : "ورود"}
       </LoginButton>
 
       <LoginLink>
@@ -201,6 +193,6 @@ const LoginFeild = () => {
       </LoginLink>
     </LoginWrapper>
   );
-};
+}
 
 export default LoginFeild;
