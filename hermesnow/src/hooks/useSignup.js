@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 
 export const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   const signup = async (userData) => {
     setLoading(true);
@@ -50,12 +48,7 @@ export const useSignup = () => {
         throw signUpError;
       }
 
-      localStorage.setItem("user", JSON.stringify(newUser));
-
-      setTimeout(() => {
-        navigate("/");
-        window.location.reload();
-      }, 2000);
+    
 
       return { success: true, user: newUser };
     } catch (err) {
