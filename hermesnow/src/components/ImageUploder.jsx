@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { uploadImage } from "../services/imageService";
+import { validateImage } from "../validation/validateImage";
 
 const UploadContainer = styled.div`
   display: flex;
@@ -8,9 +9,13 @@ const UploadContainer = styled.div`
   gap: 10px;
   width: 100%;
 `;
-
+const ImageInputContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
 const UploadButton = styled.label`
-  background-color: var(--color-accent);
+  background-color: var(--color-primary);
   color: var(--color-secondary);
   padding: 12px 20px;
   border-radius: 8px;
@@ -24,9 +29,7 @@ const UploadButton = styled.label`
   font-family: vazir;
 
   &:hover {
-    background-color: #b36962;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(192, 123, 116, 0.3);
   }
 
   &:disabled {
@@ -58,15 +61,8 @@ const ProgressBar = styled.div`
   margin-top: 10px;
 `;
 
-const ProgressFill = styled.div`
-  height: 100%;
-  background-color: var(--color-info);
-  width: ${props => props.progress}%;
-  transition: width 0.3s ease;
-`;
-
 const ErrorMessage = styled.span`
-  color: var(--color-accent);
+  color: red;
   font-size: 12px;
   margin-top: 5px;
   font-family: vazir;
@@ -78,79 +74,47 @@ const SuccessMessage = styled.span`
   margin-top: 5px;
   font-family: vazir;
 `;
-
-function ImageUploader({ value, onChange, bucketName = 'News_Images' }) {
+const BUCKET_NAME = "News_Images"
+function ImageUploader({ value, onChange }) {
   const [uploading, setUploading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    if (!file) return;
+    const validationError = validateImage(file);
 
-    if (!file.type.startsWith('image/')) {
-      setError('فقط فایل‌های تصویری مجاز هستند');
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      setError('حجم فایل نباید بیشتر از ۵ مگابایت باشد');
-      return;
-    }
-
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
     setUploading(true);
-    setProgress(0);
 
     try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-      
-      console.log('آپلود فایل:', fileName);
-      console.log('باکت:', bucketName);
-
-      const { error: uploadError, data } = await supabase.storage
-        .from(bucketName)
-        .upload(fileName, file, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (uploadError) {
-        console.error('خطای آپلود:', uploadError);
-        throw uploadError;
-      }
-
-      console.log('آپلود موفق:', data);
-
-      const { data: { publicUrl } } = supabase.storage
-        .from(bucketName)
-        .getPublicUrl(fileName);
-
-      console.log('آدرس عمومی:', publicUrl);
+      const publicUrl = await uploadImage(file, BUCKET_NAME);
 
       onChange(publicUrl);
-      setSuccess('✅ تصویر با موفقیت آپلود شد');
-      
+
+      setSuccess(" تصویر با موفقیت آپلود شد");
     } catch (error) {
-      console.error('خطا در آپلود:', error);
-      
-      if (error.message?.includes('Bucket not found')) {
-        setError('باکت پیدا نشد. لطفا با مدیر سیستم تماس بگیرید.');
+      console.error("خطا در آپلود:", error);
+
+      if (error.message?.includes("Bucket not found")) {
+        setError("باکت پیدا نشد. لطفا با مدیر سیستم تماس بگیرید.");
       } else {
-        setError('خطا در آپلود تصویر. لطفا دوباره تلاش کنید.');
+        setError("خطا در آپلود تصویر. لطفا دوباره تلاش کنید.");
       }
     } finally {
       setUploading(false);
-      setProgress(0);
     }
   };
 
   return (
     <UploadContainer>
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+      <ImageInputContainer>
         <HiddenInput
           type="file"
           id="image-upload"
@@ -159,27 +123,19 @@ function ImageUploader({ value, onChange, bucketName = 'News_Images' }) {
           disabled={uploading}
         />
         <UploadButton htmlFor="image-upload" disabled={uploading}>
-          {uploading ? '⏳ در حال آپلود...' : '📸 انتخاب تصویر'}
+          {uploading ? " در حال آپلود..." : " انتخاب تصویر"}
         </UploadButton>
-      </div>
-
-      {uploading && (
-        <ProgressBar>
-          <ProgressFill progress={progress} />
-        </ProgressBar>
-      )}
-
+      </ImageInputContainer>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       {success && <SuccessMessage>{success}</SuccessMessage>}
-
       {value && (
-        <PreviewImage 
-          src={value} 
-          alt="تصویر آپلود شده" 
+        <PreviewImage
+          src={value}
+          alt="تصویر آپلود شده"
           onError={(e) => {
-            console.log('خطا در لود تصویر:', value);
-            e.target.style.display = 'none';
-          }} 
+            console.log("خطا در لود تصویر:", value);
+            e.target.style.display = "none";
+          }}
         />
       )}
     </UploadContainer>

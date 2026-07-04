@@ -1,6 +1,4 @@
-
 import styled  from 'styled-components';
-import  ImageBox from '../../components/ImageBox'
 import bannerImage from '../../assets/HermesNowBannar1.jpg'
 const Bannar = styled.div`
     width: 40%;
@@ -22,7 +20,7 @@ const BannarContent = styled.div`
     font-weight: 900;
     line-height: 1.9;
     word-spacing: 1.8px;
-    padding: 10px 30px;
+    padding: 0 30px;
     color: var(--color-secondary);
     flex-wrap: nowrap;
     @media (max-width: 768px) {

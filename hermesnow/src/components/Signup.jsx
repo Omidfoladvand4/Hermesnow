@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSignup } from "../hooks/useSignup";
-import Navigations from "./Navigations";
+import { signupSchema } from "../validation/signupSchema";
 import { slideInStagger } from "../styles/animations";
-import bgImage from "../assets/HermesNowBannar1.jpg";
+import FormField from "./FormField";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const SingupContainer = styled.div`
   width: 100%;
@@ -14,10 +15,6 @@ const SingupContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgImage});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   position: fixed;
   top: 0;
   z-index: 120;
@@ -25,28 +22,24 @@ const SingupContainer = styled.div`
 `;
 
 const SignupWrapper = styled.form`
-  width: 30%;
+  width: 45%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 10px;
   padding: 15px 10px;
-  background-color: var(--color-info);
+  background-color: var(--color-accent);
   margin-top: 10px;
   @media (max-width: 768px) {
-    width: 50%;
-  }
-  @media (max-width: 400px) {
     width: 100%;
-    margin: 0;
   }
 `;
 
 const FormContainer = styled.div`
   width: 100%;
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
@@ -64,8 +57,8 @@ const LabelFelid = styled.label`
 const InputFeild = styled.input`
   width: 90%;
   padding: 10px 5px;
-  color:  white;
-  background-color: var(--color-accent);
+  color: white;
+  background-color: var(--color-info);
 `;
 
 const ErrorFelid = styled.div`
@@ -110,38 +103,23 @@ const LoginLink = styled.div`
   margin-top: 16px;
 
   a {
-      color: var(--color-primary);
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: bolder;
   }
 `;
 const LoginRoute = styled.p`
   font-size: var(--font-size-md);
-  color: var(--color-accent);
+  color: var(--color-info);
   font-weight: 700;
 `;
+
 const Signup = () => {
   const { signup, loading, error } = useSignup();
+  const navigate = useNavigate();
+const { login } = useAuth();
 
-  const validationSchema = Yup.object({
-    userName: Yup.string()
-      .min(3, "نام کاربری باید حداقل ۳ کاراکتر باشد")
-      .max(20, "نام کاربری نباید بیشتر از ۲۰ کاراکتر باشد")
-      .required("نام کاربری الزامی است")
-      .matches(
-        /^[a-zA-Z0-9_]+$/,
-        "نام کاربری فقط می‌تواند شامل حروف انگلیسی، اعداد و underline باشد",
-      ),
-    email: Yup.string().email("ایمیل معتبر نیست").required("ایمیل الزامی است"),
-    password: Yup.string()
-      .min(6, "رمز عبور باید حداقل ۶ کاراکتر باشد")
-      .max(20, "رمز عبور نباید بیشتر از ۲۰ کاراکتر باشد")
-      .required("رمز عبور الزامی است"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "رمز عبور و تکرار آن باید یکسان باشد")
-      .required("تکرار رمز عبور  باید یکسان باشد"),
-  });
-
+    
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -149,97 +127,55 @@ const Signup = () => {
       password: "",
       confirmPassword: "",
     },
-    validationSchema,
+    validationSchema : signupSchema,
     onSubmit: async (values) => {
-      await signup(values);
+   const result = await signup(values);
+
+if (result.success) {
+    login(result.user);
+    navigate("/");
+}
     },
   });
 
   return (
     <SingupContainer>
-      <Navigations
-        titleName="ثبت نام"
-        font="var(--font-size-lg)"
-        color="var(--color-primary)">
-        {" "}
-      </Navigations>
-
       <SignupWrapper onSubmit={formik.handleSubmit}>
-
         {error && <Message type="error">❌ {error}</Message>}
 
-        <FormContainer>
-          <LabelFelid>نام کاربری</LabelFelid>
-          <InputFeild
-            id="userName"
-            name="userName"
-            type="text"
-            placeholder="example123"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.userName}
-            hasError={formik.touched.userName && formik.errors.userName}
-            
-          />
-          {formik.touched.userName && formik.errors.userName && (
-            <ErrorFelid>{formik.errors.userName}</ErrorFelid>
-          )}
-        </FormContainer>
+        <FormField
+    id="userName"
+    label="نام کاربری"
+    type="text"
+    placeholder="example123"
+    formik={formik}
+/>
+
+<FormField
+    id="email"
+    label="ایمیل"
+    type="email"
+    placeholder="example@gmail.com"
+    formik={formik}
+/>
+
+<FormField
+    id="password"
+    label="رمز عبور"
+    type="password"
+    placeholder="••••••••"
+    formik={formik}
+/>
+
+<FormField
+    id="confirmPassword"
+    label="تکرار رمز عبور"
+    type="password"
+    placeholder="••••••••"
+    formik={formik}
+/>
 
         <FormContainer>
-          <LabelFelid>ایمیل</LabelFelid>
-          <InputFeild
-            id="email"
-            name="email"
-            type="email"
-            placeholder="example@gmail.com"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-            hasError={formik.touched.email && formik.errors.email}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <ErrorFelid>{formik.errors.email}</ErrorFelid>
-          )}
-        </FormContainer>
-
-        <FormContainer>
-          <LabelFelid>رمز عبور</LabelFelid>
-          <InputFeild
-            id="password"
-            name="password"
-            type="password"
-            placeholder="••••••••"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-            hasError={formik.touched.password && formik.errors.password}
-          />
-          {formik.touched.password && formik.errors.password && (
-            <ErrorFelid>{formik.errors.password}</ErrorFelid>
-          )}
-        </FormContainer>
-
-        <FormContainer>
-          <LabelFelid>تکرار رمز عبور</LabelFelid>
-          <InputFeild
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            placeholder="••••••••"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.confirmPassword}
-            hasError={
-              formik.touched.confirmPassword && formik.errors.confirmPassword
-            }
-          />
-          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-            <ErrorFelid>{formik.errors.confirmPassword}</ErrorFelid>
-          )}
-        </FormContainer>
-
-        <FormContainer style={{ alignItems: "center" }}>
           <SignupButton type="submit" disabled={loading}>
             {loading ? "در حال ثبت‌ نام..." : "ثبت‌ نام"}
           </SignupButton>

@@ -16,24 +16,24 @@ export function usegetRecomendedNews(subject) {
     try {
       setGetRecomendedNewsLoading(true);
       setGetRecomendedNewsError(null);
-      
+
       const { data, error: supabaseError } = await supabase
-        .from('News')
-        .select('*');
+        .from("News")
+        .select("*");
 
       if (supabaseError) {
         throw supabaseError;
       }
 
-      const filteredData = data?.filter((item) => {
-        return item.NewsSubject === subject;
-      }) || [];
-      
+      const filteredData =
+        data?.filter((item) => {
+          return item.NewsSubject === subject;
+        }) || [];
+
       setGetRecomendedNews(filteredData);
-      
     } catch (err) {
       setGetRecomendedNewsError(err.message);
-      console.error('خطا در دریافت اخبار:', err);
+      console.error("خطا در دریافت اخبار:", err);
     } finally {
       setGetRecomendedNewsLoading(false);
     }
@@ -43,10 +43,10 @@ export function usegetRecomendedNews(subject) {
     fetchRecomendedNews();
   };
 
-  return { 
-    getRecomendedNews, 
-    Newsrefetch, 
-    getRecomendedNewsLoading, 
-    getRecomendedNewsError 
+  return {
+    getRecomendedNews,
+    Newsrefetch,
+    getRecomendedNewsLoading,
+    getRecomendedNewsError,
   };
 }

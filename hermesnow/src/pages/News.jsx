@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import PersianDate from "../services/PersionDate";
 import Title from "../components/Title";
@@ -20,7 +20,7 @@ const NewsHeader = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: var(--color-accent);
-  @media (max-width: 400px) {
+  @media (max-width: 1024px) {
     align-items: center;
     flex-direction: column;
   }
@@ -30,7 +30,7 @@ const NewsSummary = styled.div`
   width: 60%;
   display: flex;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
   overflow-wrap: break-word;
   color: var(--color-info);
@@ -38,23 +38,21 @@ const NewsSummary = styled.div`
   font-weight: 900;
   font-size: var(--font-size-xl);
   animation: ${slideInStagger} 0.5s linear;
-  @media (max-width: 400px) {
+  @media (max-width: 1024px) {
     width: 100%;
-    padding: 0 8px;
   }
 `;
 const NewsMainText = styled.div`
   width: 100%;
   font-size: var(--font-size-xl);
   margin-right: 3%;
-
-`
+`;
 const NewsImage = styled.img`
   flex-grow: 1;
   height: 100%;
   object-fit: cover;
   animation: ${zoomIn} 0.5s linear;
-  @media (max-width: 400px) {
+  @media (max-width: 1024px) {
     width: 100%;
   }
 `;
@@ -62,8 +60,13 @@ const NewsImage = styled.img`
 const Journalist = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
+<<<<<<< HEAD
    color: var(--color-accent);
 
+=======
+  color: var(--color-info);
+  padding: 25px;
+>>>>>>> recovered-branch
 `;
 
 const MainContent = styled.div`
@@ -73,26 +76,26 @@ const MainContent = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  @media (max-width:  768px) {
-      flex-direction: column;
-      padding: 0;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    padding: 0;
   }
-  `
+`;
 const MainContentNews = styled.div`
   width: 70%;
   padding: 12px 20px;
   background-color: var(--color-accent);
   border-bottom: 6px solid var(--color-accent);
-    @media (max-width:  768px) {
-      width: 100%;
+  @media (max-width: 1024px) {
+    width: 100%;
   }
-`
+`;
 const MainContentNewsTitle = styled.h1`
-   margin-top: 10px;
+  margin-top: 10px;
   line-height: 1.7;
-   color: white;
-   font-size: var(--font-size-xxl);
-`
+  color: white;
+  font-size: var(--font-size-xxl);
+`;
 const MainContentNewsText = styled.div`
   width: 90%;
   text-align: center;
@@ -101,12 +104,11 @@ const MainContentNewsText = styled.div`
   font-size: var(--font-size-xl);
   line-height: 2;
   font-weight: 900;
-  color:var(--color-secondary);
+  color: var(--color-secondary);
   @media (max-width: 768px) {
-     text-align: start;
+    text-align: start;
   }
-
-`
+`;
 
 const Information = styled.div`
   width: 100%;
@@ -116,6 +118,7 @@ const Information = styled.div`
   flex-wrap: wrap;
   padding: 4px 12px;
   font-size: var(--font-size-md);
+<<<<<<< HEAD
   background-color: var(--color-primary);
   @media (max-width: 400px) {
     padding: 2px 10px;
@@ -124,17 +127,24 @@ const Information = styled.div`
     gap: 10px;
 
 
+=======
+  @media (max-width: 768px) {
+    padding: 2px;
+    justify-content: center;
+    margin: 15px auto;
+>>>>>>> recovered-branch
   }
 `;
-const InfomationDate = styled.div`
+const InformationDate = styled.div`
   font-weight: 900;
   font-size: var(--font-size-md);
-`
+  color: var(--color-info);
+`;
 const InformationLink = styled(Link)`
   font-size: var(--font-size-md);
-  color: var(--color-accent);
+  color: var(--color-info);
   font-weight: 900;
-`
+`;
 const ShareBotton = styled.button`
   padding: 10px 5px;
   cursor: pointer;
@@ -145,7 +155,6 @@ const ShareBotton = styled.button`
   &:hover {
     transform: scale(0.98);
   }
-
 `;
 const RecomededNews = styled.div`
   display: flex;
@@ -182,15 +191,8 @@ function News() {
     }
   }, [id]);
 
-  useEffect(() => {
-    if (news) {
-      console.log("موضوع خبر:", news.NewsSubject);
-      console.log("اخبار مرتبط:", getRecomendedNews);
-    }
-  }, [news, getRecomendedNews]);
-
-  const fetchNewsById = async () => {
-    try {
+const fetchNewsById = useCallback(async () => {
+ try {
       setLoading(true);
 
       const { data, error } = await supabase
@@ -209,50 +211,64 @@ function News() {
       }
 
       setNews(data);
-      console.log("خبر پیدا شد:", data);
+    
     } catch (err) {
       setError(err.message);
-      console.error("خطا:", err);
     } finally {
       setLoading(false);
     }
-  };
+}, [id, navigation]);
+   
+
+const handleShare = useCallback(() => {
+  if (!isShareble) {
+    copyToClipboard(window.location.href);
+  }
+
+  shareNews(news, window.location.href);
+}, [copyToClipboard, isShareble, news, shareNews]);
+const handleCommentAdded = useCallback((newComment) => {
+  setComments((prev) => [newComment, ...prev]);
+}, []);
+const recomendedNewsFiltered = useMemo(() => {
+  if (!news) return [];
+
+  return getRecomendedNews
+    .filter((item) => item.id !== news.id)
+    .slice(0, 3);
+}, [getRecomendedNews, news]);
 
   if (loading) return <Loader />;
   if (error) return <div>خطا: {error}</div>;
   if (!news) return <div>خبری با شناسه {id} یافت نشد</div>;
-
-  const handleShare = () => {
-    if (!isShareble) {
-      copyToClipboard(window.location.href);
-    }
-    shareNews(news, window.location.href);
-  };
-  const handleCommentAdded = (newComment) => {
-    setComments((prev) => [newComment, ...prev]);
-  };
-  const recomendedNewsFiltered = getRecomendedNews
-    .filter((item) => item.id !== news.id)
-    .slice(0, 3);
   return (
-    <div>
-
+    <>
       <NewsHeader>
         <NewsSummary>
-      <Title titleName={news.NewsTitle} font={`var(--font-size-xxl)`} color={`white`}/>
-         <NewsMainText >
-           {news.NewsMainText}
-         </NewsMainText>
-          </NewsSummary>
+          <Title
+            titleName={news.NewsTitle}
+            font='var(--font-size-xxl)'
+            color='white'
+          />
+          <NewsMainText>{news.NewsMainText}</NewsMainText>
+          <Information>
+            <InformationLink to={`/category/${news.NewsSubject}`}>
+              {news.NewsSubject}
+            </InformationLink>
+            <Journalist> {news.Journalist}</Journalist>
+            <ShareBotton onClick={handleShare}> به اشتراک گذاشتن </ShareBotton>
+            <InformationDate>{PersianDate(news)}</InformationDate>
+          </Information>
+        </NewsSummary>
         <NewsImage
-          src={news.MainImage || `${posterImage}`}
+          src={news.MainImage || posterImage}
           alt={news.NewsSubject}
         />
       </NewsHeader>
 
-
       <MainContent>
         <MainContentNews>
+<<<<<<< HEAD
               {news.Content &&
           news.Content.map((item, index) =>
             item.element === "h1" ? (
@@ -271,6 +287,20 @@ function News() {
         <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
         <InfomationDate>{PersianDate(news)}</InfomationDate>
       </Information>
+=======
+          {news.Content &&
+            news.Content.map((item, index) =>
+              item.element === "h1" ? (
+                <MainContentNewsTitle key={index}>
+                  {item.content}
+                </MainContentNewsTitle>
+              ) : (
+                <MainContentNewsText key={index}>
+                  {item.content}
+                </MainContentNewsText>
+              ),
+            )}
+>>>>>>> recovered-branch
         </MainContentNews>
         <Sidebar />
       </MainContent>
@@ -280,8 +310,8 @@ function News() {
       ) : (
         <RecomededNews>
           <Title
-            titleName={"خبر های بیشتر در این مورد "}
-            font={`var(--font-size-md)`}
+            titleName="خبر های بیشتر در این مورد "
+            font= 'var(--font-size-md)'
           />
           <RecomendedNewsContanier>
             {recomendedNewsFiltered.map((item) => (
@@ -295,7 +325,7 @@ function News() {
         newsId={id}
         onCommentAdded={handleCommentAdded}
       />
-    </div>
+    </>
   );
 }
 
