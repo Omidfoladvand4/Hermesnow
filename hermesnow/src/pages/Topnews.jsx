@@ -18,35 +18,6 @@ const FilterBox = styled.div`
   padding: 1rem 0;
 `;
 const FilterTabs = styled.nav`
-<<<<<<< HEAD
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 auto;
-    padding: 10px 20px;
-    color: var(--color-primary);
-    background: var(--color-info);
-    font-weight: 900;
-    font-size: var(--font-size-xl);
-    @media (max-width : 400px){
-      width: 100%;
-      font-size: var(--font-size-xl);
-
-    }
-    `
-const Span = styled.span`
-  @media (max-width : 400px) {
-      display: none;
-  }
-`
-const FilterTab = styled.div`
-     cursor: pointer;
-     text-align: center;
-`
-const FilterdNewsBox = styled.div`
-=======
->>>>>>> recovered-branch
   width: 100%;
   display: flex;
   align-items: center;
@@ -119,22 +90,6 @@ function Topnews() {
   };
   return (
     <TopNewsWrapper>
-<<<<<<< HEAD
-        <FilterBox>
-          <FilterTabs> 
-            <Span> فیلتر کردن به اساس :</Span>
-            <FilterTab onClick={() => FilterHandle('all')}>همه</FilterTab>
-            <FilterTab onClick={() => FilterHandle('user-fav')}> علاقه مندی</FilterTab>
-            <FilterTab onClick={() => FilterHandle('old-to-new')}>قدیم به جدید</FilterTab>
-            <FilterTab onClick={() => FilterHandle('new-to-old')}>جدید به قدیم</FilterTab>
-          </FilterTabs>
-            <FilterdNewsBox>
-              {!getNewsLoading ?   currentNews.map((item) => {
-              return  <CategoryBox key={item.id}  news={item}/>
-            }) : <Loader />}
-            </FilterdNewsBox>
-        </FilterBox>
-=======
       <FilterBox>
         <FilterTabs>
           <Span> فیلتر کردن به اساس :</Span>
@@ -160,7 +115,6 @@ function Topnews() {
           )}
         </FilterdNewsBox>
       </FilterBox>
->>>>>>> recovered-branch
     </TopNewsWrapper>
   );
 }

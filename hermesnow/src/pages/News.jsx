@@ -60,13 +60,8 @@ const NewsImage = styled.img`
 const Journalist = styled.div`
   font-size: var(--font-size-md);
   font-weight: 900;
-<<<<<<< HEAD
-   color: var(--color-accent);
-
-=======
   color: var(--color-info);
   padding: 25px;
->>>>>>> recovered-branch
 `;
 
 const MainContent = styled.div`
@@ -118,21 +113,10 @@ const Information = styled.div`
   flex-wrap: wrap;
   padding: 4px 12px;
   font-size: var(--font-size-md);
-<<<<<<< HEAD
-  background-color: var(--color-primary);
-  @media (max-width: 400px) {
-    padding: 2px 10px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-
-
-=======
   @media (max-width: 768px) {
     padding: 2px;
     justify-content: center;
     margin: 15px auto;
->>>>>>> recovered-branch
   }
 `;
 const InformationDate = styled.div`
@@ -268,26 +252,6 @@ const recomendedNewsFiltered = useMemo(() => {
 
       <MainContent>
         <MainContentNews>
-<<<<<<< HEAD
-              {news.Content &&
-          news.Content.map((item, index) =>
-            item.element === "h1" ? (
-              <MainContentNewsTitle key={index} >
-                {item.content}
-              </MainContentNewsTitle>
-            ) : (
-              <MainContentNewsText key={index} >
-                {item.content}
-              </MainContentNewsText>
-            ),
-          )}
-          <Information>
-        <InformationLink to={`/category/${news.NewsSubject}`}>{news.NewsSubject}</InformationLink>
-        <Journalist> {news.Journalist}</Journalist>
-        <ShareBotton onClick={handleShare}>  به اشتراک گذاشتن </ShareBotton>
-        <InfomationDate>{PersianDate(news)}</InfomationDate>
-      </Information>
-=======
           {news.Content &&
             news.Content.map((item, index) =>
               item.element === "h1" ? (
@@ -300,7 +264,6 @@ const recomendedNewsFiltered = useMemo(() => {
                 </MainContentNewsText>
               ),
             )}
->>>>>>> recovered-branch
         </MainContentNews>
         <Sidebar />
       </MainContent>

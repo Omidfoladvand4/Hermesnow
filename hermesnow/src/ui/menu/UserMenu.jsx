@@ -42,13 +42,6 @@ function UserMenu() {
     
   };
   return (
-<<<<<<< HEAD
-    <UserMenuContainer> 
-        <MenuItem ><LinkItem to = '/'><HomeIcon fontSize='large'   sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/> </LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/live-news'><LiveTvIcon  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/></LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/top-news'><AccessTimeIcon  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/></LinkItem></MenuItem>
-        <MenuItem ><LinkItem to = '/settings'><SettingsInputCompositeIcon  fontSize='large'  sx={{ fontSize: { xs: 48, sm: 44, md : 40, lg: 36 } }}/></LinkItem></MenuItem>
-=======
     <UserMenuContainer>
       <MenuItem>
         <LinkItem to="/" $active={location.pathname == "/"}>
@@ -74,7 +67,6 @@ function UserMenu() {
           />
         </LinkItem>
       </MenuItem>
->>>>>>> recovered-branch
 
       {!user && (
         <MenuItem>
