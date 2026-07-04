@@ -8,6 +8,7 @@ import MainNewsSection from "../components/MainNewsSection";
 import { useNews } from "../hooks/useGetNews";
 import CloseIcon from "@mui/icons-material/Close";
 import { fadeIn } from "../styles/animations";
+import Slider from "../components/Slider"
 const HomeContainer = styled.div`
   width: 95%;
   padding: 0;
@@ -218,7 +219,7 @@ function Home() {
           ) : (
             ""
           )}
-
+          <Slider / >
           <MainNewsSection />
         </MainContent>
       </Main>
