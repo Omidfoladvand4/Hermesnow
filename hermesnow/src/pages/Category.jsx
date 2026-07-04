@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import  { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNews } from "../hooks/useGetNews";
 import styled from "styled-components";
 import CategoryBox from "../components/CategoryBox";
-import Title from "../components/Title";
 import Loader from "../components/Loader";
 import Sidebar from "../components/Sidebar";
 
@@ -63,23 +62,18 @@ const EmptyMessage = styled.div`
 `;
 function Category() {
   const subject = useParams().subject;
-  const [headerTitle, setHeaderTitle] = useState(subject);
   const { news, loading } = useNews();
-  const [filteredNews, setFilteredNews] = useState([]);
 
-  useEffect(() => {
-    if (news && news.length > 0) {
-      const filtered = news.filter((item) => item.NewsSubject === subject);
-      setFilteredNews(filtered);
-      setHeaderTitle(subject);
-    }
-  }, [subject, news]);
+ const filteredNews = useMemo(
+  () => news.filter(item => item.NewsSubject === subject),
+  [news, subject]
+);
 
   if (loading) return <Loader />;
 
   return (
     <Container>
-      <Header>{headerTitle}</Header>
+      <Header>{subject}</Header>
       {filteredNews.length > 0 ? (
         <CategoryContentWrapper>
           {" "}
@@ -92,7 +86,7 @@ function Category() {
         </CategoryContentWrapper>
       ) : (
         <EmptyMessage>
-          هیچ خبری در دسته‌بندی ({headerTitle}) یافت نشد :{" "}
+          هیچ خبری در دسته‌بندی ({subject}) یافت نشد :{" "}
           <Link to="/">رفتن به صفحه اصلی</Link>
         </EmptyMessage>
       )}

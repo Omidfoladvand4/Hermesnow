@@ -18,8 +18,6 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Account = lazy(() => import("./pages/Account"));
 const Setting = lazy(() => import("./pages/Setting"));
 const Topnews = lazy(() => import("./pages/Topnews"));
-const Live = lazy(() => import("./pages/Live"));
-const ProductInfo = lazy(() => import("./pages/ProductInfo"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function AppRoutes() {
@@ -38,8 +36,6 @@ export default function AppRoutes() {
         <Route path="/news/:id" element={<News />} />
         <Route path="/category/:subject" element={<Category />} />
         <Route path="/top-news" element={<Topnews />} />
-        <Route path="/live-news" element={<Live />} />
-        <Route path="/product-info" element={<ProductInfo />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>

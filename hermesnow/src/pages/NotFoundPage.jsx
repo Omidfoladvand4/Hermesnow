@@ -1,58 +1,39 @@
-import React from "react";
 import styled from "styled-components";
 import GoBackButton from "../components/GoBackButton";
-const Overlay = styled.div`
-  width: 100%;
-  min-height: 100vh;
+
+
+const Container = styled.main`
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 48px;
+
   background: linear-gradient(165deg, #ffffff, #4e4e4e, #000000);
   backdrop-filter: blur(30px);
-  position: fixed;
-  top: 0;
-  z-index: 98;
 `;
-const TitlePage = styled.div`
+
+const Title = styled.h1`
+  margin: 0;
+  text-align: center;
+
   font-size: var(--font-size-xxl);
-  background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
-  background-clip: text;
-  color: transparent;
   font-weight: 900;
   font-family: cursive;
-  animation: textAnimate 2.5s alternate infinite;
-  @keyframes textAnimate {
-    0% {
-      background: linear-gradient(45deg, #45b7d1, #4ecdc4, #ff6b6b);
-      background-clip: text;
-    }
-    60% {
-      opacity: 0;
-    }
-    99% {
-      opacity: 0.7;
-    }
-    100% {
-      transform: scale(1.8);
-    }
-  }
+
 `;
-const Nav = styled.div`
-  position: fixed;
-  z-index: 100;
-  bottom: 100px;
-`;
+
 function NotFoundPage() {
   return (
-    <>
-      <Overlay>
-        <TitlePage>Page Not Found :(</TitlePage>
-      </Overlay>
-      <Nav>
-        {" "}
-        <HandleGoBack />
-      </Nav>
-    </>
+    <Container>
+      <Title>۴۰۴ | صفحه مورد نظر پیدا نشد</Title>
+
+      <GoBackButton />
+    </Container>
   );
 }
 

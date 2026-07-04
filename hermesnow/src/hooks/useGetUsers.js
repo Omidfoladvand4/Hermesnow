@@ -24,7 +24,6 @@ export function useUsers() {
       setUsers(data || []);
     } catch (err) {
       setgetUserError(err.message);
-      console.getUserError("خطا در دریافت کاربران:", err);
     } finally {
       setgetUserLoading(false);
     }

@@ -17,7 +17,6 @@ export function useCommentForm({
     validationSchema: commentSchema,
     onSubmit: async (values, { resetForm, setSubmitting }) => {
       try {
-        // Validation سمت کلاینت
         if (!isAuthenticated) {
           setError("برای ثبت نظر باید وارد شوید");
           return;
@@ -28,7 +27,6 @@ export function useCommentForm({
           return;
         }
 
-        // ساخت کامنت جدید
         const newComment = {
           id: Date.now(),
           content: values.comment.trim(),
@@ -36,15 +34,12 @@ export function useCommentForm({
           created_at: new Date().toISOString(),
         };
 
-        // Optimistic Update
         setComments(prev => [newComment, ...prev]);
         onCommentAdded?.(newComment);
         resetForm();
 
-        // ارسال به سرور
         const updatedComments = await addComment(newsId, newComment);
         
-        // Sync با سرور
         setComments(updatedComments);
         setError(null);
 
@@ -52,7 +47,6 @@ export function useCommentForm({
         console.error("خطا در ثبت نظر:", error);
         setError("خطا در ثبت نظر. لطفاً دوباره تلاش کنید.");
         
-        // برگردوندن state قبلی در صورت خطا
         const previousComments = await getComments(newsId);
         setComments(previousComments);
       } finally {

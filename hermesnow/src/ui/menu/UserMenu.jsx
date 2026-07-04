@@ -4,7 +4,6 @@ import MenuItem from "../../components/MenuItem";
 import { Link, useLocation } from "react-router-dom";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SettingsInputCompositeIcon from "@mui/icons-material/SettingsInputComposite";
-import LiveTvIcon from "@mui/icons-material/LiveTv";
 import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -50,14 +49,6 @@ function UserMenu() {
             fontSize="large"
             sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
           />{" "}
-        </LinkItem>
-      </MenuItem>
-      <MenuItem>
-        <LinkItem to="/live-news" $active={location.pathname == "/live-news"}>
-          <LiveTvIcon
-            fontSize="large"
-            sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
-          />
         </LinkItem>
       </MenuItem>
       <MenuItem>

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import PersianDate from "../services/PersionDate";
 import Title from "../components/Title";
@@ -175,15 +175,8 @@ function News() {
     }
   }, [id]);
 
-  useEffect(() => {
-    if (news) {
-      console.log("موضوع خبر:", news.NewsSubject);
-      console.log("اخبار مرتبط:", getRecomendedNews);
-    }
-  }, [news, getRecomendedNews]);
-
-  const fetchNewsById = async () => {
-    try {
+const fetchNewsById = useCallback(async () => {
+ try {
       setLoading(true);
 
       const { data, error } = await supabase
@@ -202,39 +195,44 @@ function News() {
       }
 
       setNews(data);
-      console.log("خبر پیدا شد:", data);
+    
     } catch (err) {
       setError(err.message);
-      console.error("خطا:", err);
     } finally {
       setLoading(false);
     }
-  };
+}, [id, navigation]);
+   
+
+const handleShare = useCallback(() => {
+  if (!isShareble) {
+    copyToClipboard(window.location.href);
+  }
+
+  shareNews(news, window.location.href);
+}, [copyToClipboard, isShareble, news, shareNews]);
+const handleCommentAdded = useCallback((newComment) => {
+  setComments((prev) => [newComment, ...prev]);
+}, []);
+const recomendedNewsFiltered = useMemo(() => {
+  if (!news) return [];
+
+  return getRecomendedNews
+    .filter((item) => item.id !== news.id)
+    .slice(0, 3);
+}, [getRecomendedNews, news]);
 
   if (loading) return <Loader />;
   if (error) return <div>خطا: {error}</div>;
   if (!news) return <div>خبری با شناسه {id} یافت نشد</div>;
-
-  const handleShare = () => {
-    if (!isShareble) {
-      copyToClipboard(window.location.href);
-    }
-    shareNews(news, window.location.href);
-  };
-  const handleCommentAdded = (newComment) => {
-    setComments((prev) => [newComment, ...prev]);
-  };
-  const recomendedNewsFiltered = getRecomendedNews
-    .filter((item) => item.id !== news.id)
-    .slice(0, 3);
   return (
     <>
       <NewsHeader>
         <NewsSummary>
           <Title
             titleName={news.NewsTitle}
-            font={`var(--font-size-xxl)`}
-            color={`white`}
+            font='var(--font-size-xxl)'
+            color='white'
           />
           <NewsMainText>{news.NewsMainText}</NewsMainText>
           <Information>
@@ -247,7 +245,7 @@ function News() {
           </Information>
         </NewsSummary>
         <NewsImage
-          src={news.MainImage || `${posterImage}`}
+          src={news.MainImage || posterImage}
           alt={news.NewsSubject}
         />
       </NewsHeader>
@@ -275,8 +273,8 @@ function News() {
       ) : (
         <RecomededNews>
           <Title
-            titleName={"خبر های بیشتر در این مورد "}
-            font={`var(--font-size-md)`}
+            titleName="خبر های بیشتر در این مورد "
+            font= 'var(--font-size-md)'
           />
           <RecomendedNewsContanier>
             {recomendedNewsFiltered.map((item) => (

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import formatNumber from "../utils/formartNumber";
 import Title from "../components/Title";
@@ -62,7 +61,11 @@ const UserInformationContainer = styled(BaseContainer)`
   font-size: var(--font-size-md);
   background-color: var(--color-accent);
 `;
-
+const UserInfoItem = styled.div`
+  display: flex;
+  gap: 8px;
+  font-size: var(--font-size-md);
+`
 const UserImformationWrapper = styled.div`
   display: flex;
   align-items: start;
@@ -83,7 +86,10 @@ const UserActionsContainer = styled(BaseContainer)`
   background-color: var(--color-accent);
   overflow: hidden;
 `;
-
+const UserActionsWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`
 const UserActionsBox = styled.div`
   display: flex;
   align-items: center;
@@ -131,13 +137,12 @@ function Account() {
   }
 
   return (
-    <>
       <Container>
         <ProfileContainer>
-          <Avatar AvatarSrc={user?.Avatar} />
-          <UserName>{user?.UserName || "نامشخص"}</UserName>
+          <Avatar AvatarSrc={user.Avatar} />
+          <UserName>{user.UserName || "نامشخص"}</UserName>
           <UserId>
-            User_ID:@hermes{user?.UserId || user?.id || "شناسه نامشخص"}
+            User_ID:@hermes{user.UserId || user.id || "شناسه نامشخص"}
           </UserId>
         </ProfileContainer>
 
@@ -150,12 +155,12 @@ function Account() {
             />
           </TitleBox>
           <UserImformationWrapper>
-            <div>نام کامل: "{user?.UserName || "نامشخص"}"</div>
-            <div>سن: "{user?.UserAge || "ثبت نشده"}"</div>
-            <div>کشور: "{user?.UserCountry || "ثبت نشده"}"</div>
-            <div>ایمیل: "{user?.UserEmail || "ثبت نشده"}"</div>
-            <div>رمز عبور: "{user?.UserPassword || "ثبت نشده"}"</div>
-            <div>موضوع مورد علاقه: "{user?.FavoritesTopic || "مشخص نشده"}"</div>
+            <UserInfoItem>نام کامل: {user.UserName || "نامشخص"}</UserInfoItem>
+            <UserInfoItem>سن: {user.UserAge || "ثبت نشده"}</UserInfoItem>
+            <UserInfoItem>کشور: {user.UserCountry || "ثبت نشده"}</UserInfoItem>
+            <UserInfoItem>ایمیل: {user.UserEmail || "ثبت نشده"}</UserInfoItem>
+            <UserInfoItem>رمز عبور: *********</UserInfoItem>
+            <UserInfoItem>موضوع مورد علاقه: {user.FavoritesTopic || "مشخص نشده"}</UserInfoItem>
             <Link to="/settings">
               <Botton>رفتن به تنظیمات </Botton>
             </Link>
@@ -170,7 +175,7 @@ function Account() {
               font="var(--font-size-xl)"
             />
           </TitleBox>
-          <div style={{ display: "flex", gap: "10px" }}>
+          <UserActionsWrapper>
             <UserActionsBox title="خبر های خوانده شده">
               {formatNumber(1555)}
             </UserActionsBox>
@@ -180,7 +185,7 @@ function Account() {
             <UserActionsBox title="خبر های ذخیره شده">
               {formatNumber(152)}
             </UserActionsBox>
-          </div>
+          </UserActionsWrapper>
         </UserActionsContainer>
 
         <SavedNewsContainer>
@@ -191,10 +196,8 @@ function Account() {
               font="var(--font-size-xl)"
             />
           </TitleBox>
-          {/* محتوای خبرهای ذخیره شده */}
         </SavedNewsContainer>
       </Container>
-    </>
   );
 }
 

@@ -26,7 +26,6 @@ export function useNews() {
       setNews(data || []);
     } catch (err) {
       setgetNewsError(err.message);
-      console.getNewsError("خطا در دریافت اخبار:", err);
     } finally {
       setgetNewsLoading(false);
     }

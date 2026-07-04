@@ -18,18 +18,14 @@ export const useDeleteNews = () => {
 
       if (error) {
         setError(error.message);
-        console.log("خطا در حذف خبر", error);
-        console.log(data);
 
         return { success: false, error };
       }
 
       setSuccess(true);
-      console.log("خبر با موفقیت حذف شد", data);
       return { success: true, data };
     } catch (err) {
-      setError(err.message);
-      console.error("خطای غیرمنتظره:", err);
+      setError(err.message)
       return { success: false, error: err };
     } finally {
       setLoading(false);

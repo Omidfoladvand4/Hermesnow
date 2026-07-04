@@ -76,17 +76,6 @@ function AdminMenu() {
           />
         </LinkItem>
       </MenuItem>
-      <MenuItem>
-        <LinkItem
-          to="/product-info"
-          $active={location.pathname == "/product-info"}>
-          {" "}
-          <ProductionQuantityLimitsIcon
-            fontSize="large"
-            sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
-          />
-        </LinkItem>
-      </MenuItem>
     </AdminMenuContainer>
   );
 }

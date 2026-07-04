@@ -60,10 +60,9 @@ const FilterdNewsBox = styled.div`
 function Topnews() {
   const { news, Newsrefetch, getNewsLoading } = useNews();
   const { user } = useAuth();
-  const [currentNews, setCurrentNews] = useState([]);
+  const [currentNews, setCurrentNews] = useState([news]);
 
   const FilterHandle = (params = 'all') => {
-    console.log(params);
 
     switch (params) {
       case "all":
@@ -88,7 +87,6 @@ function Topnews() {
       default:
           setCurrentNews(news);
     }
-    console.log(currentNews);
   };
   return (
     <TopNewsWrapper>

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Header from "../layout/Header";
 import Sidebar from "../components/Sidebar";
 import CategoryBoxs from "../components/CategoryBoxs";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ButtonMenu from "../ui/menu/UserMenu";
 import SearchNewsBox from "../components/SearchNewsBox";
 import MainNewsSection from "../components/MainNewsSection";
 import { useNews } from "../hooks/useGetNews";
 import CloseIcon from "@mui/icons-material/Close";
 import { fadeIn } from "../styles/animations";
+const HomeContainer = styled.div`
+  width: 95%;
+  padding: 0;
+`
 const Main = styled.main`
   display: flex;
   align-items: flex-start;
@@ -46,6 +49,7 @@ const MainNews = styled.div`
   transition: all 0.3s ease;
   border-radius: 5px;
   overflow: hidden;
+   
   &:hover {
     transform: scale(1.02);
   }
@@ -105,28 +109,30 @@ const SearchNewsContentWrapper = styled.div`
   &:hover {
     transform: scale(1.05);
   }
-  img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-  }
-  p {
-    margin-top: 5px;
-  }
   @media (max-width: 480px) {
     width: 100%;
     height: max-content;
     border-bottom: 1px solid;
-    img {
+  }
+`;
+const Image  = styled.img`
+  width: 100%;
+    height: 100px;
+    object-fit: cover;
+     @media (max-width: 480px) {
+
       display: none;
-    }
-    p {
-      margin: 0;
+     }
+`
+const NewsTitle = styled.p`
+    margin-top: 5px;
+  
+   @media (max-width: 480px) {
+       margin: 0;
       padding: 6px;
       text-align: center;
     }
-  }
-`;
+`
 const CloseSearchBoxListBtn = styled.div`
   display: flex;
   align-items: center;
@@ -152,8 +158,8 @@ function Home() {
     ...new Map(news.map((news) => [news.NewsSubject, news])).values(),
   ].slice(-3);
 
-  const FiltredNews = (value) => {
-    if (!value) {
+  const filterNews = useCallback((value) => {
+       if (!value) {
       setSearchedNews("");
     } else {
       const filredNewsList = news.filter((item) =>
@@ -162,43 +168,44 @@ function Home() {
       setSearchedNews(filredNewsList);
       setIsopenSearchBoxList(true);
     }
-  };
-  const CloseSearchBoxList = () => {
+}, [news]);
+
+  const toggleSearchBoxList = () => {
     setIsopenSearchBoxList((prev) => !prev);
   };
   return (
-    <div>
+    <HomeContainer>
       <Header />
       <Main>
         <MainContent>
-          {news.length !== 0 ? (
-            <div>
-              <SearchNewsBox filterNewsHandler={FiltredNews} />
+          {news.length > 0 ? (
+            <>
+              <SearchNewsBox filterNewsHandler={filterNews} />
               {searchedNews.length !== 0 && isopenSearchBoxList && (
                 <SearchNewsContent>
-                  <CloseSearchBoxListBtn onClick={() => CloseSearchBoxList()}>
+                  <CloseSearchBoxListBtn onClick={() => toggleSearchBoxList()}>
                     <CloseIcon
                       sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
                     />
                   </CloseSearchBoxListBtn>
                   {searchedNews &&
                     searchedNews.map((item) => (
-                      <SearchNewsContentWrapper>
-                        <img
+                      <SearchNewsContentWrapper key={item.div}>
+                        <Image
                           src={item.MainImage}
                           alt=""
                           style={{ width: "250px" }}
                         />
-                        <p>{item.NewsTitle}</p>
+                        <NewsTitle>{item.NewsTitle}</NewsTitle>
                       </SearchNewsContentWrapper>
                     ))}
                 </SearchNewsContent>
               )}
               <MainNewsWrapper>
-                {mainNews && mainNews.length !== 0
+                {mainNews && mainNews.length > 0
                   ? mainNews.map((item) => {
                       return (
-                        <MainNews>
+                        <MainNews key={item.id}>
                           <Link to={`/category/${item.NewsSubject}`}>
                             <MainNewsImage src={item.MainImage} />
                             <MainNewsTitle>{item.NewsSubject}</MainNewsTitle>
@@ -208,7 +215,7 @@ function Home() {
                     })
                   : ""}
               </MainNewsWrapper>
-            </div>
+            </>
           ) : (
             ""
           )}
@@ -219,11 +226,11 @@ function Home() {
       </Main>
 
       <>
-        {newsSubjects.map((subject) => {
-          return <CategoryBoxs datas={news} subject={subject} />;
+        {newsSubjects.map((subject , index) => {
+          return <CategoryBoxs datas={news} subject={subject}  key={index}/>;
         })}
       </>
-    </div>
+    </HomeContainer>
   );
 }
 

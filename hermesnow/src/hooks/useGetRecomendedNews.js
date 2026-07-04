@@ -3,8 +3,7 @@ import { supabase } from "../lib/supabaseClient";
 
 export function usegetRecomendedNews(subject) {
   const [getRecomendedNews, setGetRecomendedNews] = useState([]);
-  const [getRecomendedNewsLoading, setGetRecomendedNewsLoading] =
-    useState(true);
+  const [getRecomendedNewsLoading, setGetRecomendedNewsLoading] = useState(true);
   const [getRecomendedNewsError, setGetRecomendedNewsError] = useState(null);
 
   useEffect(() => {

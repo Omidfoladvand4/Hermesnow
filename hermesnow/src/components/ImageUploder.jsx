@@ -62,7 +62,7 @@ const ProgressBar = styled.div`
 `;
 
 const ErrorMessage = styled.span`
-  color: var(--color-accent);
+  color: red;
   font-size: 12px;
   margin-top: 5px;
   font-family: vazir;
@@ -74,8 +74,8 @@ const SuccessMessage = styled.span`
   margin-top: 5px;
   font-family: vazir;
 `;
-
-function ImageUploader({ value, onChange, bucketName = "News_Images" }) {
+const BUCKET_NAME = "News_Images"
+function ImageUploader({ value, onChange }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -94,7 +94,7 @@ function ImageUploader({ value, onChange, bucketName = "News_Images" }) {
     setUploading(true);
 
     try {
-      const publicUrl = await uploadImage(file, bucketName);
+      const publicUrl = await uploadImage(file, BUCKET_NAME);
 
       onChange(publicUrl);
 
