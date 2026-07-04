@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import Header from "../layout/Header";
-import Sidebar from "../components/Sidebar";
 import CategoryBoxs from "../components/CategoryBoxs";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -222,7 +221,6 @@ function Home() {
 
           <MainNewsSection />
         </MainContent>
-        <Sidebar />
       </Main>
 
       <>

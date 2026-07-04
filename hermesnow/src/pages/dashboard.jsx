@@ -347,7 +347,7 @@ const NewsEditorTable = styled.table`
 
 const NewsEditorTableCaption = styled.caption`
   padding: 14px;
-  font-size: var(-font-size-xxl);
+  font-size: var(--font-size-xxl);
   font-weight: 700;
   color: var(--color-secondary);
   background: var(--color-primary);
@@ -530,12 +530,6 @@ function Dashboard() {
   const noUsersFound =
     filteredUsers.length === 0 && searchUserValue.trim() !== "";
 
-  // const stats = {
-  //   totalUsers: users?.length || 0,
-  //   totalNews: news?.length || 0,
-  //   admins: users?.filter((u) => u.IsAdmin).length || 0,
-  //   trending: news?.filter((n) => n.IsTrend).length || 0,
-  // };
 
   const stats = useMemo(() => ({
   totalUsers: users?.length || 0,
