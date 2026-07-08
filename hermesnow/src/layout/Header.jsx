@@ -7,12 +7,14 @@ import { useNews } from "../hooks/useGetNews";
 import { scaleIn } from "../styles/animations";
 
 const HeaderWrapper = styled.div`
+  
   display: flex;
   height: 400px;
   gap: 5px;
   padding: 10px 20px;
   animation: ${scaleIn} 0.5s ease;
   @media (max-width: 780px) {
+    width: 100%;
     flex-direction: column;
     height: auto;
     padding: 0;
@@ -48,7 +50,6 @@ const TopNewsTitle = styled.div`
   color: var(--color-primary);
   font-weight: 900;
   @media (max-width: 768px) {
-    background-color: var(--color-accent);
     padding: 0 10px;
   }
 `;

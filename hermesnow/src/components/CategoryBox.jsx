@@ -34,27 +34,30 @@ const NewsBox = styled.div`
 const NewsImage = styled.img`
   width: 30%;
   height: 100%;
+  display: block;
   object-fit: cover;
 `;
 
 const NewsContentWrapper = styled.div`
   display: flex;
-  flex-grow: 1;
+  width: 70%;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   @media (max-width: 768px) {
     padding: 2px;
-    width: 100%;
   }
 `;
 
 const NewsTitle = styled.h3`
-  width: 100%;
+  width: 70%;
   font-size: var(--font-size-md);
   font-weight: 900;
   text-align: start;
   color: white;
+  white-space: nowrap;       
+    overflow: hidden;         
+    text-overflow: ellipsis;             
   margin: 6px 10px;
 `;
 

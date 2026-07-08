@@ -39,9 +39,13 @@ const Div = styled.div`
 `;
 
 const FilteredItemTitle = styled.div`
+  width: 90%;
+   white-space: nowrap;       
+    overflow: hidden;         
+    text-overflow: ellipsis;    
+    display: block;   
   color: var(--color-accent);
   font-size: var(--font-size-xl);
-  flex-grow: 1;
 `;
 const FilteredItemContent = styled.div`
   width: 100%;
@@ -58,6 +62,9 @@ const FilteredDate = styled.div`
   color: var(--color-accent);
   opacity: 0.7;
   font-size: var(--font-size-base);
+  @media (max-width : 480px) {
+     display: none;
+  }
 `;
 function MainNewsSection() {
   const { news  , getNewsLoading} = useNews();

@@ -78,7 +78,6 @@ const HeaderNewsImage = styled.img`
   object-fit: cover;
 `;
 const HeaderNewsTitle = styled.div`
-  width: 100%;
   color: var(--color-primary);
   background-color: var(--color-accent);
   font-weight: 700;
@@ -86,6 +85,11 @@ const HeaderNewsTitle = styled.div`
   bottom: 0;
   right: 0;
   padding: 5px 20px;
+    white-space: nowrap;       
+    overflow: hidden;         
+    text-overflow: ellipsis;  
+    max-width: 100%;          
+    display: block;            
   font-size: var(--font-size-xl);
   @media (max-width: 768px) {
     background-color: inherit;

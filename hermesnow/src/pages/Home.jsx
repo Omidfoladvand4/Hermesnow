@@ -11,7 +11,11 @@ import { fadeIn } from "../styles/animations";
 const HomeContainer = styled.div`
   width: 95%;
   padding: 0;
+  @media (max-width : 768px) {
+    width: 100%;
+  }
 `
+
 const Main = styled.main`
   display: flex;
   align-items: flex-start;
