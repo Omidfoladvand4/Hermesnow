@@ -1,4 +1,4 @@
-import{w as o,v as d,r as x,k as e,b as c,C as p,L as l,j as t}from"./index-BMiPOzSR.js";import{S as g}from"./Sidebar-BB1wf8OI.js";const f=t.div`
+import{w as o,v as d,r as x,k as e,b as c,C as p,L as l,j as t}from"./index-Cqs05Bxx.js";import{S as g}from"./Sidebar-DCqUb1c-.js";const f=t.div`
   width: 100vw;
   min-height: 100vh;
   display: flex;
