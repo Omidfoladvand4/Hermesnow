@@ -1,4 +1,4 @@
-import{v as p,u as l,r as x,k as e,L as r,b as d,T as u,C as f,j as s,i as m}from"./index-DzrAkb7D.js";import{G as g}from"./GoBackButton-Cj8eMriq.js";const o=s.div`
+import{v as p,u as l,r as x,k as e,L as r,b as d,T as u,C as f,j as s,i as m}from"./index-BMiPOzSR.js";import{G as g}from"./GoBackButton-CCEP26ZD.js";const o=s.div`
   width: 100%;
   display: flex;
   align-items: center;

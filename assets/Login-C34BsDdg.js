@@ -1,4 +1,4 @@
-import{r as c,t as w,u as b,k as e,L as j,j as o,q as v,o as y}from"./index-DzrAkb7D.js";import{c as N,b as p,u as L}from"./index.esm-Dm14Bu0w.js";const k=N({userName:p().min(3,"نام کاربری باید بیشتر از 3 کاراکتر باشد").max(20,"نام کاربری نباید بیشتر از 20 کاراکتر باشد").required("نام کاربری الزامی است"),password:p().min(6,"رمز عبور باید بیشتر از 6 کاراکتر باشد").max(20,"رمز عبور نباید بیشتر از 20 کاراکتر باشد").required("رمز عبور الزامی است")}),z=o.form`
+import{r as c,t as w,u as b,k as e,L as j,j as o,q as v,o as y}from"./index-BMiPOzSR.js";import{c as N,b as p,u as L}from"./index.esm-CKOqsmhw.js";const k=N({userName:p().min(3,"نام کاربری باید بیشتر از 3 کاراکتر باشد").max(20,"نام کاربری نباید بیشتر از 20 کاراکتر باشد").required("نام کاربری الزامی است"),password:p().min(6,"رمز عبور باید بیشتر از 6 کاراکتر باشد").max(20,"رمز عبور نباید بیشتر از 20 کاراکتر باشد").required("رمز عبور الزامی است")}),z=o.form`
   width: 30%;
   display: flex;
   align-items: center;

@@ -1,4 +1,4 @@
-import{k as e,j as t}from"./index-DzrAkb7D.js";import{G as n}from"./GoBackButton-Cj8eMriq.js";const i=t.main`
+import{k as e,j as t}from"./index-BMiPOzSR.js";import{G as n}from"./GoBackButton-CCEP26ZD.js";const i=t.main`
   position: fixed;
   inset: 0;
   z-index: 999;
