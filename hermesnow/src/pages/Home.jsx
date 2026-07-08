@@ -8,7 +8,6 @@ import MainNewsSection from "../components/MainNewsSection";
 import { useNews } from "../hooks/useGetNews";
 import CloseIcon from "@mui/icons-material/Close";
 import { fadeIn } from "../styles/animations";
-import Slider from "../components/Slider"
 const HomeContainer = styled.div`
   width: 95%;
   padding: 0;
@@ -31,11 +30,12 @@ const Main = styled.main`
   }
 `;
 const MainContent = styled.div`
-  max-width: 70%;
+  max-width: 95%;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin: 0 auto;
   padding: 13px 20px;
   @media (max-width: 768px) {
     max-width: 100%;
@@ -82,14 +82,16 @@ const MainNewsTitle = styled.p`
   font-weight: 900;
 `;
 const SearchNewsContent = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  flex-direction: column;
   flex-wrap: wrap;
   position: relative;
-  background-color: var(--color-primary);
+  box-shadow: 10px 0px 12px rgba(0,0,0,0.5);
   gap: 10px;
+  padding: 10px 16px ;
   @media (max-width: 480px) {
     background-color: var(--color-accent);
     height: 30vh;
@@ -97,14 +99,14 @@ const SearchNewsContent = styled.div`
   }
 `;
 const SearchNewsContentWrapper = styled.div`
-  width: 250px;
-  height: 150px;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
   background-color: var(--color-accent);
   color: white;
+  padding: 6px 10px ;
   transition: all 0.3s ease;
   &:hover {
     transform: scale(1.05);
@@ -115,15 +117,6 @@ const SearchNewsContentWrapper = styled.div`
     border-bottom: 1px solid;
   }
 `;
-const Image  = styled.img`
-  width: 100%;
-    height: 100px;
-    object-fit: cover;
-     @media (max-width: 480px) {
-
-      display: none;
-     }
-`
 const NewsTitle = styled.p`
     margin-top: 5px;
   
@@ -191,11 +184,6 @@ function Home() {
                   {searchedNews &&
                     searchedNews.map((item) => (
                       <SearchNewsContentWrapper key={item.div}>
-                        <Image
-                          src={item.MainImage}
-                          alt=""
-                          style={{ width: "250px" }}
-                        />
                         <NewsTitle>{item.NewsTitle}</NewsTitle>
                       </SearchNewsContentWrapper>
                     ))}
@@ -219,7 +207,6 @@ function Home() {
           ) : (
             ""
           )}
-          <Slider / >
           <MainNewsSection />
         </MainContent>
       </Main>

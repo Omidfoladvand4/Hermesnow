@@ -127,7 +127,7 @@ function BoxesContainer({ datas, subject }) {
         <CategoryTitle>{subject}</CategoryTitle>
         <CategoryNavbarBox>
           <Link to={`/category/${subject}`}>
-            <Button>همه</Button>
+            <Button>بیشتر</Button>
           </Link>
         </CategoryNavbarBox>
       </CategoryNavbar>

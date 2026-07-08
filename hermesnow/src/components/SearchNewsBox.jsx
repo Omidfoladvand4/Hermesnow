@@ -92,7 +92,6 @@ function SearchNewsBox({ filterNewsHandler, $backgroundColor }) {
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
       />
-      <div></div>
       <SearchBoxButton onClick={handleSearch}
                        disabled={!searchValue.trim()}>جستجو</SearchBoxButton>
     </SearchNewsBoxWrapper>

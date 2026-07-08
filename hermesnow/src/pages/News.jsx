@@ -141,10 +141,10 @@ const ShareBotton = styled.button`
   }
 `;
 const RecomededNews = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 20px;
 `;
 const RecomendedNewsContanier = styled.div`
@@ -154,6 +154,7 @@ const RecomendedNewsContanier = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 1%;
+  gap: 10px;
 `;
 
 function News() {
@@ -272,10 +273,6 @@ const recomendedNewsFiltered = useMemo(() => {
         <Loader />
       ) : (
         <RecomededNews>
-          <Title
-            titleName="خبر های بیشتر در این مورد "
-            font= 'var(--font-size-md)'
-          />
           <RecomendedNewsContanier>
             {recomendedNewsFiltered.map((item) => (
               <CategoryBox key={item.id} news={item} />
