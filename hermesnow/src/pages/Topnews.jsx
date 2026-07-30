@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import Title from "../components/Title";
 import { useAuth } from "../contexts/AuthContext";
 import CategoryBox from "../components/CategoryBox";
+import Pageination from '../components/Pagination'
 
 const TopNewsWrapper = styled.div`
   width: 100%;
@@ -46,14 +47,16 @@ const FilterTab = styled.div`
 const FilterdNewsBox = styled.div`
   width: 80%;
   display: flex;
-  align-items: start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 1rem auto;
   padding: 1rem;
   gap: 1rem;
   @media (max-width: 400px) {
     width: 100%;
+    padding : 0 ;
+    margin-bottom: 150px;
   }
 `;
 
@@ -106,13 +109,7 @@ function Topnews() {
           </FilterTab>
         </FilterTabs>
         <FilterdNewsBox>
-          {!getNewsLoading ? (
-            currentNews.map((item) => {
-              return <CategoryBox key={item.id} news={item} />;
-            })
-          ) : (
-            <Loader />
-          )}
+        <Pageination newsList={currentNews} getNewsLoading={getNewsLoading}/>
         </FilterdNewsBox>
       </FilterBox>
     </TopNewsWrapper>

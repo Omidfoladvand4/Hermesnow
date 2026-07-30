@@ -5,6 +5,7 @@ import styled from "styled-components";
 import CategoryBox from "../components/CategoryBox";
 import Loader from "../components/Loader";
 import Sidebar from "../components/Sidebar";
+import Pagination from "../components/Pagination";
 
 const Container = styled.div`
   width: 100vw;
@@ -37,10 +38,6 @@ const CategoryContentWrapper = styled.div`
 `;
 const NewsGrid = styled.div`
   width: 70%;
-  display: flex;
-  gap: 30px;
-  padding: 40px 20px;
-  justify-items: center;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -79,9 +76,7 @@ function Category() {
           {" "}
           <Sidebar />
           <NewsGrid>
-            {filteredNews.map((item) => (
-              <CategoryBox key={item.id} news={item} />
-            ))}
+          <Pagination newsList={filteredNews} getNewsLoading={loading} itemsPage={4}/>
           </NewsGrid>{" "}
         </CategoryContentWrapper>
       ) : (
