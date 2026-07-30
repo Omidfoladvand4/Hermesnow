@@ -6,6 +6,9 @@ import { useCommentForm } from "../hooks/useCommentForm";
 import { getComments } from "../services/commentService";
 import PersianDate from "../services/PersionDate";
 import Title from "./Title";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ReplyIcon from "@mui/icons-material/Reply";
 
 const CommentsContainer = styled.div`
   width: 100%;
@@ -61,8 +64,8 @@ const Input = styled.textarea`
     border-color: var(--color-primary);
   }
 
-  @media (max-width: 400px) {
-    width: 100vw;
+  @media (max-width: 480px) {
+    width: 90vw;
   }
 `;
 
@@ -73,9 +76,16 @@ const ErrorMessage = styled.div`
   animation: shake 0.5s ease;
 
   @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
   }
 `;
 
@@ -104,6 +114,9 @@ const CommentList = styled.div`
 
 const CommentItem = styled.div`
   width: 45%;
+  min-height: 130px;
+  max-height: max-content;
+  position: relative;
   margin: 0 auto;
   background-color: var(--color-accent);
   padding: 10px 5px;
@@ -111,13 +124,10 @@ const CommentItem = styled.div`
   border-right: 8px solid var(--color-primary);
   transition: transform 0.2s ease;
 
-  &:hover {
-    transform: translateX(-5px);
-  }
-
   @media (max-width: 800px) {
     width: 100%;
     margin-bottom: 1px;
+    border: none;
   }
 `;
 
@@ -129,7 +139,7 @@ const CommentHeader = styled.div`
 `;
 
 const CommentContent = styled.p`
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   font-size: var(--font-size-md);
   font-weight: 600;
@@ -137,7 +147,25 @@ const CommentContent = styled.p`
   line-height: 1.6;
   word-wrap: break-word;
 `;
-
+const CommentActions = styled.div`
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 0px 6px;
+  color: var(--color-primary) ;
+  svg{
+    cursor: pointer;
+  }
+`;
+const LikeAction = styled.div``;
+const DissLikeAction = styled.div``;
+const ReplyBtn = styled.div``;
+const LikeCount = styled.div``;
+const ReplyCount = styled.div``;
 const UserName = styled.div`
   color: white;
   font-weight: bold;
@@ -175,7 +203,7 @@ const LoadingContainer = styled.div`
 function Comments({ commentsData, newsId, onCommentAdded }) {
   const { user, loading: authLoading, isAuthenticated } = useAuth();
   const [comments, setComments] = useState([]);
-  const [error, setError] = useState(null);
+  const [setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -208,7 +236,7 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
     isAuthenticated,
     setComments,
     onCommentAdded,
-    setError
+    setError,
   });
 
   if (authLoading || loading) {
@@ -229,7 +257,9 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
       {!isAuthenticated ? (
         <LoginMessage>
           برای ثبت نظر لطفاً وارد حساب کاربری خود شوید{" "}
-          <Link to="/login" style={{ fontWeight: 'bold', color: 'var(--color-primary)' }}>
+          <Link
+            to="/login"
+            style={{ fontWeight: "bold", color: "var(--color-primary)" }}>
             وارد شدن
           </Link>
         </LoginMessage>
@@ -251,8 +281,7 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
 
           <SubmitCommentBtn
             type="submit"
-            disabled={!formik.isValid || formik.isSubmitting}
-          >
+            disabled={!formik.isValid || formik.isSubmitting}>
             {formik.isSubmitting ? "در حال ارسال..." : "درج نظر"}
           </SubmitCommentBtn>
         </CommentForm>
@@ -261,12 +290,11 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
       {comments?.length > 0 ? (
         <CommentList>
           {comments.map((comment, index) => (
-            <CommentItem 
+            <CommentItem
               key={comment.id || index}
               style={{
-                animation: `fadeIn 0.3s ease ${index * 0.05}s`
-              }}
-            >
+                animation: `fadeIn 0.3s ease ${index * 0.05}s`,
+              }}>
               <CommentHeader>
                 <UserName>{comment.user_name || "ناشناس"}</UserName>
                 <CommentDate>
@@ -274,6 +302,12 @@ function Comments({ commentsData, newsId, onCommentAdded }) {
                 </CommentDate>
               </CommentHeader>
               <CommentContent>{comment.content}</CommentContent>
+              <CommentActions>
+                <ReplyCount>100</ReplyCount>
+                <ReplyBtn><ReplyIcon /></ReplyBtn>
+                <DissLikeAction><ThumbDownIcon/></DissLikeAction>
+                <LikeAction><ThumbUpIcon /></LikeAction>
+              </CommentActions>
             </CommentItem>
           ))}
         </CommentList>
