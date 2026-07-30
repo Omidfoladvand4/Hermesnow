@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import { useUsers } from "../hooks/useGetUsers";
 import { useNews } from "../hooks/useGetNews";
 import Loader from "../components/Loader";
@@ -14,14 +13,13 @@ import {
   slideInFromLeft,
   slideInFromRight,
   borderGlow,
-  gradientMove,
 } from "../styles/animations";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
-import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ListItemIcon from "@mui/material/ListItemIcon";
+import AdminNewsCard from "../components/AdminNewsCard";
+import Modal from "../components/Modal"; 
 
 const DashboardContainer = styled.div`
   width: 100%;
@@ -32,7 +30,6 @@ const DashboardContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   position: relative;
-  overflow-x: hidden;
 `;
 
 const DashboardWrapper = styled.div`
@@ -46,8 +43,10 @@ const DashboardWrapper = styled.div`
   overflow: hidden;
   animation: ${fadeIn} 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
-  @media (max-width: 1250px) {
-    display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -57,6 +56,13 @@ const UsersContainer = styled.div`
   height: 85vh;
   border-right: 2px solid var(--color-info);
   animation: ${slideInFromLeft} 0.5s ease-out;
+
+  @media (max-width: 768px) {
+    order: 1;
+    border-right: none;
+    height: auto;
+    max-height: 60vh;
+  }
 `;
 
 const UsersHeader = styled.div`
@@ -90,6 +96,10 @@ const SearchUserBox = styled.div`
   display: flex;
   gap: 12px;
   border-bottom: 1px solid var(--color-info);
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 const SearchUserInput = styled.input`
@@ -142,6 +152,10 @@ const UserBoxs = styled.div`
   flex: 1;
   overflow-y: auto;
   padding: 20px;
+
+  @media (max-width: 480px) {
+    padding: 16px 0;
+  }
 `;
 
 const UserBox = styled.div`
@@ -159,6 +173,11 @@ const UserBox = styled.div`
 
   &:hover {
     transform: translateX(8px) translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 `;
 
@@ -213,6 +232,11 @@ const UserBoxActions = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: flex-end;
+  }
 `;
 
 const AdminBtn = styled.button`
@@ -221,8 +245,8 @@ const AdminBtn = styled.button`
   border: none;
   border-radius: 10px;
   color: var(--color-secondary);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 900;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -244,6 +268,11 @@ const RightSection = styled.div`
   height: 85vh;
   background: var(--color-secondary);
   animation: ${slideInFromRight} 0.5s ease-out;
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 70vh;
+  }
 `;
 
 const StatsContainer = styled.div`
@@ -257,6 +286,15 @@ const StatsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 `;
 
 const StatCard = styled.div`
@@ -282,6 +320,10 @@ const StatCard = styled.div`
   &:active {
     transform: translateY(-2px);
   }
+
+  @media (max-width: 480px) {
+    padding: 15px 10px;
+  }
 `;
 
 const StatIcon = styled.div`
@@ -303,18 +345,30 @@ const StatValue = styled.div`
   ${StatCard}:hover & {
     text-shadow: 0 0 10px var(--color-accent);
   }
+
+  @media (max-width: 480px) {
+    font-size: var(--font-size-xl);
+  }
 `;
 
 const StatLabel = styled.div`
   font-size: var(--font-size-xl);
   color: var(--color-info);
   font-weight: 600;
+
+  @media (max-width: 480px) {
+    font-size: var(--font-size-sm);
+  }
 `;
 
 const NewsEditorContainer = styled.div`
   flex: 1;
   padding: 20px;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const NewsEditorWrapper = styled.div`
@@ -333,83 +387,27 @@ const NewsEditorWrapper = styled.div`
   }
 `;
 
-const NewsEditorTable = styled.table`
+const NewsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 12px;
+  }
+`;
+
+const EmptyState = styled.div`
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-neutral);
+  font-size: var(--font-size-lg);
   width: 100%;
-  border-collapse: collapse;
-
-  thead {
-    background: rgba(108, 146, 160, 0.15);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-`;
-
-const NewsEditorTableCaption = styled.caption`
-  padding: 14px;
-  font-size: var(--font-size-xxl);
-  font-weight: 700;
-  color: var(--color-secondary);
-  background: var(--color-primary);
-  border-bottom: 1px solid var(--color-info);
-`;
-
-const TableHeader = styled.thead``;
-
-const Th = styled.th`
-  padding: 14px 12px;
-  text-align: right;
-  color: var(--color-secondary);
-  font-size: var(--font-size-md);
-  font-weight: 700;
-  border-bottom: 1px solid var(--color-info);
-`;
-
-const Td = styled.td`
-  padding: 12px 12px;
-  color: white;
-  font-size: var(--font-size-sm);
-  border-bottom: 1px solid rgba(108, 146, 160, 0.15);
-`;
-
-const TableRow = styled.tr`
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: ${fadeIn} 0.3s ease-out;
-  animation-fill-mode: backwards;
-
-  &:hover {
-    background: rgba(108, 146, 160, 0.12);
-    transform: scale(1.01);
-  }
-`;
-
-const TableImage = styled.img`
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid var(--color-info);
-`;
-
-const ActionButton = styled.button`
-  background: rgba(108, 146, 160, 0.15);
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: var(--color-secondary);
-  font-size: 13px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  margin: 0 3px;
-
-  &:hover {
-    background: var(--color-accent);
-    transform: scale(1.1) translateY(-2px);
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
 `;
 
 const DeleteIconStyled = styled(DeleteIcon)`
@@ -440,27 +438,10 @@ const LoadingOverlay = styled.div`
   z-index: 9999;
   animation: ${fadeIn} 0.3s ease-out;
 `;
-const DashboardWarning = styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  display: none;
-  background: linear-gradient(
-    135deg,
-    var(--color-accent),
-    var(--color-primary)
-  );
-  color: var(--color-secondary);
-  font-weight: 900;
-  background-size: 200%;
-  font-size: var(--font-size-xxl);
-  overflow: hidden;
-  animation: ${gradientMove} 0.8s alternate infinite;
-  @media (max-width: 1200px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
+
+// ============================================================
+//                    کامپوننت اصلی Dashboard
+// ============================================================
 
 function Dashboard() {
   const [searchUserValue, setSearchUserValue] = useState("");
@@ -472,7 +453,12 @@ function Dashboard() {
   const { error, deleteUser, promoteToAdmin, demoteFromAdmin } =
     useUserManagement();
   const { deleteNews } = useDeleteNews();
-  const navigage = useNavigate();
+  const navigate = useNavigate();
+
+  // ===== stateهای مودال =====
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState(null); // { id, type }
+
   useEffect(() => {
     setSearchedNews(news);
   }, [news]);
@@ -482,7 +468,7 @@ function Dashboard() {
       setFilteredUsers([]);
     } else {
       const filtered = users.filter((user) =>
-        user.UserName?.toLowerCase().includes(searchUserValue.toLowerCase()),
+        user.UserName?.toLowerCase().includes(searchUserValue.toLowerCase())
       );
       setFilteredUsers(filtered);
     }
@@ -503,15 +489,28 @@ function Dashboard() {
     }
   };
 
-  const deleteNewsHandler = async (id) => {
-    if (window.confirm("⚠️ حذف خبر؟")) {
-      setIsLoading(true);
-      await deleteNews({ newsId: id });
-      Newsrefetch();
-      setIsLoading(false);
-    }
+  // ===== توابع مربوط به مودال حذف خبر =====
+  const openDeleteModal = (id) => {
+    setModalData({ id, type: "news" });
+    setIsModalOpen(true);
   };
 
+  const handleConfirmDelete = async () => {
+    if (!modalData) return;
+    setIsLoading(true);
+    await deleteNews({ newsId: modalData.id });
+    Newsrefetch();
+    setIsLoading(false);
+    setIsModalOpen(false);
+    setModalData(null);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
+
+  // ===== فیلتر اخبار =====
   const filteredNews = (value) => {
     if (!value?.trim()) {
       setSearchedNews(news);
@@ -521,7 +520,7 @@ function Dashboard() {
       (item) =>
         item.NewsTitle?.toLowerCase().includes(value.toLowerCase()) ||
         item.NewsSubject?.toLowerCase().includes(value.toLowerCase()) ||
-        item.Journalist?.toLowerCase().includes(value.toLowerCase()),
+        item.Journalist?.toLowerCase().includes(value.toLowerCase())
     );
     setSearchedNews(filtered);
   };
@@ -530,13 +529,16 @@ function Dashboard() {
   const noUsersFound =
     filteredUsers.length === 0 && searchUserValue.trim() !== "";
 
+  const stats = useMemo(
+    () => ({
+      totalUsers: users?.length || 0,
+      totalNews: news?.length || 0,
+      admins: users?.filter((u) => u.IsAdmin).length || 0,
+      trending: news?.filter((n) => n.IsTrend).length || 0,
+    }),
+    [users, news]
+  );
 
-  const stats = useMemo(() => ({
-  totalUsers: users?.length || 0,
-  totalNews: news?.length || 0,
-  admins: users?.filter(u => u.IsAdmin).length || 0,
-  trending: news?.filter(n => n.IsTrend).length || 0,
-}), [users, news]);
   return (
     <DashboardContainer>
       {isLoading && (
@@ -573,14 +575,16 @@ function Dashboard() {
                   textAlign: "center",
                   padding: 40,
                   color: "var(--color-neutral)",
-                }}>
+                }}
+              >
                 کاربری با این نام یافت نشد
               </div>
             ) : (
               displayUsers.map((user, index) => (
                 <UserBox
                   key={user.id}
-                  style={{ animationDelay: `${index * 0.05}s` }}>
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
                   <UserAvatar>
                     {user.UserName?.charAt(0).toUpperCase()}
                   </UserAvatar>
@@ -602,8 +606,9 @@ function Dashboard() {
                         user.IsAdmin
                           ? "rgba(192, 123, 116, 0.25)"
                           : "rgba(108, 146, 160, 0.25)"
-                      }>
-                      {user.IsAdmin ? "کاهش سطح" : "ارتقا به ادمین"}
+                      }
+                    >
+                      {user.IsAdmin ? "کاهش " : "ارتقا  "}
                     </AdminBtn>
                     <DeleteIconStyled onClick={() => handleDeleteUser(user)} />
                   </UserBoxActions>
@@ -616,7 +621,8 @@ function Dashboard() {
                   color: "var(--color-accent)",
                   padding: 10,
                   textAlign: "center",
-                }}>
+                }}
+              >
                 {error}
               </div>
             )}
@@ -649,7 +655,6 @@ function Dashboard() {
               </StatCard>
               <StatCard>
                 <StatIcon>
-                  {" "}
                   <WhatshotIcon />
                 </StatIcon>
                 <StatValue>{stats.trending}</StatValue>
@@ -661,98 +666,40 @@ function Dashboard() {
           <NewsEditorContainer>
             <NewsEditorWrapper>
               <SearchNewsBox filterNewsHandler={filteredNews} />
-              <div style={{ overflowY: "auto", flex: 1 }}>
-                <NewsEditorTable>
-                  <NewsEditorTableCaption>
-                    لیست آخرین اخبار سایت
-                  </NewsEditorTableCaption>
-                  <TableHeader>
-                    <tr>
-                      <Th>عنوان خبر</Th>
-                      <Th>موضوع</Th>
-                      <Th>تصویر</Th>
-                      <Th>خبرنگار</Th>
-                      <Th>تاریخ</Th>
-                      <Th>عملیات</Th>
-                    </tr>
-                  </TableHeader>
-                  <tbody>
-                    {getNewsLoading ? (
-                      <tr>
-                        <Td colSpan="6" style={{ textAlign: "center" }}>
-                          <Loader />
-                        </Td>
-                      </tr>
-                    ) : searchedNews.length === 0 ? (
-                      <tr>
-                        <Td colSpan="6" style={{ textAlign: "center" }}>
-                          {" "}
-                          خبری برای نمایش وجود ندارد
-                        </Td>
-                      </tr>
-                    ) : (
-                      searchedNews.map((item, index) => (
-                        <TableRow
-                          key={item.id}
-                          style={{ animationDelay: `${index * 0.03}s` }}>
-                          <Td
-                            style={{
-                              maxWidth: 250,
-                              fontWeight: "900",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                            }}>
-                            {item.NewsTitle}
-                          </Td>
-                          <Td>
-                            <span
-                              style={{
-                                background: "var(--color-primary)",
-                                fontWeight: "900",
-                                padding: "4px 12px",
-                                fontSize: 18,
-                                color: "var(--color-accent)",
-                              }}>
-                              {item.NewsSubject}
-                            </span>
-                          </Td>
-                          <Td>
-                            {item.MainImage ? (
-                              <TableImage src={item.MainImage} />
-                            ) : (
-                              "—"
-                            )}
-                          </Td>
-                          <Td>{item.Journalist || "—"}</Td>
-                          <Td>
-                            {new Date(item.NewsDate).toLocaleDateString(
-                              "fa-IR",
-                            )}
-                          </Td>
-                          <Td>
-                            <ActionButton
-                              onClick={() => navigage(`/news/${item.id}`)}>
-                              <EditIcon />
-                            </ActionButton>
-                            <ActionButton
-                              onClick={() => deleteNewsHandler(item.id)}>
-                              <DeleteIcon />
-                            </ActionButton>
-                          </Td>
-                        </TableRow>
-                      ))
-                    )}
-                  </tbody>
-                </NewsEditorTable>
-              </div>
+              <NewsGrid>
+                {getNewsLoading ? (
+                  <Loader />
+                ) : searchedNews.length === 0 ? (
+                  <EmptyState>خبری برای نمایش وجود ندارد</EmptyState>
+                ) : (
+                  searchedNews.map((item, index) => (
+                    <AdminNewsCard
+                      key={item.id}
+                      item={item}
+                      index={index}
+                      onEdit={(id) => navigate(`/news/${id}`)}
+                      onDelete={() => openDeleteModal(item.id)}
+                    />
+                  ))
+                )}
+              </NewsGrid>
             </NewsEditorWrapper>
           </NewsEditorContainer>
         </RightSection>
       </DashboardWrapper>
-      <DashboardWarning>
-        <div>برای مشاهده باید با کامپیوتر وارد شوید</div>
-      </DashboardWarning>
+
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          onConfirm={handleConfirmDelete}
+          title="حذف خبر"
+          message="آیا از حذف این خبر اطمینان دارید؟ این عمل غیرقابل بازگشت است."
+          confirmText="حذف"
+          cancelText="انصراف"
+          icon= <DeleteIcon />
+        />
+      )}
     </DashboardContainer>
   );
 }
