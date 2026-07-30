@@ -23,6 +23,7 @@ const NewsHeader = styled.div`
   @media (max-width: 1024px) {
     align-items: center;
     flex-direction: column;
+    height: 70vh;
   }
 `;
 
