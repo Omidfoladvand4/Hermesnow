@@ -5,11 +5,12 @@ import styled from 'styled-components';
 
 const PaginationWrapper = styled.div`
     width: 100%;
-    height: 70vh;
+    height: max-content;
+    max-height: 70vh;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 12px auto;
 `
 
 const NewsGrid = styled.div`

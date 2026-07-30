@@ -1,4 +1,4 @@
-import  { useMemo } from "react";
+import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNews } from "../hooks/useGetNews";
 import styled from "styled-components";
@@ -36,6 +36,7 @@ const CategoryContentWrapper = styled.div`
     gap: 0;
   }
 `;
+
 const NewsGrid = styled.div`
   width: 70%;
 
@@ -50,41 +51,38 @@ const NewsGrid = styled.div`
   }
 `;
 
-const EmptyMessage = styled.div`
-  color: var(--color-primary);
-  font-size: var(--font-size-xxl);
-  text-align: center;
-  padding: 50px;
-  font-weight: 900;
-`;
 function Category() {
-  const subject = useParams().subject;
+  const { subject } = useParams();
   const { news, loading } = useNews();
 
- const filteredNews = useMemo(
-  () => news.filter(item => item.NewsSubject === subject),
-  [news, subject]
-);
+  const filteredNews = useMemo(() => {
+    if (!news) return [];
+    return news.filter((item) => item.NewsSubject === subject);
+  }, [news, subject]);
 
-  if (loading) return <Loader />;
+
+  if (loading || !news || news.length === 0) {
+    return (
+      <Container>
+        <Header>{subject}</Header>
+        <Loader />
+      </Container>
+    );
+  }
 
   return (
     <Container>
       <Header>{subject}</Header>
-      {filteredNews.length > 0 ? (
-        <CategoryContentWrapper>
-          {" "}
-          <Sidebar />
-          <NewsGrid>
-          <Pagination newsList={filteredNews} getNewsLoading={loading} itemsPage={4}/>
-          </NewsGrid>{" "}
-        </CategoryContentWrapper>
-      ) : (
-        <EmptyMessage>
-          هیچ خبری در دسته‌بندی ({subject}) یافت نشد :{" "}
-          <Link to="/">رفتن به صفحه اصلی</Link>
-        </EmptyMessage>
-      )}
+      <CategoryContentWrapper>
+        <Sidebar />
+        <NewsGrid>
+          <Pagination
+            newsList={filteredNews}
+            getNewsLoading={loading}
+            itemsPage={4}
+          />
+        </NewsGrid>
+      </CategoryContentWrapper>
     </Container>
   );
 }

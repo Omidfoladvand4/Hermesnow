@@ -13,6 +13,7 @@ const TopNewsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 150px;
 `;
 const FilterBox = styled.div`
   width: 100%;
@@ -43,15 +44,22 @@ const Span = styled.span`
 const FilterTab = styled.div`
   cursor: pointer;
   text-align: center;
+  transition: all  0.3s ease;
+  padding : 4px 8px ;
+  border-radius: 8px;
+   background: ${(props) =>
+    props.$active ? "var(--color-primary)" : "transparent"};
+  color: ${(props) =>
+    props.$active ? "var(--color-secondary)" : "var(--color-secondary)"};
+  
 `;
 const FilterdNewsBox = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   margin: 1rem auto;
-  padding: 1rem;
   gap: 1rem;
   @media (max-width: 400px) {
     width: 100%;
@@ -64,15 +72,16 @@ function Topnews() {
   const { news, Newsrefetch, getNewsLoading } = useNews();
   const { user } = useAuth();
   const [currentNews, setCurrentNews] = useState([]);
+   const [ActiveTab , setActiveTab] = useState('all')
 
   useEffect(() => {
     setCurrentNews(news || []);
   }, [news]);
 
-  const FilterHandle = (params = "all") => {
+  const FilterHandle = (param = "all") => {
     if (!news || news.length === 0) return;
-
-    switch (params) {
+    setActiveTab(param)
+    switch (param) {
       case "all":
         setCurrentNews(news);
         break;
@@ -107,14 +116,14 @@ function Topnews() {
       <FilterBox>
         <FilterTabs>
           <Span>فیلتر کردن بر اساس :</Span>
-          <FilterTab onClick={() => FilterHandle("all")}>همه</FilterTab>
-          <FilterTab onClick={() => FilterHandle("user-fav")}>
+          <FilterTab  $active = {ActiveTab == 'all'} onClick={() => FilterHandle("all")}>همه</FilterTab>
+          <FilterTab $active = {ActiveTab == 'user-fav'} onClick={() => FilterHandle("user-fav")}>
             علاقه‌مندی
           </FilterTab>
-          <FilterTab onClick={() => FilterHandle("old-to-new")}>
+          <FilterTab $active = {ActiveTab == 'old-to-new'} onClick={() => FilterHandle("old-to-new")}>
             قدیم به جدید
           </FilterTab>
-          <FilterTab onClick={() => FilterHandle("new-to-old")}>
+          <FilterTab $active = {ActiveTab == 'new-to-old'} onClick={() => FilterHandle("new-to-old")}>
             جدید به قدیم
           </FilterTab>
         </FilterTabs>
