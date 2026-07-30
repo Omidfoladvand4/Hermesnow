@@ -78,6 +78,7 @@ const HeaderNewsImage = styled.img`
   object-fit: cover;
 `;
 const HeaderNewsTitle = styled.div`
+  width: 100%;
   color: var(--color-primary);
   background-color: var(--color-accent);
   font-weight: 700;
@@ -120,7 +121,7 @@ function BoxesContainer({ datas, subject }) {
   if (filtredNewsData.length > 4) {
     filtredNewsData = filtredNewsData.slice(-4);
   }
-  const latestNews = filtredNewsData.at(-1);
+  const latestNews = filtredNewsData[0];
 
 
   if (filtredNewsData.length === 0) return null;

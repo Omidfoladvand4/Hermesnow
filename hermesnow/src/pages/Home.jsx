@@ -84,6 +84,7 @@ const MainNewsTitle = styled.p`
   color: white;
   font-size: var(--font-size-xl);
   font-weight: 900;
+  
 `;
 const SearchNewsContent = styled.div`
   width: 80%;

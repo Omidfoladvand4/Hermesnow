@@ -55,8 +55,7 @@ const TopNewsTitle = styled.div`
 `;
 function Header() {
   const { news } = useNews();
-  const lastNews = [...news].reverse();
-  const mostRecentNews = lastNews[0];
+  const mostRecentNews = news[0];
   const navigate = useNavigate();
 
   const handleClick = () => {
