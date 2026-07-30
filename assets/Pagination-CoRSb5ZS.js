@@ -1,18 +1,19 @@
-import{r as f,k as t,b as m,C as u,j as o}from"./index-La17nL3v.js";const v=o.div`
+import{r as l,k as t,b as u,C as v,j as o}from"./index-DxluskjS.js";const w=o.div`
     width: 100%;
-    height: 70vh;
+    height: max-content;
+    max-height: 70vh;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 0 auto;
-`,w=o.div`
+    margin: 12px auto;
+`,j=o.div`
     width: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 6px;
-`,j=o.div`
+`,y=o.div`
     width: 100%;
     display: flex;
     align-items: center;
@@ -23,7 +24,7 @@ import{r as f,k as t,b as m,C as u,j as o}from"./index-La17nL3v.js";const v=o.di
     @media (max-width : 480px) {
         padding: 6px 8px;
     }
-`,c=o.button`
+`,p=o.button`
    width: 100px;
    padding: 16px 0;
    font-weight: 900;
@@ -37,16 +38,13 @@ import{r as f,k as t,b as m,C as u,j as o}from"./index-La17nL3v.js";const v=o.di
    }
    @media (max-width : 480px) {
     width: 80px;
-   font-size: var(--font-size-md);
-    
+    font-size: var(--font-size-md);
    }
-`,P=o.div`
+`,z=o.div`
      color: var(--color-primary);
      font-size: var(--font-size-xl);
      font-weight: 900;
      @media (max-width : 480px) {
-
        font-size: var(--font-size-lg);
-        
      }
-`;function z({newsList:s,getNewsLoading:l,itemsPage:x=6}){const[i,p]=f.useState(1),e=x;if(l)return t.jsx(m,{});const r=(i-1)*e,g=r+e,h=s?.slice(r,g)||[],a=Math.ceil((s?.length||0)/e),d=n=>{n>=1&&n<=a&&p(n)};return t.jsxs(v,{children:[t.jsx(w,{children:h.map(n=>t.jsx(u,{news:n},n.id))}),a>1&&t.jsxs(j,{children:[t.jsx(c,{onClick:()=>d(i-1),disabled:i===1,children:"قبلی"}),t.jsxs(P,{children:["صفحه ",i," از ",a]}),t.jsx(c,{onClick:()=>d(i+1),disabled:i===a,children:"بعدی"})]})]})}export{z as P};
+`;function b({newsList:s,getNewsLoading:g,itemsPage:f=6,resetPage:r=!1}){const[i,d]=l.useState(1),e=f;if(l.useEffect(()=>{r&&d(1)},[r]),g)return t.jsx(u,{});const c=(i-1)*e,h=c+e,m=s?.slice(c,h)||[],a=Math.ceil((s?.length||0)/e),x=n=>{n>=1&&n<=a&&d(n)};return t.jsxs(w,{children:[t.jsx(j,{children:m.map(n=>t.jsx(v,{news:n},n.id))}),a>1&&t.jsxs(y,{children:[t.jsx(p,{onClick:()=>x(i-1),disabled:i===1,children:"قبلی"}),t.jsxs(z,{children:["صفحه ",i," از ",a]}),t.jsx(p,{onClick:()=>x(i+1),disabled:i===a,children:"بعدی"})]})]})}export{b as P};
