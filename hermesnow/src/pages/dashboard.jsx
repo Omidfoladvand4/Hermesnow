@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
+import UpgradeIcon from '@mui/icons-material/Upgrade';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import { useUsers } from "../hooks/useGetUsers";
 import { useNews } from "../hooks/useGetNews";
 import Loader from "../components/Loader";
@@ -19,7 +21,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AdminNewsCard from "../components/AdminNewsCard";
-import Modal from "../components/Modal"; 
+import Modal from "../components/Modal";
 
 const DashboardContainer = styled.div`
   width: 100%;
@@ -45,6 +47,7 @@ const DashboardWrapper = styled.div`
   position: relative;
 
   @media (max-width: 768px) {
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -181,28 +184,6 @@ const UserBox = styled.div`
   }
 `;
 
-const UserAvatar = styled.div`
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(
-    135deg,
-    var(--color-accent),
-    var(--color-primary)
-  );
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  transition: all 0.3s ease;
-
-  ${UserBox}:hover & {
-    transform: scale(1.1) rotate(5deg);
-  }
-`;
-
 const UserInfo = styled.div`
   flex: 1;
 `;
@@ -210,22 +191,24 @@ const UserInfo = styled.div`
 const UserBoxName = styled.div`
   font-weight: 800;
   color: var(--color-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-lg);
   margin-bottom: 4px;
 `;
 
 const UserBoxId = styled.div`
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-md);
   font-weight: 500;
   color: var(--color-accent);
 `;
 
 const UserBoxRoll = styled.div`
-  font-size: var(--font-size-xs);
   border-radius: 20px;
   color: white;
   display: inline-block;
   font-weight: 900;
+  svg {
+    font-size: var(--font-size-xxl);
+  }
 `;
 
 const UserBoxActions = styled.div`
@@ -248,6 +231,7 @@ const AdminBtn = styled.button`
   font-size: 12px;
   font-weight: 900;
   cursor: pointer;
+  font-size: var(--font-size-md);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -439,10 +423,6 @@ const LoadingOverlay = styled.div`
   animation: ${fadeIn} 0.3s ease-out;
 `;
 
-// ============================================================
-//                    کامپوننت اصلی Dashboard
-// ============================================================
-
 function Dashboard() {
   const [searchUserValue, setSearchUserValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -455,9 +435,8 @@ function Dashboard() {
   const { deleteNews } = useDeleteNews();
   const navigate = useNavigate();
 
-  // ===== stateهای مودال =====
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalData, setModalData] = useState(null); // { id, type }
+  const [modalData, setModalData] = useState(null); 
 
   useEffect(() => {
     setSearchedNews(news);
@@ -474,35 +453,66 @@ function Dashboard() {
     }
   };
 
-  const handleChangeRoll = async (user) => {
-    setIsLoading(true);
-    if (user.IsAdmin) await demoteFromAdmin(user.id, refetch);
-    else await promoteToAdmin(user.id, refetch);
-    setIsLoading(false);
-  };
-
-  const handleDeleteUser = async (user) => {
-    if (window.confirm(`⚠️ حذف "${user.UserName}"؟`)) {
-      setIsLoading(true);
-      await deleteUser(user.id, refetch);
-      setIsLoading(false);
-    }
-  };
-
-  // ===== توابع مربوط به مودال حذف خبر =====
-  const openDeleteModal = (id) => {
+  const openDeleteNewsModal = (id) => {
     setModalData({ id, type: "news" });
     setIsModalOpen(true);
   };
 
-  const handleConfirmDelete = async () => {
+  const openDeleteUserModal = (user) => {
+    setModalData({
+      id: user.id,
+      type: "user",
+      userName: user.UserName,
+    });
+    setIsModalOpen(true);
+  };
+
+  const openRoleModal = (user) => {
+    const isAdmin = user.IsAdmin;
+    setModalData({
+      id: user.id,
+      type: "role",
+      userName: user.UserName,
+      isAdmin: isAdmin,
+      action: isAdmin ? "کاهش سطح" : "ارتقا به ادمین",
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmModal = async () => {
     if (!modalData) return;
+
     setIsLoading(true);
-    await deleteNews({ newsId: modalData.id });
-    Newsrefetch();
-    setIsLoading(false);
-    setIsModalOpen(false);
-    setModalData(null);
+
+    try {
+      switch (modalData.type) {
+        case "news":
+          await deleteNews({ newsId: modalData.id });
+          Newsrefetch();
+          break;
+
+        case "user":
+          await deleteUser(modalData.id, refetch);
+          break;
+
+        case "role":
+          if (modalData.isAdmin) {
+            await demoteFromAdmin(modalData.id, refetch);
+          } else {
+            await promoteToAdmin(modalData.id, refetch);
+          }
+          break;
+
+        default:
+          break;
+      }
+    } catch (err) {
+      console.error("خطا در عملیات:", err);
+    } finally {
+      setIsLoading(false);
+      setIsModalOpen(false);
+      setModalData(null);
+    }
   };
 
   const closeModal = () => {
@@ -510,7 +520,6 @@ function Dashboard() {
     setModalData(null);
   };
 
-  // ===== فیلتر اخبار =====
   const filteredNews = (value) => {
     if (!value?.trim()) {
       setSearchedNews(news);
@@ -538,6 +547,41 @@ function Dashboard() {
     }),
     [users, news]
   );
+
+  const getModalProps = () => {
+    if (!modalData) return {};
+
+    switch (modalData.type) {
+      case "news":
+        return {
+          title: "حذف خبر",
+          message: "آیا از حذف این خبر اطمینان دارید؟ این عمل غیرقابل بازگشت است.",
+          confirmText: "حذف",
+          icon: <DeleteIcon />
+        };
+
+      case "user":
+        return {
+          title: "حذف کاربر",
+          message: `آیا از حذف کاربر "${modalData.userName}" اطمینان دارید؟ این عمل غیرقابل بازگشت است.`,
+          confirmText: "حذف",
+          icon: <DeleteIcon />,
+        };
+
+      case "role":
+        return {
+          title: modalData.isAdmin ? "کاهش سطح کاربر" : "ارتقا سطح کاربر",
+          message: modalData.isAdmin
+            ? `آیا از کاهش سطح کاربر "${modalData.userName}" از ادمین به کاربر عادی اطمینان دارید؟`
+            : `آیا از ارتقا سطح کاربر "${modalData.userName}" به ادمین اطمینان دارید؟`,
+          confirmText: modalData.isAdmin ? "کاهش سطح" : "ارتقا سطح",
+          icon: modalData.isAdmin ?  <TrendingDownIcon /> : <UpgradeIcon />,
+        };
+
+      default:
+        return {};
+    }
+  };
 
   return (
     <DashboardContainer>
@@ -585,9 +629,6 @@ function Dashboard() {
                   key={user.id}
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  <UserAvatar>
-                    {user.UserName?.charAt(0).toUpperCase()}
-                  </UserAvatar>
                   <UserInfo>
                     <UserBoxName>{user.UserName}</UserBoxName>
                     <UserBoxId>شناسه: {user.id}</UserBoxId>
@@ -600,17 +641,10 @@ function Dashboard() {
                     )}
                   </UserBoxRoll>
                   <UserBoxActions>
-                    <AdminBtn
-                      onClick={() => handleChangeRoll(user)}
-                      $bg={
-                        user.IsAdmin
-                          ? "rgba(192, 123, 116, 0.25)"
-                          : "rgba(108, 146, 160, 0.25)"
-                      }
-                    >
-                      {user.IsAdmin ? "کاهش " : "ارتقا  "}
+                    <AdminBtn onClick={() => openRoleModal(user)}>
+                      {user.IsAdmin ? "کاهش" : "ارتقا"}
                     </AdminBtn>
-                    <DeleteIconStyled onClick={() => handleDeleteUser(user)} />
+                    <DeleteIconStyled onClick={() => openDeleteUserModal(user)} />
                   </UserBoxActions>
                 </UserBox>
               ))
@@ -678,7 +712,7 @@ function Dashboard() {
                       item={item}
                       index={index}
                       onEdit={(id) => navigate(`/news/${id}`)}
-                      onDelete={() => openDeleteModal(item.id)}
+                      onDelete={() => openDeleteNewsModal(item.id)}
                     />
                   ))
                 )}
@@ -688,16 +722,13 @@ function Dashboard() {
         </RightSection>
       </DashboardWrapper>
 
-      {isModalOpen && (
+      {/* ===== مودال یکپارچه ===== */}
+      {isModalOpen && modalData && (
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          onConfirm={handleConfirmDelete}
-          title="حذف خبر"
-          message="آیا از حذف این خبر اطمینان دارید؟ این عمل غیرقابل بازگشت است."
-          confirmText="حذف"
-          cancelText="انصراف"
-          icon= <DeleteIcon />
+          onConfirm={handleConfirmModal}
+          {...getModalProps()}
         />
       )}
     </DashboardContainer>
