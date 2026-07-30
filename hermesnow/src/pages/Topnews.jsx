@@ -1,11 +1,11 @@
-import { React, useState } from "react";
+import { React, useState , useEffect} from "react";
 import styled from "styled-components";
 import { useNews } from "../hooks/useGetNews";
 import Loader from "../components/Loader";
 import Title from "../components/Title";
 import { useAuth } from "../contexts/AuthContext";
 import CategoryBox from "../components/CategoryBox";
-import Pageination from '../components/Pagination'
+import Pagination from '../components/Pagination'
 
 const TopNewsWrapper = styled.div`
   width: 100%;
@@ -63,43 +63,53 @@ const FilterdNewsBox = styled.div`
 function Topnews() {
   const { news, Newsrefetch, getNewsLoading } = useNews();
   const { user } = useAuth();
-  const [currentNews, setCurrentNews] = useState([news]);
+  const [currentNews, setCurrentNews] = useState([]);
 
-  const FilterHandle = (params = 'all') => {
+  useEffect(() => {
+    setCurrentNews(news || []);
+  }, [news]);
+
+  const FilterHandle = (params = "all") => {
+    if (!news || news.length === 0) return;
 
     switch (params) {
       case "all":
         setCurrentNews(news);
         break;
-      case "user-fav":
-        setCurrentNews(
-          news.filter((item) => item.NewsSubject === user?.FavoritesTopic),
-        );
-
+      case "user-fav": {
+        const favTopic = user?.FavoritesTopic;
+        if (!favTopic) {
+          setCurrentNews(news);
+        } else {
+          setCurrentNews(
+            news.filter((item) => item.NewsSubject === favTopic)
+          );
+        }
         break;
+      }
       case "old-to-new":
         setCurrentNews(
-          [...news].sort((a, b) => new Date(a.NewsDate) - new Date(b.NewsDate)),
+          [...news].sort((a, b) => new Date(a.NewsDate) - new Date(b.NewsDate))
         );
         break;
       case "new-to-old":
         setCurrentNews(
-          [...news].sort((a, b) => new Date(b.NewsDate) - new Date(a.NewsDate)),
+          [...news].sort((a, b) => new Date(b.NewsDate) - new Date(a.NewsDate))
         );
         break;
       default:
-          setCurrentNews(news);
+        setCurrentNews(news);
     }
   };
+
   return (
     <TopNewsWrapper>
       <FilterBox>
         <FilterTabs>
-          <Span> فیلتر کردن به اساس :</Span>
-          <FilterTab onClick={() => FilterHandle()}>همه</FilterTab>
+          <Span>فیلتر کردن بر اساس :</Span>
+          <FilterTab onClick={() => FilterHandle("all")}>همه</FilterTab>
           <FilterTab onClick={() => FilterHandle("user-fav")}>
-            {" "}
-            علاقه مندی
+            علاقه‌مندی
           </FilterTab>
           <FilterTab onClick={() => FilterHandle("old-to-new")}>
             قدیم به جدید
@@ -109,7 +119,7 @@ function Topnews() {
           </FilterTab>
         </FilterTabs>
         <FilterdNewsBox>
-        <Pageination newsList={currentNews} getNewsLoading={getNewsLoading}/>
+          <Pagination newsList={currentNews} getNewsLoading={getNewsLoading} />
         </FilterdNewsBox>
       </FilterBox>
     </TopNewsWrapper>
@@ -117,3 +127,4 @@ function Topnews() {
 }
 
 export default Topnews;
+
