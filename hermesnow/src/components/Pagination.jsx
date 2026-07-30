@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loader from './Loader';
 import CategoryBox from './CategoryBox';
 import styled from 'styled-components';
@@ -22,7 +22,7 @@ const NewsGrid = styled.div`
     gap: 6px;
 `
 
-const PaginationControls =  styled.div`
+const PaginationControls = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
@@ -34,6 +34,7 @@ const PaginationControls =  styled.div`
         padding: 6px 8px;
     }
 `
+
 const PaginationControlsBtn = styled.button`
    width: 100px;
    padding: 16px 0;
@@ -48,23 +49,28 @@ const PaginationControlsBtn = styled.button`
    }
    @media (max-width : 480px) {
     width: 80px;
-   font-size: var(--font-size-md);
-    
+    font-size: var(--font-size-md);
    }
 `
+
 const PageCount = styled.div`
      color: var(--color-primary);
      font-size: var(--font-size-xl);
      font-weight: 900;
      @media (max-width : 480px) {
-
        font-size: var(--font-size-lg);
-        
      }
 `
-function Pagination({ newsList, getNewsLoading  , itemsPage = 6}) {
+
+function Pagination({ newsList, getNewsLoading, itemsPage = 6, resetPage = false }) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = itemsPage; 
+  const itemsPerPage = itemsPage;
+
+  useEffect(() => {
+    if (resetPage) {
+      setPage(1);
+    }
+  }, [resetPage]);
 
   if (getNewsLoading) {
     return <Loader />;
@@ -91,7 +97,7 @@ function Pagination({ newsList, getNewsLoading  , itemsPage = 6}) {
       </NewsGrid>
 
       {totalPages > 1 && (
-        <PaginationControls >
+        <PaginationControls>
           <PaginationControlsBtn onClick={() => goToPage(page - 1)} disabled={page === 1}>
             قبلی
           </PaginationControlsBtn>
