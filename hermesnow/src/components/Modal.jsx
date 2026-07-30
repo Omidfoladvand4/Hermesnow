@@ -87,7 +87,7 @@ const ModalTitle = styled.h3`
 `;
 
 const ModalText = styled.p`
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-lg);
   color: var(--color-primary);
   text-align: center;
   margin: 0 0 24px 0;
@@ -131,8 +131,8 @@ const ModalButton = styled.button`
 `;
 
 const CancelButton = styled(ModalButton)`
-  background: var(--color-primary);
-  color: var(--color-secondary);
+  background: var(--color-info);
+  color: #000;
 
 `;
 
@@ -219,12 +219,10 @@ function Modal({
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
-        {/* دکمه بستن */}
         <CloseButton onClick={onClose}>
           <CloseIcon style={{ fontSize: 20 }} />
         </CloseButton>
 
-        {/* آیکون */}
         <ModalIcon style={{ background: colors.iconBg, color: colors.iconColor }}>
           <span style={{ fontSize: 32 }}>{icon}</span>
         </ModalIcon>
