@@ -1,10 +1,10 @@
-import{w as o,v as d,r as x,k as e,b as c,C as p,L as l,j as t}from"./index-Cqs05Bxx.js";import{S as g}from"./Sidebar-DCqUb1c-.js";const f=t.div`
+import{w as o,v as d,r as c,k as e,b as x,L as l,j as t}from"./index-La17nL3v.js";import{S as p}from"./Sidebar-CAs183Ax.js";import{P as g}from"./Pagination-Dh6bnNjG.js";const m=t.div`
   width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-`,m=t.div`
+`,f=t.div`
   width: 100%;
   border-bottom: 1px solid var(--color-primary);
   text-align: center;
@@ -24,10 +24,6 @@ import{w as o,v as d,r as x,k as e,b as c,C as p,L as l,j as t}from"./index-Cqs0
   }
 `,w=t.div`
   width: 70%;
-  display: flex;
-  gap: 30px;
-  padding: 40px 20px;
-  justify-items: center;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -44,4 +40,4 @@ import{w as o,v as d,r as x,k as e,b as c,C as p,L as l,j as t}from"./index-Cqs0
   text-align: center;
   padding: 50px;
   font-weight: 900;
-`;function y(){const i=o().subject,{news:n,loading:a}=d(),r=x.useMemo(()=>n.filter(s=>s.NewsSubject===i),[n,i]);return a?e.jsx(c,{}):e.jsxs(f,{children:[e.jsx(m,{children:i}),r.length>0?e.jsxs(h,{children:[" ",e.jsx(g,{}),e.jsx(w,{children:r.map(s=>e.jsx(p,{news:s},s.id))})," "]}):e.jsxs(j,{children:["هیچ خبری در دسته‌بندی (",i,") یافت نشد :"," ",e.jsx(l,{to:"/",children:"رفتن به صفحه اصلی"})]})]})}export{y as default};
+`;function b(){const i=o().subject,{news:s,loading:n}=d(),r=c.useMemo(()=>s.filter(a=>a.NewsSubject===i),[s,i]);return n?e.jsx(x,{}):e.jsxs(m,{children:[e.jsx(f,{children:i}),r.length>0?e.jsxs(h,{children:[" ",e.jsx(p,{}),e.jsx(w,{children:e.jsx(g,{newsList:r,getNewsLoading:n,itemsPage:4})})," "]}):e.jsxs(j,{children:["هیچ خبری در دسته‌بندی (",i,") یافت نشد :"," ",e.jsx(l,{to:"/",children:"رفتن به صفحه اصلی"})]})]})}export{b as default};
