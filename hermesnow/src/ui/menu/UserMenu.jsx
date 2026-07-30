@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MenuItem from "../../components/MenuItem";
 import { Link, useLocation } from "react-router-dom";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SettingsInputCompositeIcon from "@mui/icons-material/SettingsInputComposite";
@@ -12,7 +11,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal";
 
-const UserMenuContainer = styled.main`
+const UserMenuContainer = styled.nav`
   width: 40%;
   display: flex;
   align-items: center;
@@ -22,23 +21,64 @@ const UserMenuContainer = styled.main`
 
   @media (max-width: 768px) {
     width: 100%;
-    justify-content: center;
     padding: 0;
+    gap: 16px;
   }
 `;
 
-const LinkItem = styled(Link)`
+const NavItem = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   color: ${(props) =>
     props.$active ? "var(--color-primary)" : "var(--color-accent)"};
   text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2px;
+    padding: 4px 8px;
+  }
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Label = styled.span`
+  font-size: var(--font-size-lg);
+  font-weight: 900;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: var(--font-size-md);
+  }
 `;
 
 const LogoutButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   color: var(--color-accent);
   cursor: pointer;
-  display: flex;
-  align-items: center;
   transition: all 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 12px;
 
   &:hover {
     color: var(--color-primary);
@@ -47,6 +87,12 @@ const LogoutButton = styled.div`
 
   &:active {
     transform: scale(0.95);
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2px;
+    padding: 4px 8px;
   }
 `;
 
@@ -72,53 +118,58 @@ function UserMenu() {
 
   return (
     <UserMenuContainer>
-      <MenuItem>
-        <LinkItem to="/" $active={location.pathname === "/"}>
+      <NavItem to="/" $active={location.pathname === "/"}>
+        <IconWrapper>
           <HomeIcon
             fontSize="large"
-            sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
+            sx={{ fontSize: { xs: 40, sm: 36, md: 32, lg: 28 } }}
           />
-        </LinkItem>
-      </MenuItem>
+        </IconWrapper>
+        <Label>خانه</Label>
+      </NavItem>
 
-      <MenuItem>
-        <LinkItem to="/top-news" $active={location.pathname === "/top-news"}>
+      <NavItem to="/top-news" $active={location.pathname === "/top-news"}>
+        <IconWrapper>
           <AccessTimeIcon
             fontSize="large"
-            sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
+            sx={{ fontSize: { xs: 40, sm: 36, md: 32, lg: 28 } }}
           />
-        </LinkItem>
-      </MenuItem>
+        </IconWrapper>
+        <Label>اخبار</Label>
+      </NavItem>
 
-      <MenuItem>
-        <LinkItem to="/settings" $active={location.pathname === "/settings"}>
+      <NavItem to="/settings" $active={location.pathname === "/settings"}>
+        <IconWrapper>
           <SettingsInputCompositeIcon
             fontSize="large"
-            sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
+            sx={{ fontSize: { xs: 40, sm: 36, md: 32, lg: 28 } }}
           />
-        </LinkItem>
-      </MenuItem>
+        </IconWrapper>
+        <Label>تنظیمات</Label>
+      </NavItem>
 
       {!user && (
-        <MenuItem>
-          <LinkItem to="/login" $active={location.pathname === "/login"}>
+        <NavItem to="/login" $active={location.pathname === "/login"}>
+          <IconWrapper>
             <LoginIcon
               fontSize="large"
-              sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
+              sx={{ fontSize: { xs: 40, sm: 36, md: 32, lg: 28 } }}
             />
-          </LinkItem>
-        </MenuItem>
+          </IconWrapper>
+          <Label>ورود</Label>
+        </NavItem>
       )}
 
       {user && (
-        <MenuItem>
-          <LogoutButton onClick={handleLogoutClick}>
+        <LogoutButton onClick={handleLogoutClick}>
+          <IconWrapper>
             <LogoutIcon
               fontSize="large"
-              sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
+              sx={{ fontSize: { xs: 40, sm: 36, md: 32, lg: 28 } }}
             />
-          </LogoutButton>
-        </MenuItem>
+          </IconWrapper>
+          <Label>خروج</Label>
+        </LogoutButton>
       )}
 
       <Modal
@@ -129,9 +180,8 @@ function UserMenu() {
         message="آیا از خروج خود اطمینان دارید؟"
         confirmText="خروج"
         cancelText="انصراف"
-        type = 'warning'
-        icon= <LogoutIcon /> 
-       />
+        icon={<LogoutIcon />}
+      />
     </UserMenuContainer>
   );
 }

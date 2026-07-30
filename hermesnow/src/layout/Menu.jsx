@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const MenuContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -21,14 +21,29 @@ const MenuContainer = styled.div`
     bottom: 0;
     top: auto;
     gap: 0;
+    padding: 0 8px ;
   }
 `;
 const MenuIcon = styled.div`
   display: none;
-  color: var(--color-primary);
-  font-size: var(--font-size-xl);
+  color: var(--color-secondary);
+  position: absolute;
+  top: -18px;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  border-radius: 50%;
+  svg{
+    display: none;
+  }
   @media (max-width: 1000px) {
     display: block;
+    svg{
+      display: block;
+      font-size: var(--font-size-xxl);
+    }
   }
 `;
 function Menu() {
