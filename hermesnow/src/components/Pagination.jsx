@@ -89,7 +89,7 @@ function Pagination({ newsList, getNewsLoading  , itemsPage = 6}) {
         ))}
       </NewsGrid>
 
-      {totalPages > 0 && (
+      {totalPages > 1 && (
         <PaginationControls >
           <PaginationControlsBtn onClick={() => goToPage(page - 1)} disabled={page === 1}>
             قبلی
