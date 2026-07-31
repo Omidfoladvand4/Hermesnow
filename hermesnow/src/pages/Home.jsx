@@ -86,25 +86,36 @@ const MainNewsTitle = styled.p`
   font-weight: 900;
   
 `;
+const Div = styled.div`
+  width: 60%;
+  position: relative;
+  z-index: 99999;
+  @media (max-width : 480px) {
+     width: 100%;
+  }
+`
 const SearchNewsContent = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
-  position: relative;
+  position: absolute;
   box-shadow: 10px 0px 12px rgba(0,0,0,0.5);
+  background-color: var(--color-accent);
   gap: 10px;
   padding: 10px 16px ;
   @media (max-width: 480px) {
     background-color: var(--color-accent);
-    height: 30vh;
-    margin-top: 10px;
+    height: calc(max-content + 10px);
+    align-items: center;
+    padding-top: 50px;
+    justify-content: space-between;
+    margin-top: 0;
   }
 `;
 const SearchNewsContentWrapper = styled.div`
-  width: 50%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -122,13 +133,22 @@ const SearchNewsContentWrapper = styled.div`
     border-bottom: 1px solid;
   }
 `;
-const NewsTitle = styled.p`
+const NewsTitle = styled(Link)`
+    width: 90%;
     margin-top: 5px;
-  
+    color : var(--color-secondary) ;
+    font-weight: 900;
+    font-size: var(--font-size-lg);
+     white-space: nowrap;       
+    overflow: hidden;         
+    text-overflow: ellipsis;    
+    display: block;   
    @media (max-width: 480px) {
        margin: 0;
       padding: 6px;
       text-align: center;
+      font-size: var(--font-size-lg);
+
     }
 `
 const CloseSearchBoxListBtn = styled.div`
@@ -137,14 +157,13 @@ const CloseSearchBoxListBtn = styled.div`
   justify-content: center;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   color: white;
   cursor: pointer;
   z-index: 99;
   background-color: var(--color-accent);
   @media (max-width: 480px) {
     color: var(--color-primary);
-    background-color: white;
   }
 `;
 function Home() {
@@ -180,7 +199,8 @@ function Home() {
             <>
               <SearchNewsBox filterNewsHandler={filterNews} />
               {searchedNews.length !== 0 && isopenSearchBoxList && (
-                <SearchNewsContent>
+                <Div>
+                  <SearchNewsContent>
                   <CloseSearchBoxListBtn onClick={() => toggleSearchBoxList()}>
                     <CloseIcon
                       sx={{ fontSize: { xs: 44, sm: 40, md: 36, lg: 32 } }}
@@ -189,10 +209,11 @@ function Home() {
                   {searchedNews &&
                     searchedNews.map((item) => (
                       <SearchNewsContentWrapper key={item.div}>
-                        <NewsTitle>{item.NewsTitle}</NewsTitle>
+                        <NewsTitle to={`news/${item.id}`}>{item.NewsTitle}</NewsTitle>
                       </SearchNewsContentWrapper>
                     ))}
                 </SearchNewsContent>
+                </Div>
               )}
               <MainNewsWrapper>
                 {mainNews && mainNews.length > 0

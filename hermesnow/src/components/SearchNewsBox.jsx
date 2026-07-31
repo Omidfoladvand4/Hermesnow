@@ -35,7 +35,8 @@ const SearchBoxInput = styled.input`
   }
 `;
 
-const SearchBoxButton = styled.button`
+const SearchBoxButton = styled.button` 
+
   height: 100%;
   font-size: var(--font-size-xl);
   padding: 6.5px 16px;
