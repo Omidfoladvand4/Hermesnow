@@ -210,7 +210,6 @@ function NewsEditor() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const timerRef = useRef(null);
 
-  // Validation schema
   const validationSchema = useMemo(() => getValidationSchema(), []);
 
 

@@ -174,6 +174,7 @@ function News() {
   useEffect(() => {
     if (id) {
       fetchNewsById();
+      
     }
   }, [id]);
 
@@ -195,9 +196,10 @@ const fetchNewsById = useCallback(async () => {
         }
         throw error;
       }
-
-      setNews(data);
-    
+      
+     setNews(data);
+      
+      
     } catch (err) {
       setError(err.message);
     } finally {
@@ -207,6 +209,8 @@ const fetchNewsById = useCallback(async () => {
    
 
 const handleShare = useCallback(() => {
+  
+  
   if (!isShareble) {
     copyToClipboard(window.location.href);
   }
