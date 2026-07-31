@@ -722,7 +722,6 @@ function Dashboard() {
         </RightSection>
       </DashboardWrapper>
 
-      {/* ===== مودال یکپارچه ===== */}
       {isModalOpen && modalData && (
         <Modal
           isOpen={isModalOpen}

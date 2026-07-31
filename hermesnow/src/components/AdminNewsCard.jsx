@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import posterImage from "../assets/HermesNowBannar1.jpg";
 import { fadeIn } from "../styles/animations";
 
 
@@ -133,7 +134,7 @@ function AdminNewsCard({ item, onEdit, onDelete, index }) {
 
       <NewsCardBody>
         {item.MainImage && (
-          <NewsCardImage src={item.MainImage} alt={item.NewsTitle} />
+          <NewsCardImage src={item.MainImage || posterImage} alt={item.NewsTitle} />
         )}
         <NewsCardInfo>
           <NewsCardJournalist>
