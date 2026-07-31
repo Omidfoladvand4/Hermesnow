@@ -7,6 +7,7 @@ import CategoryBox from "../components/CategoryBox";
 import Loader from "../components/Loader";
 import GoBackButton from "../components/GoBackButton";
 import Title from "../components/Title";
+import Pagination from "../components/Pagination";
 import { gradientMove } from "../styles/animations";
 import SettingsInputCompositeIcon from "@mui/icons-material/SettingsInputComposite";
 const MyNewsWrapper = styled.div`
@@ -17,16 +18,17 @@ const MyNewsWrapper = styled.div`
   justify-content: space-around;
 `;
 const MyNewsBoxs = styled.div`
-  width: 100%;
+  width: 90%;
   padding: 2% 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 15px;
   
   @media (max-width: 768px) {
+     width:  100%;
       display: flex;
       gap: 6px;
       margin-top: 70px;
@@ -84,12 +86,11 @@ return (
   <MyNewsWrapper>
     <Title titleName='خبر های شما '/>
     <MyNewsBoxs>
-      {yourNews.map((item) => (
-        <CategoryBox
-          key={item.id}
-          news={item}
-        />
-      ))}
+       <Pagination
+            newsList={yourNews}
+            getNewsLoading={getNewsLoading}
+            itemsPage={6}
+          />
 
     </MyNewsBoxs>
   </MyNewsWrapper>

@@ -14,7 +14,7 @@ const MenuContainer = styled.div`
   position: fixed;
   top: 0;
   z-index: 999;
-  background-color: white;
+  background-color : var(--color-secondary);
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -42,7 +42,7 @@ const MenuIcon = styled.div`
     display: block;
     svg{
       display: block;
-      font-size: var(--font-size-xxl);
+      font-size: 40px;
     }
   }
 `;
