@@ -1,13 +1,12 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-// Components
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import Loader from "./components/Loader";
 
 import Home from "./pages/Home";
 
-// Lazy Loaded Pages
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./components/Signup"));
 const Mynews = lazy(() => import("./pages/Mynews"));
@@ -28,7 +27,6 @@ export default function AppRoutes() {
       }
     >
       <Routes>
-        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
