@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Menu from "./layout/Menu";
 import AppRoutes from "./routes";
 import Header from "./layout/Header";
+import Footer from "./ui/footer/Footer";
 import { AuthProvider } from "./contexts/AuthContext";
 
 const AppContainer = styled.div`
@@ -23,6 +24,7 @@ function App() {
       <AppContainer>
         <Menu />
         <AppRoutes />
+        <Footer />
       </AppContainer>
     </AuthProvider>
   );

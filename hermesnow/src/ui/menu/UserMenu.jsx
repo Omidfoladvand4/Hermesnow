@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import SettingsInputCompositeIcon from "@mui/icons-material/SettingsInputComposite";
+import SettingsIcon from '@mui/icons-material/Settings';
 import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -140,7 +140,7 @@ function UserMenu() {
 
       <NavItem to="/settings" $active={location.pathname === "/settings"}>
         <IconWrapper>
-          <SettingsInputCompositeIcon
+          <SettingsIcon
             fontSize="large"
             sx={{ fontSize: { xs: 40, sm: 36, md: 32, lg: 28 } }}
           />

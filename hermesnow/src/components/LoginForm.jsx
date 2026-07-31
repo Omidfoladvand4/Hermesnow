@@ -101,33 +101,55 @@ function LoginFeild() {
     },
     validationSchema: loginSchema,
 
-    onSubmit: async (values) => {
-      setLoading(true);
-      setError("");
+   onSubmit: async (values) => {
+  setLoading(true);
+  setError("");
 
-      try {
-        const { data: user, error } = await supabase
-          .from("Users")
-          .select("*")
-          .eq("UserName", values.userName)
-          .single();
+  try {
+    const { data: user, error } = await supabase
+      .from("Users")
+      .select(`
+        UserId,
+        UserName,
+        UserPassword,
+        UserAge,
+        IsAdmin,
+        UserAvatar
+      `)
+      .eq("UserName", values.userName)
+      .single();
 
-        if (error || !user) {
-          throw new Error("کاربری با این نام کاربری یافت نشد");
-        }
+    if (error || !user) {
+      throw new Error("کاربری با این نام کاربری یافت نشد");
+    }
 
-        if (user.UserPassword !== values.password) {
-          throw new Error("رمز عبور اشتباه است");
-        }
+    if (user.UserPassword !== values.password) {
+      throw new Error("رمز عبور اشتباه است");
+    }
 
-        login(user);
-        navigate("/");
-      } catch (err) {
-        setError(err.message || "خطا در ورود");
-      } finally {
-        setLoading(false);
-      }
-    },
+    const {
+      UserId,
+      UserName,
+      UserAvatar,
+      IsAdmin,
+      UserAge,
+    } = user;
+
+    login({
+      UserId,
+      UserName,
+      UserAvatar,
+      IsAdmin,
+      UserAge,
+    });
+
+    navigate("/");
+  } catch (err) {
+    setError(err.message || "خطا در ورود");
+  } finally {
+    setLoading(false);
+  }
+}
   });
 
   return (

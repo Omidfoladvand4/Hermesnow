@@ -53,7 +53,7 @@ const FilterTab = styled.div`
   cursor: pointer;
   text-align: center;
   transition: all 0.3s ease;
-  padding: 4px 16px;
+  padding: 4px 10px;
   border-radius: 8px;
   background: ${(props) =>
     props.$active ? "var(--color-primary)" : "transparent"};
@@ -98,7 +98,7 @@ function Topnews() {
     
     setActiveTab(param);
     
-    setResetPage(prev => !prev); // toggle کردن برای trigger useEffect در Pagination
+    setResetPage(prev => !prev); 
 
     switch (param) {
       case "all":
@@ -139,13 +139,13 @@ function Topnews() {
             همه
           </FilterTab>
           <FilterTab $active={ActiveTab === 'user-fav'} onClick={() => FilterHandle("user-fav")}>
-            علاقه‌مندی
+            علاقه
           </FilterTab>
           <FilterTab $active={ActiveTab === 'old-to-new'} onClick={() => FilterHandle("old-to-new")}>
-            قدیم به جدید
+             قدیمی ترین 
           </FilterTab>
           <FilterTab $active={ActiveTab === 'new-to-old'} onClick={() => FilterHandle("new-to-old")}>
-            جدید به قدیم
+              جدیدترین
           </FilterTab>
         </FilterTabs>
         <FilterdNewsBox>

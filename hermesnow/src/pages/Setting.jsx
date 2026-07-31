@@ -302,7 +302,9 @@ function Setting() {
       case 2:
         return (
           <div>
-            <Label>رمز عبور</Label>
+            <Label> 
+             رمز عبور جدید
+            </Label>
             <Input
               name="UserPassword"
               type="text"

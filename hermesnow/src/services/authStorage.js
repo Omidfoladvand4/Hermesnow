@@ -14,7 +14,15 @@ export function getStoredUser() {
 }
 
 export function saveUser(user) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+  const safeUser = {
+    UserId: user.UserId,
+    UserName: user.UserName,
+    UserAvatar: user.UserAvatar,
+    IsAdmin: user.IsAdmin,
+    UserAge: user.UserAge,
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(safeUser));
 }
 
 export function removeUser() {

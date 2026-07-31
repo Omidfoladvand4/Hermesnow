@@ -3,8 +3,8 @@ import { supabase } from "../lib/supabaseClient";
 
 export function useUsers() {
   const [users, setUsers] = useState([]);
-  const [getUserLoading, setgetUserLoading] = useState(true);
-  const [getUserError, setgetUserError] = useState(null);
+  const [getUserLoading, setGetUserLoading] = useState(true);
+  const [getUserError, setGetUserError] = useState(null);
 
   useEffect(() => {
     fetchUsers();
@@ -12,26 +12,36 @@ export function useUsers() {
 
   async function fetchUsers() {
     try {
-      setgetUserLoading(true);
-      setgetUserError(null);
+      setGetUserLoading(true);
+      setGetUserError(null);
 
-      const { data, getUserError } = await supabase.from("Users").select("*");
+      const { data, error } = await supabase
+        .from("Users")
+        .select(`
+          UserId,
+          UserName,
+          UserAvatar,
+          UserAge,
+          FavoritesTopic,
+          IsAdmin
+        `);
 
-      if (getUserError) {
-        throw getUserError;
-      }
+      if (error) throw error;
 
-      setUsers(data || []);
+      setUsers(data ?? []);
     } catch (err) {
-      setgetUserError(err.message);
+      setGetUserError(err.message);
     } finally {
-      setgetUserLoading(false);
+      setGetUserLoading(false);
     }
   }
 
-  const refetch = () => {
-    fetchUsers();
-  };
+  const refetch = () => fetchUsers();
 
-  return { users, getUserLoading, getUserError, refetch };
+  return {
+    users,
+    getUserLoading,
+    getUserError,
+    refetch,
+  };
 }
