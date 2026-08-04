@@ -1,4 +1,4 @@
-import{w as c,v as x,r as l,k as e,b as p,j as s}from"./index-DyO4p5ke.js";import{S as m}from"./Sidebar-DfP3ZK2M.js";import{P as g}from"./Pagination-CjITfJFb.js";const r=s.div`
+import{y as x,x as c,r as l,l as e,b as p,k as s}from"./index-zSa54wSk.js";import{S as m}from"./Sidebar-ClZHZYQT.js";import{P as g}from"./Pagination-CoJ85asX.js";const r=s.div`
   width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -34,4 +34,4 @@ import{w as c,v as x,r as l,k as e,b as p,j as s}from"./index-DyO4p5ke.js";impor
     justify-content: center;
     flex-direction: column;
   }
-`;function v(){const{subject:i}=c(),{news:t,loading:n}=x(),o=l.useMemo(()=>t?t.filter(d=>d.NewsSubject===i):[],[t,i]);return n||!t||t.length===0?e.jsxs(r,{children:[e.jsx(a,{children:i}),e.jsx(p,{})]}):e.jsxs(r,{children:[e.jsx(a,{children:i}),e.jsxs(f,{children:[e.jsx(m,{}),e.jsx(h,{children:e.jsx(g,{newsList:o,getNewsLoading:n,itemsPage:4})})]})]})}export{v as default};
+`;function v(){const{subject:i}=x(),{news:t,loading:n}=c(),o=l.useMemo(()=>t?t.filter(d=>d.NewsSubject===i):[],[t,i]);return n||!t||t.length===0?e.jsxs(r,{children:[e.jsx(a,{children:i}),e.jsx(p,{})]}):e.jsxs(r,{children:[e.jsx(a,{children:i}),e.jsxs(f,{children:[e.jsx(m,{}),e.jsx(h,{children:e.jsx(g,{newsList:o,getNewsLoading:n,itemsPage:4})})]})]})}export{v as default};
