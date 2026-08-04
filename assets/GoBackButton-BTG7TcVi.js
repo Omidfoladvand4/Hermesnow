@@ -1,4 +1,4 @@
-import{f as r,l as o,w as a,k as s}from"./index-zSa54wSk.js";const c=r(o.jsx("path",{d:"M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"})),e=s.button`
+import{f as r,l as o,w as a,k as s}from"./index-DQF0V2hB.js";const c=r(o.jsx("path",{d:"M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"})),e=s.button`
   width: 100px;
   display: flex;
   align-items: center;

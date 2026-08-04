@@ -1,4 +1,4 @@
-import{x as b,v as j,r as o,l as t,S as k,k as i}from"./index-zSa54wSk.js";import{P as y}from"./Pagination-CoJ85asX.js";const C=i.div`
+import{x as b,v as j,r as o,l as t,S as k,k as i}from"./index-DQF0V2hB.js";import{P as y}from"./Pagination-33kYJ9_C.js";const C=i.div`
   width: 100%;
   display: flex;
   align-items: center;
