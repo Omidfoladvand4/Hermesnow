@@ -22,6 +22,7 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AdminNewsCard from "../components/AdminNewsCard";
 import Modal from "../components/Modal";
+import { toPersianNumbers } from "../services/persionNumber";
 
 const DashboardContainer = styled.div`
   width: 100%;
@@ -195,11 +196,6 @@ const UserBoxName = styled.div`
   margin-bottom: 4px;
 `;
 
-const UserBoxId = styled.div`
-  font-size: var(--font-size-md);
-  font-weight: 500;
-  color: var(--color-accent);
-`;
 
 const UserBoxRoll = styled.div`
   border-radius: 20px;
@@ -540,10 +536,10 @@ function Dashboard() {
 
   const stats = useMemo(
     () => ({
-      totalUsers: users?.length || 0,
-      totalNews: news?.length || 0,
-      admins: users?.filter((u) => u.IsAdmin).length || 0,
-      trending: news?.filter((n) => n.IsTrend).length || 0,
+      totalUsers: toPersianNumbers(users?.length) || 0,
+      totalNews: toPersianNumbers(news?.length) || 0,
+      admins: toPersianNumbers(users?.filter((u) => u.IsAdmin).length) || 0,
+      trending: toPersianNumbers(news?.filter((n) => n.IsTrend).length) || 0,
     }),
     [users, news]
   );
@@ -631,7 +627,6 @@ function Dashboard() {
                 >
                   <UserInfo>
                     <UserBoxName>{user.UserName}</UserBoxName>
-                    <UserBoxId>شناسه: {user.id}</UserBoxId>
                   </UserInfo>
                   <UserBoxRoll>
                     {user.IsAdmin ? (

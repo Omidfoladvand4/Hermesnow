@@ -5,6 +5,7 @@ import Avatar from "../components/Avatar";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, Navigate } from "react-router-dom";
 import { shimmer, slideInStagger } from "../styles/animations";
+import { toPersianNumbers } from "../services/persionNumber";
 
 const Container = styled.main`
   width: 100%;
@@ -156,7 +157,7 @@ function Account() {
           </TitleBox>
           <UserImformationWrapper>
             <UserInfoItem>نام کامل: {user.UserName || "نامشخص"}</UserInfoItem>
-            <UserInfoItem>سن: {user.UserAge || "ثبت نشده"}</UserInfoItem>
+            <UserInfoItem>سن: {toPersianNumbers(user.UserAge) || "ثبت نشده"}</UserInfoItem>
             <UserInfoItem>کشور: {user.UserCountry || "ثبت نشده"}</UserInfoItem>
             <UserInfoItem>ایمیل: {user.UserEmail || "ثبت نشده"}</UserInfoItem>
             <UserInfoItem>رمز عبور: *********</UserInfoItem>
@@ -177,13 +178,13 @@ function Account() {
           </TitleBox>
           <UserActionsWrapper>
             <UserActionsBox title="خبر های خوانده شده">
-              {formatNumber(1555)}
+              {toPersianNumbers( formatNumber(1555))}
             </UserActionsBox>
             <UserActionsBox title="تعداد کامنت ها">
-              {formatNumber(4258)}
+              {toPersianNumbers( formatNumber(4258))}
             </UserActionsBox>
             <UserActionsBox title="خبر های ذخیره شده">
-              {formatNumber(152)}
+              {toPersianNumbers( formatNumber(152))}
             </UserActionsBox>
           </UserActionsWrapper>
         </UserActionsContainer>

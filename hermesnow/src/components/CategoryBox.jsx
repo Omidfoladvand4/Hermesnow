@@ -7,6 +7,7 @@ import posterImage from "../assets/HermesNowBannar1.jpg";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import formatNumber from "../utils/formartNumber";
 import PersianDate from "../services/PersionDate";
+import {toPersianNumbers} from '../services/persionNumber'
 
 const NewsBox = styled.div`
   width: 500px;
@@ -141,7 +142,7 @@ function CategoryBox({ news }) {
         <FooterCategoryBox>
           <ViewsWrapper>
             <ViewsContainer>
-              <ViewsCount>{formatNumber(views)}</ViewsCount>
+              <ViewsCount>{toPersianNumbers(formatNumber(views))}</ViewsCount>
 
               <RemoveRedEyeIcon fontSize="small" />
             </ViewsContainer>

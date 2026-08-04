@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Loader from './Loader';
 import CategoryBox from './CategoryBox';
 import styled from 'styled-components';
+import { toPersianNumbers } from '../services/persionNumber';
 
 const PaginationWrapper = styled.div`
     width: 100%;
@@ -102,7 +103,7 @@ function Pagination({ newsList, getNewsLoading, itemsPage = 6, resetPage = false
             قبلی
           </PaginationControlsBtn>
           <PageCount>
-            صفحه {page} از {totalPages}
+            صفحه {toPersianNumbers(page)} از {toPersianNumbers(totalPages)}
           </PageCount>
           <PaginationControlsBtn onClick={() => goToPage(page + 1)} disabled={page === totalPages}>
             بعدی

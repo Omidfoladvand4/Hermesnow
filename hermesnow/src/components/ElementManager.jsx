@@ -7,6 +7,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import QuoteIcon from "@mui/icons-material/FormatQuote";
 import ListIcon from "@mui/icons-material/List";
 import ElementItem from './ElementItem';
+import {toPersianNumbers} from '../services/persionNumber'
 
 
  const Label = styled.label`
@@ -238,7 +239,7 @@ function ElementManager({ formik }) {
       {content.length > 0 && (
         <>
           <Label>
-            <ListIcon /> المان‌های اضافه شده ({content.length})
+            <ListIcon /> المان‌های اضافه شده ({toPersianNumbers(content.length)})
           </Label>
           {addedElements}
         </>
