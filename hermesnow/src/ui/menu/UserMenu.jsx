@@ -128,14 +128,14 @@ function UserMenu() {
         <Label>خانه</Label>
       </NavItem>
 
-      <NavItem to="/top-news" $active={location.pathname === "/top-news"}>
+      <NavItem to="/archive" $active={location.pathname === "/archive"}>
         <IconWrapper>
           <AccessTimeIcon
             fontSize="large"
             sx={{ fontSize: { xs: 40, sm: 36, md: 32, lg: 28 } }}
           />
         </IconWrapper>
-        <Label>اخبار</Label>
+        <Label>ارشیو</Label>
       </NavItem>
 
       <NavItem to="/settings" $active={location.pathname === "/settings"}>

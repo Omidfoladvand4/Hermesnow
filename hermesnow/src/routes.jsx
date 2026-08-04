@@ -16,7 +16,7 @@ const NewsEditor = lazy(() => import("./pages/NewsEditor"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Account = lazy(() => import("./pages/Account"));
 const Setting = lazy(() => import("./pages/Setting"));
-const Topnews = lazy(() => import("./pages/Topnews"));
+const Topnews = lazy(() => import("./pages/Archive"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function AppRoutes() {
@@ -33,7 +33,7 @@ export default function AppRoutes() {
         <Route path="/your-news" element={<Mynews />} />
         <Route path="/news/:id" element={<News />} />
         <Route path="/category/:subject" element={<Category />} />
-        <Route path="/top-news" element={<Topnews />} />
+        <Route path="/archive" element={<Topnews />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>

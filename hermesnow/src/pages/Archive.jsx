@@ -7,7 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import CategoryBox from "../components/CategoryBox";
 import Pagination from '../components/Pagination';
 
-const TopNewsWrapper = styled.div`
+const ArchiveWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -82,7 +82,7 @@ const FilterdNewsBox = styled.div`
   }
 `;
 
-function Topnews() {
+function Archive() {
   const { news, Newsrefetch, getNewsLoading } = useNews();
   const { user } = useAuth();
   const [currentNews, setCurrentNews] = useState([]);
@@ -131,7 +131,7 @@ function Topnews() {
   };
 
   return (
-    <TopNewsWrapper>
+    <ArchiveWrapper>
       <FilterBox>
         <FilterTabs>
           <Span>فیلتر کردن بر اساس :</Span>
@@ -156,8 +156,8 @@ function Topnews() {
           />
         </FilterdNewsBox>
       </FilterBox>
-    </TopNewsWrapper>
+    </ArchiveWrapper>
   );
 }
 
-export default Topnews;
+export default Archive;
