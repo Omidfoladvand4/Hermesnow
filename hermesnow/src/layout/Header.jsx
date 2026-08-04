@@ -42,11 +42,14 @@ const Image = styled.img`
   height: 100%;
 `;
 const TopNewsTitle = styled.div`
+  width: 100%;
   position: absolute;
-  bottom: 40px;
-  right: 10px;
+  bottom:0;
+  right: 0;
   padding: 20px 10px;
   font-size: var(--font-size-xxl);
+  background-color: transparent;
+  backdrop-filter: blur(20px);
   color: var(--color-primary);
   font-weight: 900;
   @media (max-width: 768px) {

@@ -80,7 +80,8 @@ const HeaderNewsImage = styled.img`
 const HeaderNewsTitle = styled.div`
   width: 100%;
   color: var(--color-primary);
-  background-color: var(--color-accent);
+  background-color: transparent;
+  backdrop-filter: blur(20px);
   font-weight: 700;
   position: absolute;
   bottom: 0;

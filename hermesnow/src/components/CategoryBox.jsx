@@ -50,7 +50,7 @@ const NewsContentWrapper = styled.div`
 `;
 
 const NewsTitle = styled.h3`
-  width: 70%;
+  width: 90%;
   font-size: var(--font-size-md);
   font-weight: 900;
   text-align: start;
